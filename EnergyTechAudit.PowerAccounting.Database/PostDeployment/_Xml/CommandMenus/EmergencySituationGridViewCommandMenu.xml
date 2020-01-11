@@ -1,0 +1,79 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>emergencySituationGridViewCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>325</Width>
+  <EnableAdaptivity>false</EnableAdaptivity>
+  
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-darkslateblue font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>userAdditionalInfo</Name>
+    <CommandName>userAdditionalInfo</CommandName>
+    <Text></Text>
+    <ToolTip>Изменить/создать "Сведения о пользователе"</ToolTip>
+    <IconClass>font-icon-user-additional-info font-icon-darkgreen font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+    
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>editEmergencySituation</CommandName>
+    <Name>editEmergencySituation</Name>
+    <ToolTip>Редактировать нештатную ситуацию канала</ToolTip>
+    <IconClass>font-icon-edit font-icon-black font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>addEmergencySituation</CommandName>
+    <Name>addEmergencySituation</Name>
+    <ToolTip>Присоединить нештатную ситуацию к каналу</ToolTip>
+    <IconClass>font-icon-plus font-icon-darkblue font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>removeEmergencySituation</CommandName>
+    <Name>removeEmergencySituation</Name>
+    <ToolTip>Отсоединить нештатную ситуацию от канала</ToolTip>
+    <IconClass>font-icon-minus font-icon-color-darkred font-icon-x1_2 indent-right-5px</IconClass>    
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>showHistory</CommandName>
+    <IconClass>font-icon-history font-icon-color-darkred font-icon-x1_2 indent-right-5px</IconClass>
+    <ToolTip>Показать историю изменений</ToolTip>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>showDeletedEntityLog</Name>
+    <CommandName>showDeletedEntityLog</CommandName>
+    <Text></Text>
+    <ToolTip>Показать протокол удаленных сущностей</ToolTip>
+    <IconClass>font-icon-deletedentitylog font-icon-slateblue font-icon-x1_3</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>exportEmergencyLog</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>exportEmergencyLog</CommandName>
+    <IconClass>font-icon-file_export font-icon-darkslateblue font-icon-x1_2 indent-right-5px</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+       
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+</CommandMenu>

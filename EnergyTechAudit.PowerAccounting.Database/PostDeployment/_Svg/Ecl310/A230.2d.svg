@@ -1,0 +1,75 @@
+﻿<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="1400" height="700" viewBox="-30 -30 1200 600"  enable-background="new 0 0 565 264" xml:space="preserve" description="Ключ A230.2d Управление спаренными циркуляционными насосами" deviceId="8" internalNumber="none">
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M170.904,237.927" />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="109.835" y1="197.567" x2="100.876" y2="188.515" />
+	<circle stroke="#000000" stroke-miterlimit="10" cx="98.074" cy="185.711" r="3.762" />
+</g>
+<line stroke="#000000" stroke-miterlimit="10" x1="37.302" y1="188.359" x2="330" y2="188.359" />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="96.096" y1="78.095" x2="105.055" y2="69.043" />
+	<circle stroke="#000000" stroke-miterlimit="10" cx="107.858" cy="66.239" r="3.762" />
+	<text transform="matrix(1 0 0 1 110.3794 59.6787)" font-size="10">T3</text>
+</g>
+<rect x="45.763" y="23.487" fill="none" stroke="#000000" stroke-miterlimit="10" width="56" height="28.593" />
+<rect x="45.763" y="30.862" fill="none" stroke="#000000" stroke-miterlimit="10" width="56" height="13.891" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="66.763" y1="30.862" x2="66.763" y2="44.752" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="83.763" y1="30.862" x2="83.763" y2="44.752" />
+<circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="92.763" cy="37.789" r="4.125" />
+<circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="92.763" cy="37.783" r="5.625" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M98.388,30.974c0,0,1.781,3.062,1.781,6.594s-1.781,6.969-1.781,6.969  " />
+<text transform="matrix(1 0 0 1 56.8481 17.9639)" font-size="10">ECL210</text>
+<g>
+	<circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="404.25" cy="220.359" r="12.25" />
+	<polygon stroke="#000000" stroke-miterlimit="10" points="401.746,215.887 394,220.359 401.746,224.832  " />
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="330" y1="157.359" x2="330" y2="220.359" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="330" y1="220.359" x2="344.5" y2="220.359" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="330" y1="157.359" x2="347" y2="157.359" />
+<g>
+	<polygon stroke="#000000" stroke-miterlimit="10" points="344.5,225.555 357.202,220.359 344.5,215.163  " />
+	<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="369.904,215.163 357.202,220.359 369.904,225.555  " />
+</g>
+<g>
+	<polygon stroke="#000000" stroke-miterlimit="10" points="347,162.556 359.702,157.359 347,152.164  " />
+	<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="372.404,152.164 359.702,157.36 372.404,162.556  " />
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="372.404" y1="157.359" x2="392" y2="157.359" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="369.904" y1="220.359" x2="392" y2="220.359" />
+<g>
+	<circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="404.25" cy="157.359" r="12.25" />
+	<polygon stroke="#000000" stroke-miterlimit="10" points="401.746,152.887 394,157.359 401.746,161.832  " />
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="416.5" y1="157.359" x2="432.602" y2="157.359" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="432.602" y1="157.359" x2="432.602" y2="220.359" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="432.602" y1="220.359" x2="416.5" y2="220.359" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="432.602" y1="188.359" x2="516" y2="188.359" />
+<line stroke="#000000" stroke-miterlimit="10" x1="37.302" y1="74" x2="516" y2="74" />
+<text transform="matrix(1 0 0 1 386.7744 134.3594)" font-size="10">P1</text>
+<text transform="matrix(0.9921 0 0 1 386.7529 201.3594)" font-size="10">P2</text>
+<g>
+	<g>
+		<ellipse fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="516" cy="134.34" rx="15" ry="15.953" />
+		<ellipse fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="516" cy="134.34" rx="12.5" ry="13.294" />
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="505.582" y1="126.992" x2="526.415" y2="141.686" />
+	</g>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="516" y1="74" x2="516" y2="80" />
+			
+				<line fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="10.7957,10.7957" x1="516" y1="90.796" x2="516" y2="106.989" />
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="516" y1="112.387" x2="516" y2="118.387" />
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="516" y1="150.292" x2="516" y2="156.292" />
+			
+				<line fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="8.8556,8.8556" x1="516" y1="165.148" x2="516" y2="178.432" />
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="516" y1="182.859" x2="516" y2="188.859" />
+		</g>
+	</g>
+</g>
+<polygon stroke="#000000" stroke-miterlimit="10" points="37.302,196.598 19.302,188.515 37.302,180.432 " />
+<polygon stroke="#000000" stroke-miterlimit="10" points="19.302,82.083 37.302,74 19.302,65.917 " />
+</svg>

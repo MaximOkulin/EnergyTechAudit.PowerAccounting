@@ -1,0 +1,30 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>dashboardDiagrammDialogContextCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>220</Width>
+  
+  <CommandMenuItem>
+    <Name>argumentAxisLabelToggle</Name>
+    <Text>Показать подпись оси X</Text>
+    <CommandName>argumentAxisLabelToggle</CommandName>
+    <Checked>false</Checked>
+    <GroupName>argumentAxisLabelToggleGroup</GroupName>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>tooltipEnabledToggle</Name>
+    <Text>Показать подсказку</Text>
+    <CommandName>tooltipEnabledToggle</CommandName>
+    <Checked>false</Checked>
+    <GroupName>tooltipEnabledToggleGroup</GroupName>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>drillDownCumulativeTotal</Name>
+    <Text>Разворачивать итоги</Text>
+    <CommandName>drillDownCumulativeTotal</CommandName>
+    <Checked>false</Checked>
+    <GroupName>drillDownCumulativeTotal</GroupName>
+  </CommandMenuItem>
+
+</CommandMenu>

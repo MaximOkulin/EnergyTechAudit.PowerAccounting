@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Core.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Common.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Domain.dll&#13;&#10;EnergyTechAudit.PowerAccounting.DataAccess.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll" DoublePass="true" StartReportEvent="Start_Report" ReportInfo.Name="AccountingParamSheetHwscWithoutVolumeAlmetRK2" ReportInfo.Author="Leo" ReportInfo.Version="Id = 117;ReportTypeId = 1;HasPluginProcessing = 1" ReportInfo.Description="Ведомость учета параметров ГВС (обратка, Альметьевск, РК2, без объема)" ReportInfo.Created="01/22/2015 15:18:15" ReportInfo.Modified="02/19/2018 15:32:45" ReportInfo.CreatorVersion="2017.4.3.0" PrintSettings.PrintOnSheetHeight="295">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using FastReport;
+using FastReport.Format;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using EnergyTechAudit.PowerAccounting.Common.Entity;
+using EnergyTechAudit.PowerAccounting.Domain.Interfaces;
+using EnergyTechAudit.PowerAccounting.DataAccess.Helper;
+using EnergyTechAudit.PowerAccounting.Common.FormatProviders;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Aggregate;
+
+namespace FastReport
+{
+     public class ReportScript
+     {     
+          public static string DeviceCode = null;
+          
+          public static int PeriodTypeId = 0;
+          
+          
+          private void Start_Report(object sender, EventArgs e)
+          {
+              DeviceCode = (string)Report.GetParameterValue(&quot;DeviceCode&quot;);   
+              PeriodTypeId = (int)Report.GetParameterValue(&quot;PeriodTypeId&quot;);     
+              
+              string infoBandVisible = (string)Report.GetParameterValue(&quot;InfoBandVisible&quot;);
+              bool withErrors = (bool)Report.GetParameterValue(&quot;WithErrors&quot;);
+      
+              if(!withErrors || infoBandVisible.Equals(&quot;0&quot;, StringComparison.Ordinal))
+              { 
+                InfoBand.Visible = false;
+              }
+              else{
+                InfoBand.Visible = true;
+              }
+      
+              RoundParamsTo2DecimalDigits(); 
+      
+              Report.DifferenceLastFirstWithAddNewRow(&quot;SummaryData&quot;);
+          }
+    
+          // округляет значения температуры, давления, объема и массы дл 2-х знаков для ВКТ-7
+          private void RoundParamsTo2DecimalDigits()
+          {
+                if(ReportScript.DeviceCode == &quot;VKT7&quot;)
+                {
+                    var textObjects = new TextObject[] {
+                    // текущие  
+                    Text18, Text19,  Text20, Text24, Text25, Text26, Text27, Text28,
+                    // средние
+                    Text39, Text40, Text41, Text45, Text46, Text47, Text48, Text49,
+                    // итоговые
+                    Text53, Text54, Text55,
+                    // показания счетчиков
+                    Text92, Text93, Text99, Text100
+                  };
+        
+                    for(int i = 0; i &lt; textObjects.Length; i++)
+                    {
+                        (textObjects[i].Format as NumberFormat).DecimalDigits = 2;
+                    }
+        
+                    InfoBand.Visible = true;
+                }
+          }
+     }
+          
+}
+</ScriptText>
+  <Dictionary>
+    <Parameter Name="SummaryData_Hws_Heat_Total_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Parameter Name="SummaryData_Hws_Mass_SupplyPipe_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Parameter Name="SummaryData_Hws_Mass_ReturnPipe_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Parameter Name="SummaryData_Hws_Time_Normal_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Parameter Name="HasEstimatedReset" DataType="System.Boolean"/>
+    <Total Name="MainData.Hws.Heat.TotalTotal" Expression="[MainData.Hws.Heat.Total.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Heat.TotalAvg" TotalType="Avg" Expression="[MainData.Hws.Heat.Total.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Time.NormalTotal" Expression="[MainData.Hws.Time.Normal.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.CountTotal" TotalType="Count" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Mass.SupplyPipeTotal" Expression="[MainData.Hws.Mass.SupplyPipe.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Mass.SupplyPipeAvg" TotalType="Avg" Expression="[MainData.Hws.Mass.SupplyPipe.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Mass.ReturnPipeTotal" Expression="[MainData.Hws.Mass.ReturnPipe.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Mass.ReturnPipeTotalAvg" TotalType="Avg" Expression="[MainData.Hws.Mass.ReturnPipe.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Temper.SupplyPipeTotalAvg" TotalType="Avg" Expression="[MainData.Hws.Temper.SupplyPipe]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Temper.ReturnPipeTotalAvg" TotalType="Avg" Expression="[MainData.Hws.Temper.ReturnPipe]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Pressure.SupplyPipeTotalAvg" TotalType="Avg" Expression="[MainData.Hws.Pressure.SupplyPipe]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Pressure.ReturnPipeTotalAvg" TotalType="Avg" Expression="[MainData.Hws.Pressure.ReturnPipe]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Mass.SumTotalAvg" TotalType="Avg" Expression="[MainData.Hws.Mass.SupplyPipe.Diff]+[MainData.Hws.Mass.ReturnPipe.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Hws.Mass.SumTotal" Expression="[MainData.Hws.Mass.SupplyPipe.Diff]+[MainData.Hws.Mass.ReturnPipe.Diff]" Evaluator="MainDataBand"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperHeight="295" RawPaperSize="9" Guides="0" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle" Width="718.2" Height="117.18">
+      <TextObject Name="Text2" Left="113.4" Width="529.2" Height="49.14" Text="Ведомость учета параметров ГВС&#13;&#10;статистические данные" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text29" Top="75.6" Width="79.38" Height="18.9" Text="Потребитель:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Top="94.5" Width="79.38" Height="18.9" Text="Адрес:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text31" Left="536.76" Top="75.6" Width="90.72" Height="18.9" Text="Тип прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text32" Left="536.76" Top="94.5" Width="90.72" Height="18.9" Text="Номер прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text33" Left="627.48" Top="75.6" Width="90.72" Height="18.9" Text="[DeviceShortName]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text34" Left="627.48" Top="94.5" Width="90.72" Height="18.9" Text="[FactoryNumber]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text35" Top="49.14" Width="718.2" Height="18.9" Text="c [string.Format(&quot;{0:d}&quot;, [PeriodBegin])] до [string.Format(&quot;{0:d}&quot;, [PeriodEnd])]" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text80" Left="79.38" Top="94.5" Width="94.5" Height="18.9" Text="[IIf([BuildingPurposeCode] != &quot;BoilerHouse&quot; ,[FullAddress],[BuildingDescription])]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text81" Left="79.38" Top="75.6" Width="94.5" Height="18.9" Text="[IIf([UseBuildingDescriptionInReports] == &quot;true&quot;,[BuildingDescription],[District])]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <PictureObject Name="CustomerReportLogo" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never"/>
+    </ReportTitleBand>
+    <DataBand Name="MainDataBand" Top="189.84" Width="718.2" Height="17.01" PrintIfDatasourceEmpty="true">
+      <TextObject Name="Text16" Width="83.16" Height="17.01" Border.Lines="All" Text="[MainData.Time]" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text17" Left="83.16" Width="52.92" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Hws.Heat.Total.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text18" Left="136.08" Width="83.16" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Hws.Mass.SupplyPipe.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text19" Left="219.24" Width="83.16" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Hws.Mass.ReturnPipe.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text28" Left="585.9" Width="52.92" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Hws.Pressure.ReturnPipe],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text36" Left="638.82" Width="41.58" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],DecTimeFormatter.ToHhmm([MainData.Hws.Time.Normal.Diff]),&quot;-&quot;)]" Format="Time" Format.Format="t" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text72" Left="680.4" Width="37.8" Height="17.01" Border.Lines="All" Text="[IIf([WithErrors], [MainData.Hws.ErrorInfo], &quot;-&quot;)]" Format="Time" Format.Format="t" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text25" Left="464.94" Width="68.04" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Hws.Temper.ReturnPipe],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text24" Left="396.9" Width="68.04" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Hws.Temper.SupplyPipe],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text27" Left="532.98" Width="52.92" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Hws.Pressure.SupplyPipe],&quot;-&quot;)]&#13;&#10;" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text20" Left="302.4" Width="94.5" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Hws.Mass.SupplyPipe.Diff] + [MainData.Hws.Mass.ReturnPipe.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <DataHeaderBand Name="MainDataBandHeader" Top="119.49" Width="718.2" Height="68.04">
+        <TextObject Name="Text5" Left="136.08" Top="30.24" Width="83.16" Height="37.8" Border.Lines="All" Text="M (ул. Жук.)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text6" Left="219.24" Top="30.24" Width="83.16" Height="37.8" Border.Lines="All" Text="М (ул. Гаф.)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text7" Left="302.4" Top="30.24" Width="94.5" Height="37.8" Border.Lines="All" Text="Сумма" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text11" Left="396.9" Top="30.24" Width="68.04" Height="37.8" Border.Lines="All" Text="T (ул. Жук.)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text12" Left="464.94" Top="30.24" Width="68.04" Height="37.8" Border.Lines="All" Text="T (ул. Гаф.)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text14" Left="532.98" Top="30.24" Width="52.92" Height="37.8" Border.Lines="All" Text="P (ул. Жук.)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text15" Left="585.9" Top="30.24" Width="52.92" Height="37.8" Border.Lines="All" Text="P (ул. Гаф.)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text1" Width="83.16" Height="68.04" Border.Lines="All" Text="Дата" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text3" Left="83.16" Width="52.92" Height="68.04" Border.Lines="All" Text="Энергия Q, ГКал" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text4" Left="136.08" Width="260.82" Height="30.24" Border.Lines="All" Text="Масса М, т" Padding="2, 8, 2, 0" HorzAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text73" Left="396.9" Width="136.08" Height="30.24" Border.Lines="All" Text="Температура Т, °С" Padding="2, 8, 2, 0" HorzAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text76" Left="532.98" Width="105.84" Height="30.24" Border.Lines="All" Text="Давление, кгс/см2" Padding="2, 8, 2, 0" HorzAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text77" Left="638.82" Width="41.58" Height="68.04" Border.Lines="All" Text="Время наработки Tнар, ч:м" Padding="2, 8, 2, 0" HorzAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text67" Left="680.4" Width="37.8" Height="68.04" Border.Lines="All" Text="Ошибки" HorzAlign="Center" VertAlign="Center" Angle="270" Font="Times New Roman, 8pt"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="MainDataBandFooter" Top="209.17" Width="718.2" Height="71.82">
+        <TextObject Name="Text37" Width="83.16" Height="18.9" Border.Lines="All" Text="Среднее:" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text38" Left="83.16" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Heat.TotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text39" Left="136.08" Width="83.16" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Mass.SupplyPipeAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text40" Left="219.24" Width="83.16" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Mass.ReturnPipeTotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text41" Left="302.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Mass.SumTotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text45" Left="396.9" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Temper.SupplyPipeTotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text48" Left="532.98" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Pressure.SupplyPipeTotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text49" Left="585.9" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Pressure.ReturnPipeTotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text50" Left="638.82" Width="41.58" Height="18.9" Border.Lines="All" Text="-" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text51" Top="18.9" Width="83.16" Height="18.9" Border.Lines="All" Text="Итого:" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text52" Left="83.16" Top="18.9" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Heat.TotalTotal]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text53" Left="136.08" Top="18.9" Width="83.16" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Mass.SupplyPipeTotal]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text54" Left="219.24" Top="18.9" Width="83.16" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Mass.ReturnPipeTotal]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text55" Left="302.4" Top="18.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Mass.SumTotal]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text60" Left="396.9" Top="18.9" Width="68.04" Height="18.9" Border.Lines="All" Text="-" Padding="0, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text61" Left="464.94" Top="18.9" Width="68.04" Height="18.9" Border.Lines="All" Text="-" Padding="0, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text62" Left="532.98" Top="18.9" Width="52.92" Height="18.9" Border.Lines="All" Text="-" Padding="0, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text63" Left="585.9" Top="18.9" Width="52.92" Height="18.9" Border.Lines="All" Text="-" Padding="0, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text64" Left="638.82" Top="18.9" Width="41.58" Height="18.9" Border.Lines="All" Text="[DecTimeFormatter.ToHhmm([MainData.Hws.Time.NormalTotal])]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text65" Top="37.8" Width="83.16" Height="34.02" Border.Lines="All" Text="Общее время работы &#13;&#10;= [DecTimeFormatter.ToHhmm([MainData.CountTotal] * IIf(PeriodTypeId == 2, 1, IIf(PeriodTypeId == 3, 24, 0)))]" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text78" Left="83.16" Top="37.8" Width="52.92" Height="34.02" Border.Lines="All" Text="Тнараб&#13;&#10;= [DecTimeFormatter.ToHhmm([MainData.Hws.Time.NormalTotal])]" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text79" Left="136.08" Top="37.8" Width="582.12" Height="34.02" Border.Lines="All" Text="Тпростоя&#13;&#10;= [DecTimeFormatter.ToHhmm([MainData.CountTotal] * IIf(PeriodTypeId == 2, 1, IIf(PeriodTypeId == 3, 24, 0)) - [MainData.Hws.Time.NormalTotal])]" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text75" Left="680.4" Width="37.8" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Angle="270" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text104" Left="680.4" Top="18.9" Width="37.8" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Angle="270" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text46" Left="464.94" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Hws.Temper.ReturnPipeTotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      </DataFooterBand>
+    </DataBand>
+    <DataBand Name="SummaryDataBand" Top="346.09" Width="718.2" Height="18.9">
+      <TextObject Name="Text83" Width="151.2" Height="18.9" Border.Lines="All" Text="[SummaryData.Time]" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text86" Left="151.2" Width="94.5" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.Hws.Heat.Total])]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text92" Left="245.7" Width="124.74" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.Hws.Mass.SupplyPipe])]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text96" Left="623.7" Width="94.5" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,DecTimeFormatter.ToHhmm([SummaryData.Hws.Time.Normal]))] " NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text26" Left="495.18" Width="128.52" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.Hws.Mass.SupplyPipe]+[SummaryData.Hws.Mass.ReturnPipe])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text93" Left="370.44" Width="124.74" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.Hws.Mass.ReturnPipe])]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <DataHeaderBand Name="SummaryDataBandHeader" Top="283.3" Width="718.2" Height="60.48">
+        <TextObject Name="Text82" Top="3.78" Width="718.2" Height="18.9" Text="Показания счетчиков[IIf([HasEstimatedReset],&quot; (в приборе отсутствуют накопительные итоги на начало выбранного диапазона дат)&quot;,&quot;&quot;)]:" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text84" Top="22.68" Width="151.2" Height="37.8" Border.Lines="All" Text="Дата" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text85" Left="151.2" Top="22.68" Width="94.5" Height="37.8" Border.Lines="All" Text="Количество теплоты, ГКал" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text87" Left="245.7" Top="22.68" Width="124.74" Height="37.8" Border.Lines="All" Text="Масса, &#13;&#10;М (ул. Жук.), т" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text88" Left="370.44" Top="22.68" Width="124.74" Height="37.8" Border.Lines="All" Text="Масса, &#13;&#10;М (ул. Гаф.), т" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text91" Left="623.7" Top="22.68" Width="94.5" Height="37.8" Border.Lines="All" Text="Время наработки, &#13;&#10;час:мин" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text13" Left="495.18" Top="22.68" Width="128.52" Height="37.8" Border.Lines="All" Text="Сумма масс, т" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="SummaryDataBandFooter" Top="367.3" Width="718.2" Height="18.9">
+        <TextObject Name="Text97" Width="151.2" Height="18.9" Border.Lines="All" Text="Результат за период:" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text98" Left="151.2" Width="94.5" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],[MainData.Hws.Heat.TotalTotal],[SummaryData_Hws_Heat_Total_TotalDiffLastFirst])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text99" Left="245.7" Width="124.74" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],[MainData.Hws.Mass.SupplyPipeTotal],[SummaryData_Hws_Mass_SupplyPipe_TotalDiffLastFirst])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text100" Left="370.44" Width="124.74" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],[MainData.Hws.Mass.ReturnPipeTotal],[SummaryData_Hws_Mass_ReturnPipe_TotalDiffLastFirst])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text103" Left="623.7" Width="94.5" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],DecTimeFormatter.ToHhmm([MainData.Hws.Time.NormalTotal]), DecTimeFormatter.ToHhmm([SummaryData_Hws_Time_Normal_TotalDiffLastFirst]))]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text47" Left="495.18" Width="128.52" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],0,[MainData.Hws.Mass.SumTotal])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <ChildBand Name="InfoBand" Top="388.51" Width="718.2" Height="68.04">
+          <TextObject Name="Text105" Top="3.78" Width="718.2" Height="64.26" Text="[Info]" Font="Times New Roman, 8pt"/>
+        </ChildBand>
+      </DataFooterBand>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="458.87" Width="718.2" Height="56.7">
+      <TextObject Name="Text68" Top="15.12" Width="124.74" Height="18.9" Text="Ответственный за учет:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text69" Top="37.8" Width="124.74" Height="18.9" Text="Отчет принят:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text70" Left="124.74" Top="15.12" Width="408.24" Height="18.9" Text="___________/________________________/" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text71" Left="124.74" Top="37.8" Width="408.24" Height="18.9" Text="_________________[Year([Date])] г.___________/________________________/" Font="Times New Roman, 8pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="517.88" Width="718.2" Height="18.9">
+      <TextObject Name="Text66" Left="311.85" Top="3.78" Width="94.5" Height="11.34" Text="[Page]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

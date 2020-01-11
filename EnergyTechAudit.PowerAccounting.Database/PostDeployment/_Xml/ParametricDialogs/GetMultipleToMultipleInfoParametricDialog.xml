@@ -1,0 +1,129 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+ 
+  <Id>getMultipleToMultipleInfoParametricDialog</Id>
+  <Height>0</Height>
+  <Width>350</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <Title>Параметры</Title>
+  <IsSavedState>false</IsSavedState>
+  <IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+  <Descriptors>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Сущность-связь</Caption>
+      <Name>LinkName</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryList</DataSourceType>
+        <DataSource>
+          [{
+          id: 1,
+          code: "AccessPointLinkBuilding",
+          description: "Точки доступа - Строения"
+          },
+          {
+          id: 2,
+          code: "UserLinkChannel",
+          description: "Пользователи - Каналы"
+          }]
+        </DataSource>        
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption>Код</Caption>
+            <Width>150</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Наименование</Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>      
+      <FormLayoutItemExtenders>        
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Code</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Направление</Caption>
+      <Name>Direction</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryList</DataSourceType>
+        <DataSource>
+          [
+          {
+          id: 1,
+          code: "Both",
+          description: "В обе стороны"
+          },
+          {
+          id: 2,
+          code: "Left",
+          description: "Слева направо"
+          },
+          {
+          id: 3,
+          code: "Right",
+          description: "Справа налево"
+          }]
+        </DataSource>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption>Code</Caption>
+            <Width>50</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Наименование</Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Code</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+  </Descriptors>
+</ParametricDialog>

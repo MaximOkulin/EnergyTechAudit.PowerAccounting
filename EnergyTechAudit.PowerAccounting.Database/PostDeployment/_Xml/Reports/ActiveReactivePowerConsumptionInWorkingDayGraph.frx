@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Core.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Common.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Domain.dll&#13;&#10;EnergyTechAudit.PowerAccounting.DataAccess.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll" DoublePass="true" StartReportEvent="Start_Report" ReportInfo.Name="ActiveReactivePowerConsumptionInWorkingDayGraph" ReportInfo.Author="Max" ReportInfo.Version="Id = 9;ReportTypeId = 1;HasPluginProcessing = 1" ReportInfo.Description="График потребления мощности в рабочий день" ReportInfo.Created="01/22/2015 15:18:15" ReportInfo.Modified="11/29/2017 15:48:40" ReportInfo.CreatorVersion="2017.4.3.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using EnergyTechAudit.PowerAccounting.Common.Entity;
+using EnergyTechAudit.PowerAccounting.Domain.Interfaces;
+using EnergyTechAudit.PowerAccounting.DataAccess.Helper;
+using EnergyTechAudit.PowerAccounting.Common.FormatProviders;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Aggregate;
+
+namespace FastReport
+{
+  public class ReportScript
+  {     
+    private void Start_Report(object sender, EventArgs e)
+    {
+      DataSourceBase rowData = Report.GetDataSource(&quot;ActivePowerSummaryData&quot;);
+      rowData.Init();
+      
+      var maxHour = Convert.ToInt32(Report.GetColumnValue(&quot;ActivePowerSummaryData.MaxHour&quot;));     
+                          
+      var activePowerTextObjects = new TextObject[] {
+        Text500, Text501, Text502, Text503, Text504, Text505, Text506, Text507, Text508, Text509, Text510,
+        Text511, Text512, Text513, Text514, Text515, Text516, Text517, Text518, Text519, Text520, Text521,
+        Text522, Text523
+        };
+             
+      activePowerTextObjects[maxHour].Font = new Font(activePowerTextObjects[maxHour].Font, FontStyle.Bold);  
+    }
+  }
+}
+</ScriptText>
+  <Dictionary/>
+  <ReportPage Name="Page1" PaperHeight="295" RawPaperSize="9" Guides="0" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle" Width="718.2" Height="128.52" Guides="83.16">
+      <TextObject Name="Text2" Left="120.96" Width="483.84" Height="49.14" Text="График потребления активной и реактивной мощности в рабочий день" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt, style=Bold"/>
+      <TextObject Name="Text29" Top="62.37" Width="79.38" Height="18.9" Text="Потребитель:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text31" Left="480.06" Top="62.37" Width="90.72" Height="18.9" Text="Тип прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text32" Left="480.06" Top="81.27" Width="90.72" Height="18.9" Text="Номер прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text33" Left="627.48" Top="62.37" Width="90.72" Height="18.9" Text="[DeviceShortName]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text34" Left="627.48" Top="81.27" Width="90.72" Height="18.9" Text="[FactoryNumber]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text81" Left="79.38" Top="62.37" Width="226.8" Height="18.9" Text="[BuildingDescription]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <PictureObject Name="CustomerReportLogo" Top="21.73" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never"/>
+      <TextObject Name="Text6" Left="306.18" Top="45.36" Width="94.5" Height="18.9" Text="[string.Format(&quot;{0:d}&quot;, [Period])]" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text579" Left="480.06" Top="102.06" Width="147.42" Height="18.9" Text="Расчетный коэффициент:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text580" Left="627.48" Top="102.06" Width="90.72" Height="18.9" Text="[DesignFactor]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+    </ReportTitleBand>
+    <DataBand Name="MainDataBand" Top="193.62" Width="718.2" Height="34.02" PrintIfDatasourceEmpty="true">
+      <TextObject Name="Text1" Width="83.16" Height="18.9" Border.Lines="All" Text="нагрузка" HorzAlign="Center" Font="Times New Roman, 10pt, style=Bold"/>
+      <TextObject Name="Text500" Left="83.16" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active0_1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text501" Left="136.08" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active1_2]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text502" Left="189" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active2_3]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text503" Left="241.92" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active3_4]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text504" Left="294.84" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active4_5]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text505" Left="347.76" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active5_6]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text506" Left="400.68" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active6_7]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text507" Left="453.6" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active7_8]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text508" Left="506.52" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active8_9]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text509" Left="559.44" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active9_10]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text510" Left="612.36" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active10_11]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text511" Left="665.28" Width="52.92" Height="18.9" Border.Lines="All" Text="[MainData.Active11_12]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <DataHeaderBand Name="MainDataBandHeader" Top="130.83" Width="718.2" Height="60.48">
+        <TextObject Name="Text4" Left="83.16" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="00-01" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text7" Left="136.08" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="01-02" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text8" Left="189" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="02-03" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text9" Left="241.92" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="03-04" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text10" Left="294.84" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="04-05" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text11" Left="347.76" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="05-06" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text12" Left="400.68" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="06-07" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text14" Left="506.52" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="08-09" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text18" Left="612.36" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="10-11" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text19" Left="665.28" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="11-12" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text13" Left="453.6" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="07-08" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text15" Left="559.44" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="09-10" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text3" Top="26.46" Width="83.16" Height="34.02" Border.Lines="All" Text="Часы" HorzAlign="Center" Font="Times New Roman, 10pt, style=Bold"/>
+        <TextObject Name="Text5" Width="211.68" Height="18.9" Text="Активная нагрузка в кВт" HorzAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+    <DataBand Name="ActivePowerSecondDataBand" Top="266.29" Width="718.2" Height="45.36" PrintIfDatasourceEmpty="true">
+      <TextObject Name="Text106" Width="83.16" Height="18.9" Border.Lines="All" Text="нагрузка" HorzAlign="Center" Font="Times New Roman, 10pt, style=Bold"/>
+      <TextObject Name="Text512" Left="83.16" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active12_13]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text513" Left="136.08" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active13_14]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text514" Left="189" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active14_15]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text515" Left="241.92" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active15_16]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text516" Left="294.84" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active16_17]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text517" Left="347.76" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active17_18]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text518" Left="400.68" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active18_19]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text519" Left="453.6" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active19_20]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text520" Left="506.52" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active20_21]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text521" Left="559.44" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active21_22]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text522" Left="612.36" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active22_23]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text523" Left="665.28" Width="52.92" Height="18.9" Border.Lines="All" Text="[ActivePowerSecondData.Active23_0]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <DataHeaderBand Name="ActivePowerSecondDataBandHeader" Top="229.96" Width="718.2" Height="34.02">
+        <TextObject Name="Text93" Left="83.16" Width="52.92" Height="34.02" Border.Lines="All" Text="12-13" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text94" Left="136.08" Width="52.92" Height="34.02" Border.Lines="All" Text="13-14" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text95" Left="189" Width="52.92" Height="34.02" Border.Lines="All" Text="14-15" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text96" Left="241.92" Width="52.92" Height="34.02" Border.Lines="All" Text="15-16" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text97" Left="294.84" Width="52.92" Height="34.02" Border.Lines="All" Text="16-17" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text98" Left="347.76" Width="52.92" Height="34.02" Border.Lines="All" Text="17-18" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text99" Left="400.68" Width="52.92" Height="34.02" Border.Lines="All" Text="18-19" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text100" Left="506.52" Width="52.92" Height="34.02" Border.Lines="All" Text="20-21" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text101" Left="612.36" Width="52.92" Height="34.02" Border.Lines="All" Text="22-23" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text103" Left="453.6" Width="52.92" Height="34.02" Border.Lines="All" Text="19-20" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text104" Left="559.44" Width="52.92" Height="34.02" Border.Lines="All" Text="21-22" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text105" Width="83.16" Height="34.02" Border.Lines="All" Text="Часы" HorzAlign="Center" Font="Times New Roman, 10pt, style=Bold"/>
+        <TextObject Name="Text102" Left="665.28" Width="52.92" Height="34.02" Border.Lines="All" Text="23-00" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+      </DataHeaderBand>
+    </DataBand>
+    <DataBand Name="ActivePowerSummaryDataBand" Top="313.96" Width="718.2" Height="64.26">
+      <TextObject Name="Text16" Width="185.22" Height="15.12" Border.Lines="All" Text="Суточный расход, кВт/час" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text17" Left="185.22" Width="177.66" Height="15.12" Border.Lines="All" Text="Pср (кВт)" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text20" Left="540.54" Width="177.66" Height="15.12" Border.Lines="All" Text="Kз = Pср / Pмакс" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text21" Left="362.88" Width="177.66" Height="15.12" Border.Lines="All" Text="Pмакс (кВт)" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text22" Top="15.12" Width="185.22" Height="18.9" Border.Lines="All" Text="[ActivePowerSummaryData.ActiveSum]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text23" Left="185.22" Top="15.12" Width="177.66" Height="18.9" Border.Lines="All" Text="[ActivePowerSummaryData.ActiveAverage]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text24" Left="362.88" Top="15.12" Width="177.66" Height="18.9" Border.Lines="All" Text="[ActivePowerSummaryData.ActiveMax]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text25" Left="540.54" Top="15.12" Width="177.66" Height="18.9" Border.Lines="All" Text="[ActivePowerSummaryData.ActiveKz]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+    </DataBand>
+    <DataBand Name="ReactivePowerFirstDataBand" Top="443.32" Width="718.2" Height="34.02" PrintIfDatasourceEmpty="true">
+      <TextObject Name="Text538" Width="83.16" Height="18.9" Border.Lines="All" Text="нагрузка" HorzAlign="Center" Font="Times New Roman, 10pt, style=Bold"/>
+      <TextObject Name="Text539" Left="83.16" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive0_1]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text540" Left="136.08" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive1_2]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text541" Left="189" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive2_3]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text542" Left="241.92" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive3_4]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text543" Left="294.84" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive4_5]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text544" Left="347.76" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive5_6]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text545" Left="400.68" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive6_7]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text546" Left="453.6" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive7_8]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text547" Left="506.52" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive8_9]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text548" Left="559.44" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive9_10]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text549" Left="612.36" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive10_11]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text550" Left="665.28" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerFirstData.Reactive11_12]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <DataHeaderBand Name="ReactivePowerFirstDataBandHeader" Top="380.53" Width="718.2" Height="60.48">
+        <TextObject Name="Text524" Width="230.58" Height="18.9" Text="Реактивная нагрузка в кВАр" HorzAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+        <TextObject Name="Text525" Left="83.16" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="00-01" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text526" Left="136.08" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="01-02" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text527" Left="189" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="02-03" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text528" Left="241.92" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="03-04" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text529" Left="294.84" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="04-05" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text530" Left="347.76" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="05-06" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text531" Left="400.68" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="06-07" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text532" Left="506.52" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="08-09" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text533" Left="612.36" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="10-11" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text534" Left="665.28" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="11-12" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text535" Left="453.6" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="07-08" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text536" Left="559.44" Top="26.46" Width="52.92" Height="34.02" Border.Lines="All" Text="09-10" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text537" Top="26.46" Width="83.16" Height="34.02" Border.Lines="All" Text="Часы" HorzAlign="Center" Font="Times New Roman, 10pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+    <DataBand Name="ReactivePowerSecondDataBand" Top="515.99" Width="718.2" Height="34.02" PrintIfDatasourceEmpty="true">
+      <TextObject Name="Text564" Width="83.16" Height="18.9" Border.Lines="All" Text="нагрузка" HorzAlign="Center" Font="Times New Roman, 10pt, style=Bold"/>
+      <TextObject Name="Text565" Left="83.16" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive12_13]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text566" Left="136.08" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive13_14]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text567" Left="189" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive14_15]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text568" Left="241.92" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive15_16]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text569" Left="294.84" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive16_17]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text570" Left="347.76" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive17_18]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text571" Left="400.68" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive18_19]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text572" Left="453.6" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive19_20]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text573" Left="506.52" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive20_21]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text574" Left="559.44" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive21_22]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text575" Left="612.36" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive22_23]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text576" Left="665.28" Width="52.92" Height="18.9" Border.Lines="All" Text="[ReactivePowerSecondData.Reactive23_0]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <DataHeaderBand Name="ReactivePowerSecondDataBandHeader" Top="479.66" Width="718.2" Height="34.02">
+        <TextObject Name="Text551" Left="83.16" Width="52.92" Height="34.02" Border.Lines="All" Text="12-13" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text552" Left="136.08" Width="52.92" Height="34.02" Border.Lines="All" Text="13-14" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text553" Left="189" Width="52.92" Height="34.02" Border.Lines="All" Text="14-15" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text554" Left="241.92" Width="52.92" Height="34.02" Border.Lines="All" Text="15-16" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text555" Left="294.84" Width="52.92" Height="34.02" Border.Lines="All" Text="16-17" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text556" Left="347.76" Width="52.92" Height="34.02" Border.Lines="All" Text="17-18" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text557" Left="400.68" Width="52.92" Height="34.02" Border.Lines="All" Text="18-19" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text558" Left="506.52" Width="52.92" Height="34.02" Border.Lines="All" Text="20-21" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text559" Left="612.36" Width="52.92" Height="34.02" Border.Lines="All" Text="22-23" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text560" Left="453.6" Width="52.92" Height="34.02" Border.Lines="All" Text="19-20" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text561" Left="559.44" Width="52.92" Height="34.02" Border.Lines="All" Text="21-22" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text562" Width="83.16" Height="34.02" Border.Lines="All" Text="Часы" HorzAlign="Center" Font="Times New Roman, 10pt, style=Bold"/>
+        <TextObject Name="Text563" Left="665.28" Width="52.92" Height="34.02" Border.Lines="All" Text="23-00" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 10pt"/>
+      </DataHeaderBand>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="552.32" Width="718.2" Height="37.8">
+      <TextObject Name="Text577" Width="275.94" Height="18.9" Text="Анализируемые часы максимального потребления:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text578" Left="275.94" Width="90.72" Height="18.9" Text="[MaxHoursRange]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="592.43" Width="718.2" Height="18.9">
+      <TextObject Name="Text66" Left="311.85" Top="3.78" Width="94.5" Height="11.34" Text="[Page]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

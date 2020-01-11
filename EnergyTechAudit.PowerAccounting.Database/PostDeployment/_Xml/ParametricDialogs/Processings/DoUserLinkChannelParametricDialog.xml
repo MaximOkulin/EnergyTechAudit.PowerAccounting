@@ -1,0 +1,600 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\ParametricDialog.xsd">
+	<!--Описывает диалоговое окно для таски "Присоединить устройства к пользователю"-->
+	<Id>doUserLinkChannelParametricDialog</Id>
+	<Height>0</Height>
+	<Width>350</Width>
+	<Buttons>
+		<DialogButton>
+			<Title>OK</Title>
+			<Order>0</Order>
+			<DialogModalResult>Ok</DialogModalResult>
+		</DialogButton>
+		<DialogButton>
+			<Title>Отмена</Title>
+			<Order>1</Order>
+			<DialogModalResult>Cancel</DialogModalResult>
+		</DialogButton>
+	</Buttons>
+	<AllowResize>true</AllowResize>
+	<ScrollBars>Vertical</ScrollBars>
+	<Title>Параметры</Title>
+	<IsSavedState>false</IsSavedState>
+	<IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+	<InitScript HasEscapedContent="true">    
+    function(sender, args)
+    {             
+        let checkListBoxHelper = new Core.Dialogs.ParametricDialog.CheckListBoxHelper();
+        checkListBoxHelper.execute(sender);   
+
+    }
+    </InitScript>
+	<Descriptors>
+		<!-- Формирует УИД обработки на стороне клиента для идентификации результатов последней операции -->
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>УИД</Caption>
+			<Name>uniqueIdentifier</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>TextBox</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+              function(sender, args)
+              {
+                var guid = (new DevExpress.data.Guid()).toString();                 
+                sender.SetValue(guid);
+              }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Показывать затронутые обработкой записи</Caption>
+			<Name>showOutputLinksInfo</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+              function(sender, args)
+              {    
+                sender.SetChecked(true);                
+              }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+			<Value>true</Value>
+		</FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Использовать портфель</Caption>
+      <Name>useBriefcase</Name>
+      <TypeCode>Boolean</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>CheckBox</NestedExtension>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+          <Value HasEscapedContent="true">
+            function(sender, args)
+            {
+              sender.SetChecked(false);
+              jQuery(sender.GetMainElement())
+                .parents("table:first")
+                .css({"margin-bottom": 10, "border-bottom": "2px solid darkgray"});
+
+                sender.ValueChanged.AddHandler(function(s, a)
+					      {                           
+                    let parametricDialogInstanse = Core.Dialogs.ParametricDialog.prototype.currentInstance,
+                      visible = !s.GetChecked(),                    
+                      hidingItemNames = [ "deviceIdArray", "districtIdArray", "organizationIdArray", "resourceSystemTypeIdArray"];
+                    
+                    let operationTypeControl = parametricDialogInstanse.getControlByParameterName("operationType");
+                    let detatchAllInactiveItem = operationTypeControl.FindItemByValue(3);
+                    if(detatchAllInactiveItem &amp;&amp; !visible) 
+                    {
+                      operationTypeControl.RemoveItem(detatchAllInactiveItem.index);                      
+                    }
+                    else
+                    {
+                      operationTypeControl.AddItem(["3", "Отсоединение всех неактивных каналов"], 3);                          
+                    }
+                    
+                    let detatchAllItem = operationTypeControl.FindItemByValue(4);
+                    if(detatchAllItem &amp;&amp; !visible) 
+                    {
+                      operationTypeControl.RemoveItem(detatchAllItem.index);                      
+                    }
+                    else
+                    {
+                      operationTypeControl.AddItem(["4", "Отсоединение всех каналов"], 4);                          
+                    }
+
+                    for(let indx in hidingItemNames)
+                    {
+                      let hidingItem = parametricDialogInstanse.getLayoutItemByParameterName(hidingItemNames[indx]);
+                      hidingItem.SetVisible(visible);
+                    }                    
+                    
+                    let briefcaseIdItem = parametricDialogInstanse.getLayoutItemByParameterName("briefcaseId");
+                    briefcaseIdItem.SetVisible(!visible);
+
+                    let buttonOk = parametricDialogInstanse.getModalResultButton(Core.Resources.Dialogs.DialogModalResults.Ok),
+                      briefcaseIdControl =  parametricDialogInstanse.getControlByParameterName("briefcaseId");
+                   
+                   let emptyItem = briefcaseIdControl.FindItemByValue(0);
+                   if(emptyItem) 
+                   {
+                      briefcaseIdControl.RemoveItem(emptyItem.index);
+                   }
+
+                   let hasBriefcases = visible || briefcaseIdControl.GetItemCount() !== 0;
+              
+                    buttonOk.SetEnabled(hasBriefcases); 
+                    briefcaseIdControl.SetEnabled(hasBriefcases); 
+
+                    if(!hasBriefcases)
+                    {
+                      briefcaseIdControl.AddItem([Number.zero.toString(), "Отсутствует"], Number.zero);
+                      let newItem = briefcaseIdControl.FindItemByValue(0);
+                      if(newItem)
+                      {
+                        briefcaseIdControl.SetSelectedItem(newItem);
+                      }
+                      (new Core.Dialogs.Alert(
+                        {
+                          message: "Присоединение каналов к пользователям невозможно!. Отсутствует хотя бы один портфель, содержащий измерительные каналы.", 
+                          type: Core.AlertTypes.warning,
+                          timeOut: 10000
+                        })).show();
+                    }
+					      });
+            }
+          </Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+      <Value>false</Value>
+
+    </FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Тип операции</Caption>
+			<Name>operationType</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryList</DataSourceType>
+				<DataSource>
+          [{Id:1, Description: "Присоединение каналов"},
+          {Id:2, Description: "Отсоединение каналов"},
+          {Id:3, Description: "Отсоединение всех неактивных каналов"},
+          {Id:4, Description: "Отсоединение всех каналов"}]
+        </DataSource>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Caption>Ид</Caption>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption>Операция</Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+          <Value HasEscapedContent="true">
+            function(sender, args)
+            {              
+              sender.ValueChanged.AddHandler(function(s, a)
+              {            
+                let parametricDialogInstanse = Core.Dialogs.ParametricDialog.prototype.currentInstance,                    
+                  hidingItemNames = ["useBriefcase", "deviceIdArray", "districtIdArray", "organizationIdArray", "resourceSystemTypeIdArray"],
+                  useBriefcase = parametricDialogInstanse.getControlByParameterName("useBriefcase").GetChecked();
+                  
+                if(useBriefcase) return;
+                
+                let userIdArrayControl = parametricDialogInstanse.getControlByParameterName("userIdArray");                
+                if(s.GetValue() == 4)
+                {                  
+                  userIdArrayControl.SelectAll();
+                  userIdArrayControl.selectAllCheckBox.enabled = false;
+                  userIdArrayControl.UnselectAll();
+                }
+                else
+                {
+                  let selectedValues = userIdArrayControl.GetSelectedValues();                  
+                  if(selectedValues.length != 0)
+                  {
+                    userIdArrayControl.UnselectValues(selectedValues);
+                    userIdArrayControl.selectAllCheckBox.enabled = true;                  
+                    userIdArrayControl.SelectValues(selectedValues);
+                  }
+                  else
+                  {
+                    userIdArrayControl.SelectAll();
+                    userIdArrayControl.selectAllCheckBox.enabled = true;                  
+                    userIdArrayControl.UnselectAll();
+                  }                  
+                }
+
+                let detatchAllInactive = s.GetValue() == 3 || s.GetValue() == 4;
+                if(detatchAllInactive === true)
+                {
+                  parametricDialogInstanse.getControlByParameterName("useBriefcase").SetChecked(false);
+                  parametricDialogInstanse.getLayoutItemByParameterName("briefcaseId").SetVisible(false);
+                }
+
+                for(let indx in hidingItemNames)
+                {
+                  let hidingItem = parametricDialogInstanse.getLayoutItemByParameterName(hidingItemNames[indx]);                  
+                  hidingItem.SetVisible(!detatchAllInactive);                  
+                }                
+              });
+            }
+          </Value>
+        </FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{1}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+	  <FormLayoutItemDescriptor ClientVisible ="false">
+      <Caption>Сущностный портфель</Caption>
+      <Name>briefcaseId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT DISTINCT
+          [Briefcase].[Id] [Id],
+          [Briefcase].[Code] [Code],
+          [Briefcase].[Description] [Description]
+          FROM [Core].[Briefcase] [Briefcase] WITH(NOLOCK)
+          INNER JOIN [Admin].[User] [User] WITH(NOLOCK) ON [Briefcase].[UserId] = [User].[Id]
+          INNER JOIN [Core].[BriefcaseItem]  [BriefcaseItem] WITH(NOLOCK) ON [Briefcase].[Id] = [BriefcaseItem].[BriefcaseId]
+          WHERE [User].[UserName] = @userName AND [BriefcaseItem].[EntityTypeName] = &apos;Channel&apos;
+          UNION ALL
+          SELECT 0 [Id], &apos;Отсутствует&apos; [Code], &apos;Отсутствует&apos; [Description];
+        </DataSourceQuery>
+
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption>Ид</Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Наименование</Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+          <Value>true</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Пользователь</Caption>
+			<Name>userIdArray</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ListBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT
+          [User].[Id] [Id],
+          [User].[UserName] [Code],
+          [User].[Description]
+          FROM [Admin].[User] [User] WITH(NOLOCK)
+          INNER JOIN [Admin].[Role] [Role] WITH(NOLOCK) ON [Role].[Id] = [User].[RoleId]
+          WHERE [Role].[Code] IN (&apos;OPERADMIN&apos;,&apos;LEADOPERADMIN&apos;,&apos;ARCHIVEDOWNLOADER&apos;)
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Caption>Логин</Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.SelectionMode</PropertiesChain>
+					<Value>CheckColumn</Value>
+				</FormLayoutItemExtender>        
+			  
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableSelectAll</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+			    <Value HasEscapedContent="true">
+			      function(sender, args)
+			      {
+			        sender.SetHeight(150);
+			      }
+			    </Value>
+			  </FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Тип прибора</Caption>
+			<Name>deviceIdArray</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ListBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT  [Md].[Id], [Device].[Code], [Device].[Description]
+          FROM
+          (
+          SELECT DISTINCT([Md].[DeviceId]) [Id] FROM  [Business].[MeasurementDevice] [Md]  WITH(NOLOCK)
+          ) [Md]
+          INNER JOIN [Dictionaries].[Device] [Device]  WITH(NOLOCK)
+          ON [Md].[Id] = [Device].[Id]
+          ORDER BY [Device].[Id]
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Caption></Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.SelectionMode</PropertiesChain>
+					<Value>CheckColumn</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.EnableSelectAll</PropertiesChain>
+			    <Value>true</Value>
+			  </FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+			    <Value HasEscapedContent="true">
+			      function(sender, args)
+			      {
+			        sender.SetHeight(150);
+			      }
+			    </Value>
+			  </FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Район</Caption>
+			<Name>districtIdArray</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ListBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT DISTINCT([D].[Id]) [Id],
+          [D].[Description] [Code],
+          [D].[Description] [Description]
+          FROM [Dictionaries].[District] [D] WITH(NOLOCK)
+          INNER JOIN [Business].[Building] [B] WITH(NOLOCK) ON [D].[Id] = [B].[DistrictId]
+          INNER JOIN [Business].[AccessPointLinkBuilding] [Aplb]  WITH(NOLOCK) ON [Aplb].[BuildingId] = [B].[Id]
+          INNER JOIN [Business].[AccessPoint] [Ap] WITH(NOLOCK) ON [Aplb].[AccessPointId] = [Ap].[Id]
+          INNER JOIN [Business].[MeasurementDevice] [Md] WITH(NOLOCK) ON [Ap].[Id] = [Md].[AccessPointId]
+          ORDER BY [Id]
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption>Наименование</Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.SelectionMode</PropertiesChain>
+					<Value>CheckColumn</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.EnableSelectAll</PropertiesChain>
+			    <Value>true</Value>
+			  </FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+			    <Value HasEscapedContent="true">
+			      function(sender, args)
+			      {
+			        sender.SetHeight(150);			      
+			      }
+			    </Value>
+			  </FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Эксплутационная организация</Caption>
+			<Name>organizationIdArray</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ListBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT DISTINCT ([Organization].[Id]) [Id], [Organization].[Description] [Description]
+          FROM [Business].[Organization] [Organization]  WITH(NOLOCK)
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption>Наименование</Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.SelectionMode</PropertiesChain>
+					<Value>CheckColumn</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.EnableSelectAll</PropertiesChain>
+			    <Value>true</Value>
+			  </FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+			    <Value HasEscapedContent="true">
+			      function(sender, args)
+			      {
+			        sender.SetHeight(150);
+			      }
+			    </Value>
+			  </FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Тип ресурсной системы</Caption>
+			<Name>resourceSystemTypeIdArray</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ListBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT  [ResourceSystemType].[Id], [ResourceSystemType].[Code], [ResourceSystemType].[Description]
+          FROM
+          (
+          SELECT DISTINCT([Ch].[ResourceSystemTypeId]) [Id] FROM [Business].[Channel] [Ch]  WITH(NOLOCK)
+          WHERE [Ch].[Activated] = 1
+          ) [Ch]
+          INNER JOIN [Dictionaries].[ResourceSystemType] [ResourceSystemType]  WITH(NOLOCK)
+          ON [Ch].[Id] = [ResourceSystemType].[Id]
+          ORDER BY [ResourceSystemType].[Id]
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption></Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.SelectionMode</PropertiesChain>
+					<Value>CheckColumn</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.EnableSelectAll</PropertiesChain>
+			    <Value>true</Value>
+			  </FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+			    <Value HasEscapedContent="true">
+			      function(sender, args)
+			      {
+			        sender.SetHeight(150);
+			      }
+			    </Value>
+			  </FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+	</Descriptors>
+</ParametricDialog>

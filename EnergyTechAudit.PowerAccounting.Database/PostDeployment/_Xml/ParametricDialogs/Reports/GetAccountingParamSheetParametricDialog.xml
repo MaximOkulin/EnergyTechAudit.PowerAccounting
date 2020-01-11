@@ -1,0 +1,768 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+	<!--Парамерик отчета Ведомость учета параметров  -->
+	<Id>getAccountingParamSheetParametricDialog</Id>
+	<Height>100</Height>
+	<Width>400</Width>
+	<Buttons>
+		<DialogButton>
+			<Title>OK</Title>
+			<Order>0</Order>
+			<DialogModalResult>Ok</DialogModalResult>
+		</DialogButton>
+		<DialogButton>
+			<Title>Отмена</Title>
+			<Order>1</Order>
+			<DialogModalResult>Cancel</DialogModalResult>
+		</DialogButton>
+	</Buttons>
+	<AllowResize>true</AllowResize>
+  <ScrollBars>None</ScrollBars>
+	<Title>Параметры</Title>
+	<CloseAction>CloseButton</CloseAction>
+	<IsSavedState>true</IsSavedState>
+	<IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+	<InitScript HasEscapedContent="true">
+    <![CDATA[
+    function(sender, args)
+    {      
+      sender.Shown.AddHandler(function(s, a)
+      {                  
+        let 
+          parametric = Core.Dialogs.ParametricDialog.prototype.currentInstance,        
+          hasRequiredGroupPrintControl = parametric.getControlByParameterName("hasRequiredGroupPrint"),
+          allChannelsToGroupPrintingControl = parametric.getControlByParameterName("allChannelsToGroupPrinting"),
+          briefcaseIdItem = parametric.getControlByParameterName("briefcaseId");
+        
+        hasRequiredGroupPrintControl.SetChecked(false);        
+        briefcaseIdItem.SetSelectedIndex(Number.zero);
+                
+        let resourceSystemTypeId1Control = parametric.getControlByParameterName("resourceSystemTypeId1"),
+          resourceSystemTypeId1 = resourceSystemTypeId1Control.GetValue();
+                  
+        if([3, 4, 10].includes(parseInt(resourceSystemTypeId1)))
+        {
+	        var withVolumeLayoutItem = parametric.getLayoutItemByParameterName("withVolume");
+	        withVolumeLayoutItem.SetVisible(true);
+        };
+        
+        const           
+          periodBeginControlDefaultValue = (new Date()).addDays(-1),
+          periodEndControlDefaultValue = new Date();
+          
+        let 
+          periodBeginControl = parametric.getControlByParameterName("periodBegin"),
+          periodEndControl = parametric.getControlByParameterName("periodEnd");
+        
+        if(periodBeginControl !== null && (periodBeginControl.GetValue() === null || periodBeginControl.GetValue().valueOf() === (new Date(0)).valueOf()))
+        {
+          periodBeginControl.SetValue(periodBeginControlDefaultValue);
+        }
+        if(periodEndControl !== null && (periodEndControl.GetValue() === null || periodEndControl.GetValue().valueOf() === (new Date(0)).valueOf()))
+        {
+          periodEndControl.SetValue(periodEndControlDefaultValue);
+        }        
+        
+        const currentDevice = DevExpress.devices.current();          
+        if(currentDevice.deviceType == Core.Resources.DeviceType.phone)
+        {
+            hasRequiredGroupPrintControl.SetChecked(true);
+            allChannelsToGroupPrintingControl.SetChecked(false);            
+            
+            parametric.getControlByParameterName("resourceSystemTypeId").SetValue(0);            
+            parametric.getControlByParameterName("stopLongRunningReportTextTemplate").SetValue
+            (
+              "Отчет {0} сформирован.<br/>Время формирования составило с {1:N2} сек.<br/><br/><br/> {2}"
+            );
+            parametric.getControlByParameterName("startLongRunningReportTextTemplate").SetValue
+            (
+              "<b>Внимание!</b> Запущена операция асинхронного формирования отчета. Отчет будет сформирован через несколько секунд!"
+            );
+            parametric.getLayoutItemByParameterName("groupPrintingFileFormat").SetVisible(true);            
+            parametric.getParametricDialog().UpdatePosition();
+        }
+        else
+        {            
+            parametric.getControlByParameterName("startLongRunningReportTextTemplate").SetValue(null);
+            parametric.getControlByParameterName("stopLongRunningReportTextTemplate").SetValue(null);
+            allChannelsToGroupPrintingControl.SetChecked(true);
+        }
+      });      
+    }
+    ]]>
+    </InitScript>
+	<Descriptors>
+		<FormLayoutItemDescriptor>
+			<Caption></Caption>
+			<Name>channelId</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+			<NestedExtension>Default</NestedExtension>
+			<Value>0</Value>
+		</FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor ClientVisible="false">	    
+      <Name>startLongRunningReportTextTemplate</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <Value></Value>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor ClientVisible="false">	    
+      <Name>stopLongRunningReportTextTemplate</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <Value></Value>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor ClientVisible="false">	    
+	    <Name>allChannelsToGroupPrinting</Name>
+	    <TypeCode>Boolean</TypeCode>
+	    <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+	    <NestedExtension>CheckBox</NestedExtension>
+	    <FormLayoutItemExtenders>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+	        <Value>true</Value>
+	      </FormLayoutItemExtender>
+	    </FormLayoutItemExtenders>
+	  </FormLayoutItemDescriptor>
+
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption>Формат файлового вывода</Caption>
+	    <Name>groupPrintingFileFormat</Name>
+	    <TypeCode>String</TypeCode>
+	    <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+	    <NestedExtension>ComboBox</NestedExtension>
+
+	    <FormLayoutItemListBoxSetting>
+	      <DataSourceType>DictionaryList</DataSourceType>
+	      <DataSource>
+          [{Id: 1, Code: "pdf", Description: "Формат Pdf"},
+          {Id: 2, Code: "xls", Description: "Формат Xls"},
+          {Id: 3, Code: "xlsx", Description: "Формат Xlsx"},
+          {Id: 4, Code: "rtf", Description: "Формат Rtf"},
+          {Id: 5, Code: "docx", Description: "Формат Docx"},
+          {Id: 6, Code: "pptx", Description: "Формат Pptx"}]
+        </DataSource>
+	      <FormLayoutItemListBoxColumns>
+	        <FormLayoutItemListBoxColumn>
+	          <FieldName>Id</FieldName>
+	          <Caption>Ид</Caption>
+	          <Width>20</Width>
+	        </FormLayoutItemListBoxColumn>
+	        <FormLayoutItemListBoxColumn>
+	          <FieldName>Description</FieldName>
+	          <Caption>Наименование</Caption>
+	          <Width>200</Width>
+	        </FormLayoutItemListBoxColumn>
+	      </FormLayoutItemListBoxColumns>
+	    </FormLayoutItemListBoxSetting>
+
+	    <FormLayoutItemExtenders>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+	        <Value>Code</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+	        <Value>Description</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+	        <Value>{1}</Value>
+	      </FormLayoutItemExtender>
+
+	    </FormLayoutItemExtenders>
+
+	  </FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Источник вариатора</Caption>
+			<Name>briefcaseId</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          (
+          SELECT 0 [Id], &apos;All&apos; [Code],  &apos;Не использовать портфель&apos; [Description]
+          )
+          UNION ALL
+          (
+          SELECT
+          [Briefcase].[Id] [Id],
+          [Briefcase].[Code] [Code],
+          [Briefcase].[Description] [Description]
+          FROM [Core].[Briefcase] [Briefcase] WITH(NOLOCK)
+
+          INNER JOIN [Admin].[User] [User] WITH(NOLOCK)
+          ON [Briefcase].[UserId] = [User].[Id]
+
+          WHERE [User].[UserName] = @userName
+          )
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption></Caption>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>2</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ValueChanged</PropertiesChain>
+					<Value HasEscapedContent="true">
+            function(sender, args)
+            {               
+              var selectedValue = sender.GetValue();   
+              const 
+                parametric = Core.Dialogs.ParametricDialog.prototype.currentInstance,        
+                resourceSystemTypeIdItem = parametric.getControlByParameterName("resourceSystemTypeId");
+
+              const existingItem = resourceSystemTypeIdItem.FindItemByValue(Number.zero);
+                            
+              if(selectedValue == Number.zero &amp;&amp; existingItem )
+              {                
+                resourceSystemTypeIdItem.RemoveItem(Number.zero);
+              }
+              
+              if(selectedValue != Number.zero &amp;&amp; !existingItem)
+              {
+                resourceSystemTypeIdItem.InsertItem(Number.zero, ["0", "Все", "Все типы ресурсных систем"], Number.zero);                
+              }              
+              resourceSystemTypeIdItem.SetSelectedIndex(Number.zero);
+            }
+            </Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{0}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+    
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Тип ресурсной системы</Caption>
+			<Name>resourceSystemTypeId</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT
+          DISTINCT ([Channel].[ResourceSystemTypeId]) [Id],
+          [ResourceSystemType].[ShortName] [Code],
+          [ResourceSystemType].[Description]
+
+          FROM [Business].[UserLinkChannel] [UserLinkChannel] WITH(NOLOCK)
+
+          INNER JOIN [Business].[Channel] [Channel] WITH(NOLOCK)
+          ON [UserLinkChannel].[ChannelId] = [Channel].[Id]
+
+          INNER JOIN [Dictionaries].[ResourceSystemType] [ResourceSystemType] WITH(NOLOCK)
+          ON [ResourceSystemType].[Id] = [Channel].[ResourceSystemTypeId]
+
+          INNER JOIN [Business].[Placement] [Placement] WITH(NOLOCK)
+          ON [Placement].[Id] = [Channel].[PlacementId]
+
+          INNER JOIN [Admin].[User] [User] WITH(NOLOCK)
+          ON [UserLinkChannel].[UserId] = [User].[Id]
+
+          WHERE
+          [User].[UserName] = @userName AND
+          [ResourceSystemType].[Id] NOT IN (8, 6) AND
+          [Placement].[HasIndividualAccounting] = 0
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Caption></Caption>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Caption></Caption>
+						<Width>100</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption></Caption>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>2</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{2}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+    
+		<FormLayoutItemDescriptor>
+			<Caption>Канал</Caption>
+			<Name>channelId1</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT
+          [Ch].[Id] [Id],
+          [Ch].[Description] [Code],
+          [R].[Description] [Description]
+				  
+          FROM [Business].[Channel] [Ch] WITH(NOLOCK)
+          INNER JOIN [Dictionaries].[ResourceSystemType] [R] WITH(NOLOCK)
+          ON [Ch].[ResourceSystemTypeId] = [R].[Id]
+          WHERE [Ch].[Id] = @channelId
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Caption></Caption>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Caption></Caption>
+						<Width>100</Width>
+					</FormLayoutItemListBoxColumn>
+          
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption></Caption>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				    
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>0</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{1}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Тип ресурсной системы</Caption>
+			<Name>resourceSystemTypeId1</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT
+          [Channel].[ResourceSystemTypeId] [Id],
+          &apos;&apos; [Code],
+				  &apos;&apos;  [Description]
+          FROM [Business].[Channel] [Channel] WITH(NOLOCK) 
+          WHERE  [Channel].[Id] = @channelId           
+        </DataSourceQuery>
+			  <FormLayoutItemListBoxColumns>
+			    <FormLayoutItemListBoxColumn>
+			      <FieldName>Id</FieldName>
+			      <Caption></Caption>
+			      <Width>20</Width>
+			    </FormLayoutItemListBoxColumn>
+			    
+			  </FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>0</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{0}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+          
+		<FormLayoutItemDescriptor>
+			<Caption>Тип периода</Caption>
+			<Name>periodTypeId</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>PeriodType</DataSource>
+				<DataSourceQuery>SELECT * FROM [Dictionaries].[PeriodType] WHERE [Id] IN (2,3)</DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Caption></Caption>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Caption></Caption>
+						<Width>100</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption></Caption>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>3</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{2}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+    
+		<FormLayoutItemDescriptor>
+			<Caption>Начальная дата архива</Caption>
+			<Name>periodBegin</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Конечная дата архива</Caption>
+			<Name>periodEnd</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Caption>Включительно</Caption>
+			<Name>includePeriodEnd</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+		</FormLayoutItemDescriptor>
+    
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Отображать объем</Caption>
+			<Name>withVolume</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{2}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+    
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Отображать ошибки</Caption>
+			<Name>withErrors</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{2}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption></Caption>
+			<Name>taskType</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+			<NestedExtension>Default</NestedExtension>
+			<Value>RunFromUri</Value>
+			<FormLayoutItemCustomData>/api/package/archive?withDictionaries=true&amp;channelId={channelId1}&amp;periodBegin={periodBegin}&amp;periodEnd={periodEnd}&amp;periodTypeId={periodTypeId}&amp;responseToFile=true</FormLayoutItemCustomData>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Групповая печать</Caption>
+			<Name>hasRequiredGroupPrint</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+			<Value>false</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.CheckedChanged</PropertiesChain>
+					<Value HasEscapedContent="true">
+            function(sender, args)
+            {
+              let parametric = Core.Dialogs.ParametricDialog.prototype.currentInstance,
+              value = sender.GetChecked();
+
+              let channelItem = parametric.getLayoutItemByParameterName("channelId1");
+              channelItem.SetVisible(!value);
+
+              let resourceSystemTypeIdItem = parametric.getLayoutItemByParameterName("resourceSystemTypeId");
+              resourceSystemTypeIdItem.SetVisible(value);
+
+              let briefcaseIdItem = parametric.getLayoutItemByParameterName("briefcaseId");
+              briefcaseIdItem.SetVisible(value);
+
+              let groupPrintingFileFormatItem = parametric.getLayoutItemByParameterName("groupPrintingFileFormat");
+					    groupPrintingFileFormatItem.SetVisible(value);
+            }
+          </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Параметр-вариатор</Caption>
+			<Name>variator</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+			<NestedExtension>Default</NestedExtension>
+			<Value>channelId</Value>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Источник вариации</Caption>
+			<Name>variatorSource</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+			<NestedExtension>Default</NestedExtension>
+			<Value>
+        SELECT
+        ROW_NUMBER() OVER(PARTITION BY [DistrictId] ORDER BY [BuildingAddress]) Num,
+        [DistrictId],
+        [ChannelId],
+        CONCAT([BuildingAddress], &apos; - &apos; , &apos;(&apos;, [ChannelDescription], &apos;)&apos;) [OutlineExpression]
+        FROM
+        (
+        SELECT
+        [Channel].[Id] [ChannelId],
+        [Channel].[Description] [ChannelDescription],
+        [Building].[DistrictId],
+        [dbo].[Trim]
+        (
+        REPLACE
+        (
+        REPLACE
+        (
+        [dbo].[RegExReplace]([Building].[Description], &apos;(улица|ул\.|проспект|пр\.|\s+улица)&apos;, &apos;&apos;),
+        [City].[Description],
+        &apos;&apos;
+        ),
+        &apos; ,&apos;,
+        &apos;,&apos;
+        ),
+        &apos;, &apos;
+        ) [BuildingAddress]
+
+        FROM [Business].[UserLinkChannel] [UserLinkChannel] WITH(NOLOCK)
+
+        INNER JOIN
+        (
+        (
+        SELECT [Channel].[Id],
+        [Channel].[PlacementId],
+        [Channel].[ResourceSystemTypeId],
+        [Channel].[Description]
+        FROM [Business].[Channel] [Channel] WITH(NOLOCK)
+        WHERE ({briefcaseId} = 0)
+        )
+
+        UNION ALL
+        (
+        (
+        SELECT
+
+        [BriefcaseItem].[EntityId] [Id],
+        [Channel].[PlacementId],
+        [Channel].[ResourceSystemTypeId],
+        [Channel].[Description]
+        FROM [Core].[Briefcase] [Briefcase] WITH(NOLOCK)
+        INNER JOIN [Core].[BriefcaseItem] [BriefcaseItem] WITH(NOLOCK) ON [Briefcase].[Id] = [BriefcaseItem].[BriefcaseId]
+        INNER JOIN [Business].[Channel] [Channel] WITH(NOLOCK) ON [Channel].[Id] = [BriefcaseItem].[EntityId]
+        INNER JOIN [Admin].[User] [User] WITH(NOLOCK) ON [Briefcase].[UserId] = [User].[Id]
+        WHERE
+        [User].[UserName] = &apos;{userName}&apos; AND
+        [Briefcase].[Id] = {briefcaseId} AND
+        [BriefcaseItem].[EntityTypeName] = &apos;Channel&apos;
+        )
+
+        UNION
+
+        (
+        SELECT
+        [Channel].[Id],
+        [Channel].[PlacementId],
+        [Channel].[ResourceSystemTypeId],
+        [Channel].[Description]
+        FROM [Core].[Briefcase] [Briefcase] WITH(NOLOCK)
+        INNER JOIN [Core].[BriefcaseItem] [BriefcaseItem] WITH(NOLOCK) ON [Briefcase].[Id] = [BriefcaseItem].[BriefcaseId]
+        INNER JOIN [Business].[Building] [Building] WITH(NOLOCK) ON [Building].[Id] = [BriefcaseItem].[EntityId]
+        INNER JOIN [Business].[Placement] [Placement] WITH(NOLOCK) ON [Placement].[BuildingId] = [Building].[Id]
+        INNER JOIN [Business].[Channel] [Channel] WITH(NOLOCK) ON [Placement].[Id] = [Channel].[PlacementId]
+        INNER JOIN [Admin].[User] [User] WITH(NOLOCK) ON [Briefcase].[UserId] = [User].[Id]
+        WHERE
+        [User].[UserName] = &apos;{userName}&apos; AND
+        [Briefcase].[Id] = {briefcaseId} AND
+        [BriefcaseItem].[EntityTypeName] = &apos;Building&apos;
+        )
+        )
+
+        ) [Channel]  ON [UserLinkChannel].[ChannelId] = [Channel].[Id]
+
+        INNER JOIN [Business].[Placement] [Placement] WITH(NOLOCK)
+        ON  [Channel].[PlacementId] = [Placement].[Id] AND [Placement].[HasIndividualAccounting] = 0
+
+        INNER JOIN  [Business].[Building] [Building] WITH(NOLOCK)
+        ON [Building].[Id] = [Placement].[BuildingId]
+
+        INNER JOIN  [Dictionaries].[District] [District] WITH(NOLOCK)
+        ON [District].[Id] = [Building].[DistrictId]
+
+        INNER JOIN  [Dictionaries].[City] [City] WITH(NOLOCK)
+        ON [City].[Id] = [District].[CityId]
+
+        INNER JOIN [Admin].[User] [User] WITH(NOLOCK)
+        ON [UserLinkChannel].[UserId] = [User].[Id]
+
+        WHERE ([Channel].[ResourceSystemTypeId] = {resourceSystemTypeId} OR {resourceSystemTypeId} = 0) AND [User].[UserName] = &apos;{userName}&apos;
+
+        ) [A] WHERE (A.ChannelId = {channelId} OR {allChannelsToGroupPrinting} = 1) 
+      </Value>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Caption> </Caption>
+			<Name>moreButton</Name>
+			<TypeCode>Empty</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>Button</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Text</PropertiesChain>
+					<Value>Более...</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.RenderMode</PropertiesChain>
+					<Value>Link</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">					  
+           function(sender, args)
+           {                      
+            jQuery(sender.GetMainElement()).css(
+            {
+              "width": "60px",
+              "float": "right",
+              "margin-right": "3px"
+            });            
+           }           
+          </Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ClientSideEvents.Click</PropertiesChain>
+					<Value HasEscapedContent="true">
+           function(sender, args)
+           {         
+              const currentDevice = DevExpress.devices.current();            
+					    let parametric = Core.Dialogs.ParametricDialog.prototype.currentInstance;                      
+              let layout = parametric.getLayoutControl();   
+              layout.moreButtonState = layout.moreButtonState == undefined ? true : !layout.moreButtonState;       
+              let hasRequiredGroupPrintItem = parametric.getLayoutItemByParameterName("hasRequiredGroupPrint"),
+                  withErrorsItem = parametric.getLayoutItemByParameterName("withErrors");
+					    hasRequiredGroupPrintItem.SetVisible(layout.moreButtonState &amp;&amp; currentDevice.deviceType != Core.Resources.DeviceType.phone);                       
+					    withErrorsItem.SetVisible(layout.moreButtonState);                                   
+              sender.SetText(layout.moreButtonState ? "Менее...": "Более...")
+              if(currentDevice.deviceType == Core.Resources.DeviceType.phone)
+              {
+                parametric.getParametricDialog().UpdatePosition();
+              }
+           }
+           </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+    
+	</Descriptors>
+</ParametricDialog>

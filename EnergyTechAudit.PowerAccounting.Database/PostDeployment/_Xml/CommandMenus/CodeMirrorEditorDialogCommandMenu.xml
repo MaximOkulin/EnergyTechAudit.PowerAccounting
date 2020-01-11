@@ -1,0 +1,56 @@
+﻿<CommandMenu>
+  <Name>codeMirrorDialogCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>250</Width>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>save</CommandName>
+    <Name>save</Name>
+    <ToolTip>Сохранить</ToolTip>
+    <IconClass>font-icon-save-ok font-icon-x1_3 font-icon-color-navy</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>closeWithoutSave</CommandName>
+    <Name>closeWithoutSave</Name>
+    <ToolTip>Закрыть без сохранения</ToolTip>
+    <IconClass>font-icon-save-cancel font-icon-x1_3 font-icon-color-red</IconClass>
+
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>search</Name>
+    <CommandName>search</CommandName>
+    <ToolTip>Поиск по содержимому</ToolTip>
+    <Enabled>true</Enabled>
+    <IconClass>font-icon-search font-icon-darkslateblue indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>formatXml</Name>
+    <CommandName>formatXml</CommandName>
+    <ToolTip>Форматировать</ToolTip>
+    <Enabled>true</Enabled>
+    <IconClass>font-icon-format-xml font-icon-color-darkred indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>showOptionsEditor</Name>
+    <CommandName>showOptionsEditor</CommandName>
+    <ToolTip>Настройки редактора...</ToolTip>
+    <Enabled>true</Enabled>
+    <IconClass>font-icon-options font-icon-x1_2 font-icon-color-marine</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>preview</Name>
+    <CommandName>preview</CommandName>
+    <ToolTip>Показать...</ToolTip>
+    <Enabled>true</Enabled>
+    <IconClass>font-icon-eye_open font-icon-darkslateblue indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+</CommandMenu>

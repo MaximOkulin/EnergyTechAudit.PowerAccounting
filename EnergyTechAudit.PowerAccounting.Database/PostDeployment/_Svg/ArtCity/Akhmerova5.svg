@@ -1,0 +1,683 @@
+﻿<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1200 868" style="enable-background:new 0 0 1200 868;" xml:space="preserve" width="1200" height="868">
+<style type="text/css">
+	.st0{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;stroke-dasharray:13.8,13.8;}
+	.st2{fill:none;stroke:#1D1D1B;stroke-width:1.1055;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;stroke-dasharray:1;}
+	.st5{font-size:18px;}
+	.st6{fill:url(#SVGID_1_);}
+	.st7{fill:url(#SVGID_2_);stroke:#1D1D1B;stroke-miterlimit:10;}
+	.st8{fill:#1D1D1B;}
+	.st10{font-size:12px;}
+</style><script>jQuery(Core.Common.Mnemoscheme.Selector).on(Core.Common.EventTypes.MnemoschemeWidgetManager.MnemoschemeLoadComplete,
+    function () {
+        Core.Common.Mnemoscheme.GetParametersCallback = function (parameters) {
+           
+            // проходим по дверям (открываем или закрываем)
+            var entranceDoorStateCodeTemplate = "Monitoring.State.EntranceDoor{0}";
+            var entranceDoorSensorsNumbers = ["4"];
+
+            entranceDoorSensorsNumbers.forEach(function (codeSuffix, indx) {
+                var entranceDoorParamName = entranceDoorStateCodeTemplate.format(codeSuffix);
+                var stateParameterValue = GetDictionaryValueDescriptionByParameterCode(parameters.parameters, entranceDoorParamName);
+
+                var svgEntranceOpenElement = document.getElementById("Monitoring.State.EntranceDoor{0}Open".format(codeSuffix));
+                var svgEntranceCloseElement = document.getElementById("Monitoring.State.EntranceDoor{0}Close".format(codeSuffix));
+
+                if (stateParameterValue !== undefined &amp;&amp; svgEntranceOpenElement !== undefined &amp;&amp; svgEntranceCloseElement !== undefined) {
+                    if (stateParameterValue === "ОТКРЫТО") {
+                        svgEntranceOpenElement.setAttribute("display", "inline");
+                        svgEntranceCloseElement.setAttribute("display", "none");
+                    }
+                    else if (stateParameterValue === "ЗАКРЫТО") {
+                        svgEntranceOpenElement.setAttribute("display", "none");
+                        svgEntranceCloseElement.setAttribute("display", "inline");
+                    }
+                }
+            });          
+        };        
+
+        function GetValueByParameterCode(parameters, code) {
+            var value = undefined;
+
+            for (var i = Number.zero; i &lt; parameters.length; i++) {
+                if (parameters[i].parameterCode === code) {
+                    return parameters[i].value;
+                }
+            }
+
+            return value;
+        };
+
+        function GetDictionaryValueDescriptionByParameterCode(parameters, code) {
+            var value = undefined;
+
+            for (var i = Number.zero; i &lt; parameters.length; i++) {
+                if (parameters[i].parameterCode === code) {
+                    return parameters[i].dictionaryValueDescription;
+                }
+            }
+
+            return value;
+        };
+    }
+);
+
+</script>
+<g id="MainLayer">
+	
+	<line class="st0" x1="276" y1="22" x2="294" y2="22" />
+	<line class="st0" x1="249" y1="94" x2="249" y2="13" />
+	<line class="st0" x1="339" y1="94" x2="339" y2="103" />
+	<line class="st0" x1="303" y1="94" x2="303" y2="103" />
+	<line class="st0" x1="339" y1="103" x2="303" y2="103" />
+	<line class="st0" x1="303" y1="94" x2="249" y2="94" />
+	<g>
+		<line class="st0" x1="276" y1="22" x2="267" y2="13" />
+		<line class="st0" x1="249" y1="13" x2="267" y2="13" />
+		<line class="st0" x1="366" y1="22" x2="375" y2="13" />
+		<line class="st0" x1="375" y1="13" x2="393" y2="13" />
+		<line class="st0" x1="294" y1="22" x2="303" y2="13" />
+		<line class="st0" x1="348" y1="22" x2="339" y2="13" />
+		<line class="st0" x1="339" y1="13" x2="303" y2="13" />
+	</g>
+	<line class="st0" x1="348" y1="22" x2="366" y2="22" />
+	<line class="st0" x1="420" y1="22" x2="438" y2="22" />
+	<line class="st0" x1="537" y1="13" x2="537" y2="94" />
+	<line class="st0" x1="483" y1="94" x2="483" y2="103" />
+	<line class="st0" x1="447" y1="94" x2="447" y2="103" />
+	<line class="st0" x1="483" y1="103" x2="447" y2="103" />
+	<line class="st0" x1="447" y1="94" x2="393" y2="94" />
+	<line class="st0" x1="420" y1="22" x2="411" y2="13" />
+	<line class="st0" x1="393" y1="13" x2="411" y2="13" />
+	<line class="st0" x1="510" y1="22" x2="519" y2="13" />
+	<line class="st0" x1="519" y1="13" x2="537" y2="13" />
+	<line class="st0" x1="438" y1="22" x2="447" y2="13" />
+	<line class="st0" x1="492" y1="22" x2="483" y2="13" />
+	<line class="st0" x1="483" y1="13" x2="447" y2="13" />
+	<line class="st0" x1="492" y1="22" x2="510" y2="22" />
+	<line class="st0" x1="564" y1="22" x2="582" y2="22" />
+	<line class="st0" x1="537" y1="94" x2="537" y2="13" />
+	<line class="st0" x1="627" y1="94" x2="627" y2="103" />
+	<line class="st0" x1="591" y1="94" x2="591" y2="103" />
+	<line class="st0" x1="627" y1="103" x2="591" y2="103" />
+	<line class="st0" x1="591" y1="94" x2="537" y2="94" />
+	<line class="st0" x1="564" y1="22" x2="555" y2="13" />
+	<line class="st0" x1="537" y1="13" x2="555" y2="13" />
+	<line class="st0" x1="654" y1="22" x2="663" y2="13" />
+	<line class="st0" x1="663" y1="13" x2="681" y2="13" />
+	<line class="st0" x1="582" y1="22" x2="591" y2="13" />
+	<line class="st0" x1="636" y1="22" x2="627" y2="13" />
+	<line class="st0" x1="627" y1="13" x2="591" y2="13" />
+	<line class="st0" x1="636" y1="22" x2="654" y2="22" />
+	<line class="st0" x1="708" y1="22" x2="726" y2="22" />
+	<line class="st0" x1="825" y1="13" x2="825" y2="94" />
+	<line class="st0" x1="771" y1="94" x2="771" y2="103" />
+	<line class="st0" x1="735" y1="94" x2="735" y2="103" />
+	<line class="st0" x1="771" y1="103" x2="735" y2="103" />
+	<line class="st0" x1="735" y1="94" x2="681" y2="94" />
+	<line class="st0" x1="708" y1="22" x2="699" y2="13" />
+	<line class="st0" x1="681" y1="13" x2="699" y2="13" />
+	<line class="st0" x1="798" y1="22" x2="807" y2="13" />
+	<line class="st0" x1="807" y1="13" x2="825" y2="13" />
+	<line class="st0" x1="726" y1="22" x2="735" y2="13" />
+	<line class="st0" x1="780" y1="22" x2="771" y2="13" />
+	<line class="st0" x1="771" y1="13" x2="735" y2="13" />
+	<line class="st0" x1="780" y1="22" x2="798" y2="22" />
+	<g>
+		<g>
+			<line class="st0" x1="393" y1="13" x2="393" y2="19" />
+			<line class="st1" x1="393" y1="32.8" x2="393" y2="81.1" />
+			<line class="st0" x1="393" y1="88" x2="393" y2="94" />
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st0" x1="681" y1="13" x2="681" y2="19" />
+			<line class="st1" x1="681" y1="32.8" x2="681" y2="81.1" />
+			<line class="st0" x1="681" y1="88" x2="681" y2="94" />
+		</g>
+	</g>
+	<line class="st0" x1="525" y1="691" x2="471" y2="691" />
+	<line class="st0" x1="408" y1="763" x2="426" y2="763" />
+	<line class="st0" x1="381" y1="691" x2="381" y2="772" />
+	<line class="st0" x1="471" y1="691" x2="471" y2="682" />
+	<line class="st0" x1="435" y1="691" x2="435" y2="682" />
+	<line class="st0" x1="471" y1="682" x2="435" y2="682" />
+	<line class="st0" x1="408" y1="763" x2="399" y2="772" />
+	<line class="st0" x1="381" y1="772" x2="399" y2="772" />
+	<line class="st0" x1="498" y1="763" x2="507" y2="772" />
+	<line class="st0" x1="507" y1="772" x2="525" y2="772" />
+	<line class="st0" x1="426" y1="763" x2="435" y2="772" />
+	<line class="st0" x1="480" y1="763" x2="471" y2="772" />
+	<line class="st0" x1="471" y1="772" x2="435" y2="772" />
+	<line class="st0" x1="480" y1="763" x2="498" y2="763" />
+	<line class="st0" x1="669" y1="691" x2="615" y2="691" />
+	<line class="st0" x1="552" y1="763" x2="570" y2="763" />
+	<line class="st0" x1="669" y1="772" x2="669" y2="691" />
+	<line class="st0" x1="615" y1="691" x2="615" y2="682" />
+	<line class="st0" x1="579" y1="691" x2="579" y2="682" />
+	<line class="st0" x1="615" y1="682" x2="579" y2="682" />
+	<line class="st0" x1="552" y1="763" x2="543" y2="772" />
+	<line class="st0" x1="525" y1="772" x2="543" y2="772" />
+	<line class="st0" x1="642" y1="763" x2="651" y2="772" />
+	<line class="st0" x1="651" y1="772" x2="669" y2="772" />
+	<line class="st0" x1="570" y1="763" x2="579" y2="772" />
+	<line class="st0" x1="624" y1="763" x2="615" y2="772" />
+	<line class="st0" x1="615" y1="772" x2="579" y2="772" />
+	<line class="st0" x1="624" y1="763" x2="642" y2="763" />
+	<line class="st0" x1="813" y1="691" x2="759" y2="691" />
+	<line class="st0" x1="696" y1="763" x2="714" y2="763" />
+	<line class="st0" x1="669" y1="691" x2="669" y2="772" />
+	<line class="st0" x1="759" y1="691" x2="759" y2="682" />
+	<line class="st0" x1="723" y1="691" x2="723" y2="682" />
+	<line class="st0" x1="759" y1="682" x2="723" y2="682" />
+	<line class="st0" x1="696" y1="763" x2="687" y2="772" />
+	<line class="st0" x1="669" y1="772" x2="687" y2="772" />
+	<line class="st0" x1="786" y1="763" x2="795" y2="772" />
+	<line class="st0" x1="795" y1="772" x2="813" y2="772" />
+	<line class="st0" x1="714" y1="763" x2="723" y2="772" />
+	<line class="st0" x1="768" y1="763" x2="759" y2="772" />
+	<line class="st0" x1="759" y1="772" x2="723" y2="772" />
+	<line class="st0" x1="768" y1="763" x2="786" y2="763" />
+	<line class="st0" x1="957" y1="691" x2="903" y2="691" />
+	<line class="st0" x1="840" y1="763" x2="858" y2="763" />
+	<line class="st0" x1="957" y1="772" x2="957" y2="691" />
+	<line class="st0" x1="903" y1="691" x2="903" y2="682" />
+	<line class="st0" x1="867" y1="691" x2="867" y2="682" />
+	<line class="st0" x1="903" y1="682" x2="867" y2="682" />
+	<line class="st0" x1="840" y1="763" x2="831" y2="772" />
+	<line class="st0" x1="813" y1="772" x2="831" y2="772" />
+	<line class="st0" x1="930" y1="763" x2="939" y2="772" />
+	<line class="st0" x1="939" y1="772" x2="957" y2="772" />
+	<line class="st0" x1="858" y1="763" x2="867" y2="772" />
+	<line class="st0" x1="912" y1="763" x2="903" y2="772" />
+	<line class="st0" x1="903" y1="772" x2="867" y2="772" />
+	<line class="st0" x1="912" y1="763" x2="930" y2="763" />
+	<g>
+		<g>
+			<line class="st0" x1="525" y1="772" x2="525" y2="766" />
+			<line class="st1" x1="525" y1="752.2" x2="525" y2="703.9" />
+			<line class="st0" x1="525" y1="697" x2="525" y2="691" />
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st0" x1="813" y1="772" x2="813" y2="766" />
+			<line class="st1" x1="813" y1="752.2" x2="813" y2="703.9" />
+			<line class="st0" x1="813" y1="697" x2="813" y2="691" />
+		</g>
+	</g>
+	<line class="st0" x1="942" y1="67" x2="942" y2="85" />
+	<line class="st0" x1="870" y1="130" x2="861" y2="130" />
+	<line class="st0" x1="825" y1="94" x2="861" y2="94" />
+	<line class="st0" x1="861" y1="130" x2="861" y2="94" />
+	<line class="st0" x1="942" y1="67" x2="951" y2="58" />
+	<line class="st0" x1="951" y1="40" x2="951" y2="58" />
+	<line class="st0" x1="942" y1="157" x2="951" y2="166" />
+	<line class="st0" x1="951" y1="166" x2="951" y2="184" />
+	<line class="st0" x1="942" y1="85" x2="951" y2="94" />
+	<line class="st0" x1="942" y1="139" x2="951" y2="130" />
+	<line class="st0" x1="951" y1="130" x2="951" y2="94" />
+	<line class="st0" x1="942" y1="139" x2="942" y2="157" />
+	<line class="st0" x1="942" y1="209" x2="942" y2="227" />
+	<line class="st0" x1="870" y1="274" x2="861" y2="274" />
+	<line class="st0" x1="870" y1="238" x2="861" y2="238" />
+	<line class="st0" x1="861" y1="274" x2="861" y2="238" />
+	<line class="st0" x1="870" y1="238" x2="870" y2="184" />
+	<line class="st0" x1="942" y1="210" x2="951" y2="201" />
+	<line class="st0" x1="951" y1="184" x2="951" y2="202" />
+	<line class="st0" x1="942" y1="298" x2="951" y2="307" />
+	<line class="st2" x1="951" y1="307" x2="951" y2="329" />
+	<line class="st0" x1="942" y1="227" x2="951" y2="236" />
+	<line class="st0" x1="942" y1="280" x2="951" y2="271" />
+	<line class="st0" x1="951" y1="271" x2="951" y2="235" />
+	<line class="st0" x1="942" y1="280" x2="942" y2="298" />
+	<line class="st0" x1="951" y1="40" x2="870" y2="40" />
+	<line class="st0" x1="870" y1="22" x2="870" y2="40" />
+	<line class="st0" x1="870" y1="22" x2="825" y2="22" />
+	<g>
+		<g>
+			<line class="st0" x1="951" y1="184" x2="945" y2="184" />
+			<line class="st1" x1="931.2" y1="184" x2="882.9" y2="184" />
+			<line class="st0" x1="876" y1="184" x2="870" y2="184" />
+		</g>
+	</g>
+	<line class="st0" x1="339" y1="94" x2="357" y2="94" />
+	<line class="st0" x1="375" y1="94" x2="393" y2="94" />
+	<polyline class="st0" points="294,58 294,67 276,67 276,31 294,31 294,40  " />
+	<rect x="291.8" y="42.3" class="st0" width="2.3" height="13.5" />
+	<rect x="289.5" y="40" class="st0" width="6.8" height="2.3" />
+	<rect x="289.5" y="55.8" class="st0" width="6.8" height="2.3" />
+	<line class="st0" x1="483" y1="94" x2="501" y2="94" />
+	<line class="st0" x1="519" y1="94" x2="537" y2="94" />
+	<rect x="647.3" y="91.8" class="st0" width="13.5" height="2.3" />
+	<rect x="645" y="89.5" class="st0" width="2.3" height="6.8" />
+	<rect x="660.8" y="89.5" class="st0" width="2.3" height="6.8" />
+	<line class="st0" x1="627" y1="94" x2="645" y2="94" />
+	<line class="st0" x1="663" y1="94" x2="681" y2="94" />
+	<rect x="791.3" y="91.8" class="st0" width="13.5" height="2.3" />
+	<rect x="789" y="89.5" class="st0" width="2.3" height="6.8" />
+	<rect x="804.8" y="89.5" class="st0" width="2.3" height="6.8" />
+	<line class="st0" x1="771" y1="94" x2="789" y2="94" />
+	<line class="st0" x1="807" y1="94" x2="825" y2="94" />
+	<rect x="870" y="150.3" class="st0" width="2.3" height="13.5" />
+	<rect x="867.8" y="163.8" class="st0" width="6.8" height="2.3" />
+	<rect x="867.8" y="148" class="st0" width="6.8" height="2.3" />
+	<line class="st0" x1="870" y1="184" x2="870" y2="166" />
+	<line class="st0" x1="870" y1="148" x2="870" y2="130" />
+	<line class="st0" x1="870" y1="329" x2="870" y2="311" />
+	<line class="st0" x1="870" y1="292" x2="870" y2="274" />
+	<polyline class="st0" points="438,58 438,67 420,67 420,31 438,31 438,40  " />
+	<rect x="435.8" y="42.3" class="st0" width="2.3" height="13.5" />
+	<rect x="433.5" y="40" class="st0" width="6.8" height="2.3" />
+	<rect x="433.5" y="55.8" class="st0" width="6.8" height="2.3" />
+	<polyline class="st0" points="582,58 582,67 564,67 564,31 582,31 582,40  " />
+	<rect x="579.8" y="42.3" class="st0" width="2.3" height="13.5" />
+	<rect x="577.5" y="40" class="st0" width="6.8" height="2.3" />
+	<rect x="577.5" y="55.8" class="st0" width="6.8" height="2.3" />
+	<polyline class="st0" points="726,58 726,67 708,67 708,31 726,31 726,40  " />
+	<rect x="723.8" y="42.3" class="st0" width="2.3" height="13.5" />
+	<rect x="721.5" y="40" class="st0" width="6.8" height="2.3" />
+	<rect x="721.5" y="55.8" class="st0" width="6.8" height="2.3" />
+	<polyline class="st0" points="897,85 888,85 888,67 924,67 924,85 915,85  " />
+	<polyline class="st0" points="897,211 888,211 888,193 924,193 924,211 915,211  " />
+	<rect x="899.3" y="208.8" class="st0" width="13.5" height="2.3" />
+	<rect x="912.8" y="206.5" class="st0" width="2.3" height="6.8" />
+	<rect x="897" y="206.5" class="st0" width="2.3" height="6.8" />
+	<polyline class="st0" points="426,745 426,754 408,754 408,718 426,718 426,727  " />
+	<rect x="423.8" y="729.3" class="st0" width="2.3" height="13.5" />
+	<rect x="421.5" y="727" class="st0" width="6.8" height="2.3" />
+	<rect x="421.5" y="742.8" class="st0" width="6.8" height="2.3" />
+	<polyline class="st0" points="570,745 570,754 552,754 552,718 570,718 570,727  " />
+	<rect x="567.8" y="729.3" class="st0" width="2.3" height="13.5" />
+	<rect x="565.5" y="727" class="st0" width="6.8" height="2.3" />
+	<rect x="565.5" y="742.8" class="st0" width="6.8" height="2.3" />
+	<polyline class="st0" points="714,745 714,754 696,754 696,718 714,718 714,727  " />
+	<rect x="711.8" y="729.3" class="st0" width="2.3" height="13.5" />
+	<rect x="709.5" y="727" class="st0" width="6.8" height="2.3" />
+	<rect x="709.5" y="742.8" class="st0" width="6.8" height="2.3" />
+	<polyline class="st0" points="858,745 858,754 840,754 840,718 858,718 858,727  " />
+	<rect x="855.8" y="729.3" class="st0" width="2.3" height="13.5" />
+	<rect x="853.5" y="727" class="st0" width="6.8" height="2.3" />
+	<rect x="853.5" y="742.8" class="st0" width="6.8" height="2.3" />
+	<line class="st0" x1="381" y1="691" x2="399" y2="691" />
+	<line class="st0" x1="417" y1="691" x2="435" y2="691" />
+	<rect x="689.3" y="691" class="st0" width="13.5" height="2.3" />
+	<rect x="687" y="688.8" class="st0" width="2.3" height="6.8" />
+	<rect x="702.8" y="688.8" class="st0" width="2.3" height="6.8" />
+	<line class="st0" x1="669" y1="691" x2="687" y2="691" />
+	<line class="st0" x1="705" y1="691" x2="723" y2="691" />
+	<line class="st0" x1="525" y1="691" x2="543" y2="691" />
+	<line class="st0" x1="561" y1="691" x2="579" y2="691" />
+	<rect x="833.3" y="691" class="st0" width="13.5" height="2.3" />
+	<rect x="831" y="688.8" class="st0" width="2.3" height="6.8" />
+	<rect x="846.8" y="688.8" class="st0" width="2.3" height="6.8" />
+	<line class="st0" x1="813" y1="691" x2="831" y2="691" />
+	<line class="st0" x1="849" y1="691" x2="867" y2="691" />
+	<line class="st0" x1="595.5" y1="94" x2="622.5" y2="94" />
+	<line class="st0" x1="307.5" y1="94" x2="334.5" y2="94" />
+	<line class="st0" x1="451.5" y1="94" x2="478.5" y2="94" />
+	<line class="st0" x1="739.5" y1="94" x2="766.5" y2="94" />
+	<line class="st0" x1="727.5" y1="691" x2="754.5" y2="691" />
+	<line class="st0" x1="439.5" y1="691" x2="466.5" y2="691" />
+	<line class="st0" x1="583.5" y1="691" x2="610.5" y2="691" />
+	<line class="st0" x1="871.5" y1="691" x2="898.5" y2="691" />
+	<line class="st0" x1="870" y1="125.5" x2="870" y2="94" />
+	<line class="st0" x1="870" y1="242.5" x2="870" y2="269.5" />
+	<line class="st0" x1="865.5" y1="94" x2="870" y2="94" />
+	<path class="st3" d="M350.3,55.4c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C341.3,46.4,350.3,50.4,350.3,55.4z" />
+	<path class="st3" d="M494.3,55.4c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C485.3,46.4,494.3,50.4,494.3,55.4z" />
+	<path class="st3" d="M638.3,55.4c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C629.3,46.4,638.3,50.4,638.3,55.4z" />
+	<path class="st3" d="M924,127.8c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C915,118.8,924,122.8,924,127.8z" />
+	<path class="st0" d="M413.3,127.8v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6   V127.8" />
+	<path class="st0" d="M417.8,154.8c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6V154   C420.9,154.5,419.4,154.8,417.8,154.8z" />
+	<path class="st0" d="M417.8,127.8c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S425.2,127.8,417.8,127.8" />
+	<circle class="st0" cx="417.8" cy="141.3" r="20.3" />
+	<line class="st0" x1="408.2" y1="138.1" x2="420.9" y2="150.8" />
+	<line class="st0" x1="424.1" y1="147.6" x2="411.4" y2="134.9" />
+	<line class="st0" x1="414.6" y1="131.7" x2="427.3" y2="144.4" />
+	<line class="st0" x1="427.3" y1="138.1" x2="414.6" y2="150.8" />
+	<line class="st0" x1="411.4" y1="147.6" x2="424.1" y2="134.9" />
+	<line class="st0" x1="420.9" y1="131.7" x2="408.2" y2="144.4" />
+	<g>
+		<path class="st0" d="M267,127.8v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6V127.8    " />
+		<path class="st0" d="M271.5,154.8c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6V154    C274.7,154.5,273.1,154.8,271.5,154.8z" />
+		<path class="st0" d="M271.5,127.8c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S279,127.8,271.5,127.8" />
+		<circle class="st0" cx="271.5" cy="141.3" r="20.3" />
+		<line class="st0" x1="262" y1="138.1" x2="274.7" y2="150.8" />
+		<line class="st0" x1="277.9" y1="147.6" x2="265.1" y2="134.9" />
+		<line class="st0" x1="268.3" y1="131.7" x2="281" y2="144.4" />
+		<line class="st0" x1="281" y1="138.1" x2="268.3" y2="150.8" />
+		<line class="st0" x1="265.1" y1="147.6" x2="277.9" y2="134.9" />
+		<line class="st0" x1="274.7" y1="131.7" x2="262" y2="144.4" />
+	</g>
+	<path class="st0" d="M703.5,127.8v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6   V127.8" />
+	<path class="st0" d="M708,154.8c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6V154   C711.2,154.5,709.6,154.8,708,154.8z" />
+	<path class="st0" d="M708,127.8c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S715.5,127.8,708,127.8" />
+	<circle class="st0" cx="708" cy="141.3" r="20.3" />
+	<line class="st0" x1="698.5" y1="138.1" x2="711.2" y2="150.8" />
+	<line class="st0" x1="714.4" y1="147.6" x2="701.6" y2="134.9" />
+	<line class="st0" x1="704.8" y1="131.7" x2="717.5" y2="144.4" />
+	<line class="st0" x1="717.5" y1="138.1" x2="704.8" y2="150.8" />
+	<line class="st0" x1="701.6" y1="147.6" x2="714.4" y2="134.9" />
+	<line class="st0" x1="711.2" y1="131.7" x2="698.5" y2="144.4" />
+	<path class="st0" d="M557.3,127.8v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6   V127.8" />
+	<path class="st0" d="M561.8,154.8c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6V154   C564.9,154.5,563.4,154.8,561.8,154.8z" />
+	<path class="st0" d="M561.8,127.8c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S569.2,127.8,561.8,127.8" />
+	<circle class="st0" cx="561.8" cy="141.3" r="20.3" />
+	<line class="st0" x1="552.2" y1="138.1" x2="564.9" y2="150.8" />
+	<line class="st0" x1="568.1" y1="147.6" x2="555.4" y2="134.9" />
+	<line class="st0" x1="558.6" y1="131.7" x2="571.3" y2="144.4" />
+	<line class="st0" x1="571.3" y1="138.1" x2="558.6" y2="150.8" />
+	<line class="st0" x1="555.4" y1="147.6" x2="568.1" y2="134.9" />
+	<line class="st0" x1="564.9" y1="131.7" x2="552.2" y2="144.4" />
+	<path class="st0" d="M820.5,130v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6V130" />
+	<path class="st0" d="M825,157c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6v-4.7   C828.2,156.7,826.6,157,825,157z" />
+	<path class="st0" d="M825,130c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S832.5,130,825,130" />
+	<circle class="st0" cx="825" cy="143.5" r="20.3" />
+	<line class="st0" x1="815.5" y1="140.3" x2="828.2" y2="153" />
+	<line class="st0" x1="831.4" y1="149.9" x2="818.6" y2="137.1" />
+	<line class="st0" x1="821.8" y1="134" x2="834.5" y2="146.7" />
+	<line class="st0" x1="834.5" y1="140.3" x2="821.8" y2="153" />
+	<line class="st0" x1="818.6" y1="149.9" x2="831.4" y2="137.1" />
+	<line class="st0" x1="828.2" y1="134" x2="815.5" y2="146.7" />
+	<path class="st0" d="M646.5,630.3v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6   V630.3" />
+	<path class="st0" d="M651,657.3c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6v-4.7   C654.2,657,652.6,657.3,651,657.3z" />
+	<path class="st0" d="M651,630.3c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S658.5,630.3,651,630.3" />
+	<circle class="st0" cx="651" cy="643.8" r="20.3" />
+	<line class="st0" x1="641.5" y1="640.6" x2="654.2" y2="653.3" />
+	<line class="st0" x1="657.4" y1="650.1" x2="644.6" y2="637.4" />
+	<line class="st0" x1="647.8" y1="634.2" x2="660.5" y2="646.9" />
+	<line class="st0" x1="660.5" y1="640.6" x2="647.8" y2="653.3" />
+	<line class="st0" x1="644.6" y1="650.1" x2="657.4" y2="637.4" />
+	<line class="st0" x1="654.2" y1="634.2" x2="641.5" y2="646.9" />
+	<path class="st0" d="M500.3,630.3v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6   V630.3" />
+	<path class="st0" d="M504.8,657.3c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6v-4.7   C507.9,657,506.4,657.3,504.8,657.3z" />
+	<path class="st0" d="M504.8,630.3c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S512.2,630.3,504.8,630.3" />
+	<circle class="st0" cx="504.8" cy="643.8" r="20.3" />
+	<line class="st0" x1="495.2" y1="640.6" x2="507.9" y2="653.3" />
+	<line class="st0" x1="511.1" y1="650.1" x2="498.4" y2="637.4" />
+	<line class="st0" x1="501.6" y1="634.2" x2="514.3" y2="646.9" />
+	<line class="st0" x1="514.3" y1="640.6" x2="501.6" y2="653.3" />
+	<line class="st0" x1="498.4" y1="650.1" x2="511.1" y2="637.4" />
+	<line class="st0" x1="507.9" y1="634.2" x2="495.2" y2="646.9" />
+	<path class="st0" d="M897.8,630.3v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6   V630.3" />
+	<path class="st0" d="M902.3,657.3c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6v-4.7   C905.4,657,903.9,657.3,902.3,657.3z" />
+	<path class="st0" d="M902.3,630.3c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S909.7,630.3,902.3,630.3" />
+	<circle class="st0" cx="902.3" cy="643.8" r="20.3" />
+	<line class="st0" x1="892.7" y1="640.6" x2="905.4" y2="653.3" />
+	<line class="st0" x1="908.6" y1="650.1" x2="895.9" y2="637.4" />
+	<line class="st0" x1="899.1" y1="634.2" x2="911.8" y2="646.9" />
+	<line class="st0" x1="911.8" y1="640.6" x2="899.1" y2="653.3" />
+	<line class="st0" x1="895.9" y1="650.1" x2="908.6" y2="637.4" />
+	<line class="st0" x1="905.4" y1="634.2" x2="892.7" y2="646.9" />
+	<path class="st0" d="M790.5,630.3v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6   V630.3" />
+	<path class="st0" d="M795,657.3c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6v-4.7   C798.2,657,796.6,657.3,795,657.3z" />
+	<path class="st0" d="M795,630.3c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S802.5,630.3,795,630.3" />
+	<circle class="st0" cx="795" cy="643.8" r="20.3" />
+	<line class="st0" x1="785.5" y1="640.6" x2="798.2" y2="653.3" />
+	<line class="st0" x1="801.4" y1="650.1" x2="788.6" y2="637.4" />
+	<line class="st0" x1="791.8" y1="634.2" x2="804.5" y2="646.9" />
+	<line class="st0" x1="804.5" y1="640.6" x2="791.8" y2="653.3" />
+	<line class="st0" x1="788.6" y1="650.1" x2="801.4" y2="637.4" />
+	<line class="st0" x1="798.2" y1="634.2" x2="785.5" y2="646.9" />
+	<text transform="matrix(1 0 0 1 258 85.7197)" class="st4 st5">1</text>
+	<text transform="matrix(1 0 0 1 403 85.7197)" class="st4 st5">2</text>
+	<text transform="matrix(1 0 0 1 546 85.7197)" class="st4 st5">3</text>
+	<text transform="matrix(1 0 0 1 689 85.7197)" class="st4 st5">4</text>
+	<text transform="matrix(1 0 0 1 835 85.7197)" class="st4 st5">5</text>
+	<text transform="matrix(1 0 0 1 929.5 320)" class="st4 st5">6</text>
+	<text transform="matrix(1 0 0 1 929 750.7197)" class="st4 st5">8</text>
+	<text transform="matrix(1 0 0 1 784 750.7197)" class="st4 st5">9</text>
+	<text transform="matrix(1 0 0 1 641 750.7197)" class="st4 st5">10</text>
+	<text transform="matrix(1 0 0 1 498 750.7197)" class="st4 st5">11</text>
+	<g>
+		<path class="st0" d="M832.5,196.3v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6    V196.3" />
+		<path class="st0" d="M837,223.3c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6v-4.7    C840.2,223,838.6,223.3,837,223.3z" />
+		<path class="st0" d="M837,196.3c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S844.5,196.3,837,196.3" />
+		<circle class="st0" cx="837" cy="209.8" r="20.3" />
+		<line class="st0" x1="827.5" y1="206.6" x2="840.2" y2="219.3" />
+		<line class="st0" x1="843.4" y1="216.1" x2="830.6" y2="203.4" />
+		<line class="st0" x1="833.8" y1="200.2" x2="846.5" y2="212.9" />
+		<line class="st0" x1="846.5" y1="206.6" x2="833.8" y2="219.3" />
+		<line class="st0" x1="830.6" y1="216.1" x2="843.4" y2="203.4" />
+		<line class="st0" x1="840.2" y1="200.2" x2="827.5" y2="212.9" />
+	</g>
+	<rect x="869" y="295.3" class="st0" width="2.3" height="13.5" />
+	<rect x="866.8" y="308.8" class="st0" width="6.8" height="2.3" />
+	<rect x="866.8" y="293" class="st0" width="6.8" height="2.3" />
+	<path class="st3" d="M915,728.8c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C906,719.8,915,723.8,915,728.8z" />
+	<path class="st3" d="M772,730.8c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C763,721.8,772,725.8,772,730.8z" />
+	<path class="st3" d="M626,731.8c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C617,722.8,626,726.8,626,731.8z" />
+	<path class="st3" d="M481,733.8c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C472,724.8,481,728.8,481,733.8z" />
+	<rect x="401.3" y="690" class="st0" width="13.5" height="2.3" />
+	<rect x="399" y="687.8" class="st0" width="2.3" height="6.8" />
+	<rect x="414.8" y="687.8" class="st0" width="2.3" height="6.8" />
+	<rect x="899.3" y="83.8" class="st0" width="13.5" height="2.3" />
+	<rect x="912.8" y="81.5" class="st0" width="2.3" height="6.8" />
+	<rect x="897" y="81.5" class="st0" width="2.3" height="6.8" />
+	
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="74.5461" y1="593.1119" x2="74.2652" y2="577.0185" gradientTransform="matrix(1 0 0 -1 0 867)">
+		<stop offset="0" style="stop-color:#009EE2" />
+		<stop offset="1" style="stop-color:#1D70B7" />
+	</linearGradient>
+	<path class="st6" d="M61.2,274.4c-0.1,0.7-0.2,1.4-0.2,2.1c0,7.5,6,13.5,13.5,13.5S88,284,88,276.5c0-0.7-0.1-1.4-0.2-2   C79.3,277,69.7,272.1,61.2,274.4z" />
+	<path class="st0" d="M27.3,262.5v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6V262.5   " />
+	<path class="st0" d="M31.8,289.5c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6v-4.7   C34.9,289.2,33.4,289.5,31.8,289.5z" />
+	<path class="st0" d="M31.8,262.5c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S39.2,262.5,31.8,262.5" />
+	<circle class="st0" cx="31.8" cy="276" r="20.3" />
+	<line class="st0" x1="22.2" y1="272.8" x2="34.9" y2="285.5" />
+	<line class="st0" x1="38.1" y1="282.4" x2="25.4" y2="269.6" />
+	<line class="st0" x1="28.6" y1="266.5" x2="41.3" y2="279.2" />
+	<line class="st0" x1="41.3" y1="272.8" x2="28.6" y2="285.5" />
+	<line class="st0" x1="25.4" y1="282.4" x2="38.1" y2="269.6" />
+	<line class="st0" x1="34.9" y1="266.5" x2="22.2" y2="279.2" />
+	<path class="st0" d="M70,262.5v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6V262.5" />
+	<path class="st0" d="M74.5,289.5c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6v-4.7   C77.7,289.2,76.1,289.5,74.5,289.5z" />
+	<path class="st0" d="M74.5,262.5c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5S88,283.5,88,276S82,262.5,74.5,262.5" />
+	<circle class="st0" cx="74.5" cy="276" r="20.3" />
+	<line class="st0" x1="65" y1="272.8" x2="77.7" y2="285.5" />
+	<line class="st0" x1="80.9" y1="282.4" x2="68.1" y2="269.6" />
+	<line class="st0" x1="71.3" y1="266.5" x2="84" y2="279.2" />
+	<line class="st0" x1="84" y1="272.8" x2="71.3" y2="285.5" />
+	<line class="st0" x1="68.1" y1="282.4" x2="80.9" y2="269.6" />
+	<line class="st0" x1="77.7" y1="266.5" x2="65" y2="279.2" />
+	<polyline class="st0" points="40.8,336.8 40.8,345.8 22.8,345.8 22.8,309.8 40.8,309.8 40.8,318.8  " />
+	<rect x="38.5" y="321" class="st0" width="2.3" height="13.5" />
+	<rect x="36.3" y="318.8" class="st0" width="6.8" height="2.3" />
+	<rect x="36.3" y="334.5" class="st0" width="6.8" height="2.3" />
+	<polyline class="st0" points="83.5,336.8 83.5,345.8 65.5,345.8 65.5,309.8 83.5,309.8 83.5,318.8  " />
+	
+		<rect x="81.6" y="328.8" transform="matrix(0.8604 -0.5096 0.5096 0.8604 -155.7974 91.0983)" class="st0" width="13.5" height="2.3" />
+	<rect x="79" y="318.8" class="st0" width="6.8" height="2.3" />
+	<rect x="79" y="334.5" class="st0" width="6.8" height="2.3" />
+	<rect x="29.5" y="377.3" class="st0" width="2.3" height="13.5" />
+	<rect x="27.3" y="390.8" class="st0" width="6.8" height="2.3" />
+	<rect x="27.3" y="375" class="st0" width="6.8" height="2.3" />
+	<line class="st0" x1="31.8" y1="411" x2="31.8" y2="393" />
+	<line class="st0" x1="31.8" y1="375" x2="31.8" y2="357" />
+	<path class="st0" d="M32,357c-3.3-1.4-4.7,1.1-6.8,3.3c-3.1,3.3-6.5,5.1-10.6,6.7c-9.4,3.8-9.6,16-3.6,23c2.4,2.8,4,4.1,4.3,7.7   c0.2,3.2,0.3,5.8,2.1,8.6c1.5,2.3,3.9,4.5,6.8,4.2c1.9-0.2,5-2,6.9-0.8c0.1,0.2,0.3,0.4,0.4,0.5" />
+	<rect x="67.8" y="390.8" class="st0" width="6.8" height="2.3" />
+	<rect x="67.8" y="375" class="st0" width="6.8" height="2.3" />
+	<line class="st0" x1="72.3" y1="411" x2="72.3" y2="393" />
+	<line class="st0" x1="72.3" y1="375" x2="72.3" y2="357" />
+	<path class="st0" d="M72.6,357c-3.3-1.4-4.7,1.1-6.8,3.3c-3.1,3.3-6.5,5.1-10.6,6.7c-9.4,3.8-9.6,16-3.6,23c2.4,2.8,4,4.1,4.3,7.7   c0.2,3.2,0.3,5.8,2.1,8.6c1.5,2.3,3.9,4.5,6.8,4.2c1.9-0.2,5-2,6.9-0.8c0.1,0.2,0.3,0.4,0.4,0.5" />
+	
+		<rect x="70.4" y="385.2" transform="matrix(0.8604 -0.5096 0.5096 0.8604 -186.0943 93.2493)" class="st0" width="13.5" height="2.3" />
+	
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="65.5" y1="639.4" x2="83.5" y2="639.4" gradientTransform="matrix(1 0 0 -1 0 867)">
+		<stop offset="0" style="stop-color:#009EE2" />
+		<stop offset="1.589113e-02" style="stop-color:#059EDF;stop-opacity:0.9992" />
+		<stop offset="0.2131" style="stop-color:#409EBA;stop-opacity:0.9893" />
+		<stop offset="0.4033" style="stop-color:#719D9C;stop-opacity:0.9798" />
+		<stop offset="0.5818" style="stop-color:#979D85;stop-opacity:0.9709" />
+		<stop offset="0.7458" style="stop-color:#B39D74;stop-opacity:0.9627" />
+		<stop offset="0.8904" style="stop-color:#C39D6A;stop-opacity:0.9555" />
+		<stop offset="1" style="stop-color:#C99D66;stop-opacity:0.95" />
+	</linearGradient>
+	<path class="st7" d="M83.5,231c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C74.5,222,83.5,226,83.5,231z" />
+	<path class="st3" d="M40.8,231c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C31.8,222,40.8,226,40.8,231z" />
+	<text transform="matrix(1 0 0 1 106 233.25)" class="st8 st4 st5">- Ревизия исправна/неисправна</text>
+	<text transform="matrix(1 0 0 1 106 278.25)" class="st8 st4 st5">- Колодец норма/затоплен</text>
+	<text transform="matrix(1 0 0 1 103.75 330)" class="st8 st4 st5">- Дверь на чердак закрыта/открыта</text>
+	<text transform="matrix(1 0 0 1 103.75 388.5)" class="st8 st4 st5">Дверь в подвал закрыта/открыта</text>
+	<rect x="359.3" y="92.5" class="st0" width="13.5" height="2.3" />
+	<rect x="357" y="90.2" class="st0" width="2.3" height="6.8" />
+	<rect x="372.8" y="90.2" class="st0" width="2.3" height="6.8" />
+	<path class="st3" d="M785.8,54.4c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C776.8,45.4,785.8,49.4,785.8,54.4z" />
+	<path class="st3" d="M926.8,261.4c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C917.8,252.4,926.8,256.4,926.8,261.4z" />
+	<line class="st0" x1="263.2" y1="718" x2="263.2" y2="700" />
+	<line class="st0" x1="335.2" y1="655" x2="344.2" y2="655" />
+	<line class="st0" x1="380.2" y1="691" x2="344.2" y2="691" />
+	<line class="st0" x1="344.2" y1="655" x2="344.2" y2="691" />
+	<line class="st0" x1="263.2" y1="718" x2="254.2" y2="727" />
+	<line class="st0" x1="254.2" y1="745" x2="254.2" y2="727" />
+	<line class="st0" x1="263.2" y1="628" x2="254.2" y2="619" />
+	<line class="st0" x1="254.2" y1="619" x2="254.2" y2="601" />
+	<line class="st0" x1="263.2" y1="700" x2="254.2" y2="691" />
+	<line class="st0" x1="263.2" y1="646" x2="254.2" y2="655" />
+	<line class="st0" x1="254.2" y1="655" x2="254.2" y2="691" />
+	<line class="st0" x1="263.2" y1="646" x2="263.2" y2="628" />
+	<line class="st0" x1="263.2" y1="576" x2="263.2" y2="558" />
+	<line class="st0" x1="335.2" y1="511" x2="344.2" y2="511" />
+	<line class="st0" x1="335.2" y1="547" x2="344.2" y2="547" />
+	<line class="st0" x1="344.2" y1="511" x2="344.2" y2="547" />
+	<line class="st0" x1="335.2" y1="547" x2="335.2" y2="601" />
+	<line class="st0" x1="263.2" y1="575" x2="254.2" y2="584" />
+	<line class="st0" x1="254.2" y1="601" x2="254.2" y2="583" />
+	<line class="st0" x1="263.2" y1="487" x2="254.2" y2="478" />
+	<line class="st2" x1="254.2" y1="478" x2="254.2" y2="456" />
+	<line class="st0" x1="263.2" y1="558" x2="254.2" y2="549" />
+	<line class="st0" x1="263.2" y1="505" x2="254.2" y2="514" />
+	<line class="st0" x1="254.2" y1="514" x2="254.2" y2="550" />
+	<line class="st0" x1="263.2" y1="505" x2="263.2" y2="487" />
+	<line class="st0" x1="254.2" y1="745" x2="335.2" y2="745" />
+	<line class="st0" x1="335.2" y1="763" x2="335.2" y2="745" />
+	<line class="st0" x1="335.2" y1="763" x2="380.2" y2="763" />
+	<g>
+		<g>
+			<line class="st0" x1="254.2" y1="601" x2="260.2" y2="601" />
+			<line class="st1" x1="274" y1="601" x2="322.3" y2="601" />
+			<line class="st0" x1="329.2" y1="601" x2="335.2" y2="601" />
+		</g>
+	</g>
+	<line class="st0" x1="335.2" y1="601" x2="335.2" y2="619" />
+	<line class="st0" x1="335.2" y1="637" x2="335.2" y2="655" />
+	<line class="st0" x1="335.2" y1="456" x2="335.2" y2="474" />
+	<line class="st0" x1="335.2" y1="493" x2="335.2" y2="511" />
+	<polyline class="st0" points="290.2,714.7 281.2,714.7 281.2,696.7 317.2,696.7 317.2,714.7 308.2,714.7  " />
+	<polyline class="st0" points="290.2,566.7 281.2,566.7 281.2,548.7 317.2,548.7 317.2,566.7 308.2,566.7  " />
+	<rect x="292.5" y="565.5" class="st0" width="13.5" height="2.3" />
+	<rect x="306" y="563.2" class="st0" width="2.3" height="6.8" />
+	<rect x="290.2" y="563.2" class="st0" width="2.3" height="6.8" />
+	<line class="st0" x1="335.2" y1="659.5" x2="335.2" y2="691" />
+	<line class="st0" x1="335.2" y1="542.5" x2="335.2" y2="515.5" />
+	<line class="st0" x1="339.7" y1="691" x2="335.2" y2="691" />
+	<path class="st3" d="M299.2,658c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C290.2,649,299.2,653,299.2,658z" />
+	<g>
+		<path class="st0" d="M372.7,588.7v-0.8c-1.4,0.5-2.9,0.8-4.5,0.8s-3.2-0.3-4.6-0.8v4.7c1.5,0.4,3,0.6,4.6,0.6s3.1-0.2,4.5-0.6    V588.7" />
+		<path class="st0" d="M368.2,561.7c1.6,0,3.1,0.3,4.5,0.8v-3.7v-1c-1.4-0.4-2.9-0.6-4.5-0.6s-3.1,0.2-4.6,0.6v4.7    C365,562,366.6,561.7,368.2,561.7z" />
+		<path class="st0" d="M368.2,588.7c6.8,0,13.5-6,13.5-13.5s-6-13.5-13.5-13.5s-13.5,6-13.5,13.5S360.7,588.7,368.2,588.7" />
+		<circle class="st0" cx="368.2" cy="575.2" r="20.3" />
+		<line class="st0" x1="377.7" y1="578.4" x2="365" y2="565.7" />
+		<line class="st0" x1="361.8" y1="568.9" x2="374.6" y2="581.6" />
+		<line class="st0" x1="371.4" y1="584.8" x2="358.7" y2="572.1" />
+		<line class="st0" x1="358.7" y1="578.4" x2="371.4" y2="565.7" />
+		<line class="st0" x1="374.6" y1="568.9" x2="361.8" y2="581.6" />
+		<line class="st0" x1="365" y1="584.8" x2="377.7" y2="572.1" />
+	</g>
+	<rect x="333.9" y="476.2" class="st0" width="2.3" height="13.5" />
+	<rect x="331.6" y="473.9" class="st0" width="6.8" height="2.3" />
+	<rect x="331.6" y="489.7" class="st0" width="6.8" height="2.3" />
+	<rect x="292.5" y="713.5" class="st0" width="13.5" height="2.3" />
+	<rect x="306" y="711.2" class="st0" width="2.3" height="6.8" />
+	<rect x="290.2" y="711.2" class="st0" width="2.3" height="6.8" />
+	<path class="st3" d="M296.4,513.4c0,5-4,9-9,9s-9-4-9-9c0-5,9-9,9-15.8C287.4,504.4,296.4,508.4,296.4,513.4z" />
+	<line class="st0" x1="253.7" y1="456.5" x2="334.7" y2="456.5" />
+	<g>
+		<path class="st0" d="M378.7,668.7v-0.8c-1.4,0.5-2.9,0.8-4.5,0.8s-3.2-0.3-4.6-0.8v4.7c1.5,0.4,3,0.6,4.6,0.6s3.1-0.2,4.5-0.6    V668.7" />
+		<path class="st0" d="M374.2,641.7c1.6,0,3.1,0.3,4.5,0.8v-3.7v-1c-1.4-0.4-2.9-0.6-4.5-0.6s-3.1,0.2-4.6,0.6v4.7    C371,642,372.6,641.7,374.2,641.7z" />
+		<path class="st0" d="M374.2,668.7c6.8,0,13.5-6,13.5-13.5s-6-13.5-13.5-13.5s-13.5,6-13.5,13.5S366.7,668.7,374.2,668.7" />
+		<circle class="st0" cx="374.2" cy="655.2" r="20.3" />
+		<line class="st0" x1="383.7" y1="658.4" x2="371" y2="645.7" />
+		<line class="st0" x1="367.8" y1="648.9" x2="380.6" y2="661.6" />
+		<line class="st0" x1="377.4" y1="664.8" x2="364.7" y2="652.1" />
+		<line class="st0" x1="364.7" y1="658.4" x2="377.4" y2="645.7" />
+		<line class="st0" x1="380.6" y1="648.9" x2="367.8" y2="661.6" />
+		<line class="st0" x1="371" y1="664.8" x2="383.7" y2="652.1" />
+	</g>
+	<text transform="matrix(1 0 0 1 351 714.7197)" class="st4 st5">12</text>
+	<text transform="matrix(1 0 0 1 307 592.7197)" class="st4 st5">13</text>
+	<text transform="matrix(1 0 0 1 900 30)" class="st9 st10">КОРПУС 1</text>
+	<text transform="matrix(1 0 0 1 266 771)" class="st9 st10">КОРПУС 2</text>
+	<g>
+		<g>
+			<line class="st0" x1="951" y1="329" x2="945" y2="329" />
+			<line class="st1" x1="931.2" y1="329" x2="882.9" y2="329" />
+			<line class="st0" x1="876" y1="329" x2="870" y2="329" />
+		</g>
+	</g>
+	<line class="st0" x1="942" y1="355" x2="942" y2="373" />
+	<line class="st0" x1="870" y1="420" x2="861" y2="420" />
+	<line class="st0" x1="870" y1="384" x2="861" y2="384" />
+	<line class="st0" x1="861" y1="420" x2="861" y2="384" />
+	<line class="st0" x1="870" y1="384" x2="870" y2="330" />
+	<line class="st0" x1="942" y1="356" x2="951" y2="347" />
+	<line class="st0" x1="951" y1="330" x2="951" y2="348" />
+	<line class="st0" x1="942" y1="444" x2="951" y2="453" />
+	<line class="st2" x1="951" y1="453" x2="951" y2="475" />
+	<line class="st0" x1="942" y1="373" x2="951" y2="382" />
+	<line class="st0" x1="942" y1="426" x2="951" y2="417" />
+	<line class="st0" x1="951" y1="417" x2="951" y2="381" />
+	<line class="st0" x1="942" y1="426" x2="942" y2="444" />
+	<line class="st0" x1="870" y1="475" x2="870" y2="457" />
+	<line class="st0" x1="870" y1="438" x2="870" y2="420" />
+	<polyline class="st0" points="897,357 888,357 888,339 924,339 924,357 915,357  " />
+	<rect x="899.3" y="354.8" class="st0" width="13.5" height="2.3" />
+	<rect x="912.8" y="352.5" class="st0" width="2.3" height="6.8" />
+	<rect x="897" y="352.5" class="st0" width="2.3" height="6.8" />
+	<line class="st0" x1="870" y1="388.5" x2="870" y2="415.5" />
+	<text transform="matrix(1 0 0 1 929.5 466)" class="st4 st5">7</text>
+	<g>
+		<path class="st0" d="M832.5,342.3v0.8c1.4-0.5,2.9-0.8,4.5-0.8s3.2,0.3,4.6,0.8v-4.7c-1.5-0.4-3-0.6-4.6-0.6s-3.1,0.2-4.5,0.6    V342.3" />
+		<path class="st0" d="M837,369.3c-1.6,0-3.1-0.3-4.5-0.8v3.7v1c1.4,0.4,2.9,0.6,4.5,0.6s3.1-0.2,4.6-0.6v-4.7    C840.2,369,838.6,369.3,837,369.3z" />
+		<path class="st0" d="M837,342.3c-6.8,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5s13.5-6,13.5-13.5S844.5,342.3,837,342.3" />
+		<circle class="st0" cx="837" cy="355.8" r="20.3" />
+		<line class="st0" x1="827.5" y1="352.6" x2="840.2" y2="365.3" />
+		<line class="st0" x1="843.4" y1="362.1" x2="830.6" y2="349.4" />
+		<line class="st0" x1="833.8" y1="346.2" x2="846.5" y2="358.9" />
+		<line class="st0" x1="846.5" y1="352.6" x2="833.8" y2="365.3" />
+		<line class="st0" x1="830.6" y1="362.1" x2="843.4" y2="349.4" />
+		<line class="st0" x1="840.2" y1="346.2" x2="827.5" y2="358.9" />
+	</g>
+	<rect x="869" y="441.3" class="st0" width="2.3" height="13.5" />
+	<rect x="866.8" y="454.8" class="st0" width="6.8" height="2.3" />
+	<rect x="866.8" y="439" class="st0" width="6.8" height="2.3" />
+	<path class="st3" d="M926.8,407.4c0,5-4,9-9,9s-9-4-9-9s9-9,9-15.8C917.8,398.4,926.8,402.4,926.8,407.4z" />
+	<line class="st0" x1="952.5" y1="474.5" x2="871.5" y2="474.5" />
+	<rect x="503.3" y="92.8" class="st0" width="13.5" height="2.3" />
+	<rect x="501" y="90.5" class="st0" width="2.3" height="6.8" />
+	<rect x="516.8" y="90.5" class="st0" width="2.3" height="6.8" />
+	<rect x="333.9" y="620.9" class="st0" width="2.3" height="13.5" />
+	<rect x="331.6" y="618.6" class="st0" width="6.8" height="2.3" />
+	<rect x="331.6" y="634.4" class="st0" width="6.8" height="2.3" />
+</g>
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="543.3335" y="686.3333" viewBox="0 0 20 8" width="20" height="8" style="enable-background:new 0 0 20 8;" xml:space="preserve" id="Monitoring.State.EntranceDoor4Close">
+<style type="text/css">
+    .entranceDoor{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;}
+</style>
+<g>
+	<rect x="3.3" y="2.8" class="entranceDoor" width="13.5" height="2.3" />
+	<rect x="1" y="0.5" class="entranceDoor" width="2.3" height="6.8" />
+	<rect x="16.8" y="0.5" class="entranceDoor" width="2.3" height="6.8" />
+</g>
+</svg><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="543.3335" y="678.3333" width="20" height="16" viewBox="0 0 20 16" style="enable-background:new 0 0 20 16;" xml:space="preserve" id="Monitoring.State.EntranceDoor4Open">
+<style type="text/css">
+    .doorUp{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;}
+</style>
+<rect x="9.9" y="0.1" transform="matrix(0.829 -0.5592 0.5592 0.829 -1.9639 7.3265)" class="doorUp" width="2.3" height="13.5" />
+<rect x="1" y="8.5" class="doorUp" width="2.3" height="6.8" />
+<rect x="16.8" y="8.5" class="doorUp" width="2.3" height="6.8" />
+</svg></svg>

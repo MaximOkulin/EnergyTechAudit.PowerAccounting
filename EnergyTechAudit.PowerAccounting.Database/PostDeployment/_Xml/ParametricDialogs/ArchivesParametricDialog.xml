@@ -1,0 +1,149 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  <!--Параметрик для сводной таблицы Архивы-->
+  <Id>archivesParametricDialog</Id>
+  <Height>0</Height>
+  <Width>400</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <Title>Параметры</Title>
+  <IsSavedState>true</IsSavedState>
+  <Descriptors>
+    <FormLayoutItemDescriptor>
+      <Caption>Идентификатор прибора</Caption>
+      <Name>measurementDeviceId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>SpinEdit</NestedExtension>
+      <Value>0</Value>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Заводской номер</Caption>
+      <Name>factoryNumber</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>SpinEdit</NestedExtension>
+      <Value>0</Value>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Модель прибора</Caption>
+      <Name>deviceId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [Device].[Id] [Id],
+          [Device].[ShortName] [Code]
+          FROM [Dictionaries].[Device] [Device] WITH(NOLOCK)
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>100</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Code</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    <FormLayoutItemDescriptor>
+      <Caption>Период архива</Caption>
+      <Name>PeriodTypeId</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryWithAll</DataSourceType>
+        <DataSource>PeriodType</DataSource>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>100</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>200</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <Value>3</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{2}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    <FormLayoutItemDescriptor>
+      <Caption>Начало периода</Caption>
+      <Name>periodBegin</Name>
+      <TypeCode>DateTime</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>DateEdit</NestedExtension>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Конец периода</Caption>
+      <Name>periodEnd</Name>
+      <TypeCode>DateTime</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>DateEdit</NestedExtension>
+    </FormLayoutItemDescriptor>
+  </Descriptors>
+
+</ParametricDialog>

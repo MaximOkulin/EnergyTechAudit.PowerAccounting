@@ -1,0 +1,18 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  <Id>reportParametricDialog</Id>
+  <Height>100</Height>
+  <Width>400</Width>
+  <Buttons></Buttons>
+  <Title>Параметры</Title>
+  <IsSavedState>true</IsSavedState>
+  <Descriptors>    
+    <FormLayoutItemDescriptor>
+      <Caption>OrganizationName</Caption>
+      <Name>System.OrganizationName</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromSetting</ParameterValueSourceType>
+      <NestedExtension>TextBox</NestedExtension>
+    </FormLayoutItemDescriptor>
+  </Descriptors>
+</ParametricDialog>

@@ -1,0 +1,147 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  
+  <Name>formCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>600</Width>
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>create</CommandName>
+    <ToolTip>Создать новую запись</ToolTip>
+    <Name>create</Name>
+    <IconClass>font-icon-plus font-icon-x1_3 font-icon-color-darkgreen</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>clone</CommandName>
+    <ToolTip>Клонировать текущую запись</ToolTip>
+    <Name>clone</Name>
+    <IconClass>font-icon-clone font-icon-x1_3 font-icon-color-darkorange</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>save</Name>
+    <CommandName>update</CommandName>
+    <ToolTip>Сохранить</ToolTip>
+    <BeginGroup>true</BeginGroup>
+    <IconClass>font-icon-floppy-save font-icon-x1_3 font-icon-color-navy</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>formExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+    
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    
+    <Name>removeGroup</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>removeGroup</CommandName>
+    <IconClass>font-icon-remove2 font-icon-x1_2 indent-right-5px font-icon-color-darkred</IconClass>
+    <ToolTip>Удалить</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Удаление...</Text>
+      <Name>remove</Name>
+      <CommandName>remove</CommandName>
+      <ToolTip>Удаление...</ToolTip>
+      <IconClass>font-icon-remove2 font-icon-x1_2 indent-right-5px font-icon-color-darkred</IconClass>
+    </CommandMenuItem>
+    
+    <CommandMenuItem>
+      <Text>Каскадно связные сущности...</Text>
+      <Name>cascadeDeleteEntityInfo</Name>
+      <CommandName>cascadeDeleteEntityInfo</CommandName>
+      <ToolTip>Показать информацию о каскадно удаляемых сущностях</ToolTip>
+      <IconClass>font-icon-circle_info font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    </CommandMenuItem>
+    
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>cancel</Name>
+    <CommandName>cancel</CommandName>
+    <ToolTip>Отменить создание или клонирование</ToolTip>
+    <IconClass>font-icon-undo font-icon-x1_3 font-icon-lightblue font-icon-bold</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>refresh</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <ToolTip>Обновить текущую запись</ToolTip>
+    <CommandName>renew</CommandName>
+    <IconClass>font-icon-refreshform font-icon-darkblue font-icon-x1_3</IconClass>
+
+    <CommandMenuItem>
+      <Text>Обновить текущую запись</Text>
+      <CommandName>renew</CommandName>
+      <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkred</IconClass>
+    </CommandMenuItem>
+    
+    <CommandMenuItem>
+      <Text>Обновить форму</Text>
+      <CommandName>refresh</CommandName>      
+      <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+    </CommandMenuItem>
+
+    </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>showJournal</Name>
+    <CommandName>showJournal</CommandName>
+    <ToolTip>Показать журнал записей</ToolTip>
+    <IconClass>font-icon-query font-icon-x1_3 font-icon-black</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>openLinkInNewTab</Name>
+    <CommandName>openLinkInNewTab</CommandName>
+    <ToolTip>Открыть в новой вкладке...</ToolTip>
+    <IconClass>font-icon-new-window font-icon-darkred font-icon-x1_2</IconClass>
+  </CommandMenuItem>
+
+ <CommandMenuItem>
+    <Name>doSyncWithTree</Name>
+    <CommandName>doSyncWithTree</CommandName>
+    <ToolTip>Синхронизировать с деревом</ToolTip>
+    <IconClass>font-icon-tree font-icon-x1_2 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+
+   <CommandMenuItem>
+    <Text></Text>
+    <Name>showDynamicData</Name>
+    <CommandName>showDynamicData</CommandName>
+    <ToolTip>Динамические параметры</ToolTip>
+    <IconClass>font-icon-dynamic font-icon-x1_3 font-icon-red</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text>Вид</Text>    
+    <CommandMenuItem>
+      <Text>Свернуть все группы</Text>
+      <IconClass>font-icon-circle_arrow_up indent-right-5px</IconClass>
+      <CommandName>collapseAllGroups</CommandName>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Развернуть все группы</Text>
+      <IconClass>font-icon-circle_arrow_down indent-right-5px</IconClass>
+      <CommandName>expandAllGroups</CommandName>
+    </CommandMenuItem>
+  </CommandMenuItem>
+</CommandMenu>

@@ -1,0 +1,34 @@
+﻿<CommandMenu>
+  <Name>channelDeviceExtendedInfoViewCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>120</Width>
+  <CommandMenuItem>
+    <Name>showOnMap</Name>
+    <ToolTip>Показать строение на карте</ToolTip>
+    <CommandName>showOnMap</CommandName>
+    <Text />
+    <IconClass>font-icon-location-map font-icon-x1_2 font-icon-moor indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>checkConnection</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>checkConnectionX</CommandName>
+    <IconClass>font-icon-checkconnection font-icon-color-darkred indent-right-5px</IconClass>
+    <ToolTip>Проверка связи</ToolTip>
+    <CommandMenuItem>
+      <Name>checkConnectionWithMeasurementDevice</Name>
+      <Text>Проверка связи с устройством...</Text>
+      <CommandName>checkConnection</CommandName>
+      <AdditionalInfo>MeasurementDevice</AdditionalInfo>
+      <IconClass>font-icon-measurement-device font-icon-darkslateblue indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Name>checkConnectionWithAccessPoint</Name>
+      <Text>Проверка связи с точкой доступа...</Text>
+      <CommandName>checkConnection</CommandName>
+      <AdditionalInfo>AccessPoint</AdditionalInfo>
+      <IconClass>font-icon-access-point font-icon-color-darkred indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+</CommandMenu>

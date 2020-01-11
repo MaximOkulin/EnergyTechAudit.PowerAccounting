@@ -1,0 +1,45 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>emergencySituationGridViewCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>250</Width>
+  <EnableAdaptivity>false</EnableAdaptivity>
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-darkslateblue font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>exportEmergencyLog</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>exportEmergencyLog</CommandName>
+    <IconClass>font-icon-file_export font-icon-darkslateblue font-icon-x1_2 indent-right-5px</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <ToolTip>Показать логи...</ToolTip>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>showEmergencySituationLog</CommandName>
+    <Name>showEmergencySituationLog</Name>
+    <IconClass>font-icon-groupreport font-icon-verydarkslategrey font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <ToolTip>Показать историю изменения...</ToolTip>
+    <CommandName>showHistory</CommandName>
+    <IconClass>font-icon-history font-icon-color-darkred font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <ToolTip>Удалить...</ToolTip>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>removeEmergencySituation</CommandName>
+    <Name>removeEmergencySituation</Name>
+    <IconClass>font-icon-remove2 font-icon-color-darkred font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

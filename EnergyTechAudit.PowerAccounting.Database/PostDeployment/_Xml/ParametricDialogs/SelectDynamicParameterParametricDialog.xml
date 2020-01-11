@@ -1,0 +1,87 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  
+  <!--Описывает диалоговое окно для ручного ввода компонентов адреса на форме "Строения"-->
+  <Id>selectDynamicParameterParametricDialog</Id>
+  <Height>0</Height>
+  <Width>350</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <Title>Параметры</Title>
+  <IsSavedState>false</IsSavedState>
+  <Descriptors>
+
+    <FormLayoutItemDescriptor>
+      <Caption></Caption>
+      <Name>EntityTypeName</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <Value></Value>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Динамический параметр</Caption>
+      <Name>DynamicParameter</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [DynamicParameter].[Id],
+          [DynamicParameter].[Code],
+          [DynamicParameter].[Description]
+          FROM [Dictionaries].[DynamicParameter] [DynamicParameter] WITH(NOLOCK)
+          WHERE
+          [DynamicParameter].[EntityTypeName] = @entityTypeName AND
+          [DynamicParameter].[IsReadOnly] = 0
+        </DataSourceQuery>
+        
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption>Ид</Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Наименование</Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>      
+      <FormLayoutItemExtenders>        
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+  </Descriptors>
+</ParametricDialog>

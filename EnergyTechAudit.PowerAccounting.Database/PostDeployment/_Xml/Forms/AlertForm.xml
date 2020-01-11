@@ -1,0 +1,252 @@
+<FormLayout Name="alertForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function (sender, args) 
+    {
+      jQuery(document).off(Core.Common.EventTypes.FormController.FormLoadComplete_Form);
+      
+      jQuery(document).on(Core.Common.EventTypes.FormController.FormLoadComplete_Form, function () 
+        {
+          var commandMenuBarController = new Core.Common.CommandMenuBarController("formCommandMenu");
+          var formController = Core.Admin.FormController.prototype.currentInstance;
+          var modelManager = formController.getModelManager();
+
+          commandMenuBarController.bind(
+          {
+            previewAlert: function () 
+            {
+              var model = modelManager.getModel();
+              var alert = new Core.Dialogs.Alert
+              (
+                {
+                  message: model.message === null ? String.empty : model.message,
+                  timeOut: model.timeOut,
+                  type: Core.AlertTypes[model.type],
+                  showCloseButton: true,
+                  duration: model.duration,
+                  title: model.title === null ? String.empty : model.title,
+                  injectCss: model.injectCss === null ? String.empty : model.injectCss
+                });
+              
+              alert.show();
+            },
+
+            sendAlertToUser: function () 
+            {
+
+              Core.Helpers.InternalApi
+                .getParametricDialogObjectAsync("UsersParametricDialog")
+                .done(function(parametricDialogObject)
+                {
+                  var parametricDialog = new Core.Dialogs.ParametricDialog(parametricDialogObject);
+
+                  parametricDialog.show(function(modalResult)
+                  {
+                    if (modalResult == Core.Resources.Dialogs.DialogModalResults.Ok)
+                    {
+                      var model = modelManager.getModel();
+                      var userId = parametricDialog.getParameterValueByName("UserId");
+                      $.ajax({
+                        url: Core.Routes.Common.InternalApi.sendAlertToUser,
+                        type: Core.Common.HttpRequestTypes.Post,
+                        data:
+                        {
+                          userId: userId,
+                          alertId: model.id
+                        }
+                      }).done(function(operationStatusResult)
+                      {
+                        var alert = new Core.Dialogs.Alert(operationStatusResult);
+                        alert.show();
+                      });
+                    }
+                });
+              });
+          }
+        });
+      });
+    }
+    </InitScript>
+	<InitStyle HasEscapedContent="true">
+    .CodeMirror
+    {
+      line-height: 1.5;
+      height: auto;
+    }
+    </InitStyle>
+	<CommandMenu>
+		<Name>alertFormCommandMenu</Name>
+		<ClientVisible>true</ClientVisible>
+		<Width>30</Width>
+		<CommandMenuItem>
+			<Name>previewAlert</Name>
+			<CommandName>previewAlert</CommandName>
+			<ToolTip>Показать алерт</ToolTip>
+			<Enabled>true</Enabled>
+			<IconClass>font-icon-eye_open font-icon-color-darkred indent-right-5px</IconClass>
+		</CommandMenuItem>
+		<CommandMenuItem>
+			<Name>sendAlertToUser</Name>
+			<CommandName>sendAlertToUser</CommandName>
+			<ToolTip>Послать уведомление пользователю</ToolTip>
+			<Enabled>true</Enabled>
+			<IconClass>font-icon-send font-icon-darkblue indent-right-5px</IconClass>
+		</CommandMenuItem>
+	</CommandMenu>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="1" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Тип" Order="1" Enabled="true">
+					<BoundProperty>Type</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemListBoxSetting>
+						<DataSourceType>DictionaryList</DataSourceType>
+						<DataSource>
+              [
+                {Id:1, Code: "Info", Description: "Информация"},
+                {Id:2, Code: "Message", Description: "Сообщение"},
+                {Id:3, Code: "Warning", Description: "Предупреждение"}
+              ]
+            </DataSource>
+					</FormLayoutItemListBoxSetting>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дата окончания" Order="7" Enabled="true">
+					<BoundProperty>PendingDate</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+							<Value>Date</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Таймаут" Enabled="true" Order="1">
+					<BoundProperty>TimeOut</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+							<Value>1000</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+							<Value>60000</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+							<Value>Integer</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+							<Value>100</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Дополнительные" ColSpan="1" Order="3">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Заголовок" Order="1" Enabled="true">
+					<BoundProperty>Title</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Показать кнопку &quot;Закрыть&quot;" Order="7" Enabled="true">
+					<BoundProperty>ShowCloseButton</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Время анимации" Enabled="true" Order="1">
+					<BoundProperty>Duration</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+							<Value>250</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+							<Value>750</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+							<Value>Integer</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+							<Value>50</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Содержание" ColSpan="2" Order="4">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Сообщение" Order="1" Enabled="true">
+					<BoundProperty>Message</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender);
+							    inlineMemoEditorController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Стили" ColSpan="2" Order="5">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Инжектируемые стили" Order="1" Enabled="true">
+					<BoundProperty>InjectCss</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender,
+                  {
+                    mode:
+                    {
+                      name: "htmlmixed"
+                    }
+                  });
+							    inlineMemoEditorController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

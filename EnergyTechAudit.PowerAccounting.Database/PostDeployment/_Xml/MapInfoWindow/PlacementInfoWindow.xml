@@ -1,0 +1,70 @@
+<MapInfoWindowOptions>
+	<EntityTypeName>Placement</EntityTypeName>
+	<InverseProperties>
+		<InverseProperty>PlacementPurpose</InverseProperty>
+		<InverseProperty>UserAdditionalInfo</InverseProperty>
+	</InverseProperties>
+	<Size>
+		<Width>300</Width>
+		<!--0 is max width-->
+		<Height>145</Height>
+	</Size>
+	<InfoWindowItems>
+		<InfoWindowItem>
+			<Caption>Назначение</Caption>
+			<PropertyChain>PlacementPurpose.Description</PropertyChain>
+		</InfoWindowItem>
+		<InfoWindowItem>
+			<Caption>Владелец</Caption>
+			<PropertyChain>UserAdditionalInfo.Description</PropertyChain>
+		</InfoWindowItem>
+		<InfoWindowItem>
+			<Caption>Всего комнат</Caption>
+			<PropertyChain>AmountRooms</PropertyChain>
+		</InfoWindowItem>
+	</InfoWindowItems>
+	<CustomMarkup HasEscapedContent="true">          
+      &lt;style&gt;
+        .map-info-window-link
+        {
+          margin-top: 10px;
+          float: right;  
+          margin-left: 10px;
+        }
+      &lt;/style&gt;
+      &lt;style&gt;     
+        &lt;style&gt;
+        .gm-style-iw .map-info-window-link-container
+        {
+          width: 100%;
+        }
+        .gm-style-iw .map-info-window-link
+        {
+          margin-top: 10px;
+          float: right;         
+        }
+        .map-info-window-link-container [class^="font-icon-"] 
+	     {
+	 	    margin-left: 5px;
+	     }
+	     .map-info-window-link-container [class^="font-icon-"]:hover
+       {
+	      transform: none; 
+        color: #0072C6;
+		    cursor: pointer;		  
+       }
+      &lt;/style&gt;
+      &lt;div class="map-info-window-link-container"&gt;
+	      &lt;i title="Переход к карточке измерительного канала" class="font-icon-channel font-icon-x1_3 map-info-window-link" style="float: right;" href="javascript:;" data-core-traverse="Down" data-core-entityTypeName="Channel"&gt;&lt;/i&gt;
+	      &lt;i title="Переход к карточке строения" class="font-icon-building font-icon-x1_2 map-info-window-link" style="float: right" href="javascript:;" data-core-traverse="Up" data-core-entityTypeName="Building"&gt;&lt;/i&gt;
+        &lt;i title="Переход на главную приборную панель" class="font-icon-dashboard font-icon-x1_3 map-info-window-link " style="float: right" href="javascript:;" data-core-traverse="Down" data-core-go-dashboard data-core-entityTypeName="Channel" &gt;&lt;/i&gt;
+      &lt;/div&gt;
+    </CustomMarkup>
+	<CustomScript HasEscapedContent="true">               
+    (function ()
+      {    
+          var infoWindowController = new Core.OperAdmin.MapController.InfoWindowController();
+	        infoWindowController.execute();                     
+      })();   
+    </CustomScript>
+</MapInfoWindowOptions>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:attribute default="false" name="HasEscapedContent" type="xs:boolean"/>
+    <xs:element name="FormLayout">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ColCount" type="xs:unsignedInt"/>
+                <xs:element name="ItemHeight" type="xs:unsignedInt"/>
+                <xs:element name="Width" type="xs:unsignedInt"/>
+                <xs:element maxOccurs="1" minOccurs="0" name="InitScript">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute ref="HasEscapedContent" use="optional"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element maxOccurs="1" minOccurs="0" name="InitStyle" type="xs:string"/>
+                <xs:element minOccurs="0" ref="CommandMenu"/>
+                <xs:element name="FormLayoutGroups">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="FormLayoutGroup">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="FormLayoutItems">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="FormLayoutItem">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="BoundProperty"/>
+                                                  <xs:element name="NestedExtension">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="TextBox"/>
+                                                  <xs:enumeration value="SpinEdit"/>
+                                                  <xs:enumeration value="TimeEdit"/>
+                                                  <xs:enumeration value="TrackBar"/>
+                                                  <xs:enumeration value="DateEdit"/>
+                                                  <xs:enumeration value="CheckBox"/>
+                                                  <xs:enumeration value="ButtonEdit"/>
+                                                  <xs:enumeration value="Memo"/>
+                                                  <xs:enumeration value="ComboBox"/>
+                                                  <xs:enumeration value="ListBox"/>
+                                                  <xs:enumeration value="Default"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element minOccurs="0" name="IsNotClonable"
+                                                  type="xs:boolean"/>
+                                                  <xs:element minOccurs="0" name="Tooltip">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element minOccurs="0" name="HelpId"
+                                                  type="xs:int"/>
+                                                  <xs:element minOccurs="1" name="Text"
+                                                  type="xs:string"/>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element minOccurs="0"
+                                                  name="FormLayoutItemExtenders">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="FormLayoutItemExtender">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="PropertiesChain"
+                                                  type="xs:string"/>
+                                                  <xs:element name="Value">
+                                                  <xs:complexType>
+                                                  <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute ref="HasEscapedContent"
+                                                  use="optional"/>
+                                                  </xs:extension>
+                                                  </xs:simpleContent>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="TypeName" minOccurs="0">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="System.String"/>
+                                                  <xs:enumeration value="System.Delegate"/>
+                                                  <xs:enumeration value="System.Int32"/>
+                                                  <xs:enumeration value="System.Boolean"/>
+                                                  <xs:enumeration value="System.DateTime"/>
+                                                  <xs:enumeration
+                                                  value="DevExpress.Web.ASPxEditors.EditFormat"/>
+                                                  <xs:enumeration
+                                                  value="DevExpress.Web.ASPxEditors.Display"/>
+                                                  <xs:enumeration
+                                                  value="DevExpress.Web.ASPxEditors.MaskIncludeLiteralsMode"
+                                                  />
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element minOccurs="0"
+                                                  ref="FormLayoutItemListBoxSetting"/>
+                                                  </xs:sequence>
+                                                  <xs:attribute name="Caption" type="xs:string"/>
+                                                  <xs:attribute name="Order" type="xs:unsignedInt"/>
+                                                  <xs:attribute name="Enabled" type="xs:boolean"/>
+                                                  <xs:attribute name="ClientVisible"
+                                                  type="xs:boolean" use="optional"/>
+                                                  <xs:attribute name="IsGrid" type="xs:boolean"
+                                                  use="optional"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="Caption" type="xs:string"/>
+                                    <xs:attribute name="ColSpan" type="xs:unsignedInt"/>
+                                    <xs:attribute name="Order" type="xs:unsignedInt"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CommandMenuItem">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="CommandMenuItem"/>
+                <xs:element name="AdditionalInfo" type="xs:string"/>
+                <xs:element name="BeginGroup" type="xs:boolean"/>
+                <xs:element name="CommandName" type="xs:string"/>
+                <xs:element name="Enabled" type="xs:boolean"/>
+                <xs:element name="IconClass" type="xs:string"/>
+                <xs:element name="Name" type="xs:string"/>
+                <xs:element name="Text" type="xs:string"/>
+                <xs:element name="ToolTip" type="xs:string"/>
+                <xs:element maxOccurs="1" minOccurs="0" name="Checked" type="xs:boolean"/>
+                <xs:element minOccurs="0" name="GroupName" type="xs:string"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CommandMenu">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Name" type="xs:string"/>
+                <xs:element name="ClientVisible" type="xs:boolean"/>
+                <xs:element maxOccurs="1" minOccurs="1" name="Width" type="xs:int"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="CommandMenuItem"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="FormLayoutItemListBoxSetting">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" name="DataSourceType">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Dictionary"/>
+                            <xs:enumeration value="DictionaryWithAll"/>
+                            <xs:enumeration value="DictionaryList"/>
+                            <xs:enumeration value="DictionaryByQuery"/>
+                            <xs:enumeration value="Entity"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element minOccurs="1" name="DataSource" type="xs:string"/>
+                <xs:element minOccurs="0" name="DataSourceQuery" type="xs:string"/>
+                <xs:element minOccurs="0" name="FormLayoutItemListBoxColumns">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="FormLayoutItemListBoxColumn">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="FieldName" type="xs:string"/>
+                                        <xs:element name="Caption" type="xs:string"/>
+                                        <xs:element minOccurs="0" name="Width" type="xs:int"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

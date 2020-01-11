@@ -1,0 +1,13 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>dynamicParameterValueParametricDialogCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>50</Width>  
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>addDynamicParameter</CommandName>
+    <Name>addDynamicParameter</Name>
+    <IconClass>font-icon-plus font-icon-x1_3 font-icon-color-darkgreen</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

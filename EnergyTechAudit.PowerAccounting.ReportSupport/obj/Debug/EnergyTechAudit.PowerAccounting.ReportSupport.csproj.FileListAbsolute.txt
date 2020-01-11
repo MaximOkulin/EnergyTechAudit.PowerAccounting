@@ -1,0 +1,14 @@
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Web\bin\EnergyTechAudit.PowerAccounting.ReportSupport.dll.config
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Web\bin\EnergyTechAudit.PowerAccounting.ReportSupport.dll
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Web\bin\EnergyTechAudit.PowerAccounting.ReportSupport.pdb
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.csprojAssemblyReference.cache
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.DictionariesValueResources.resources
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.FieldsNamesResources.resources
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.ReportInternalColumnNameResources.resources
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.ReportPluginResources.resources
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.StringFormatResources.resources
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.csproj.GenerateResource.cache
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.csproj.CopyComplete
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.dll
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.pdb
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.ReportSupport\obj\Debug\EnergyTechAudit.PowerAccounting.ReportSupport.SettingsResources.resources

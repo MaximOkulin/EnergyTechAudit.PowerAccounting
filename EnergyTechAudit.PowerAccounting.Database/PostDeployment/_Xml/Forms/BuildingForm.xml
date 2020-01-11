@@ -1,0 +1,376 @@
+<FormLayout Name="buildingForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function(sender, args)
+    {	    
+      var inlineGridController = new Core.Admin.FormController.InlineGridController(
+      {
+        rightEntityTypeName: Core.Common.Entities.Business.BuildingMapResourceBuilding
+      });
+      inlineGridController.execute();
+      
+    jQuery(document).off(Core.Common.EventTypes.FormController.FormLoadComplete_Form)
+      .on(Core.Common.EventTypes.FormController.FormLoadComplete_Form, function()
+      {
+          (new Core.Admin.FormController.BuildingFormCustomizerController()).execute();
+      });
+    }
+  </InitScript>
+  <CommandMenu>
+    <Name>buildingFormCommandMenu</Name>
+    <ClientVisible>true</ClientVisible>
+    <Width>60</Width>
+
+    <CommandMenuItem>
+      <Name>showBuildingChannelsArranger</Name>
+      <CommandName>showBuildingChannelsArranger</CommandName>
+      <ToolTip>Установить порядок каналов</ToolTip>
+      <IconClass>font-icon-channel-asc font-icon-x1_5 font-icon-indigo</IconClass>
+    </CommandMenuItem>
+    
+  </CommandMenu>
+
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ButtonClick</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var formController = Core.Admin.FormController.prototype.currentInstance;                  
+                  if (formController)
+                  {                   
+                    var modelManager = formController.getModelManager();                    
+                    if(modelManager &amp;&amp; args.buttonIndex === 0)
+                    {                    
+                      var inputDialog = new Core.Dialogs.InputBox(
+                      {
+                        title: "Редактировать",
+                        editableText: modelManager.getModelField("description")
+                      });                      
+                      inputDialog.show(function(modalResult)
+                      {                        
+                        if(modalResult == Core.Resources.Dialogs.DialogModalResults.Ok)
+                        {                          
+                          var value = inputDialog.getEditableText();
+                          modelManager.setModelField("description", value);
+                          modelManager.onModelChanged();
+                        }
+                      });
+                    }    
+                  }
+                }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Полный адрес" Enabled="true" Order="3">
+					<BoundProperty>FullAddress</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {                 
+                  var context$ = jQuery(sender.GetMainElement());
+                  jQuery(".dxeButton:last img", context$).hide();
+                  jQuery(".dxeButton:first img", context$).hide();
+                  jQuery(".dxeButton:last", context$).append(jQuery("&lt;i style=&apos;margin-right: 2px&apos; class=&apos;font-icon-google_maps&apos; title=&apos;Выбрать строение на карте&apos;&gt;&lt;/i&gt;"));
+                  jQuery(".dxeButton:first", context$).append(jQuery("&lt;i style=&apos;margin-right: 2px&apos; class=&apos;font-icon-building&apos; title=&apos;Редактировать адрес&apos;&gt;&lt;/i&gt;"));
+                }        
+                </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ButtonClick</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var cusmomizer = Core.Admin.FormController.Customizer.prototype.currentInstance;
+                  args["entityTypeName"] = "Building";
+                  switch(args.buttonIndex)
+                  {
+                    case 0:
+                    {
+                      cusmomizer.buttonEditShowBuildingAddressDialogHandler(sender, args);
+                      break;
+                    }
+                    case 1:
+                    {
+                      cusmomizer.buttonEditShowMapDialogHandler(sender, args);
+                      break;
+                    }
+                    default: break;
+                  }
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Геолокация" ClientVisible="false" Enabled="true" Order="4">
+					<BoundProperty>Geolocation</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Район населенного пункта" Enabled="true" Order="3">
+					<BoundProperty>DistrictId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{1}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Назначение" ColSpan="1" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Назначение строения" Enabled="true" Order="1">
+					<BoundProperty>BuildingPurposeId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Эксплуатационная организация" Enabled="true" Order="2">
+					<BoundProperty>OrganizationId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute(
+                    {
+                      sender: sender, 
+                      gridFilterExpression: "OrganizationTypeId IN (1, 2, 9, 10)"
+                    }
+                  );
+                }
+              </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Ответственное лицо" Enabled="true" Order="3">
+					<BoundProperty>UserAdditionalInfoId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">                
+                function(sender, args)
+                {
+                  (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute(
+                    {
+                      sender: sender, 
+                      gridFilterExpression: "User.RoleId IN (2, 7)"
+                    }
+                  );
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Показатели" ColSpan="1" Order="3">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Площадь" Enabled="true" Order="1">
+					<BoundProperty>Square</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+							<Value>0</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+							<Value>Float</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+							<Value>0.1</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.LargeIncrement</PropertiesChain>
+							<Value>1</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.SpinButtons.ShowLargeIncrementButtons</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Количество квартир" Enabled="true" Order="2">
+					<BoundProperty>CountFlats</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+							<Value>0</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+							<Value>Integer</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Связи" ColSpan="2" Order="7">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Точки доступа" Enabled="true" Order="1">
+					<BoundProperty>AccessPointLinksBuilding</BoundProperty>
+					<NestedExtension>ListBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var inlineListBoxController = new Core.Admin.FormController.InlineListBoxController(sender);
+							    inlineListBoxController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+					<FormLayoutItemListBoxSetting>
+						<DataSourceType>Entity</DataSourceType>
+						<DataSource>AccessPointLinksBuilding</DataSource>
+						<FormLayoutItemListBoxColumns>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Id</FieldName>
+								<Caption>Ид</Caption>
+								<Width>25</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Description</FieldName>
+								<Caption>Наименование</Caption>
+								<Width>150</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>NetAddress</FieldName>
+								<Caption>Сетевой адрес</Caption>
+								<Width>75</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Port</FieldName>
+								<Caption>Порт</Caption>
+								<Width>50</Width>
+							</FormLayoutItemListBoxColumn>
+						</FormLayoutItemListBoxColumns>
+					</FormLayoutItemListBoxSetting>
+				</FormLayoutItem>
+        
+				<FormLayoutItem Caption="Связь строения с источником ресурса" Enabled="true" Order="1" IsGrid="true">
+					<BoundProperty>BuildingMapResourceBuildings</BoundProperty>
+					<NestedExtension>Default</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+            
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+              <Value>true</Value>
+					  </FormLayoutItemExtender>
+            
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

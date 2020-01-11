@@ -1,0 +1,230 @@
+<FormLayout Name="archiveDownloaderForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Учетная запись" Enabled="true" Order="3">
+					<BoundProperty>UserId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ButtonClick</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var customizer = Core.Admin.FormController.Customizer.prototype.currentInstance;
+                  
+                  switch(args.buttonIndex)
+                  {                   
+                    case 0:
+                    {                      
+                      var linkedEntityIfo = Core.Admin.FormController.LinkedEntityFormController.getLinkedEntityInfo(sender);
+                                                                 
+                      var linkedEntityFormController = new Core.Admin.FormController.LinkedEntityFormController();
+
+                      linkedEntityFormController.execute
+                      ({
+                          linkedEntityIfo: linkedEntityIfo,                          
+                          callback: function (formControllerRightEntity)
+                          {
+                              if (formControllerRightEntity)
+                              {
+                                  formControllerRightEntity.getCurrentByIdAsync(linkedEntityIfo.rightEntityInfo.entityId);
+                              }
+                          }
+                      });
+                      
+                      break;
+                    }                    
+                  }                
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                  function(sender, args)
+                  {                    
+                    var context$ = jQuery(sender.GetMainElement());  
+                    
+                    jQuery(".dxeButton:eq(0) img", context$).hide();                  
+                    jQuery(".dxeButton:eq(0)", context$)
+                    .append(jQuery("&lt;i style=&apos;margin-right: 2px; vertical-align: initial&apos; class=&apos;font-icon-edit&apos; title=&apos;Редактировать...&apos;&gt;&lt;i/&gt;")); 
+                    
+                    (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute(
+                    {
+                      sender: sender,
+                      gridFilterExpression: "RoleId IN (3)",
+                      buttonIndex: Number.one                      
+                    });
+                  }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Ресурсоснабжающая организация" Enabled="true" Order="1">
+					<BoundProperty>OrganizationId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ButtonClick</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var customizer = Core.Admin.FormController.Customizer.prototype.currentInstance;
+                  
+                  switch(args.buttonIndex)
+                  {                    
+                    case 0:
+                    {                            
+                      var linkedEntityIfo = Core.Admin.FormController.LinkedEntityFormController.getLinkedEntityInfo(sender);
+                                                                 
+                      var linkedEntityFormController = new Core.Admin.FormController.LinkedEntityFormController();
+
+                      linkedEntityFormController.execute
+                      ({
+                          linkedEntityIfo: linkedEntityIfo,                          
+                          callback: function (formControllerRightEntity)
+                          {
+                              if (formControllerRightEntity)
+                              {
+                                  formControllerRightEntity.getCurrentByIdAsync(linkedEntityIfo.rightEntityInfo.entityId);
+                              }
+                          }
+                      });
+                      
+                      break;
+                    }                    
+                  }                
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                  function(sender, args)
+                  {                    
+                    var context$ = jQuery(sender.GetMainElement());  
+                    
+                    jQuery(".dxeButton:eq(0) img", context$).hide();                  
+                    jQuery(".dxeButton:eq(0)", context$)
+                    .append(jQuery("&lt;i style=&apos;margin-right: 2px; vertical-align: initial&apos; class=&apos;font-icon-edit&apos; title=&apos;Редактировать...&apos;&gt;&lt;i/&gt;")); 
+                    
+                    (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute(
+                    {
+                      sender: sender,
+                      gridFilterExpression: "OrganizationTypeId IN (3)",
+                      buttonIndex: Number.one                      
+                    });
+                  }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Связи" ColSpan="2" Order="6">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Элементы расписания" Enabled="true" Order="1">
+					<BoundProperty>ArchiveDownloaderLinksScheduleItem</BoundProperty>
+					<NestedExtension>ListBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                var inlineListBoxController = new Core.Admin.FormController.InlineListBoxController(sender);
+							  inlineListBoxController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+					<FormLayoutItemListBoxSetting>
+						<DataSourceType>Entity</DataSourceType>
+						<DataSource>ArchiveDownloaderLinksScheduleItem</DataSource>
+						<FormLayoutItemListBoxColumns>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Id</FieldName>
+								<Caption>Ид</Caption>
+								<Width>25</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Description</FieldName>
+								<Caption>Наименование</Caption>
+								<Width>150</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Enabled</FieldName>
+								<Caption>Разрешение</Caption>
+								<Width>25</Width>
+							</FormLayoutItemListBoxColumn>
+						</FormLayoutItemListBoxColumns>
+					</FormLayoutItemListBoxSetting>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

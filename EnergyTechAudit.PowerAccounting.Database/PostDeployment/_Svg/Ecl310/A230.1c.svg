@@ -1,0 +1,89 @@
+﻿<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="1400" height="700" viewBox="-30 -30 1200 600" 
+     enable-background="new 0 0 565 264" xml:space="preserve" description="Ключ A230.1c Система отопления с котлом и 3-х ходовым клапаном" deviceId="8" internalNumber="none">
+<rect x="14.101" y="85.989" fill="none" stroke="#000000" stroke-miterlimit="10" width="99" height="162" />
+<polygon stroke="#000000" stroke-miterlimit="10" points="192.101,109.735 201.101,113.776 192.101,117.818 " />
+<polygon stroke="#000000" stroke-miterlimit="10" points="203.101,225.03 194.101,220.989 203.101,216.947 " />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="166.029" y1="224.771" x2="157.07" y2="215.719" />
+	<circle stroke="#000000" stroke-miterlimit="10" cx="154.267" cy="212.915" r="3.762" />
+	<text transform="matrix(1 0 0 1 141.646 206.355)" font-size="10">T5</text>
+</g>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="110.997" y1="113.776" x2="317.771" y2="113.776" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="113.564" y1="220.989" x2="495.6" y2="220.989" />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="286.684" y1="118.943" x2="295.643" y2="109.891" />
+	<circle stroke="#000000" stroke-miterlimit="10" cx="298.446" cy="107.086" r="3.761" />
+	<text transform="matrix(1 0 0 1 300.9668 100.5264)" font-size="10">T3</text>
+</g>
+<g>
+	<circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="330.021" cy="112.989" r="12.25" />
+	<polygon stroke="#000000" stroke-miterlimit="10" points="332.524,108.516 340.271,112.989 332.524,117.461  " />
+</g>
+<text transform="matrix(1 0 0 1 325.542 96.9888)" font-size="10">P1</text>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="342.271" y1="112.989" x2="495.6" y2="112.989" />
+<rect x="383.267" y="142.118" fill="none" stroke="#000000" stroke-miterlimit="10" width="94.333" height="48.833" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="392.6" y1="149.118" x2="392.6" y2="183.784" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="403.267" y1="149.201" x2="403.267" y2="183.867" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="414.017" y1="149.16" x2="414.017" y2="183.826" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="424.684" y1="149.243" x2="424.684" y2="183.909" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="435.934" y1="149.138" x2="435.934" y2="183.805" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="446.601" y1="149.221" x2="446.601" y2="183.888" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="457.351" y1="149.18" x2="457.351" y2="183.847" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="468.018" y1="149.263" x2="468.018" y2="183.93" />
+<circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="370.423" cy="147.232" r="6.219" />
+<polygon stroke="#000000" stroke-miterlimit="10" points="366.146,149.884 370.423,142.475 374.699,149.884 " />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="383.267" y1="147.232" x2="376.642" y2="147.232" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="364.204" y1="147.232" x2="359.017" y2="147.232" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="359.017" y1="147.232" x2="359.017" y2="112.989" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="477.6" y1="185.989" x2="483.767" y2="185.989" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="483.767" y1="185.989" x2="483.767" y2="220.989" />
+<polygon stroke="#000000" stroke-miterlimit="10" points="495.6,108.947 504.6,112.989 495.6,117.03 " />
+<polygon stroke="#000000" stroke-miterlimit="10" points="504.6,225.03 495.6,220.989 504.6,216.947 " />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="84.363" y1="53.438" x2="93.322" y2="44.386" />
+	<circle stroke="#000000" stroke-miterlimit="10" cx="96.125" cy="41.582" r="3.762" />
+	<text transform="matrix(1 0 0 1 98.646 35.022)" font-size="10">T1</text>
+</g>
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="409.269" y1="50.637" x2="418.228" y2="41.584" />
+	<circle stroke="#000000" stroke-miterlimit="10" cx="421.03" cy="38.78" r="3.762" />
+	<text transform="matrix(1 0 0 1 423.5518 32.2202)" font-size="10">T2</text>
+</g>
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="109.916" y1="16.845" x2="109.916" y2="64.845" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="123.049" y1="16.845" x2="123.049" y2="64.845" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="109.916" y1="64.845" x2="123.021" y2="51.74" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="119.185" y1="65.576" x2="123.021" y2="61.74" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="109.916" y1="54.845" x2="123.021" y2="41.74" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="109.916" y1="44.845" x2="123.021" y2="31.74" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="109.916" y1="34.845" x2="123.021" y2="21.74" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="109.916" y1="24.845" x2="117.211" y2="17.55" />
+</g>
+<rect x="192.101" y="24.845" fill="none" stroke="#000000" stroke-miterlimit="10" width="56" height="28.593" />
+<rect x="192.101" y="32.22" fill="none" stroke="#000000" stroke-miterlimit="10" width="56" height="13.891" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="213.101" y1="32.22" x2="213.101" y2="46.111" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="230.101" y1="32.22" x2="230.101" y2="46.111" />
+<circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="239.101" cy="39.147" r="4.125" />
+<circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="239.101" cy="39.142" r="5.625" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M244.726,32.333c0,0,1.781,3.062,1.781,6.594  s-1.781,6.969-1.781,6.969" />
+<text transform="matrix(1 0 0 1 203.186 19.3223)" font-size="10">ECL210</text>
+<rect x="282.101" y="39.166" fill="none" stroke="#000000" stroke-miterlimit="10" width="14.25" height="2.419" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M282.101,39.166c0,0,1.44,0.044,2.137-1.124s1.945-5.788,2.363-7.043  c0.375-1.333,1.093-2.039,2.843-2.039s2.326,0.768,2.699,2.206s1.541,5.25,1.958,6.583s2.25,1.417,2.25,1.417" />
+<path stroke="#000000" stroke-miterlimit="10" d="M291.257,41.584c0,1.122-0.908,2.031-2.031,2.031  c-1.121,0-2.031-0.909-2.031-2.031c0,0,0.91,0,2.031,0C290.349,41.584,291.257,41.584,291.257,41.584z" />
+<text transform="matrix(1 0 0 1 284.0127 51.9888)" font-size="10">R4</text>
+<g>
+	<rect x="57.919" y="197.676" fill="none" stroke="#000000" stroke-miterlimit="10" width="30.363" height="20.695" />
+	<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="57.919" cy="216.676" r="19" />
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="253.667" y1="125.239" x2="253.667" y2="220.989" />
+<text transform="matrix(1 0 0 1 259.7837 82.5054)" font-size="10">M1</text>
+<polygon fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="240.966,108.58 253.667,113.776 240.966,118.972 " />
+<polygon fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="266.368,118.972 253.667,113.776 266.368,108.58 " />
+<polygon fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="232.21,110.194 240.966,113.776 232.21,117.358 " />
+<polygon fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="275.124,117.358 266.368,113.776 275.124,110.194 " />
+<circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="253.667" cy="95.252" r="8.75" />
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="253.667" y1="104.002" x2="253.667" y2="113.776" />
+<text transform="matrix(1 0 0 1 249.647 98.502)" font-size="10">M</text>
+<polygon fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="248.471,124.853 253.667,112.989 258.863,124.853 " />
+</svg>

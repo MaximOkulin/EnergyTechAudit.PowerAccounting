@@ -1,0 +1,114 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>mapCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>380</Width>
+  <CommandMenuItem>
+    <Name>showMapOptions</Name>
+    <CommandName>showMapOptions</CommandName>
+    <IconClass>font-icon-options font-icon-x1_2 font-icon-color-marine</IconClass>
+    <ToolTip>Настройки</ToolTip>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>mapFilterByCity</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>mapFilterByCity</CommandName>
+    <IconClass>font-icon-map font-icon-x1_2 font-icon-slateblue</IconClass>
+    <ToolTip>Фильтр строений по населенному пункту</ToolTip>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>mapFilter</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>mapFilter</CommandName>
+    <IconClass>font-icon-checkconnection font-icon-x1_2 font-icon-slateblue</IconClass>
+    <ToolTip>Фильтр строений на основе соостояния связи</ToolTip>
+    <CommandMenuItem>
+      <Text>Все строения</Text>
+      <AdditionalInfo>3</AdditionalInfo>
+      <CommandName>mapFilter</CommandName>
+      <Name>mapFilterBlue</Name>
+      <IconClass>font-icon-checkconnection font-icon-blue font-icon-x1_2</IconClass>
+      <Checked>true</Checked>
+      <GroupName>mapFilter</GroupName>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Связь отсутствует</Text>
+      <CommandName>mapFilter</CommandName>
+      <AdditionalInfo>2</AdditionalInfo>
+      <Name>mapFilterRed</Name>
+      <IconClass>font-icon-checkconnection font-icon-darkred font-icon-x1_2</IconClass>
+      <Checked>false</Checked>
+      <GroupName>mapFilter</GroupName>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Одна из точек доступа на связи</Text>
+      <CommandName>mapFilter</CommandName>
+      <AdditionalInfo>1</AdditionalInfo>
+      <Name>mapFilterYellow</Name>
+      <IconClass>font-icon-checkconnection font-icon-color-darkorange font-icon-x1_2</IconClass>
+      <Checked>false</Checked>
+      <GroupName>mapFilter</GroupName>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Точки доступа и устройства на связи</Text>
+      <CommandName>mapFilter</CommandName>
+      <AdditionalInfo>0</AdditionalInfo>
+      <Name>mapFilterGreen</Name>
+      <IconClass>font-icon-checkconnection font-icon-green font-icon-x1_2</IconClass>
+      <Checked>false</Checked>
+      <GroupName>mapFilter</GroupName>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>mapFilterByEmergency</Name>
+    <Text>
+    </Text>
+    <CommandName>mapFilterByEmergency</CommandName>
+    <AdditionalInfo>2</AdditionalInfo>
+    <ToolTip>Фильтр строений с нештатными ситуациями</ToolTip>
+    <IconClass>font-icon-emergency font-icon-x1_3 font-icon-slateblue</IconClass>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandMenuItem>
+      <Text>Все строения</Text>
+      <CommandName>mapFilterByEmergency</CommandName>
+      <Name>mapFilterByEmergencyAll</Name>
+      <AdditionalInfo>0</AdditionalInfo>
+      <IconClass>font-icon-emergency font-icon-x1_2</IconClass>
+      <Checked>true</Checked>
+      <GroupName>mapFilterByEmergency</GroupName>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>С нештатными ситуациями</Text>
+      <CommandName>mapFilterByEmergency</CommandName>
+      <Name>mapFilterByEmergencyWith</Name>
+      <AdditionalInfo>1</AdditionalInfo>
+      <IconClass>font-icon-emergency font-icon-x1_2 font-icon-darkred</IconClass>
+      <Checked>false</Checked>
+      <GroupName>mapFilterByEmergency</GroupName>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>zoom1</Name>
+    <Text>
+    </Text>
+    <CommandName>zoom</CommandName>
+    <ToolTip>Центрировать карту (Ctrl+Click)</ToolTip>
+    <IconClass>font-icon-fullscreen font-icon-x1_3 font-icon-steelblue</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text>
+    </Text>
+    <Name>refresh1</Name>
+    <ToolTip>Обновить и центрировать</ToolTip>
+    <CommandName>refresh</CommandName>
+    <IconClass>font-icon-refresh-markers font-icon-x1_3 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>showBuildings</Name>
+    <CommandName>showBuildings</CommandName>
+    <ToolTip>Список объектов учета</ToolTip>
+    <IconClass>font-icon-search font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

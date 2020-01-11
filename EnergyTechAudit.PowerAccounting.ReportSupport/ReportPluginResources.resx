@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CommaDelimiter" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="HeatSysResourceSystemTypeCode" xml:space="preserve">
+    <value>HeatSys</value>
+  </data>
+  <data name="Km5ErrorsPluginGInfo" xml:space="preserve">
+    <value>Период G&gt;max</value>
+  </data>
+  <data name="Km5ErrorsPluginDInfo" xml:space="preserve">
+    <value>Период t2-t1 &lt; min</value>
+  </data>
+  <data name="Km5ErrorsPluginDType" xml:space="preserve">
+    <value>D</value>
+    <comment>Тип событий КМ-5 D (период t1 - t2 &gt; минимума)</comment>
+  </data>
+  <data name="Km5ErrorsPluginEInfo" xml:space="preserve">
+    <value>Период функц. отказа</value>
+  </data>
+  <data name="Km5ErrorsPluginEType" xml:space="preserve">
+    <value>E</value>
+    <comment>Тип событий КМ-5 E (период функционального отказа)</comment>
+  </data>
+  <data name="Km5ErrorsPluginGType" xml:space="preserve">
+    <value>G</value>
+    <comment>Тип событий КМ-5 G (период Gv&lt; минимума и Gv &gt; максимума)</comment>
+  </data>
+  <data name="Km5ErrorsPluginUInfo" xml:space="preserve">
+    <value>Период отключения питания</value>
+  </data>
+  <data name="Km5ErrorsPluginUType" xml:space="preserve">
+    <value>U</value>
+    <comment>Тип событий КМ-5 U (сбой питания)</comment>
+  </data>
+  <data name="Km5ErrorsPlugin_gInfo" xml:space="preserve">
+    <value>Период G&lt;min</value>
+  </data>
+  <data name="Km5ErrorsPlugin_gType" xml:space="preserve">
+    <value>g</value>
+    <comment>Тип событий КМ-5 g (период gv&lt; минимума и gv &gt; максимума)</comment>
+  </data>
+  <data name="IntToBooleanTrue" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Km5ErrorsPluginPowerFailureDaysCondition" xml:space="preserve">
+    <value>IsValidRowState = false</value>
+    <comment>Условие отбора дней, когда не было питания</comment>
+  </data>
+  <data name="HeatEnergy" xml:space="preserve">
+    <value> тепл. энергии</value>
+  </data>
+  <data name="HwsResourceSystemTypeCode" xml:space="preserve">
+    <value>Hws</value>
+  </data>
+  <data name="WhiteSpace" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="AMinus" xml:space="preserve">
+    <value>A-</value>
+  </data>
+  <data name="APlus" xml:space="preserve">
+    <value>A+</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="RMinus" xml:space="preserve">
+    <value>R-</value>
+  </data>
+  <data name="RPlus" xml:space="preserve">
+    <value>R+</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Sum" xml:space="preserve">
+    <value>Sum</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="DotSymbol" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ActiveAverage" xml:space="preserve">
+    <value>ActiveAverage</value>
+  </data>
+  <data name="ActiveKz" xml:space="preserve">
+    <value>ActiveKz</value>
+  </data>
+  <data name="ActiveMax" xml:space="preserve">
+    <value>ActiveMax</value>
+  </data>
+  <data name="ActivePowerSecondData" xml:space="preserve">
+    <value>ActivePowerSecondData</value>
+  </data>
+  <data name="ActivePowerSummaryData" xml:space="preserve">
+    <value>ActivePowerSummaryData</value>
+  </data>
+  <data name="ActiveSum" xml:space="preserve">
+    <value>ActiveSum</value>
+  </data>
+  <data name="ChannelId" xml:space="preserve">
+    <value>ChannelId</value>
+  </data>
+  <data name="ChannelIdSubs" xml:space="preserve">
+    <value>{channelId}</value>
+  </data>
+  <data name="DesignFactor" xml:space="preserve">
+    <value>DesignFactor</value>
+  </data>
+  <data name="IncludePeriodEndSubs" xml:space="preserve">
+    <value>{includePeriodEnd}</value>
+  </data>
+  <data name="MaxHour" xml:space="preserve">
+    <value>MaxHour</value>
+  </data>
+  <data name="MaxHoursRange" xml:space="preserve">
+    <value>MaxHoursRange</value>
+  </data>
+  <data name="OneDigit" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="PeriodBeginSubs" xml:space="preserve">
+    <value>{periodBegin}</value>
+  </data>
+  <data name="PeriodEndSubs" xml:space="preserve">
+    <value>{periodEnd}</value>
+  </data>
+  <data name="PeriodTypeIdEqual2" xml:space="preserve">
+    <value>periodTypeId = 2</value>
+  </data>
+  <data name="PeriodTypeIdEqual3" xml:space="preserve">
+    <value>periodTypeId = 3</value>
+  </data>
+  <data name="PeriodTypeIdSubs" xml:space="preserve">
+    <value>{periodTypeId}</value>
+  </data>
+  <data name="ReactivePowerFirstData" xml:space="preserve">
+    <value>ReactivePowerFirstData</value>
+  </data>
+  <data name="ReactivePowerSecondData" xml:space="preserve">
+    <value>ReactivePowerSecondData</value>
+  </data>
+  <data name="SewageV1V2Description" xml:space="preserve">
+    <value>Сточные воды (V1-V2)</value>
+  </data>
+  <data name="TwoDigit" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>UserName</value>
+  </data>
+  <data name="UserNameSubs" xml:space="preserve">
+    <value>{userName}</value>
+  </data>
+  <data name="IntegrableValue" xml:space="preserve">
+    <value>IntegrableValue</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CwsResourceSystemTypeCode" xml:space="preserve">
+    <value>Cws</value>
+  </data>
+  <data name="CalculateVkt7IntegratorAfterFinalDate" xml:space="preserve">
+    <value>EXEC [Programmability].[CalculateVkt7IntegratorAfterFinalDate] @MeasurementDeviceId, @PeriodTypeId, @DiffParameterId, @SumParameterId, @Date, @FinalDate</value>
+  </data>
+  <data name="DateSqlParameter" xml:space="preserve">
+    <value>@Date</value>
+  </data>
+  <data name="DiffParameterIdSqlParameter" xml:space="preserve">
+    <value>@DiffParameterId</value>
+  </data>
+  <data name="FinalDateSqlParameter" xml:space="preserve">
+    <value>@FinalDate</value>
+  </data>
+  <data name="IntegrableValueTrue" xml:space="preserve">
+    <value>IntegrableValue = true</value>
+  </data>
+  <data name="MeasurementDeviceSqlParameter" xml:space="preserve">
+    <value>@MeasurementDeviceId</value>
+  </data>
+  <data name="PeriodTypeIdSqlParameter" xml:space="preserve">
+    <value>@PeriodTypeId</value>
+  </data>
+  <data name="SumParameterIdSqlParameter" xml:space="preserve">
+    <value>@SumParameterId</value>
+  </data>
+  <data name="ErrorInfo" xml:space="preserve">
+    <value>ErrorInfo</value>
+  </data>
+  <data name="IntegrableValueFalse" xml:space="preserve">
+    <value>IntegrableValue = false</value>
+  </data>
+  <data name="IncludePeriodEndEqual0" xml:space="preserve">
+    <value>includePeriodEnd = 0</value>
+  </data>
+  <data name="IncludePeriodEndEqual1" xml:space="preserve">
+    <value>includePeriodEnd = 1</value>
+  </data>
+  <data name="Diff" xml:space="preserve">
+    <value>Diff</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="HeatSysMakeupResourceSubsystemTypeCode" xml:space="preserve">
+    <value>HeatSysMakeup</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="DashSymbol" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="Heat" xml:space="preserve">
+    <value>Heat</value>
+  </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Mass</value>
+  </data>
+  <data name="PrecisionChannel1" xml:space="preserve">
+    <value>PrecisionChannel1</value>
+  </data>
+  <data name="PrecisionChannel2" xml:space="preserve">
+    <value>PrecisionChannel2</value>
+  </data>
+  <data name="PrecisionHeat" xml:space="preserve">
+    <value>PrecisionHeat</value>
+  </data>
+  <data name="ReturnPipe" xml:space="preserve">
+    <value>ReturnPipe</value>
+  </data>
+  <data name="SupplyPipe" xml:space="preserve">
+    <value>SupplyPipe</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Volume</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="StringValue" xml:space="preserve">
+    <value>StringValue</value>
+  </data>
+  <data name="TripleHyphen" xml:space="preserve">
+    <value>---</value>
+  </data>
+</root>

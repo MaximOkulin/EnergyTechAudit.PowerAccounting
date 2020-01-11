@@ -1,0 +1,263 @@
+<FormLayout Name="userAdditionalInfoForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function (sender, args) 
+    {
+        var formController = Core.Admin.FormController.prototype.currentInstance;
+
+        formController.setModelValidator(function(model)
+        {
+           var result = true;    
+            
+            var validationState = 
+            {
+              isValid: result,
+              visualizationMethod: Core.Admin.FormController.ValidationVisualizationMethod.Alert,
+              validationSourceInfo: []
+            };
+                                   
+            if ((model.userId != "0" &amp;&amp; model.userId !== null &amp;&amp; model.userId !== undefined) != true)
+            {
+                validationState.validationSourceInfo.push(
+                {
+                    fieldName: "userId",
+                    sourceFieldName: "UserId",
+                    sourceCaption: "Учетная запись",                    
+                    message: "Значение поля &lt;b&gt;Учетная запись&lt;/b&gt; должно быть заполнено."
+                });
+            }
+                                   
+            if ((model.lastName !== null &amp;&amp; model.lastName !== undefined &amp;&amp;  model.lastName !== String.empty) != true)
+            {
+                validationState.validationSourceInfo.push(
+                {
+                    fieldName: "lastName",
+                    sourceFieldName: "LastName",
+                    sourceCaption: "Фамилия",                    
+                    message: "Значение поля &lt;b&gt;Фамилия&lt;/b&gt; должно быть заполнено."
+                });
+            }
+            
+            validationState.isValid = validationState.validationSourceInfo.length === Number.zero;    
+            
+            return validationState;
+        });
+        
+        jQuery(document).off(Core.Common.EventTypes.FormController.FormLoadComplete_Form);
+        
+        jQuery(document).on(Core.Common.EventTypes.FormController.FormLoadComplete_Form, function () 
+          {
+            var commandMenuBarController = new Core.Common.CommandMenuBarController("formCommandMenu");
+                        
+            var formController = Core.Admin.FormController.prototype.currentInstance;                 
+            var entityTypeName = formController.getEntityTypeName();
+                                   
+            var doSendRequest = Core.Common.DeviceReaderResponseCommandDialog.prototype.sendRequestFromFormController;
+                        
+            commandMenuBarController.bind(
+            {
+                sendEmailTestMessage: function()
+                {
+                    doSendRequest("sendEmailTestMessage", entityTypeName);
+                },
+                  
+                sendWhatsAppTestMessage: function()
+                {  
+                    doSendRequest("sendWhatsAppTestMessage", entityTypeName);                                                           
+                }
+            });
+        });
+    }        
+    </InitScript>
+	<CommandMenu>
+		<Name>userAdditionalInfoFormCommandMenu</Name>
+		<ClientVisible>true</ClientVisible>
+		<Width>40</Width>
+		<CommandMenuItem>
+			<Name>checkConnection</Name>
+			<DropDownMode>true</DropDownMode>
+			<BeginGroup>true</BeginGroup>
+			<CommandName>checkConnection</CommandName>
+			<IconClass>font-icon-send font-icon-color-darkred indent-right-5px</IconClass>
+			<ToolTip>Проверка связи</ToolTip>
+			<CommandMenuItem>
+				<Name>sendEmailMessage</Name>
+				<Text>Проверка отправки email-сообщения</Text>
+				<CommandName>sendEmailTestMessage</CommandName>
+				<IconClass>font-icon-message_out font-icon-black indent-right-5px</IconClass>
+				<ToolTip>Проверка отправки email-сообщения</ToolTip>
+			</CommandMenuItem>
+			<!--<CommandMenuItem>
+        <Name>sendWhatsAppMessage</Name>
+        <Text>Проверка отправки WhatsApp-сообщения</Text>
+        <CommandName>sendWhatsAppTestMessage</CommandName>
+        <IconClass>font-icon-whatsapp font-icon-color-darkgreen indent-right-5px</IconClass>
+      </CommandMenuItem>-->
+		</CommandMenuItem>
+	</CommandMenu>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Учетная запись" Enabled="true" Order="3">
+					<BoundProperty>UserId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					    <Value HasEscapedContent="true">
+					      function(sender, args)
+					      {
+					      (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute({sender: sender});
+					      }
+					    </Value>
+					  </FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="1" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Имя" Enabled="true" Order="1">
+					<BoundProperty>FirstName</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Отчество" Enabled="true" Order="2">
+					<BoundProperty>Patronimic</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Фамилия" Enabled="true" Order="3">
+					<BoundProperty>LastName</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дата рождения" Enabled="true" Order="4">
+					<BoundProperty>BirthDay</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Пол" Enabled="true" Order="5">
+					<BoundProperty>GenderId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Контактная информация" ColSpan="1" Order="3">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Номер телефона" Enabled="true" Order="1">
+					<BoundProperty>Phone</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaskSettings.Mask</PropertiesChain>
+							<Value>+7 (999) 000-0000</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaskSettings.IncludeLiterals</PropertiesChain>
+							<Value>None</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValidationSettings.Display</PropertiesChain>
+							<Value>None</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Электронная почта" Enabled="true" Order="2">
+					<BoundProperty>Email</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Связи" ColSpan="2" Order="4">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Расписание рассылки сообщений" Enabled="true" Order="1">
+					<BoundProperty>UserAdditionalInfoLinksScheduleItem</BoundProperty>
+					<NestedExtension>ListBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                var inlineListBoxController = new Core.Admin.FormController.InlineListBoxController(sender);
+							  inlineListBoxController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+					<FormLayoutItemListBoxSetting>
+						<DataSourceType>Entity</DataSourceType>
+						<DataSource>UserAdditionalInfoLinksScheduleItem</DataSource>
+						<FormLayoutItemListBoxColumns>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Id</FieldName>
+								<Caption>Ид</Caption>
+								<Width>25</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Description</FieldName>
+								<Caption>Наименование</Caption>
+								<Width>150</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Enabled</FieldName>
+								<Caption>Разрешение</Caption>
+								<Width>25</Width>
+							</FormLayoutItemListBoxColumn>
+						</FormLayoutItemListBoxColumns>
+					</FormLayoutItemListBoxSetting>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

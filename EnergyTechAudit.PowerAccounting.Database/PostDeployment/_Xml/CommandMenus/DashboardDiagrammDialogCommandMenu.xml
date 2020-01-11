@@ -1,0 +1,69 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>dashboardDiagrammDialogCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>350</Width>
+  <CommandMenuItem>
+    <Name>panZoomReset</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>panZoomReset</CommandName>
+    <IconClass>font-icon-zoom-reset font-icon-x1_3 font-icon-darkgreen</IconClass>
+    <ToolTip>Сброс масштаба</ToolTip>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>deletePointFromArchive</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>deletePointFromArchive1</CommandName>
+    <ToolTip>Удалить точку из архива...</ToolTip>
+    <IconClass>font-icon-remove_2 font-icon-darkred</IconClass>
+    <CommandMenuItem>
+      <Name>deletePointFromArchive</Name>
+      <Text>Удалить точку из архива...</Text>
+      <CommandName>deletePointFromArchive</CommandName>
+      <IconClass>font-icon-remove_2 font-icon-darkred</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>selectParameter</Name>
+    <DropDownMode>true</DropDownMode>
+    <CommandName>selectParameter</CommandName>
+    <ToolTip>Выбрать параметр для отбражения</ToolTip>
+    <IconClass>font-icon-graphs font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>showDiagrammRangeSelector</Name>
+    <DropDownMode>true</DropDownMode>
+    <CommandName>showDiagrammRangeSelector</CommandName>
+    <ToolTip>Селектор диапазона</ToolTip>
+    <IconClass>font-icon-ruler font-icon-x1_3 font-icon-darkred</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>dashboardDiagrammNewSettings</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>dashboardDiagrammNewSettings</CommandName>
+    <IconClass>font-icon-options font-icon-x1_2 font-icon-color-marine</IconClass>
+    <ToolTip>Настройки диаграмм</ToolTip>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>dashboardDiagrammExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>dashboardDiagrammExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportXlsx</CommandName>
+      <Name>exportToXlsx</Name>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Svg</Text>
+      <CommandName>exportSvg</CommandName>
+      <Name>exportToSvg</Name>
+      <IconClass>dev-icon-ExportToCSV_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+</CommandMenu>

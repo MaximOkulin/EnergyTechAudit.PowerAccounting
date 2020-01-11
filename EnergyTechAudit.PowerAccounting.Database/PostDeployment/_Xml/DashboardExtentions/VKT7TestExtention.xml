@@ -1,0 +1,45 @@
+﻿
+  <DashboardExtention>
+    <CommandMenu>
+      <Name>dashboardCommandMenu</Name>
+      <ClientVisible>true</ClientVisible>
+      <Width>50</Width>
+      <CommandMenuItem>
+        <Name>deviceDashboardExtentionCommand</Name>
+        <DropDownMode>true</DropDownMode>
+        <BeginGroup>true</BeginGroup>
+        <CommandName>deviceDashboardExtentionCommand</CommandName>
+        <IconClass>font-icon-formplugin font-icon-orangered indent-right-5px</IconClass>
+        <ToolTip />
+        <Order>10</Order>
+        <CommandMenuItem>
+          <Name>vkt7TestDeviceCommand</Name>
+          <Text>Проверка связи VKT7 (via DashboardExtention)</Text>
+          <CommandName>vkt7TestDeviceCommand</CommandName>
+          <IconClass>font-icon-formplugin font-icon-orangered indent-right-5px</IconClass>
+        </CommandMenuItem>
+      </CommandMenuItem>
+    </CommandMenu>
+    <Script >      
+        Core.OperAdmin.DashboardController.DeviceExtention = function(entityInfoProvider)
+        {
+          var commander = 
+          {
+            vkt7TestDeviceCommand: function()
+            {
+              var checkConnectionEntityInfo = entityInfoProvider.entityInfo;
+              checkConnectionEntityInfo.targetEntityTypeName = "MeasurementDevice";
+              checkConnectionEntityInfo.command = Core.Resources.DeviceReaderCommands.checkConnection;
+
+              (new Core.Common.DeviceReaderResponseCommandDialog(checkConnectionEntityInfo)).show();  
+            }
+          };          
+          this.execute = function()
+          {
+            (new Core.Common.CommandMenuBarController("dashboardCommandMenu"))
+              .bind(commander);
+          }; 
+        this.getCommander = function() { return commander; }   
+        };      
+    </Script>
+  </DashboardExtention>

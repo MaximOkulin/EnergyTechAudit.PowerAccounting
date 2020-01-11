@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Core.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Common.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Domain.dll&#13;&#10;EnergyTechAudit.PowerAccounting.DataAccess.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll" DoublePass="true" StartReportEvent="Start_Report" ReportInfo.Name="AccountingParamSheetEmergencySituations" ReportInfo.Author="Max" ReportInfo.Version="Id = 36;ReportTypeId = 1;HasPluginProcessing = 1" ReportInfo.Description="Нештатные ситуации прибора" ReportInfo.Created="01/22/2015 15:18:15" ReportInfo.Modified="10/01/2018 19:06:36" ReportInfo.CreatorVersion="2017.4.3.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using EnergyTechAudit.PowerAccounting.Common.Entity;
+using EnergyTechAudit.PowerAccounting.Domain.Interfaces;
+using EnergyTechAudit.PowerAccounting.DataAccess.Helper;
+using EnergyTechAudit.PowerAccounting.Common.FormatProviders;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Aggregate;
+
+namespace FastReport
+{
+     public class ReportScript
+     {     
+          private void Start_Report(object sender, EventArgs e)
+          {
+          }
+     }
+}
+</ScriptText>
+  <Dictionary/>
+  <ReportPage Name="Page1" PaperHeight="295" RawPaperSize="9" Guides="0" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle" Width="718.2" Height="85.05">
+      <TextObject Name="Text2" Left="113.4" Width="491.4" Height="18.9" Text="Нештатные ситуации" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text29" Top="47.25" Width="79.38" Height="18.9" Text="Потребитель:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Top="66.15" Width="79.38" Height="18.9" Text="Адрес:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text31" Left="536.76" Top="47.25" Width="90.72" Height="18.9" Text="Тип прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text32" Left="536.76" Top="66.15" Width="90.72" Height="18.9" Text="Номер прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text33" Left="627.48" Top="47.25" Width="90.72" Height="18.9" Text="[DeviceCode]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text34" Left="627.48" Top="66.15" Width="90.72" Height="18.9" Text="[FactoryNumber]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text80" Left="79.38" Top="66.15" Width="94.5" Height="18.9" Text="[FullAddress]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text81" Left="79.38" Top="47.25" Width="245.7" Height="18.9" Text="[District]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <PictureObject Name="CustomerReportLogo" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never"/>
+      <TextObject Name="Text82" Left="113.4" Top="18.9" Width="491.4" Height="11.34" Text="[IIf([PeriodTypeId] == 2,&quot;(почасовая информация)&quot;,&quot;(посуточная информация)&quot;)]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9.75pt"/>
+      <TextObject Name="Text3" Left="204.12" Top="34.02" Width="302.4" Height="18.9" Text="c [string.Format(&quot;{0:d}&quot;, [PeriodBegin])] до [string.Format(&quot;{0:d}&quot;, [PeriodEnd])]" HorzAlign="Center" Font="Times New Roman, 9.75pt"/>
+    </ReportTitleBand>
+    <DataBand Name="MainDataBand" Top="157.71" Width="718.2" Height="18.9" PrintIfDatasourceEmpty="true">
+      <TextObject Name="Text16" Width="151.2" Height="18.9" Border.Lines="All" Text="[MainData.Time]" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text20" Left="151.2" Width="567" Height="18.9" Border.Lines="All" Text="[MainData.Event]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Justify" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <DataHeaderBand Name="MainDataBandHeader" Top="87.36" Width="718.2" Height="68.04">
+        <TextObject Name="Text1" Width="151.2" Height="68.04" Border.Lines="All" Text="Дата/Время" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text4" Left="151.2" Width="567" Height="68.04" Border.Lines="All" Text="Нештатная ситуация" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="178.93" Width="718.2" Height="18.9">
+      <TextObject Name="Text66" Left="311.85" Top="3.78" Width="94.5" Height="11.34" Text="[Page]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,51 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  
+  <Name>sendMailUserDialogCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>210</Width>
+  <CommandMenuItem>
+    <Text>Шаблоны</Text>
+    <CommandMenuItem>
+      <Text>Подтвержение регистрации</Text>
+      <Name>newUserNotify</Name>
+      <ToolTip>Сообщение о подтвержении регистрации нового пользователя</ToolTip>
+      <CommandName>newUserNotify</CommandName>
+      <IconClass>font-icon-user_add font-icon-x1_3 font-icon-darkslateblue</IconClass>
+    </CommandMenuItem>
+
+    <CommandMenuItem>
+      <Text>Смена пароля</Text>
+      <Name>changePasswordNotify</Name>
+      <Text></Text>
+      <CommandName>changePasswordNotify</CommandName>
+      <ToolTip>Сообщение о смене пароля</ToolTip>
+      <IconClass>font-icon-keys font-icon-x1_3 font-icon-color-darkred</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>newUserNotify1</Name>
+    <ToolTip>Сообщение о подтвержении регистрации нового пользователя</ToolTip>
+    <CommandName>newUserNotify</CommandName>
+    <IconClass>font-icon-user_add font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>changePasswordNotify1</Name>
+    <Text></Text>
+    <CommandName>changePasswordNotify</CommandName>
+    <ToolTip>Сообщение о смене пароля</ToolTip>
+    <IconClass>font-icon-keys font-icon-x1_3 font-icon-color-darkred</IconClass>    
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>clearMailMessage</Name>
+    <Text></Text>
+    <CommandName>clearMailMessage</CommandName>
+    <ToolTip>Очистить</ToolTip>
+    <IconClass>font-icon-remove_2 font-icon-x1_3 font-icon-color-metrohover</IconClass>
+  </CommandMenuItem>
+  
+</CommandMenu>

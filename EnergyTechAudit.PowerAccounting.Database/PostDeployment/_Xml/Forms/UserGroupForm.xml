@@ -1,0 +1,119 @@
+<FormLayout Name="userGroupForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitStyle HasEscapedContent="true">
+    .CodeMirror
+    {
+      line-height: 1.5;
+      height: auto;
+    }
+    </InitStyle>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Реквизиты группы" ColSpan="2" Order="5">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Логотип группы" ClientVisible="true" Enabled="true" Order="1">
+					<BoundProperty>ProductLogoPlaceholder</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  sender.SetHeight(50);
+                  var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender, 
+                  {
+                    mode:
+                    {
+                      name: "htmlmixed"
+                    }
+                  });
+                  inlineMemoEditorController.execute();                                              
+                }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Карточка продукта" ClientVisible="true" Enabled="true" Order="2">
+					<BoundProperty>ProductCard</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  sender.SetHeight(50);
+                  var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender, 
+                  {
+                    mode:
+                    {
+                      name: "htmlmixed"
+                    }
+                  });
+                  inlineMemoEditorController.execute();                                                   
+                }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дополнительные настройки" Enabled="true" Order="3">
+					<BoundProperty>CustomData</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  sender.SetHeight(50);
+                  
+                  var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender, 
+                  {
+                      mode:
+                      {
+                        name: "javascript",
+                        json: true
+                      }
+                  });                  
+                  inlineMemoEditorController.execute();                  
+                }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

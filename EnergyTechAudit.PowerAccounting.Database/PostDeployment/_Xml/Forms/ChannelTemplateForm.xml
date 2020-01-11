@@ -1,0 +1,184 @@
+<FormLayout Name="channelTemplateForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function(sender, args)
+	  {	    
+	    var inlineGridController = new Core.Admin.FormController.InlineGridController(
+	    {
+	      rightEntityTypeName: Core.Common.Entities.Business.ParameterMapDeviceParameter
+	    });
+	    inlineGridController.execute();
+	  }
+  </InitScript>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="1" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Тип ресурсной системы" Enabled="true" Order="1">
+					<BoundProperty>ResourceSystemTypeId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Подтип ресурсной системы" Enabled="true" Order="2">
+					<BoundProperty>ResourceSubsystemTypeId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Модель прибора" Enabled="true" Order="3">
+					<BoundProperty>DeviceId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {                 
+                  (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute(
+                    {
+                      sender: sender                      
+                    }
+                  );
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Дополнительные" ColSpan="1" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Мнемосхема" Order="3" Enabled="true">
+					<BoundProperty>MnemoschemeId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ButtonClick</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var customizer = Core.Admin.FormController.Customizer.prototype.currentInstance;
+                  if(args.buttonIndex === 1)
+                  {                    
+                    customizer.buttonEditShowMnemoschemeImageDialogHandler(sender, args);
+                  }
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var context$ = jQuery(sender.GetMainElement());
+                  jQuery(".dxeButton:last img", context$).hide();
+                  jQuery(".dxeButton:last", context$)
+                  .append(jQuery("&lt;i style=&apos;margin-right: 2px&apos; class=&apos;font-icon-picture&apos;&gt;&lt;/i&gt;"));
+                  
+                  (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute(
+                    {
+                      sender: sender, 
+                      buttonIndex: Number.zero
+                    }
+                  );
+                }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Комментарий" Order="4" Enabled="true">
+					<BoundProperty>Comment</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Связи" ColSpan="2" Order="7">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Связь предметного параметра" Enabled="true" Order="1" IsGrid="true">
+					<BoundProperty>ParameterMapDeviceParameters</BoundProperty>
+					<NestedExtension>Default</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+            
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

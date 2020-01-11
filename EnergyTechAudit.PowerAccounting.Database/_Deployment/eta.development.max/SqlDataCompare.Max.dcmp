@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DataComparison>
+  <Version>10</Version>
+  <ConnectionProperties1>
+    <ConnectionString>Data Source=DESKTOP-IOVF0TV\SQLSERVER;Initial Catalog=EnergyTechAudit.PowerAccounting.Database;Persist Security Info=True;User ID=sa;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</ConnectionString>
+    <FullDisplayName>DESKTOP-IOVF0TV\SQLSERVER.EnergyTechAudit.PowerAccounting.Database (sa)</FullDisplayName>
+  </ConnectionProperties1>
+  <ConnectionProperties2>
+    <ConnectionString>Data Source=91.144.143.40,61433;Initial Catalog=EnergyTechAudit.PowerAccounting.Database;Persist Security Info=True;User ID=sa;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</ConnectionString>
+    <FullDisplayName>91.144.143.40,61433.EnergyTechAudit.PowerAccounting.Database (sa)</FullDisplayName>
+  </ConnectionProperties2>
+  <SessionSettings>IncludeDifferentRecords, IncludeRecordsInOne, IncludeRecordsInTwo</SessionSettings>
+</DataComparison>

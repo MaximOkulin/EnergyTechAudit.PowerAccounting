@@ -1,0 +1,24 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>formWithCreateLinkedEntityCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>125</Width>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>closeWithSave</CommandName>
+    <Name>closeWithSave</Name>
+    <ToolTip>Закрыть с сохранением</ToolTip>
+    <IconClass>font-icon-save-ok font-icon-x1_3 font-icon-color-navy</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>closeWithoutSave</CommandName>
+    <Name>closeWithoutSave</Name>
+    <ToolTip>Закрыть без сохранения</ToolTip>
+    <IconClass>font-icon-save-cancel font-icon-x1_3 font-icon-color-red</IconClass>
+    
+  </CommandMenuItem>
+</CommandMenu>

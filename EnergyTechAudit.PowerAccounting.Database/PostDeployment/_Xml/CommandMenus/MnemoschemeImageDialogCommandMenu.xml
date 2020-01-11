@@ -1,0 +1,38 @@
+﻿
+<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>mnemoschemeImageDialogCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>250</Width>
+
+  <CommandMenuItem>
+    <Name>panZoomReset</Name>
+    <CommandName>panZoomReset</CommandName>
+    <ToolTip>Сброс масштаба</ToolTip>
+    <IconClass>font-icon-zoom-reset font-icon-x1_3 font-icon-darkgreen</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>mnemoschemeImageExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>mnemoschemeImageExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Формат Svg</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXML_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+</CommandMenu>

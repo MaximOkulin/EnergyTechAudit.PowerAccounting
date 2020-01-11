@@ -1,0 +1,78 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  
+  <!--Параметрик для отчета "Ведомость учетных данных пользователей квартирного учета"-->
+  <Id>getFlatHolderAccountsParametricDialog</Id>
+  <Height>0</Height>
+  <Width>450</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <AllowResize>true</AllowResize>
+  <Title>Параметры</Title>
+  <IsSavedState>true</IsSavedState>
+  <Descriptors>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Управляющая компания</Caption>
+      <Name>OrganizationId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT  [Organization].[Id] [Id],  [Organization].[Description] [Description] 
+          FROM [Business].[Organization] [Organization] WITH(NOLOCK)
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>          
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      
+      <FormLayoutItemExtenders>        
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Начинать строение с новой страницы</Caption>
+      <Name>isBeginBuildingWithNewPage</Name>
+      <TypeCode>Boolean</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>CheckBox</NestedExtension>
+    </FormLayoutItemDescriptor>
+  
+  </Descriptors>
+</ParametricDialog>

@@ -1,0 +1,70 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>dashboardCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>295</Width>
+
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>mapLocation</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <ToolTip>Карта</ToolTip>
+    <CommandName>mapLocation</CommandName>
+    <Text></Text>
+    <IconClass>font-icon-location-map font-icon-x1_3 font-icon-moor </IconClass>
+
+    <CommandMenuItem>
+      <Name>showOnMap</Name>
+      <ToolTip>Показать строение на карте</ToolTip>
+      <CommandName>showOnMap</CommandName>
+      <Text>Показать строение на карте</Text>
+      <IconClass>font-icon-location-map font-icon-x1_3 font-icon-moor indent-right-5px</IconClass>
+    </CommandMenuItem>
+
+    <CommandMenuItem>
+      <Name>gotoMap</Name>
+      <ToolTip>Перейти к карте объектов</ToolTip>
+      <Text>Перейти к карте объектов</Text>
+      <CommandName>gotoMap</CommandName>
+      <IconClass>font-icon-map font-icon-x1_3 font-icon-color-red indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>gotoEntityTree</Name>
+    <ToolTip>Синхронизировать с деревом</ToolTip>
+    <CommandName>gotoEntityTree</CommandName>
+    <IconClass>font-icon-tree font-icon-x1_2 font-icon-darkslateblue indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>mnemoschemeImageExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>mnemoschemeImageExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>xlsx</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+    
+    <CommandMenuItem>
+      <Text>Формат Svg</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>svg</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXML_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+</CommandMenu>

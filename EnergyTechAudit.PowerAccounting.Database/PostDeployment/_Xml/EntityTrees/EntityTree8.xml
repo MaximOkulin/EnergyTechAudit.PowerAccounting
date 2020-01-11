@@ -1,0 +1,49 @@
+﻿<EntityTreeRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EntityTree.xsd">
+  <Title>Организации</Title>
+  <EntityTypeName>Organization</EntityTypeName>
+  <IconClass>et-or</IconClass>
+  <Visible>false</Visible>
+  <Script>
+    <Id>8</Id>
+  </Script>
+  <EntityTreeDictionaries>
+    <EntityTreeDictionary>ResourceSystemType</EntityTreeDictionary>
+    <EntityTreeDictionary>PlacementPurpose</EntityTreeDictionary>
+  </EntityTreeDictionaries>
+  <EntityTreeInverseProperties>
+    <EntityTreeInverseProperty>UserLinksChannel.User</EntityTreeInverseProperty>
+    <EntityTreeInverseProperty>Placement.Building.District.City</EntityTreeInverseProperty>
+    <EntityTreeInverseProperty>Placement.Building.Organization</EntityTreeInverseProperty>
+  </EntityTreeInverseProperties>
+  <EntityTreeNodes>
+    <EntityTreeNode>
+      <EntityTypeName>Building</EntityTypeName>
+      <Property>Buildings</Property>
+      <EntityTreeNodeCollectionSorterInfo>
+        <KeySelectorExpression>Regex.Replace(objNode.Description, &quot;(улица|ул\\.|проспект|пр\\.|\\s+улица)&quot;, String.Empty).Trim()</KeySelectorExpression>
+        <KeySelectorType>String</KeySelectorType>
+        <Ascending>true</Ascending>
+      </EntityTreeNodeCollectionSorterInfo>      
+      <IconClass>et-b</IconClass>
+      <Visible>true</Visible>
+      <EntityTreeNodes>
+        <EntityTreeNode >
+          <EntityTypeName>Placement</EntityTypeName>
+          <Property>Placements</Property>
+          <CustomPropertyChain>Placements.PlacementPurpose</CustomPropertyChain>          
+          <IconClass>et-pl</IconClass>
+          <Visible>true</Visible>          
+          <EntityTreeNodes>
+            <EntityTreeNode>
+              <EntityTypeName>Channel</EntityTypeName>
+              <Property>Channels</Property>
+              <CustomPropertyChain>Channels.ResourceSystemType</CustomPropertyChain>
+              <IconClass>et-ch</IconClass>
+              <Visible>true</Visible>
+            </EntityTreeNode>
+          </EntityTreeNodes>
+        </EntityTreeNode>
+      </EntityTreeNodes>
+    </EntityTreeNode>
+  </EntityTreeNodes>
+</EntityTreeRoot>

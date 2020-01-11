@@ -1,0 +1,90 @@
+<MapInfoWindowOptions>
+	<EntityTypeName>Building</EntityTypeName>  
+	<InverseProperties>
+		<InverseProperty>Placements</InverseProperty>
+		<InverseProperty>BuildingPurpose</InverseProperty>
+	</InverseProperties>
+  <Size>
+    <Width>0</Width>
+    <!--0 is max width-->
+    <Height>165</Height>
+  </Size>
+  <CaptionColumnWidth>140</CaptionColumnWidth>
+	<InfoWindowItems>
+		<InfoWindowItem>
+			<Caption>Адрес</Caption>
+			<PropertyChain>FullAddress</PropertyChain>
+		</InfoWindowItem>
+	  <InfoWindowItem>
+	    <Caption>Назначение строения</Caption>
+	    <PropertyChain>BuildingPurpose.Description</PropertyChain>
+	  </InfoWindowItem>
+		<InfoWindowItem>
+			<Caption>Квартир</Caption>
+			<PropertyChain>Placements.Where(lambda p: p.PlacementPurposeId == 1).Count()</PropertyChain>
+		</InfoWindowItem>
+		<InfoWindowItem>
+			<Caption>Узлов учета</Caption>
+			<PropertyChain>Placements.Where(lambda p: p.PlacementPurposeId == 2).Count()</PropertyChain>
+		</InfoWindowItem>
+		<InfoWindowItem>
+			<Caption>Всего помещений</Caption>
+			<PropertyChain>Placements.Count</PropertyChain>
+		</InfoWindowItem>
+	</InfoWindowItems>
+	<CustomMarkup HasEscapedContent="true">          
+      &lt;style&gt;     
+        &lt;style&gt;
+        .gm-style-iw .map-info-window-link-container
+        {
+          width: 100%;
+        }
+        .gm-style-iw .map-info-window-link
+        {
+          margin-top: 10px;
+          margin-left: 10px;
+          float: right;   
+          vertical-align: middle;
+        }
+        .gm-style-iw .info-window-table tr:nth-child(2) td:last-child
+        {
+          font-weight: 500;
+        }
+        .map-info-window-link-container [class^="font-icon-"] 
+	     {
+	 	    margin-left: 5px;
+	     }
+	     .map-info-window-link-container [class^="font-icon-"]:hover
+       {
+	      transform: none; 
+        color: #0072C6;
+		    cursor: pointer;		  
+       }
+      &lt;/style&gt;
+      &lt;div class="map-info-window-link-container"&gt;                    
+	      &lt;i title="Переход к карточке измерительного канала" class="font-icon-channel font-icon-x1_3 map-info-window-link" style="float: right;" href="javascript:;" data-core-traverse="Down" data-core-entityTypeName="Channel"&gt;&lt;/i&gt;
+	      &lt;i title="Переход на главную приборную панель" class="font-icon-dashboard font-icon-x1_3 map-info-window-link" style="float: right;" href="javascript:;" data-core-traverse="Down" data-core-go-dashboard data-core-entityTypeName="Channel"&gt;&lt;/i&gt;
+      &lt;/div&gt;
+    </CustomMarkup>
+	<CustomScript HasEscapedContent="true">          
+      (function ()
+      {              
+          var infoWindowController = new Core.OperAdmin.MapController.InfoWindowController(),
+	            dxEntityTree = Core.Helpers.DevExpress.getDxControlByName("entityTree"),
+	            selectedNode = dxEntityTree.GetSelectedNode();
+	        
+          infoWindowController.execute();  
+    
+	        if(selectedNode)
+          {	                    
+	          Core.Helpers.DevExpress.dxTreeViewNodeDownTraverse(selectedNode, function(node)
+	          {
+              if(node)
+              {
+	              node.SetExpanded (true);
+              }
+	          });            
+        }
+    })();
+  </CustomScript>
+</MapInfoWindowOptions>

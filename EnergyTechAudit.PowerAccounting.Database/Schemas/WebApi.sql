@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [WebApi] AUTHORIZATION [dbo];

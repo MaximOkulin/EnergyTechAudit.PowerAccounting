@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;System.Windows.Forms.DataVisualization.dll&#13;&#10;System.Data.DataSetExtensions.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll" ConvertNulls="false" TextQuality="AntiAlias" StartReportEvent="_StartReport" ReportInfo.Name="HeatEnergyConsumptionAnalysis" ReportInfo.Author="Leo" ReportInfo.Version="Id = 35;ReportTypeId = 1;HasPluginProcessing = 1" ReportInfo.Description="Анализ потребления тепловой энергии на нужны отопления" ReportInfo.Created="02/07/2018 14:42:51" ReportInfo.Modified="03/06/2018 17:34:03" ReportInfo.CreatorVersion="2017.4.3.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Globalization;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using FastReport.MSChart;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Helpers;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    private void PrepareChart(MSChartObject msChartObject, string dataSourceName, string[] yColumnNames)
+    {
+      var  mainDataChartDataSource = (TableDataSource)Report.GetDataSource(dataSourceName);
+      msChartObject.DataSource = mainDataChartDataSource;
+      DataTable mainDataChartTable = mainDataChartDataSource.Table;
+           
+      var mainDataChartTableRows = mainDataChartTable.AsEnumerable().Cast&lt;DataRow&gt;();
+	
+      var valuesY = new List&lt;double&gt;();
+      
+      foreach(var yColumnName in yColumnNames)
+      {
+        valuesY.AddRange
+          (
+            mainDataChartTableRows
+              .Where(r =&gt;!DBNull.Value.Equals(r[yColumnName]))         
+              .Select(r =&gt; Convert.ToDouble(r[yColumnName])).ToList()
+          );
+      }
+      
+          
+      var minY = valuesY.Min();
+      var maxY = valuesY.Max();
+      
+      var valuesX = mainDataChartTableRows
+        .Where(r =&gt;!DBNull.Value.Equals(r[&quot;Time&quot;]))
+        .Select(r =&gt; Convert.ToDateTime(r[&quot;Time&quot;]));
+      
+      var minX = valuesX.Min();
+      var maxX = valuesX.Max();
+      
+      var hoursScaleCoeff = (maxX - minX).TotalHours * 5 / 100;
+      
+      var defaultChartArea = msChartObject.Chart.ChartAreas[&quot;Default&quot;];
+      
+      var scaleCoeff = maxY * 5 / 100;
+        
+      defaultChartArea.AxisY.Maximum = Math.Ceiling( Math.Round((maxY + scaleCoeff ) / scaleCoeff) * scaleCoeff) ;
+      defaultChartArea.AxisY.Minimum = Math.Floor ( Math.Round((minY - scaleCoeff) / scaleCoeff) * scaleCoeff );      
+      
+      defaultChartArea.AxisX.Maximum = maxX.AddHours(hoursScaleCoeff).ToOADate();
+      defaultChartArea.AxisX.Minimum = minX.AddHours(-hoursScaleCoeff).ToOADate();  
+    }
+    
+    private void _StartReport(object sender, EventArgs e)
+    {
+      PrepareChart(MSChart1, &quot;MainDataForChart&quot;, new [] {&quot;HeatSys.Heat.Total.Standard&quot;, &quot;HeatSys.Heat.Total.Actual&quot; });
+      PrepareChart(MSChart2, &quot;HeatCurveFollowForChart&quot;, new [] 
+      {
+        &quot;CalcSupplyTemperature&quot;, 
+        &quot;CalcReturnTemperature&quot;, 
+        &quot;AverageSupplyTemperature&quot;, 
+        &quot;AverageReturnTemperature&quot;, 
+        &quot;AverageOutdoorTemperature&quot;
+      });
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <Total Name="MainData.HeatSys.Heat.Total.Standard.Total" Expression="[MainData.HeatSys.Heat.Total.Standard]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.HeatSys.Heat.Total.Actual.Total" Expression="[MainData.HeatSys.Heat.Total.Actual]" Evaluator="MainDataBand"/>
+    <Total Name="HeatCurveFollow.AverageOutdoorTemperature.Avg" TotalType="Avg" Expression="[HeatCurveFollow.AverageOutdoorTemperature]" Evaluator="HeatCurveFollowBand"/>
+    <Total Name="HeatCurveFollow.AverageSupplyTemperature.Avg" TotalType="Avg" Expression="[HeatCurveFollow.AverageSupplyTemperature]" Evaluator="HeatCurveFollowBand"/>
+    <Total Name="HeatCurveFollow.CalcSupplyTemperature.Avg" TotalType="Avg" Expression="[HeatCurveFollow.CalcSupplyTemperature]" Evaluator="HeatCurveFollowBand"/>
+    <Total Name="HeatCurveFollow.AverageReturnTemperature.Avg" TotalType="Avg" Expression="[HeatCurveFollow.AverageReturnTemperature]" Evaluator="HeatCurveFollowBand"/>
+    <Total Name="HeatCurveFollow.CalcReturnTemperature.Avg" TotalType="Avg" Expression="[HeatCurveFollow.CalcReturnTemperature]" Evaluator="HeatCurveFollowBand"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Guides="18.9">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="158.76">
+      <TextObject Name="Text72" Left="115.29" Top="3.78" Width="525.42" Height="30.24" Text="Анализ потребления тепловой энергии на нужны отопления" HorzAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text35" Top="37.8" Width="718.2" Height="18.9" Text="c [string.Format(&quot;{0:d}&quot;, [PeriodBegin])] до [string.Format(&quot;{0:d}&quot;, [PeriodEnd])]" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <PictureObject Name="CustomerReportLogo" Top="9.45" Width="113.4" Height="34.02" Anchor="None" ShiftMode="Never"/>
+      <TextObject Name="Text30" Top="68.04" Width="143.64" Height="18.9" Text="Адрес:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text80" Left="143.64" Top="68.04" Width="162.54" Height="18.9" Text="[FullAddress]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text132" Top="86.94" Width="143.64" Height="18.9" Text="Нормативное потребление:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text133" Left="143.64" Top="86.94" Width="162.54" Height="18.9" Text="[string.Format(CultureInfo.InvariantCulture, &quot;{0:#.####}&quot;, [HourlyConsumptionHeat])] ГКал/ч" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text134" Top="105.84" Width="143.64" Height="18.9" Text="Тариф:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text135" Left="143.64" Top="105.84" Width="162.54" Height="18.9" Text="[string.Format(CultureInfo.InvariantCulture, &quot;{0:#.##}&quot;, [ThermalEnergyRate])] руб/ГКал" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text136" Top="124.74" Width="143.64" Height="22.68" Text="Температура внутреннего воздуха:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text137" Left="143.64" Top="124.74" Width="162.54" Height="22.68" Text="[CalcIndoorAirTemperature] °С" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+    </ReportTitleBand>
+    <DataBand Name="MainDataBand" Top="547.68" Width="718.2" Height="18.9">
+      <TextObject Name="Text1" Left="75.6" Width="189" Height="18.9" Border.Lines="All" Text="[MainData.Time]" Padding="5, 0, 2, 0" Format="Date" Format.Format="d" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text2" Left="264.6" Width="189" Height="18.9" Border.Lines="All" Text="[MainData.HeatSys.Heat.Total.Standard]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text3" Left="453.6" Width="189" Height="18.9" Border.Lines="All" Text="[MainData.HeatSys.Heat.Total.Actual]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <DataHeaderBand Name="MainDataBandHeader" Top="162.33" Width="718.2" Height="381.78">
+        <TextObject Name="Text4" Left="75.6" Top="362.88" Width="189" Height="18.9" Border.Lines="All" Text="Дата" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text5" Left="264.6" Top="362.88" Width="189" Height="18.9" Border.Lines="All" Text="Qнорм, ГКал" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text6" Left="453.6" Top="362.88" Width="189" Height="18.9" Border.Lines="All" Text="Qфакт, ГКал" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <MSChartObject Name="MSChart1" Left="13.23" Top="22.68" Width="691.74" Height="309.96" AutoSeriesColumn="" ChartData="PENoYXJ0IEJhY2tDb2xvcj0iVHJhbnNwYXJlbnQiIFNpemU9IjI4OCwgMjMyIiBCb3JkZXJsaW5lQ29sb3I9IlRyYW5zcGFyZW50IiBCb3JkZXJsaW5lV2lkdGg9IjIiIEJvcmRlcmxpbmVEYXNoU3R5bGU9IlNvbGlkIj4NCiAgPFNlcmllcz4NCiAgICA8U2VyaWVzIE5hbWU9IlNlcmllczEiIExlZ2VuZD0iRGVmYXVsdCIgWFZhbHVlVHlwZT0iRGF0ZSIgWVZhbHVlVHlwZT0iRG91YmxlIiBTaGFkb3dDb2xvcj0iMTI4LCAyNTUsIDI1NSwgMjU1IiBDaGFydFR5cGU9IkxpbmUiIENoYXJ0QXJlYT0iRGVmYXVsdCIgQ29sb3I9IlJlZCIgQm9yZGVyQ29sb3I9IkJsYWNrIiBCb3JkZXJXaWR0aD0iMyIgTWFya2VyU3R5bGU9IkNpcmNsZSIgTWFya2VyU2l6ZT0iNiIgTWFya2VyQ29sb3I9IlJlZCIgTWFya2VyQm9yZGVyV2lkdGg9IjAiPg0KICAgICAgPFBvaW50cz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxIiBBeGlzTGFiZWw9IkEiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMyIgQXhpc0xhYmVsPSJCIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjIiIEF4aXNMYWJlbD0iQyIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSI0IiBBeGlzTGFiZWw9IkQiIC8+DQogICAgICA8L1BvaW50cz4NCiAgICA8L1Nlcmllcz4NCiAgICA8U2VyaWVzIE5hbWU9IlNlcmllczIiIExlZ2VuZD0iRGVmYXVsdCIgWFZhbHVlVHlwZT0iRGF0ZSIgWVZhbHVlVHlwZT0iRG91YmxlIiBTaGFkb3dDb2xvcj0iMTI4LCAyNTUsIDI1NSwgMjU1IiBDaGFydFR5cGU9IkxpbmUiIENoYXJ0QXJlYT0iRGVmYXVsdCIgQ29sb3I9IjAsIDAsIDE5MiIgQm9yZGVyQ29sb3I9IkJsYWNrIiBCb3JkZXJXaWR0aD0iMyIgTWFya2VyU3R5bGU9IkNpcmNsZSIgTWFya2VyU2l6ZT0iNiIgTWFya2VyQm9yZGVyV2lkdGg9IjAiPg0KICAgICAgPFBvaW50cz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxIiBBeGlzTGFiZWw9IkEiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMyIgQXhpc0xhYmVsPSJCIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjIiIEF4aXNMYWJlbD0iQyIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSI0IiBBeGlzTGFiZWw9IkQiIC8+DQogICAgICA8L1BvaW50cz4NCiAgICA8L1Nlcmllcz4NCiAgPC9TZXJpZXM+DQogIDxMZWdlbmRzPg0KICAgIDxMZWdlbmQgTmFtZT0iRGVmYXVsdCIgRW5hYmxlZD0iRmFsc2UiPg0KICAgIDwvTGVnZW5kPg0KICA8L0xlZ2VuZHM+DQogIDxUaXRsZXM+DQogICAgPFRpdGxlIE5hbWU9IlRpdGxlMSIgVmlzaWJsZT0iRmFsc2UiPg0KICAgIDwvVGl0bGU+DQogIDwvVGl0bGVzPg0KICA8Q2hhcnRBcmVhcz4NCiAgICA8Q2hhcnRBcmVhIE5hbWU9IkRlZmF1bHQiPg0KICAgICAgPEF4aXNZIElzTGFiZWxBdXRvRml0PSJGYWxzZSIgVGl0bGVGb250PSJUaW1lcyBOZXcgUm9tYW4sIDguMjVwdCwgR2RpQ2hhclNldD0wIj4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0IiAvPg0KICAgICAgICA8TWFqb3JUaWNrTWFyayBUaWNrTWFya1N0eWxlPSJJbnNpZGVBcmVhIiAvPg0KICAgICAgICA8TGFiZWxTdHlsZSBGb250PSJUaW1lcyBOZXcgUm9tYW4sIDguMjVwdCwgR2RpQ2hhclNldD0wIiBGb3JtYXQ9IiMiIC8+DQogICAgICA8L0F4aXNZPg0KICAgICAgPEF4aXNYIElzTGFiZWxBdXRvRml0PSJGYWxzZSIgVGl0bGVGb250PSJUaW1lcyBOZXcgUm9tYW4sIDguMjVwdCwgR2RpQ2hhclNldD0wIiBJbnRlcnZhbFR5cGU9IkRheXMiPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIC8+DQogICAgICAgIDxNYWpvclRpY2tNYXJrIFRpY2tNYXJrU3R5bGU9Ikluc2lkZUFyZWEiIC8+DQogICAgICAgIDxMYWJlbFN0eWxlIEZvbnQ9IlRpbWVzIE5ldyBSb21hbiwgOHB0IiBBbmdsZT0iLTkwIiAvPg0KICAgICAgPC9BeGlzWD4NCiAgICAgIDxBeGlzWDI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgLz4NCiAgICAgIDwvQXhpc1gyPg0KICAgICAgPEF4aXNZMj4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0IiAvPg0KICAgICAgPC9BeGlzWTI+DQogICAgPC9DaGFydEFyZWE+DQogIDwvQ2hhcnRBcmVhcz4NCjwvQ2hhcnQ+">
+          <MSChartSeries Name="Series1" XValue="[MainDataForChart.Time]" YValue1="[MainDataForChart.HeatSys.Heat.Total.Standard]"/>
+          <MSChartSeries Name="Series1" XValue="[MainDataForChart.Time]" YValue1="[MainDataForChart.HeatSys.Heat.Total.Actual]"/>
+        </MSChartObject>
+        <TextObject Name="Text7" Width="253.26" Height="18.9" Text="1. Потребление тепловой энергии:" Font="Times New Roman, 10pt, style=Bold"/>
+        <ShapeObject Name="Shape1" Left="162.54" Top="340.2" Width="18.9" Height="3.78" Border.Color="Red" Fill.Color="Red"/>
+        <ShapeObject Name="Shape2" Left="440.37" Top="340.2" Width="18.9" Height="3.78" Border.Color="Blue" Fill.Color="Blue"/>
+        <TextObject Name="Text125" Left="185.22" Top="336.42" Width="79.38" Height="11.34" Text="Qнорм, Гкал" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text126" Left="464.94" Top="336.42" Width="79.38" Height="11.34" Text="Qфакт, Гкал" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter1" Top="570.15" Width="718.2" Height="207.9" CanBreak="true">
+        <TextObject Name="Text81" Left="75.6" Top="18.9" Width="189" Height="18.9" Border.Lines="All" Text="Θфакт, ГКал/ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text82" Left="264.6" Width="189" Height="18.9" Border.Lines="All" Text="[MainData.HeatSys.Heat.Total.Standard.Total]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text83" Left="453.6" Width="189" Height="18.9" Border.Lines="All" Text="[MainData.HeatSys.Heat.Total.Actual.Total]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text85" Left="75.6" Width="189" Height="18.9" Border.Lines="All" Text="Игого:" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text86" Left="75.6" Top="37.8" Width="189" Height="18.9" Border.Lines="All" Text="Θнорм, ГКал/ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text87" Left="75.6" Top="56.7" Width="189" Height="18.9" Border.Lines="All" Text="[IIf([MainData.HeatSys.Heat.Total.Actual.Total] - [MainData.HeatSys.Heat.Total.Standard.Total] &gt; 0,&quot;Перерасход&quot;, &quot;Экономия&quot;)], Гкал" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text88" Left="75.6" Top="75.6" Width="189" Height="18.9" Border.Lines="All" Text="Текущий тариф, руб/Гкал" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text89" Left="75.6" Top="94.5" Width="189" Height="18.9" Border.Lines="All" Text="[IIf([MainData.HeatSys.Heat.Total.Actual.Total] - [MainData.HeatSys.Heat.Total.Standard.Total] &gt; 0,&quot;Перерасход&quot;, &quot;Экономия&quot;)], руб" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text90" Left="264.6" Top="18.9" Width="378" Height="18.9" Border.Lines="All" Text="[HourlyConsumptionHeatFact]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text91" Left="264.6" Top="37.8" Width="378" Height="18.9" Border.Lines="All" Text="[HourlyConsumptionHeat]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text92" Left="264.6" Top="56.7" Width="378" Height="18.9" Border.Lines="All" Text="[MathHelper.Abs( [MainData.HeatSys.Heat.Total.Actual.Total] -  [MainData.HeatSys.Heat.Total.Standard.Total])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text93" Left="264.6" Top="75.6" Width="378" Height="18.9" Border.Lines="All" Text="[ThermalEnergyRate]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text94" Left="264.6" Top="94.5" Width="378" Height="18.9" Border.Lines="All" Text="[[ThermalEnergyRate] * MathHelper.Abs([MainData.HeatSys.Heat.Total.Actual.Total] - [MainData.HeatSys.Heat.Total.Standard.Total])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text8" Left="18.9" Top="143.64" Width="695.52" Height="52.92" Text="[IIf(MathHelper.Abs(100*([MainData.HeatSys.Heat.Total.Actual.Total] - [MainData.HeatSys.Heat.Total.Standard.Total]) / [MainData.HeatSys.Heat.Total.Standard.Total]) &lt;= 5, &quot;Qфакт = Qнорм. Отклонение в пределах 5 %. Система теплоснабжения здания работает корректно.&quot;, IIf( 100*([MainData.HeatSys.Heat.Total.Standard.Total] - [MainData.HeatSys.Heat.Total.Actual.Total]) / [MainData.HeatSys.Heat.Total.Standard.Total]&lt; 0, &quot;Qфакт &gt; Qнорм. Отклонение свыше 5 %. Избыточное потребление тепловой энергии составляет &quot; + string.Format(CultureInfo.InvariantCulture, &quot;{0:#.##}&quot;, MathHelper.Abs([MainData.HeatSys.Heat.Total.Actual.Total] - [MainData.HeatSys.Heat.Total.Standard.Total] )) + &quot;Гкал, или &quot; + string.Format(CultureInfo.InvariantCulture, &quot;{0:#.##}&quot;, ToDecimal(100*([MainData.HeatSys.Heat.Total.Standard.Total] - [MainData.HeatSys.Heat.Total.Actual.Total]) / [MainData.HeatSys.Heat.Total.Standard.Total])) + &quot; % от нормативного значения. Требуется регулировка оборудования системы отопления, либо уточнения нормативного значения потребления тепловой энергии.&quot;, &quot;Qфакт &lt; Qнорм. Отклонение свыше  5%. Дефицит поступления тепловой энергии  составляет &quot; + string.Format(CultureInfo.InvariantCulture, &quot;{0:#.##}&quot;, MathHelper.Abs([MainData.HeatSys.Heat.Total.Actual.Total] - [MainData.HeatSys.Heat.Total.Standard.Total] )) + &quot; ГКал, или &quot; + string.Format(CultureInfo.InvariantCulture, &quot;{0:#.##}&quot;, ToDecimal(100*([MainData.HeatSys.Heat.Total.Standard.Total] - [MainData.HeatSys.Heat.Total.Actual.Total]) / [MainData.HeatSys.Heat.Total.Standard.Total])) + &quot; % от нормативного значения. Требуется регулировка оборудования системы отопления, либо уточнения нормативного значения потребления тепловой энергии.&quot;))]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Justify" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text9" Left="18.9" Top="120.96" Width="94.5" Height="18.9" Text="Вывод." Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" Font="Times New Roman, 10pt, style=Bold"/>
+      </DataFooterBand>
+    </DataBand>
+    <DataBand Name="HeatCurveFollowBand" Top="1193.44" Width="718.2" Height="18.9">
+      <TextObject Name="Text100" Left="18.9" Width="102.06" Height="18.9" Border.Lines="All" Text="[HeatCurveFollow.Time]" Padding="5, 0, 2, 0" Format="Date" Format.Format="d" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text102" Left="120.96" Width="75.6" Height="18.9" Border.Lines="All" Text="[HeatCurveFollow.AverageOutdoorTemperature]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text104" Left="196.56" Width="94.5" Height="18.9" Border.Lines="All" Text="[HeatCurveFollow.AverageSupplyTemperature]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text108" Left="291.06" Width="94.5" Height="18.9" Border.Lines="All" Text="[HeatCurveFollow.CalcSupplyTemperature]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text111" Left="544.32" Width="94.5" Height="18.9" Border.Lines="All" Text="[HeatCurveFollow.CalcReturnTemperature]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text106" Left="449.82" Width="94.5" Height="18.9" Border.Lines="All" Text="[HeatCurveFollow.AverageReturnTemperature]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text112" Left="385.56" Width="64.26" Height="18.9" Border.Lines="All" Text="[HeatCurveFollow.SupplyTemperature.Diff]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text114" Left="638.82" Width="64.26" Height="18.9" Border.Lines="All" Text="[HeatCurveFollow.ReturnTemperature.Diff]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+      <DataHeaderBand Name="DataHeader1" Top="781.63" Width="718.2" Height="408.24">
+        <TextObject Name="Text84" Left="18.9" Top="18.9" Width="309.96" Height="18.9" Text="2. Соблюдение температурного графика:" Font="Times New Roman, 10pt, style=Bold"/>
+        <TextObject Name="Text101" Left="18.9" Top="389.34" Width="102.06" Height="18.9" Border.Lines="All" Text="Дата" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text103" Left="120.96" Top="389.34" Width="75.6" Height="18.9" Border.Lines="All" Text="Tн ср.,°С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text105" Left="196.56" Top="389.34" Width="94.5" Height="18.9" Border.Lines="All" Text="Tп ср.,°С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text107" Left="449.82" Top="389.34" Width="94.5" Height="18.9" Border.Lines="All" Text="Tо ср.,°С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text109" Left="291.06" Top="389.34" Width="94.5" Height="18.9" Border.Lines="All" Text="Tп расч.ср.,°С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text110" Left="544.32" Top="389.34" Width="94.5" Height="18.9" Border.Lines="All" Text="Tо расч.ср.,°С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <MSChartObject Name="MSChart2" Left="13.23" Top="45.36" Width="691.74" Height="309.96" EvenStylePriority="UseAll" AutoSeriesColumn="" ChartData="PENoYXJ0IEJhY2tDb2xvcj0iVHJhbnNwYXJlbnQiIFNpemU9IjI4OCwgMjMyIiBCb3JkZXJsaW5lQ29sb3I9IlRyYW5zcGFyZW50IiBCb3JkZXJsaW5lV2lkdGg9IjIiIEJvcmRlcmxpbmVEYXNoU3R5bGU9IlNvbGlkIj4NCiAgPFNlcmllcz4NCiAgICA8U2VyaWVzIE5hbWU9IlNlcmllczEiIExlZ2VuZD0iRGVmYXVsdCIgWFZhbHVlVHlwZT0iRGF0ZSIgWVZhbHVlVHlwZT0iRG91YmxlIiBTaGFkb3dDb2xvcj0iMTI4LCAyNTUsIDI1NSwgMjU1IiBDaGFydFR5cGU9IkxpbmUiIENoYXJ0QXJlYT0iRGVmYXVsdCIgQ29sb3I9IlJlZCIgQm9yZGVyQ29sb3I9IkJsYWNrIiBCb3JkZXJXaWR0aD0iMyIgTWFya2VyU3R5bGU9IlNxdWFyZSIgTWFya2VyU2l6ZT0iNiIgTWFya2VyQm9yZGVyV2lkdGg9IjAiPg0KICAgICAgPFBvaW50cz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxIiBBeGlzTGFiZWw9IkEiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMyIgQXhpc0xhYmVsPSJCIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjIiIEF4aXNMYWJlbD0iQyIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSI0IiBBeGlzTGFiZWw9IkQiIC8+DQogICAgICA8L1BvaW50cz4NCiAgICA8L1Nlcmllcz4NCiAgICA8U2VyaWVzIE5hbWU9IlNlcmllczIiIExlZ2VuZD0iRGVmYXVsdCIgWFZhbHVlVHlwZT0iRGF0ZSIgWVZhbHVlVHlwZT0iRG91YmxlIiBTaGFkb3dDb2xvcj0iMTI4LCAyNTUsIDI1NSwgMjU1IiBDaGFydFR5cGU9IkxpbmUiIENoYXJ0QXJlYT0iRGVmYXVsdCIgQ29sb3I9IjAsIDAsIDE5MiIgQm9yZGVyQ29sb3I9IkJsYWNrIiBCb3JkZXJXaWR0aD0iMyIgTWFya2VyU3R5bGU9IkNpcmNsZSIgTWFya2VyU2l6ZT0iNiIgTWFya2VyQm9yZGVyV2lkdGg9IjAiPg0KICAgICAgPFBvaW50cz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxIiBBeGlzTGFiZWw9IkEiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMyIgQXhpc0xhYmVsPSJCIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjIiIEF4aXNMYWJlbD0iQyIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSI0IiBBeGlzTGFiZWw9IkQiIC8+DQogICAgICA8L1BvaW50cz4NCiAgICA8L1Nlcmllcz4NCiAgICA8U2VyaWVzIE5hbWU9IlNlcmllczMiIExlZ2VuZD0iRGVmYXVsdCIgWFZhbHVlVHlwZT0iU3RyaW5nIiBZVmFsdWVUeXBlPSJEb3VibGUiIFNoYWRvd0NvbG9yPSIxMjgsIDI1NSwgMjU1LCAyNTUiIENoYXJ0VHlwZT0iTGluZSIgQ2hhcnRBcmVhPSJEZWZhdWx0IiBDb2xvcj0iVG9tYXRvIiBCb3JkZXJDb2xvcj0iQmxhY2siIEJvcmRlcldpZHRoPSIzIiBNYXJrZXJTdHlsZT0iRGlhbW9uZCIgTWFya2VyU2l6ZT0iNyIgTWFya2VyQm9yZGVyV2lkdGg9IjAiPg0KICAgICAgPFBvaW50cz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxIiBBeGlzTGFiZWw9IkEiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMyIgQXhpc0xhYmVsPSJCIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjIiIEF4aXNMYWJlbD0iQyIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSI0IiBBeGlzTGFiZWw9IkQiIC8+DQogICAgICA8L1BvaW50cz4NCiAgICA8L1Nlcmllcz4NCiAgICA8U2VyaWVzIE5hbWU9IlNlcmllczQiIExlZ2VuZD0iRGVmYXVsdCIgWFZhbHVlVHlwZT0iU3RyaW5nIiBZVmFsdWVUeXBlPSJEb3VibGUiIFNoYWRvd0NvbG9yPSIxMjgsIDI1NSwgMjU1LCAyNTUiIENoYXJ0VHlwZT0iTGluZSIgQ2hhcnRBcmVhPSJEZWZhdWx0IiBDb2xvcj0iU3RlZWxCbHVlIiBCb3JkZXJDb2xvcj0iQmxhY2siIEJvcmRlcldpZHRoPSIzIiBCYWNrU2Vjb25kYXJ5Q29sb3I9IlRyYW5zcGFyZW50IiBNYXJrZXJTdHlsZT0iVHJpYW5nbGUiIE1hcmtlclNpemU9IjYiIE1hcmtlckJvcmRlcldpZHRoPSIwIj4NCiAgICAgIDxQb2ludHM+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMSIgQXhpc0xhYmVsPSJBIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjMiIEF4aXNMYWJlbD0iQiIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIyIiBBeGlzTGFiZWw9IkMiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iNCIgQXhpc0xhYmVsPSJEIiAvPg0KICAgICAgPC9Qb2ludHM+DQogICAgPC9TZXJpZXM+DQogICAgPFNlcmllcyBOYW1lPSJTZXJpZXM1IiBMZWdlbmQ9IkRlZmF1bHQiIFhWYWx1ZVR5cGU9IkRhdGUiIFlWYWx1ZVR5cGU9IkRvdWJsZSIgQ2hhcnRUeXBlPSJMaW5lIiBDaGFydEFyZWE9IkRlZmF1bHQiIENvbG9yPSJEYXJrR3JlZW4iIEJvcmRlcldpZHRoPSIzIiBNYXJrZXJTdHlsZT0iQ2lyY2xlIiBNYXJrZXJTaXplPSI2IiBNYXJrZXJDb2xvcj0iRGFya0dyZWVuIj4NCiAgICAgIDxQb2ludHM+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMSIgQXhpc0xhYmVsPSJBIiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjMiIEF4aXNMYWJlbD0iQiIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIyIiBBeGlzTGFiZWw9IkMiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iNCIgQXhpc0xhYmVsPSJEIiAvPg0KICAgICAgPC9Qb2ludHM+DQogICAgPC9TZXJpZXM+DQogIDwvU2VyaWVzPg0KICA8TGVnZW5kcz4NCiAgICA8TGVnZW5kIE5hbWU9IkRlZmF1bHQiIEVuYWJsZWQ9IkZhbHNlIj4NCiAgICA8L0xlZ2VuZD4NCiAgPC9MZWdlbmRzPg0KICA8VGl0bGVzPg0KICAgIDxUaXRsZSBOYW1lPSJUaXRsZTEiIFZpc2libGU9IkZhbHNlIj4NCiAgICA8L1RpdGxlPg0KICA8L1RpdGxlcz4NCiAgPENoYXJ0QXJlYXM+DQogICAgPENoYXJ0QXJlYSBOYW1lPSJEZWZhdWx0Ij4NCiAgICAgIDxBeGlzWSBJc0xhYmVsQXV0b0ZpdD0iRmFsc2UiIFRpdGxlRm9udD0iVGltZXMgTmV3IFJvbWFuLCA4LjI1cHQsIEdkaUNoYXJTZXQ9MCI+DQogICAgICAgIDxNYWpvckdyaWQgTGluZUNvbG9yPSI2NCwgNjQsIDY0LCA2NCIgLz4NCiAgICAgICAgPE1ham9yVGlja01hcmsgVGlja01hcmtTdHlsZT0iSW5zaWRlQXJlYSIgLz4NCiAgICAgICAgPExhYmVsU3R5bGUgRm9udD0iVGltZXMgTmV3IFJvbWFuLCA4LjI1cHQsIEdkaUNoYXJTZXQ9MCIgRm9ybWF0PSIjIiAvPg0KICAgICAgPC9BeGlzWT4NCiAgICAgIDxBeGlzWCBJc0xhYmVsQXV0b0ZpdD0iRmFsc2UiIFRpdGxlRm9udD0iVGltZXMgTmV3IFJvbWFuLCA4LjI1cHQsIEdkaUNoYXJTZXQ9MCIgSW50ZXJ2YWxUeXBlPSJEYXlzIj4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0IiAvPg0KICAgICAgICA8TWFqb3JUaWNrTWFyayBUaWNrTWFya1N0eWxlPSJJbnNpZGVBcmVhIiAvPg0KICAgICAgICA8TGFiZWxTdHlsZSBGb250PSJUaW1lcyBOZXcgUm9tYW4sIDhwdCIgQW5nbGU9Ii05MCIgLz4NCiAgICAgIDwvQXhpc1g+DQogICAgICA8QXhpc1gyIE1heGltdW09Ii0xMCIgTWluaW11bT0iLTE4Ij4NCiAgICAgICAgPE1ham9yR3JpZCBMaW5lQ29sb3I9IjY0LCA2NCwgNjQsIDY0IiAvPg0KICAgICAgPC9BeGlzWDI+DQogICAgICA8QXhpc1kyPg0KICAgICAgICA8TWFqb3JHcmlkIExpbmVDb2xvcj0iNjQsIDY0LCA2NCwgNjQiIC8+DQogICAgICAgIDxNYWpvclRpY2tNYXJrIFRpY2tNYXJrU3R5bGU9Ikluc2lkZUFyZWEiIC8+DQogICAgICA8L0F4aXNZMj4NCiAgICA8L0NoYXJ0QXJlYT4NCiAgPC9DaGFydEFyZWFzPg0KPC9DaGFydD4=">
+          <MSChartSeries Name="Series2" XValue="[HeatCurveFollowForChart.Time]" YValue1="[HeatCurveFollowForChart.CalcSupplyTemperature]"/>
+          <MSChartSeries Name="Series3" XValue="[HeatCurveFollowForChart.Time]" YValue1="[HeatCurveFollowForChart.CalcReturnTemperature]"/>
+          <MSChartSeries Name="Series4" XValue="[HeatCurveFollowForChart.Time]" YValue1="[HeatCurveFollowForChart.AverageSupplyTemperature]"/>
+          <MSChartSeries Name="Series4" XValue="[HeatCurveFollowForChart.Time]" YValue1="[HeatCurveFollowForChart.AverageReturnTemperature]"/>
+          <MSChartSeries Name="Series5" XValue="[HeatCurveFollowForChart.Time]" YValue1="[HeatCurveFollowForChart.AverageOutdoorTemperature]"/>
+        </MSChartObject>
+        <TextObject Name="Text113" Left="385.56" Top="389.34" Width="64.26" Height="18.9" Border.Lines="All" Text="ΔTп,°С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text115" Left="638.82" Top="389.34" Width="64.26" Height="18.9" Border.Lines="All" Text="ΔTо,°С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <ShapeObject Name="Shape3" Left="194.67" Top="362.88" Width="18.9" Height="3.78" Border.Color="Tomato" Fill.Color="Tomato"/>
+        <TextObject Name="Text127" Left="217.35" Top="359.1" Width="79.38" Height="11.34" Text="Tп ср.,°С" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <ShapeObject Name="Shape4" Left="308.07" Top="362.88" Width="18.9" Height="3.78" Border.Color="Red" Fill.Color="Red"/>
+        <TextObject Name="Text128" Left="330.75" Top="359.1" Width="79.38" Height="11.34" Text="Tп расч.ср.,°С" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <ShapeObject Name="Shape5" Left="421.47" Top="362.88" Width="18.9" Height="3.78" Border.Color="SteelBlue" Fill.Color="SteelBlue"/>
+        <TextObject Name="Text129" Left="444.15" Top="359.1" Width="79.38" Height="11.34" Text="Tо ср.,°С" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <ShapeObject Name="Shape6" Left="534.87" Top="362.88" Width="18.9" Height="3.78" Border.Color="Blue" Fill.Color="Blue"/>
+        <TextObject Name="Text130" Left="557.55" Top="359.1" Width="79.38" Height="11.34" Text="Tо расч.ср.,°С" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <ShapeObject Name="Shape7" Left="81.27" Top="362.88" Width="18.9" Height="3.78" Border.Color="DarkGreen" Fill.Color="DarkGreen"/>
+        <TextObject Name="Text131" Left="103.95" Top="359.1" Width="79.38" Height="11.34" Text="Tн ср.,°С" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter2" Top="1215.91" Width="718.2" Height="173.88" CanBreak="true">
+        <TextObject Name="Text116" Left="18.9" Width="102.06" Height="22.68" Border.Lines="All" Text="Среднее / макс.отклонение" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text117" Left="120.96" Width="75.6" Height="22.68" Border.Lines="All" Text="[HeatCurveFollow.AverageOutdoorTemperature.Avg]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text118" Left="196.56" Width="94.5" Height="22.68" Border.Lines="All" Text="[HeatCurveFollow.AverageSupplyTemperature.Avg]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text119" Left="291.06" Width="94.5" Height="22.68" Border.Lines="All" Text="[HeatCurveFollow.CalcSupplyTemperature.Avg]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text120" Left="385.56" Width="64.26" Height="22.68" Border.Lines="All" Text="[SupplyTemperature.Diff.AbsMax]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text121" Left="449.82" Width="94.5" Height="22.68" Border.Lines="All" Text="[HeatCurveFollow.AverageReturnTemperature.Avg]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text122" Left="544.32" Width="94.5" Height="22.68" Border.Lines="All" Text="[HeatCurveFollow.CalcReturnTemperature.Avg]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text123" Left="638.82" Width="64.26" Height="22.68" Border.Lines="All" Text="[ReturnTemperature.Diff.AbsMax]" Padding="5, 0, 2, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text10" Left="18.9" Top="56.7" Width="676.62" Height="113.4" Text="Максимальное отклонение за период от температурного графика по температуре в подающем трубопроводе составляет ±[string.Format(CultureInfo.InvariantCulture, &quot;{0:#.##}&quot;, [SupplyTemperature.Diff.AbsMax])] °С. [IIf([SupplyTemperature.Diff.AbsMax] &lt;= 3, &quot;Температура в подающем трубопроводе соответствует температурному графику работы тепловой сети.&quot;, &quot;Температурный график тепловой сети не соблюдается.&quot;)]&#13;&#10;&#13;&#10;Максимальное отклонение за период от температурного графика по температуре в обратном трубопроводе составляет ±[string.Format(CultureInfo.InvariantCulture, &quot;{0:#.##}&quot;, [ReturnTemperature.Diff.AbsMax])] °С. [IIf([ReturnTemperature.Diff.AbsMax] &lt;= 3, &quot;Температура в обратном трубопроводе соответствует температурному графику работы тепловой сети.&quot;, &quot;Температурный график тепловой сети не соблюдается.&quot;)]&#13;&#10;" HorzAlign="Justify" Font="Times New Roman, 10pt"/>
+        <TextObject Name="Text124" Left="18.9" Top="34.02" Width="94.5" Height="18.9" Text="Вывод." Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" Font="Times New Roman, 10pt, style=Bold"/>
+      </DataFooterBand>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="1393.36" Width="718.2" Height="60.48">
+      <TextObject Name="Text68" Left="3.78" Top="18.9" Width="124.74" Height="18.9" Text="Ответственный за учет:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text70" Left="128.52" Top="18.9" Width="408.24" Height="18.9" Text="___________/________________________/" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text69" Left="3.78" Top="41.58" Width="124.74" Height="18.9" Text="Отчет принят:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text71" Left="128.52" Top="41.58" Width="408.24" Height="18.9" Text="_________________[Year([Date])] г.___________/________________________/" Font="Times New Roman, 8pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="1457.41" Width="718.2" Height="11.34">
+      <TextObject Name="Text66" Left="311.85" Width="94.5" Height="11.34" Text="[Page]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

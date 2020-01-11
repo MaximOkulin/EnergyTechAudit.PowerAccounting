@@ -1,0 +1,226 @@
+<FormLayout Name="mnemoschemeForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+      function (sender, args) 
+      {
+          var formController = Core.Admin.FormController.prototype.currentInstance;
+      
+          formController.setModelValidator(function(model)
+          {
+             var result = true;    
+            
+              var validationState = 
+              {
+                isValid: result,
+                visualizationMethod: Core.Admin.FormController.ValidationVisualizationMethod.Alert,
+                validationSourceInfo: []
+              };
+
+              result = model.description !== null &amp;&amp; model.description !== undefined &amp;&amp;  model.description !== String.empty; 
+            
+              if (result != true)
+              {
+                  validationState.validationSourceInfo.push(
+                  {
+                      fieldName: "description",
+                      sourceFieldName: "Description",
+                      sourceCaption: "Наименование",                    
+                      message: "Поля &lt;b&gt;Наименование&lt;/b&gt; должно быть заполнено."
+                  });
+              }
+            
+              validationState.isValid = result;    
+            
+              return validationState;
+          });
+        
+          jQuery(document).off(Core.Common.EventTypes.FormController.FormLoadComplete_Form);
+      
+          jQuery(document).on(Core.Common.EventTypes.FormController.FormLoadComplete_Form, function () 
+          {                       
+                     
+              var modelManager = formController.getModelManager();
+            
+              var dxMemo = Core.Helpers.DevExpress.getDxControlByName("image_Mnemoscheme");
+              var cm = jQuery(dxMemo.GetInputElement()).data("CodeMirrorInstance");
+            
+              var formCommandMenuBarController = new Core.Common.CommandMenuBarController("formCommandMenu");
+              formCommandMenuBarController.bind(
+              {                               
+                  showCodeDialog: function()
+                  {
+                    (new Core.Admin.FormController.MnemoschemeSourceEditorDialog()).execute();
+                  }
+              });
+                           
+              (new Core.Admin.FormController.MnemoschemeSourceEditorCommandMenuBarController(cm, "mnemoschemeImageCommandMenu")).execute();
+                                                            
+          });
+      }
+      </InitScript>
+	<InitStyle HasEscapedContent="true">
+      &lt;style type="text/css"&gt;
+        .CodeMirror {
+          border-top: 1px solid black; 
+          border-bottom: 1px solid black;
+          line-height: 1.5;
+          height: auto;
+        }
+        .CodeMirror-focused .cm-matchhighlight {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFklEQVQI12NgYGBgkKzc8x9CMDAwAAAmhwSbidEoSQAAAABJRU5ErkJggg==);
+          background-position: bottom;
+          background-repeat: repeat-x;
+        }
+        .cm-matchhighlight {background-color: lightgreen}
+        .CodeMirror-selection-highlight-scrollbar {background-color: green}
+      &lt;/style&gt;      
+      </InitStyle>
+	<CommandMenu>
+		<Name>mnemoschemeXmlCommandMenu</Name>
+		<ClientVisible>true</ClientVisible>
+		<Width>250</Width>
+		<CommandMenuItem>
+			<Name>showCodeDialog</Name>
+			<ToolTip>XML редактор в диалоговом окне...</ToolTip>
+			<CommandName>showCodeDialog</CommandName>
+			<Enabled>true</Enabled>
+			<IconClass>font-icon-code-dialog font-icon-black indent-right-10px</IconClass>
+		</CommandMenuItem>
+	</CommandMenu>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Тип мнемосхемы" Enabled="true" Order="1">
+					<BoundProperty>MnemoschemeTypeId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Содержание" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Изображение" Order="1" Enabled="true">
+					<BoundProperty>Image</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                  function(sender, args)
+                  {       
+                
+                    var editorSettings = Core.Helpers.Storage.LocalStorage.getValue("mnemoschemeXmlEditorStoredSettings");
+                  
+                    var highlightSelectionMatches = null;
+                  
+                    if(editorSettings !== null)
+                    {
+                      if(editorSettings.highlightSelectionMatches === true) 
+                      {
+                          highlightSelectionMatches =
+                          {
+                            showToken: /\w/, 
+                            annotateScrollbar: true
+                          };
+                      }
+                    }
+                  
+                    var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender,
+                    {
+                      highlightSelectionMatches: highlightSelectionMatches,
+                      extraKeys:
+                      {
+                        "Ctrl-S": function(cm)
+                        {
+                            var formController = Core.Admin.FormController.prototype.currentInstance;
+                            formController.updateAsync();
+                        }
+                      }
+                    });
+                    inlineMemoEditorController.execute();    
+                  }
+                  </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+					<CommandMenu>
+						<Name>mnemoschemeImageCommandMenu</Name>
+						<ClientVisible>true</ClientVisible>
+						<Width>250</Width>
+						<CommandMenuItem>
+							<Name>upload</Name>
+							<CommandName>upload</CommandName>
+							<ToolTip>Поиск по содержимому</ToolTip>
+							<Enabled>true</Enabled>
+							<IconClass>font-icon-upload font-icon-darkred indent-right-5px</IconClass>
+						</CommandMenuItem>
+						<CommandMenuItem>
+							<Name>search</Name>
+							<CommandName>search</CommandName>
+							<ToolTip>Поиск по содержимому</ToolTip>
+							<Enabled>true</Enabled>
+							<IconClass>font-icon-search font-icon-darkslateblue indent-right-5px</IconClass>
+						</CommandMenuItem>
+						<CommandMenuItem>
+							<Name>formatXml</Name>
+							<CommandName>formatXml</CommandName>
+							<ToolTip>Форматировать</ToolTip>
+							<Enabled>true</Enabled>
+							<IconClass>font-icon-format-xml font-icon-color-darkred indent-right-5px</IconClass>
+						</CommandMenuItem>
+						<CommandMenuItem>
+							<Name>showOptionsEditor</Name>
+							<CommandName>showOptionsEditor</CommandName>
+							<ToolTip>Настройки редактора...</ToolTip>
+							<Enabled>true</Enabled>
+							<IconClass>font-icon-options font-icon-x1_2 font-icon-color-marine</IconClass>
+						</CommandMenuItem>
+						<CommandMenuItem>
+							<Name>preview</Name>
+							<CommandName>preview</CommandName>
+							<ToolTip>Показать...</ToolTip>
+							<Enabled>true</Enabled>
+							<IconClass>font-icon-eye_open font-icon-darkslateblue indent-right-5px</IconClass>
+						</CommandMenuItem>
+					</CommandMenu>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

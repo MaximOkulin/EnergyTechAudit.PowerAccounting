@@ -1,0 +1,150 @@
+﻿<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 20 1200 1050" width="1400" height="1250" xml:space="preserve">
+	<style type="text/css">
+		.st0{fill:#FFFFFF;stroke:#000000;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;}
+		.st1{fill:#FFFFFF;stroke:#7F7F7F;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;}
+		.st2{fill:#FFFFFF;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;}
+		.st3{fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:square;stroke-miterlimit:3;}
+		.st4{fill:none;stroke:#7F7F7F;stroke-width:2.25;stroke-linecap:square;stroke-miterlimit:3;}
+		.st5{fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;}		
+		.st9{font-size:14px;}				
+	</style>
+	<style>
+      .blink 
+      {
+          animation: blink-animation 2s steps(5, start) infinite;
+          -webkit-animation: blink-animation 2s steps(5, start) infinite;
+      }
+      @keyframes blink-animation 
+      {
+          to {
+            visibility: hidden;
+          }
+      }
+      @-webkit-keyframes blink-animation 
+      {
+          to {
+            visibility: hidden;
+          }
+      }
+  	</style>
+	<script>       	
+    jQuery(Core.Common.Mnemoscheme.Selector).on(Core.Common.EventTypes.MnemoschemeWidgetManager.MnemoschemeLoadComplete, 
+		function()
+      	{      		          		
+      		Core.Common.Mnemoscheme.TextParameterRenderer = function(tagName, jQElement, parameter)
+            {                            	
+              	var v = parseFloat(parameter.value).toFixed(2).toString().replace(".", "&lt;tspan class=&apos;blink&apos;&gt;.&lt;/tspan&gt;");
+            	jQElement.html(v);                   
+            };
+		}); 
+            	
+		Core.Common.Mnemoscheme.GetMeasurementDeviceSummaryCallback = function(measurementDeviceSummaryInfo)
+    {            	
+			jQuery(Core.Common.Mnemoscheme.Selector + " [data-core-device-shortname]").text(measurementDeviceSummaryInfo[Number.zero].deviceShortName);
+      jQuery(Core.Common.Mnemoscheme.Selector + " [data-core-factorynumber]").text("№" + measurementDeviceSummaryInfo[Number.zero].factoryNumber);
+		};
+        
+	</script>
+	<g>
+		<g transform="translate(138.898,-408.189)">
+			<rect x="-101" y="437.5" class="st0" width="313.3" height="283.5" />
+		</g>
+		<g transform="translate(156,-583.937)">
+			<path style="stroke: black; fill: #829a5c; stroke-width: 2px" class="st1" d="M-80,631h254.2c4.8,0,8.7,5,8.7,11.1v81.3c0,6.1-3.9,11.1-8.7,11.1H-96.1c-4.8,0-8.7-5-8.7-11.1v-81.3 C-104.7,636-100.9,631-96.1,631z" />
+		</g>
+		<g transform="translate(164.409,-510.236)">
+			<rect x="-101" y="678.5" class="st2" width="17" height="42.5" />
+		</g>
+		<g transform="translate(229.606,-510.236)">
+			<rect x="-101" y="678.5" class="st2" width="17" height="42.5" />
+		</g>
+		<g id="shape7-9" transform="translate(340.157,-510.236)">
+			<rect x="-101" y="678.5" class="st2" width="17" height="42.5" />
+		</g>
+		<g id="shape8-11" transform="translate(402.52,-510.236)">
+			<rect x="-101" y="678.5" class="st2" width="17" height="42.5" />
+		</g>
+		<g id="shape3-13" transform="translate(141.732,-552.756)">
+			<path class="st3" d="M-101,721h308.6" />
+		</g>
+		<g id="shape9-16" transform="translate(140.091,-493.228)">
+			<path class="st4" d="M-101,721h310" />
+		</g>
+		<g  transform="translate(404.646,-512.835)">
+			<g >
+				<ellipse class="st2" cx="-94.6" cy="714.5" rx="6.4" ry="6.5" />
+			</g>
+			<g transform="translate(0.0716492,-7.46704)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+			<g id="shape13-25" transform="translate(0.0716492,-7.46704)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+			<g  transform="translate(0.0830086,-5.45142)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+		</g>
+		<g id="group16-31" transform="translate(166.535,-512.835)">
+			<g id="shape17-32">
+				<ellipse class="st2" cx="-94.6" cy="714.5" rx="6.4" ry="6.5" />
+			</g>
+			<g id="shape18-34" transform="translate(0.0716492,-7.46704)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+			<g id="shape19-37" transform="translate(0.0716492,-7.46704)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+			<g transform="translate(0.0830086,-5.45142)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+		</g>
+		<g transform="translate(231.732,-512.835)">
+			<g>
+				<ellipse class="st2" cx="-94.6" cy="714.5" rx="6.4" ry="6.5" />
+			</g>
+			<g transform="translate(0.0716492,-7.46704)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+			<g transform="translate(0.0716492,-7.46704)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+			<g transform="translate(0.0830086,-5.45142)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+		</g>
+		<g transform="translate(342.283,-512.835)">
+			<g >
+				<ellipse class="st2" cx="-94.6" cy="714.5" rx="6.4" ry="6.5" />
+			</g>
+			<g transform="translate(0.0716492,-7.46704)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+			<g transform="translate(0.0716492,-7.46704)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+			<g transform="translate(0.0830086,-5.45142)">
+				<path class="st5" d="M-101,721h12.6" />
+			</g>
+		</g>
+		<g transform="translate(360,-415.197)">
+			<text data-core-device-shortname="" transform="matrix(1 0 0 1 -310 715)" class="st9" />
+      <text data-core-factorynumber="" transform="matrix(1 0 0 1 -100 715)" class="st9"></text>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 75 115)">
+		<tspan style="font-family: Digital-7; font-size: 3em; letter-spacing: 0.1em;" data-core-parameter="ElectroSys.ActivePower.Plus.Sum.FinalInstant">0000000.00</tspan>
+		<tspan dx="3">кВт·ч</tspan>
+	</text>
+	<text transform="matrix(1 0 0 1 55 70)">
+		<tspan style="font-size: 1em">T1</tspan>
+		<tspan dx="3" style="font-family: Digital-7; font-size: 1.3em; letter-spacing: 0.1em;" data-core-parameter="ElectroSys.ActivePower.Plus.T1.FinalInstant">000000.00</tspan>
+		<tspan dx="3">кВт·ч</tspan>
+	</text>
+	<text transform="matrix(1 0 0 1 195 70)">
+		<tspan style="font-size: 1em">T2</tspan>
+		<tspan dx="3" style="font-family: Digital-7; font-size: 1.3em; letter-spacing: 0.1em;" data-core-parameter="ElectroSys.ActivePower.Plus.T2.FinalInstant">000000.00</tspan>
+		<tspan dx="3">кВт·ч</tspan>
+	</text>
+</svg>

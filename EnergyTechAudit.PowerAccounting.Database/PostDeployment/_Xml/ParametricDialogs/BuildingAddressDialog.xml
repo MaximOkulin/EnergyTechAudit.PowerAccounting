@@ -1,0 +1,116 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  
+  <!--Описывает диалоговое окно для ручного ввода компонентов адреса на форме "Строения"-->
+  <Id>buildingAddressDialog</Id>
+  <Height>0</Height>
+  <Width>450</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <Title>Редактирование компонентов адреса</Title>
+  <IsSavedState>false</IsSavedState>
+  <Descriptors>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Улица</Caption>
+      <Name>street</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>TextBox</NestedExtension>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Номер дома</Caption>
+      <Name>buildingNumber</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>TextBox</NestedExtension>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Город</Caption>
+      <Name>city</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>Dictionary</DataSourceType>
+        <DataSource>City</DataSource>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Наименование</Caption>
+            <Width>400</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{0}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Регион</Caption>
+      <Name>region</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>TextBox</NestedExtension>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Страна</Caption>
+      <Name>country</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>TextBox</NestedExtension>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Почтовый индекс</Caption>
+      <Name>postCode</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>TextBox</NestedExtension>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+  </Descriptors>
+</ParametricDialog>

@@ -1,0 +1,90 @@
+﻿<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   width="1400" height="700"
+	 viewBox="0 0 1200 600"
+     style="enable-background:new 0 0 565 265;" xml:space="preserve"
+   description="Тупиковая система ГВС (обратный трубопровод)"
+   deviceId="9"
+   internalNumber="4"
+   data-core-parameters="Hws.Temper.SupplyPipe,Hws.MassFlow.SupplyPipe,Hws.Pressure.SupplyPipe,Hws.Temper.OutdoorAir,Hws.Temper.InsideDevice"
+   >
+<style type="text/css">
+	.st0{stroke:#8A181A;fill:#8A181A;stroke-width:3;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st2{font-family:Tahoma, Geneva, sans-serif;}
+	.st3{font-size:0.9em;}
+	.st4{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+	.st5{stroke:#000000;stroke-miterlimit:10;}
+	.st6{fill:#919396;stroke:#000000;stroke-miterlimit:10;}
+	.st7{fill:#FFFFFF;stroke:#000000;stroke-width:0.75;stroke-miterlimit:10;}
+	.st8{fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:10;}
+	.st9{fill:#8A181A;}
+  .error { visibility: hidden; }
+</style>
+<polygon class="st0" points="438.1,140.1 447.2,136.1 438.1,132.1 "/>
+<polygon class="st0" points="100.6,133.1 109.7,137.1 100.6,141.1 "/>
+<path class="st1" d="M287.5-103.5"/>
+<path class="st1" d="M442.6,201.3"/>
+<path class="st1" d="M36.4,113.7"/>
+<g>
+	<line class="st0" x1="179.2" y1="137.1" x2="91.4" y2="137.1"/>
+</g>
+<path class="st1" d="M43.4,125.3"/>
+<g>
+	<g>
+		<ellipse class="st1" cx="188.4" cy="137.1" rx="9.2" ry="8.9"/>
+	</g>
+	<polyline class="st1" points="192.4,145.1 178.9,137.3 192.4,129.1 	"/>
+</g>
+<line class="st0" x1="197.5" y1="136.5" x2="457" y2="136.5"/>
+<text transform="translate(337.1162 159.843)" class="st2 st3" data-core-parameter="Hws.Pressure.SupplyPipe">P2</text>
+  <text transform="translate(322.1162 159.843)" fill="darkred" class="error" data-core-parameter-error="Hws.Pressure.SupplyPipe" style="font-family: Glyphicons">&#xe505;</text>
+<path class="st1" d="M247.5,126.1"/>
+<path class="st1" d="M231.8,139.5"/>
+<text transform="translate(243.8787 159.8421)" class="st2 st3" data-core-parameter="Hws.Temper.SupplyPipe">T2</text>
+  <text transform="translate(228.8787 159.8421)" fill="darkred" class="error" data-core-parameter-error="Hws.Temper.SupplyPipe" style="font-family: Glyphicons">&#xe505;</text>
+<line class="st1" x1="344.2" y1="135.1" x2="344.2" y2="112.5"/>
+<circle class="st4" cx="344.5" cy="109.3" r="4"/>
+<text transform="translate(22.7923 25.9382)" class="st2 st3" data-core-parameter="Hws.Temper.OutdoorAir">Tа</text>
+  <text transform="translate(7.7923 25.9382)" fill="darkred" class="error" data-core-parameter-error="Hws.Temper.OutdoorAir" style="font-family: Glyphicons">&#xe505;</text>
+<g>
+	<line class="st1" x1="130.7" y1="14.5" x2="130.7" y2="62.5"/>
+	<line class="st1" x1="138" y1="14.5" x2="138" y2="62.5"/>
+	<line class="st1" x1="130.7" y1="62.5" x2="138" y2="49.4"/>
+	<line class="st1" x1="135.9" y1="63.2" x2="138" y2="59.4"/>
+	<line class="st1" x1="130.7" y1="52.5" x2="138" y2="39.4"/>
+	<line class="st1" x1="130.7" y1="42.5" x2="138" y2="29.4"/>
+	<line class="st1" x1="130.7" y1="32.5" x2="138" y2="19.4"/>
+	<line class="st1" x1="130.7" y1="22.5" x2="134.8" y2="15.2"/>
+</g>
+<g>
+	<path class="st1" d="M110.1,45.4"/>
+	<circle class="st5" cx="116.2" cy="42.5" r="4.1"/>
+	<line class="st1" x1="96.5" y1="64.9" x2="119.3" y2="39.3"/>
+</g>
+<rect x="176.5" y="94.2" class="st4" width="21.2" height="18.7"/>
+<line class="st1" x1="185.1" y1="112.9" x2="185.1" y2="128.2"/>
+<line class="st1" x1="190.6" y1="113" x2="190.6" y2="128.2"/>
+<rect x="180" y="98.5" class="st6" width="14.2" height="4.2"/>
+<rect x="193.4" y="107" class="st7" width="3.1" height="3.1"/>
+<rect x="177.6" y="107" class="st7" width="3.1" height="3.1"/>
+<rect x="188.3" y="107" class="st7" width="3.1" height="3.1"/>
+<rect x="182.8" y="107" class="st7" width="3.1" height="3.1"/>
+<line class="st8" x1="116.1" y1="46.7" x2="116.1" y2="100.6"/>
+<line class="st8" x1="116.1" y1="100.6" x2="176.5" y2="100.6"/>
+<line class="st8" x1="197.6" y1="110.1" x2="254.5" y2="110.1"/>
+<line class="st8" x1="254.5" y1="110.1" x2="254.5" y2="115.7"/>
+<line class="st8" x1="344.2" y1="98.5" x2="344.2" y2="105.3"/>
+<line class="st8" x1="344.2" y1="98.5" x2="197.6" y2="98.5"/>
+<text transform="translate(177.6206 86.0542)" class="st2 st3">КМ-5</text>
+<text transform="translate(167.6885 159.8428)" class="st2 st3" data-core-parameter="Hws.MassFlow.SupplyPipe">G2</text>
+  <text transform="translate(152.6885 159.8428)" fill="darkred" class="error" data-core-parameter-error="Hws.MassFlow.SupplyPipe" style="font-family: Glyphicons">&#xe505;</text>
+<path class="st1" d="M247.7,122.7"/>
+<circle class="st5" cx="254.8" cy="119.8" r="4.1"/>
+<line class="st1" x1="254.7" y1="122.7" x2="254.7" y2="136.5"/>
+<path class="st1" d="M239.5,178.1"/>
+<path class="st1" d="M239.7,174.7"/>
+<text transform="translate(340.4506 25.938)" class="st2 st3" data-core-parameter="Hws.Temper.InsideDevice">Тприб</text>
+  <text transform="translate(325.4506 25.938)" fill="darkred" class="error" data-core-parameter-error="Hws.Temper.InsideDevice" style="font-family: Glyphicons">&#xe505;</text>
+<circle class="st4" cx="344.5" cy="109.3" r="4"/>
+<text transform="translate(87.5002 159.8426)" class="st9 st2 st3">обратка</text>
+</svg>

@@ -1,0 +1,101 @@
+﻿
+<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>formJournalDialogServerTimeEntityCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>250</Width>
+  
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>formJournalExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>font-icon-xlsx indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <CommandMenuItem>
+      <Text>За интервал времени...</Text>
+      <BeginGroup>true</BeginGroup>
+      <CommandName>applyServerTimeEntityCustomFilter</CommandName>
+      <Name>forCustomInterval</Name>
+      <IconClass>font-icon-interval font-icon-x1_3 font-icon-black</IconClass>
+    </CommandMenuItem>
+    
+    <Name>gridServerTimeEntityFilter</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridServerTimeEntityFilter</CommandName>
+    <IconClass>font-icon-journalfilter font-icon-x1_3 indent-right-20px font-icon-darkgreen</IconClass>
+    <ToolTip>Фильтр</ToolTip>
+    <Text>Фильтр</Text>
+    
+    <CommandMenuItem>      
+      <Text>За последний час</Text>      
+      <BeginGroup>true</BeginGroup>      
+      <CommandName>applyServerTimeEntityFilter</CommandName>
+      <Name>forOneHour</Name>
+      <IconClass>font-icon-onehour font-icon-x1_3 font-icon-greenyellow</IconClass>
+      <AdditionalInfo>60</AdditionalInfo>
+    </CommandMenuItem>
+
+    <CommandMenuItem>
+      <Text>За прошедшие 12 часов</Text>
+      <BeginGroup>true</BeginGroup>
+      <CommandName>applyServerTimeEntityFilter</CommandName>
+      <Name>forTwentyHours</Name>
+      <IconClass>font-icon-twentyhours font-icon-x1_3 font-icon-darkgreen</IconClass>
+      <AdditionalInfo>720</AdditionalInfo>
+    </CommandMenuItem>
+
+    <CommandMenuItem>
+      <Text>За прошедшие сутки</Text>
+      <BeginGroup>true</BeginGroup>
+      <CommandName>applyServerTimeEntityFilter</CommandName>
+      <Name>forOneDay</Name>
+      <IconClass>font-icon-oneday font-icon-x1_3 font-icon-orangered</IconClass>
+      <AdditionalInfo>1440</AdditionalInfo>
+    </CommandMenuItem>
+    
+    <CommandMenuItem>
+      <Text>За прошедшую неделю</Text>
+      <BeginGroup>true</BeginGroup>
+      <CommandName>applyServerTimeEntityFilter</CommandName>
+      <Name>forOneWeek</Name>
+      <IconClass>font-icon-oneweek font-icon-x1_3 font-icon-brown</IconClass>
+      <AdditionalInfo>10080</AdditionalInfo>
+    </CommandMenuItem>
+    
+    <CommandMenuItem>
+      <Text>За прошедший месяц</Text>
+      <BeginGroup>true</BeginGroup>
+      <CommandName>applyServerTimeEntityFilter</CommandName>
+      <Name>forOneMonth</Name>
+      <IconClass>font-icon-onemonth font-icon-x1_3 font-icon-red</IconClass>
+      <AdditionalInfo>43200</AdditionalInfo>
+    </CommandMenuItem>    
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>toggleCollapse</CommandName>
+    <Name>toggleCollapse</Name>
+    <ToolTip>Свернуть/развернуть окно</ToolTip>
+    <IconClass>font-icon-toggle-collapsed font-icon-collapsed font-icon-darkgreen font-icon-x1_3</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

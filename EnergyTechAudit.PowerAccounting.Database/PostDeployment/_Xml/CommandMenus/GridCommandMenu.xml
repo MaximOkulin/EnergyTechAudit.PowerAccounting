@@ -1,0 +1,113 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>gridCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>330</Width>
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>create</CommandName>
+    <ToolTip>Создать элемент словаря</ToolTip>
+    <Name>create_1</Name>
+    <IconClass>font-icon-plus font-icon-x1_3 font-icon-color-darkgreen</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <BeginGroup>true</BeginGroup>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text>Операции</Text>
+    <CommandMenuItem>
+      <Text>Создать</Text>
+      <CommandName>create</CommandName>
+      <Name>create_2</Name>
+      <IconClass>font-icon-plus font-icon-x1_3 font-icon-color-darkgreen</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Изменить</Text>
+      <Enabled>false</Enabled>
+      <Name>update</Name>
+      <CommandName>update</CommandName>
+      <IconClass>font-icon-edit2 font-icon-x1_2 indent-right-5px font-icon-black</IconClass>
+      <BeginGroup>true</BeginGroup>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Удалить</Text>
+      <Enabled>false</Enabled>
+      <Name>remove</Name>
+      <CommandName>remove</CommandName>
+      <IconClass>font-icon-remove2 font-icon-x1_2 indent-right-5px font-icon-color-darkred</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Обновить</Text>
+      <CommandName>refresh</CommandName>
+      <Name>refresh</Name>
+      <BeginGroup>true</BeginGroup>
+      <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Отобразить поля</Text>
+      <CommandName>showCustomizationWindow</CommandName>
+      <Name>showCustomizationWindow</Name>
+      <BeginGroup>true</BeginGroup>
+      <IconClass>font-icon-customization font-icon-x1_2 font-icon-color-marine</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>gridExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridExport</CommandName>    
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+    
+    <CommandMenuItem>
+      <Text>Формат Csv</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Csv</AdditionalInfo>
+      <IconClass>dev-icon-ExportToCSV_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>font-icon-xlsx</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Pdf</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Pdf</AdditionalInfo>
+      <IconClass>font-icon-pdf</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Rtf</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Rtf</AdditionalInfo>
+      <IconClass>font-icon-rtf</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Xls</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xls</AdditionalInfo>
+      <IconClass>font-icon-xls</IconClass>
+    </CommandMenuItem>    
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>gridSettings</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridSettings</CommandName>
+    <IconClass>font-icon-options font-icon-x1_2 font-icon-color-marine</IconClass>
+    <ToolTip>Настройки</ToolTip>
+    <CommandMenuItem>
+      <Text>Формат данных</Text>
+      <CommandName>showDisplayFormatDialog</CommandName>
+      <Name>showDisplayFormatDialog</Name>
+      <IconClass></IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+</CommandMenu>

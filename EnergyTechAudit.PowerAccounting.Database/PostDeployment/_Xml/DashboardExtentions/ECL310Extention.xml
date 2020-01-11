@@ -1,0 +1,59 @@
+﻿<DashboardExtention>
+  <CommandMenu>
+    <Name>dashboardCommandMenu</Name>
+    <ClientVisible>true</ClientVisible>
+    <Width>50</Width>
+    <CommandMenuItem>
+      <Name>deviceDashboardExtentionCommand</Name>
+      <DropDownMode>true</DropDownMode>
+      <BeginGroup>true</BeginGroup>
+      <CommandName>deviceDashboardExtentionCommand</CommandName>
+      <IconClass>font-icon-formplugin font-icon-darkblue indent-right-5px</IconClass>
+      <ToolTip />
+      <Order>10</Order>
+      <CommandMenuItem>
+        <Name>setRegulatorParameterValueCommand</Name>
+        <Text>Запись параметров регулирования</Text>
+        <CommandName>setRegulatorParameterValueCommand</CommandName>
+        <IconClass>font-icon-formplugin font-icon-darkgreen indent-right-5px</IconClass>
+      </CommandMenuItem>
+      <CommandMenuItem>
+        <Name>readOnlyRegulatorParametersCommand</Name>
+        <Text>Чтение параметров регулирования</Text>
+        <CommandName>readOnlyRegulatorParametersCommand</CommandName>
+        <IconClass>font-icon-formplugin font-icon-darkred indent-right-5px</IconClass>
+      </CommandMenuItem>
+    </CommandMenuItem>
+  </CommandMenu>
+  <Script>
+    Core.OperAdmin.DashboardController.DeviceExtention = function (entityInfoProvider)
+    {
+    var commander =
+    {
+    setRegulatorParameterValueCommand: function ()
+    {
+    let deviceReaderCommandEntityInfo = entityInfoProvider.entityInfo;
+    deviceReaderCommandEntityInfo.targetEntityTypeName = "MeasurementDevice";
+    deviceReaderCommandEntityInfo.command = { name: "SetRegulatorParameterValueCommand", isRequireControlService: false, isEntityIndependent: false, isRequiredDeviceReaderResponseCommandDialog: false };
+
+    (new Core.Common.DeviceReaderResponseCommandDialog(deviceReaderCommandEntityInfo)).show();
+    },
+
+    readOnlyRegulatorParametersCommand: function ()
+    {
+    let deviceReaderCommandEntityInfo = entityInfoProvider.entityInfo;
+    deviceReaderCommandEntityInfo.targetEntityTypeName = "MeasurementDevice";
+    deviceReaderCommandEntityInfo.command = { name: "ReadOnlyRegulatorParametersCommand", isRequireControlService: false, isEntityIndependent: false, isRequiredDeviceReaderResponseCommandDialog: false };
+
+    (new Core.Common.DeviceReaderResponseCommandDialog(deviceReaderCommandEntityInfo)).show();
+    }
+    };
+
+    this.execute = function ()
+    {
+    (new Core.Common.CommandMenuBarController("dashboardCommandMenu")).bind(commander);
+    };
+    this.getCommander = function() { return commander; }   
+    };
+  </Script>
+</DashboardExtention>

@@ -1,0 +1,13 @@
+﻿CREATE FUNCTION [Programmability].[GetSchemaTableByName]
+(
+  @tableName NVARCHAR(128)  
+)
+RETURNS NVARCHAR(128)
+AS
+BEGIN
+  DECLARE @schema NVARCHAR(128) = (
+    SELECT TOP(1) [TABLE_SCHEMA] FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName
+  );
+  RETURN @schema;
+END;
+

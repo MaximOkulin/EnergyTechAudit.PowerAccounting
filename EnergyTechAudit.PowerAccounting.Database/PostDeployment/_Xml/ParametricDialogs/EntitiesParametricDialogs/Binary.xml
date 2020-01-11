@@ -1,0 +1,157 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\ParametricDialog.xsd">
+	<Id>gridEditBinaryDialog</Id>
+	<Width>400</Width>
+	<Modal>true</Modal>
+	<CloseAction>CloseButton</CloseAction>
+	<ScrollBars>None</ScrollBars>
+	<AllowResize>true</AllowResize>
+	<ShowHeader>true</ShowHeader>
+	<ShowFooter>true</ShowFooter>
+	<DragElement>Header</DragElement>
+	<PopupHorizontalAlign>WindowCenter</PopupHorizontalAlign>
+	<PopupVerticalAlign>WindowCenter</PopupVerticalAlign>
+	<Buttons>
+		<DialogButton>
+			<Title>ОК</Title>
+			<Order>0</Order>
+			<DialogModalResult>Ok</DialogModalResult>
+		</DialogButton>
+		<DialogButton>
+			<Title>Отмена</Title>
+			<Order>1</Order>
+			<DialogModalResult>Cancel</DialogModalResult>
+		</DialogButton>
+	</Buttons>
+	<IsNotInline>false</IsNotInline>
+	<IsSavedState>false</IsSavedState>
+	<Descriptors>
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Name>Id_Binary</Name>
+			<Caption>Ид</Caption>
+			<TypeCode>Int32</TypeCode>
+			<NestedExtension>SpinEdit</NestedExtension>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<Value>1</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Enabled</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Name>Code_Binary</Name>
+			<Caption>Код</Caption>
+			<TypeCode>String</TypeCode>
+			<NestedExtension>ButtonEdit</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.MaxLength</PropertiesChain>
+					<Value>64</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+					<Value></Value>
+					<TypeName>System.Delegate</TypeName>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var context$ = jQuery(sender.GetMainElement());
+                  jQuery(".dxeButton:last img", context$).hide();                  
+                  jQuery(".dxeButton:last", context$).append(jQuery("&lt;i style=&apos;margin-right: 2px&apos; class=&apos;font-icon-keys&apos; title=&apos;Генерировать последовательность символов&apos;&apos;&gt;&lt;i/&gt;"));                  
+                }
+                </Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ButtonClick</PropertiesChain>
+					<Value HasEscapedContent="true">
+            function(sender, args)
+            {                            
+                  $.ajax({
+                    url: Core.Routes.Common.InternalApi.getGeneratedCharset,
+                    type: Core.Common.HttpRequestTypes.Post,
+                    dataType: Core.Common.HttpDataTypes.Json,
+                    data:
+                    {
+                        length: 16,
+                        onlySymbols: true
+                    }
+                  }).fail(function(response)
+                  {
+                      $.event.trigger(Core.Common.EventTypes.CoreAsyncError);
+                  }).done(function(response)
+                  {            
+                      sender.SetText(response);                      
+                  });              
+            }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<Value>StartUp</Value>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Name>Description_Binary</Name>
+			<Caption>Наименование</Caption>
+			<TypeCode>String</TypeCode>
+			<NestedExtension>ButtonEdit</NestedExtension>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<Value>Старт разработки проекта</Value>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Name>BinaryContentTypeId_Binary</Name>
+			<Caption>Тип бинарного содержимого</Caption>
+			<TypeCode>Int32</TypeCode>
+			<NestedExtension>ComboBox</NestedExtension>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<FormLayoutItemListBoxSetting>
+				<DataSource>BinaryContentType</DataSource>
+				<DataSourceType>Dictionary</DataSourceType>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Width>100</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>8</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{2}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Name>Category_Binary</Name>
+			<Caption>Категория</Caption>
+			<TypeCode>String</TypeCode>
+			<NestedExtension>ButtonEdit</NestedExtension>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<Value>News</Value>
+		</FormLayoutItemDescriptor>
+	</Descriptors>
+</ParametricDialog>

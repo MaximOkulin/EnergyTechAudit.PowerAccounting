@@ -1,0 +1,40 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>formCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>515</Width>
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>remove</Name>
+    <CommandName>remove</CommandName>
+    <ToolTip>Удалить</ToolTip>
+    <IconClass>dev-icon-Delete_16x16 indent-right-5px</IconClass>
+  </CommandMenuItem>  
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>refresh</Name>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <CommandName>refresh</CommandName>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>showJournal</Name>
+    <CommandName>showJournal</CommandName>
+    <ToolTip>Показать журнал записей</ToolTip>
+    <IconClass>dev-icon-Journal_16x16 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text>Вид</Text>
+    <CommandMenuItem>
+      <Text>Свернуть все группы</Text>
+      <IconClass>font-icon-circle_arrow_up indent-right-5px</IconClass>
+      <CommandName>collapseAllGroups</CommandName>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Развернуть все группы</Text>
+      <IconClass>font-icon-circle_arrow_down indent-right-5px</IconClass>
+      <CommandName>expandAllGroups</CommandName>
+    </CommandMenuItem>
+  </CommandMenuItem>
+</CommandMenu>

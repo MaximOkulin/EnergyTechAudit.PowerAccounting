@@ -1,0 +1,1179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>EnergyTechAudit.PowerAccounting.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{6f133303-52c8-41ad-a260-fc45f8e4b3b1}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>EnergyTechAudit.PowerAccounting.Database</RootNamespace>
+    <AssemblyName>EnergyTechAudit.PowerAccounting.Database</AssemblyName>
+    <ModelCollation>1049,CS</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
+    <DefaultCollation>Cyrillic_General_100_CS_AS</DefaultCollation>
+    <AutoShrink>True</AutoShrink>
+    <EnableFullTextSearch>True</EnableFullTextSearch>
+    <Recovery>SIMPLE</Recovery>
+    <DefaultFileStreamFilegroup>
+    </DefaultFileStreamFilegroup>
+    <GenerateSqlClrSymbols>True</GenerateSqlClrSymbols>
+    <AllowSnapshotIsolation>True</AllowSnapshotIsolation>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <SuppressTSqlWarnings>71502,71562</SuppressTSqlWarnings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <RunSqlCodeAnalysis>True</RunSqlCodeAnalysis>
+    <SqlCodeAnalysisRules>-!Microsoft.Rules.Data.SR0001;+!Microsoft.Rules.Data.SR0004;+!Microsoft.Rules.Data.SR0005;+!Microsoft.Rules.Data.SR0006;-Microsoft.Rules.Data.SR0007;+!Microsoft.Rules.Data.SR0008;+!Microsoft.Rules.Data.SR0009;+!Microsoft.Rules.Data.SR0010;+!Microsoft.Rules.Data.SR0011;+!Microsoft.Rules.Data.SR0012;+!Microsoft.Rules.Data.SR0013;-!Microsoft.Rules.Data.SR0014;+!Microsoft.Rules.Data.SR0015;+!Microsoft.Rules.Data.SR0016</SqlCodeAnalysisRules>
+    <TreatTSqlWarningsAsErrors>True</TreatTSqlWarningsAsErrors>
+    <SuppressTSqlWarnings>71502,71562</SuppressTSqlWarnings>
+    <SqlTargetName>EnergyTechAudit.PowerAccounting</SqlTargetName>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Dictionaries" />
+    <Folder Include="PostDeployment" />
+    <Folder Include="PreDeployment" />
+    <Folder Include="Schemas" />
+    <Folder Include="Rules" />
+    <Folder Include="Business" />
+    <Folder Include="Core" />
+    <Folder Include="PostDeployment\Admin" />
+    <Folder Include="PostDeployment\Business" />
+    <Folder Include="PostDeployment\Dictionaries" />
+    <Folder Include="PostDeployment\Rules" />
+    <Folder Include="PostDeployment\Core" />
+    <Folder Include="PreDeployment\FileGroups" />
+    <Folder Include="PostDeployment\_Xml" />
+    <Folder Include="PostDeployment\_Xml\Forms" />
+    <Folder Include="PostDeployment\_Xml\ParametricDialogs" />
+    <Folder Include="PostDeployment\_Xml\Reports" />
+    <Folder Include="PostDeployment\_Xml\CommandMenus" />
+    <Folder Include="PreDeployment\FileGroups\Archive" />
+    <Folder Include="PreDeployment\FileGroups\Archive\Files" />
+    <Folder Include="PreDeployment\Partitioning" />
+    <Folder Include="PostDeployment\_Xml\EntityTrees" />
+    <Folder Include="Help" />
+    <Folder Include="PostDeployment\Help" />
+    <Folder Include="PostDeployment\Help\Html" />
+    <Folder Include="Admin" />
+    <Folder Include="PostDeployment\_Svg" />
+    <Folder Include="Programmability" />
+    <Folder Include="Programmability\Business" />
+    <Folder Include="PostDeployment\_Xml\MapInfoWindow" />
+    <Folder Include="WebApi" />
+    <Folder Include="PostDeployment\Business\Asd" />
+    <Folder Include="Programmability\Types" />
+    <Folder Include="PostDeployment\_Svg\Ecl310" />
+    <Folder Include="PostDeployment\_Svg\Vkt7" />
+    <Folder Include="Programmability\Business\Dashboard" />
+    <Folder Include="Programmability\Business\Reports" />
+    <Folder Include="Programmability\Business\Pivots" />
+    <Folder Include="Programmability\Business\Query" />
+    <Folder Include="Programmability\Business\QueryReports" />
+    <Folder Include="Programmability\DeviceReader" />
+    <Folder Include="Programmability\Business\Tasks" />
+    <Folder Include="Programmability\Common" />
+    <Folder Include="PostDeployment\_Svg\Km5" />
+    <Folder Include="Programmability\Migration" />
+    <Folder Include="PostDeployment\_Svg\Common" />
+    <Folder Include="Programmability\Clr" />
+    <Folder Include="Programmability\Business\PivotDiagramm" />
+    <Folder Include="Programmability\Maintenance" />
+    <Folder Include="PostDeployment\_Json" />
+    <Folder Include="PreDeployment\Security" />
+    <Folder Include="Programmability\Business\Admin" />
+    <Folder Include="Programmability\Business\Admin\Job" />
+    <Folder Include="Programmability\Business\Admin\Query" />
+    <Folder Include="Programmability\Business\Admin\Task" />
+    <Folder Include="Programmability\Business\Common" />
+    <Folder Include="_Deployment" />
+    <Folder Include="_Deployment\eta.development.leo" />
+    <Folder Include="_Deployment\eta.development.max" />
+    <Folder Include="PostDeployment\_Xsd" />
+    <Folder Include="Programmability\DeviceReader\Vkt7" />
+    <Folder Include="Programmability\DeviceReader\Tv7" />
+    <Folder Include="PostDeployment\_Json\EmergencySituationParameterTemplate" />
+    <Folder Include="PostDeployment\_Json\SystemSettings" />
+    <Folder Include="_Deployment\eta.development.team" />
+    <Folder Include="Programmability\Business\OperAdmin" />
+    <Folder Include="PostDeployment\_Json\MeteoDataSourceType" />
+    <Folder Include="PostDeployment\_Script" />
+    <Folder Include="PostDeployment\_Script\Python" />
+    <Folder Include="PostDeployment\_Script\Python\EntityTrees" />
+    <Folder Include="PostDeployment\_Svg\BoilerRoom" />
+    <Folder Include="PostDeployment\_Script\JavaScript" />
+    <Folder Include="PostDeployment\_Script\JavaScript\Svg" />
+    <Folder Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom" />
+    <Folder Include="PostDeployment\_Xml\ParametricDialogs\EntitiesParametricDialogs" />
+    <Folder Include="PostDeployment\Business\ChannelTemplate" />
+    <Folder Include="PostDeployment\Business\ChannelTemplate\Hws" />
+    <Folder Include="PostDeployment\Business\ChannelTemplate\Cws" />
+    <Folder Include="PostDeployment\Business\ChannelTemplate\HeatSys" />
+    <Folder Include="PostDeployment\Business\ChannelTemplate\Electro" />
+    <Folder Include="PostDeployment\Business\ChannelTemplate\Regulator" />
+    <Folder Include="PostDeployment\Business\ChannelTemplate\Monitoring" />
+    <Folder Include="Temp" />
+    <Folder Include="PostDeployment\_Xml\ParametricDialogs\Processings" />
+    <Folder Include="PostDeployment\_Svg\Pulsar" />
+    <Folder Include="PostDeployment\Business\ChannelTemplate\Gas" />
+    <Folder Include="PostDeployment\_Xml\ParametricDialogs\Reports" />
+    <Folder Include="PostDeployment\_Ai" />
+    <Folder Include="PostDeployment\_Svg\Scripts" />
+    <Folder Include="PostDeployment\Business\ChannelTemplate\MeteoStation" />
+    <Folder Include="PostDeployment\_Xml\ParametricDialogs\Maps" />
+    <Folder Include="PostDeployment\_Xml\DashboardExtentions" />
+    <Folder Include="PostDeployment\_Xsd\WebAPI" />
+    <Folder Include="PostDeployment\_Svg\Styles" />
+    <Folder Include="Programmability\Business\OperAdminMobile" />
+    <Folder Include="PostDeployment\_Json\DynamicParameter" />
+    <Folder Include="PostDeployment\_Json\DynamicParameter\Sirius" />
+    <Folder Include="PostDeployment\_Json\DynamicParameter\Test" />
+    <Folder Include="PostDeployment\_Svg\Ecl300" />
+    <Folder Include="PostDeployment\_Svg\Vega" />
+    <Folder Include="PostDeployment\_Svg\ArtCity" />
+    <Folder Include="PostDeployment\_Ai\ArtCity" />
+    <Folder Include="PostDeployment\_Xml\Queries" />
+    <Folder Include="PostDeployment\_Script\Python\QueryExtenders" />
+    <Folder Include="PostDeployment\_Ai\Vkt7" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeployment\Admin\Admin.Role.data.sql" />
+    <None Include="PostDeployment\Admin\Admin.User.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.BuildingPurpose.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.City.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.Device.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.TypeConnection.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.PhysicalParameter.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.PlacementPurpose.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.StatusConnection.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.ResourceSystemType.data.sql" />
+    <None Include="PostDeployment\Core\Core.MetaObjectType.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.MeasurementUnit.data.sql" />
+    <None Include="PostDeployment\Core\Core.Dictionary.data.sql" />
+    <None Include="PostDeployment\Core\Core.Menu.data.sql" />
+    <None Include="PostDeployment\Core\Core.MenuItem.data.sql" />
+    <None Include="PostDeployment\Core\Core.MetaObject.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.Dimension.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.Parameter.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.PeriodType.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.DeviceEventParameter.data.sql" />
+    <None Include="PostDeployment\Core\Core.Report.data.sql" />
+    <None Include="PostDeployment\Core\Core.Pivot.data.sql" />
+    <None Include="PostDeployment\Core\Core.Query.data.sql" />
+    <None Include="PostDeployment\Core\Core.Source.data.sql" />
+    <None Include="PostDeployment\Core\Core.Parametric.data.sql" />
+    <None Include="PostDeployment\Admin\Admin.News.data.sql" />
+    <None Include="PostDeployment\Core\Core.Form.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.Parity.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.Baud.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.StopBit.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.ComPort.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.DataBit.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.TransportType.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.TransportServerModel.data.sql" />
+    <None Include="PostDeployment\_Xml\Forms\AccessPointForm.xml" />
+    <None Include="PostDeployment\_Xml\Forms\BuildingForm.xml" />
+    <None Include="PostDeployment\_Xml\Forms\ChannelForm.xml" />
+    <None Include="PostDeployment\_Xml\Forms\FormLayout.xsd" />
+    <None Include="PostDeployment\_Xml\Forms\MeasurementDeviceForm.xml" />
+    <None Include="PostDeployment\_Xml\Forms\PlacementForm.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\ChannelDistributionParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\ParametricDialog.xsd" />
+    <None Include="PostDeployment\_Xml\CommandMenus\CommandMenu.xsd" />
+    <None Include="PostDeployment\_Xml\CommandMenus\AttributesToElements.xslt" />
+    <None Include="PostDeployment\_Xml\CommandMenus\AlternateHeaderCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\FormCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\GridCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\PivotCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\QueryCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\ReportCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\ReadOnlyFormCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\Forms\UserForm.xml" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree6.xml" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree.xsd" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree2.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\EntityTreeCommandMenu.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.Gender.data.sql" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree3.xml" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree4.xml" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree5.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.District.data.sql" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree1.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\LinkedEntityFormCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\Forms\HubForm.xml" />
+    <None Include="PostDeployment\_Xml\Forms\UserAdditionalInfoForm.xml" />
+    <None Include="PostDeployment\Help\Help.Picture.data.sql" />
+    <None Include="PostDeployment\Business\Business.Mnemoscheme.data.sql" />
+    <None Include="PostDeployment\Help\Html\UniqueIdEntity.html" />
+    <None Include="PostDeployment\Help\Html\FactoryNumber.html">
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </None>
+    <None Include="PostDeployment\Help\Html\a_3.html" />
+    <None Include="PostDeployment\Help\Html\a_4.html" />
+    <None Include="PostDeployment\Help\Html\a_5.html" />
+    <None Include="PostDeployment\Help\Html\a_6.html" />
+    <None Include="PostDeployment\Help\Html\a_7.html" />
+    <None Include="PostDeployment\Help\Html\a_8.html" />
+    <None Include="PostDeployment\Help\Html\a_9.html" />
+    <None Include="PostDeployment\Help\Html\HsPumpChangeHour.html" />
+    <None Include="PostDeployment\Help\Html\HsPumpChangePeriod.html" />
+    <None Include="PostDeployment\Help\Html\HsPumpIterationTime.html" />
+    <None Include="PostDeployment\Help\Html\HsPumpRequiredPressure.html" />
+    <None Include="PostDeployment\Help\Html\HsPumpStabilizationTime.html" />
+    <None Include="PostDeployment\Help\Html\HsPumpSwitchingDiff.html" />
+    <None Include="PostDeployment\Help\Html\HsPumpSwitchingTime.html" />
+    <None Include="PostDeployment\Help\Html\HsPumpToppingDuration.html" />
+    <None Include="PostDeployment\Help\Html\HsPumpTrainingTime.html" />
+    <None Include="PostDeployment\Help\Html\HsSupplyPumpTrainingTime.html" />
+    <None Include="PostDeployment\Help\Html\HwsDriveStockTravelTime.html" />
+    <None Include="PostDeployment\Help\Html\HwsIntegrationTime.html" />
+    <None Include="PostDeployment\Help\Html\HwsNeutralZone.html" />
+    <None Include="PostDeployment\Help\Html\HwsProportionalBand.html" />
+    <None Include="PostDeployment\Help\Html\HwsPumpChangeHour.html" />
+    <None Include="PostDeployment\Help\Html\HwsPumpChangePeriod.html" />
+    <None Include="PostDeployment\Help\Html\HwsPumpIterationTime.html" />
+    <None Include="PostDeployment\Help\Html\HwsPumpStabilizationTime.html" />
+    <None Include="PostDeployment\Help\Html\HwsPumpSwitchingTime.html" />
+    <None Include="PostDeployment\Help\Html\HwsPumpTrainingTime.html" />
+    <None Include="PostDeployment\Help\Html\MaxHsBorderFlowTemperature.html" />
+    <None Include="PostDeployment\Help\Html\MaxHsSetFlowTemperature.html" />
+    <None Include="PostDeployment\Help\Html\MaxHwsFlowTemperature.html" />
+    <None Include="PostDeployment\Help\Html\MinHsBorderFlowTemperature.html" />
+    <None Include="PostDeployment\Help\Html\MinHsSetFlowTemperature.html" />
+    <None Include="PostDeployment\Help\Html\a_10.html" />
+    <None Include="PostDeployment\Help\Html\a_11.html" />
+    <None Include="PostDeployment\Help\Html\a_12.html" />
+    <None Include="PostDeployment\Help\Html\a_13.html" />
+    <None Include="PostDeployment\Help\Html\a_14.html" />
+    <None Include="PostDeployment\Help\Html\a_15.html" />
+    <None Include="PostDeployment\Help\Html\a_16.html" />
+    <None Include="PostDeployment\_Xml\CommandMenus\HelpTreeViewCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\AdminLayoutHeaderCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\MapCommandMenu.xml" />
+    <None Include="PostDeployment\Core\Core.EntityTree.data.sql" />
+    <None Include="PostDeployment\Core\Core.EntityTreeLinkRole.data.sql" />
+    <None Include="PostDeployment\Core\Core.MetaObjectLinkRole.data.sql" />
+    <None Include="PostDeployment\Core\Core.MetaObjectLinkDevice.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\MeasurementDeviceListForOperAdmin.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\MeasurementDeviceListForOperAdminParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\MeasurementDeviceArchiveDataParametricDialog.xml" />
+    <None Include="PostDeployment\Core\Core.MetaObjectReferenceMeasurementDevice.data.sql" />
+    <None Include="PostDeployment\_Xml\CommandMenus\ChartCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\MeasurementDeviceArchiveDataWithoutAllParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\MapInfoWindow\BuildingInfoWindow.xml" />
+    <None Include="PostDeployment\Core\Core.MapInfoWindow.data.sql" />
+    <None Include="PostDeployment\_Xml\MapInfoWindow\PlacementInfoWindow.xml" />
+    <None Include="PostDeployment\_Xml\MapInfoWindow\ChannelInfoWindow.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\DashboardCommandMenu.xml" />
+    <None Include="PostDeployment\Core\Core.GoogleMapsStyle.data.sql" />
+    <None Include="PostDeployment\Core\Core.Processing.data.sql" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\BuildingAddressDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\MeasurementDeviceCustomInfoListForOperAdmin.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\SendMailUserDialogCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetParametersInfoByDeviceParametricDialog.xml" />
+    <None Include="PostDeployment\Business\Asd\Business.GetArchiveShapshotByMeasurementDevice.sql" />
+    <None Include="DeploymentSupport.linq" />
+    <None Include="PostDeployment\CreateDailyJobs.sql" />
+    <None Include="PostDeployment\CreateSystemBackup.sql" />
+    <None Include="PostDeployment\CreateDeviceReaderAccount.sql" />
+    <None Include="PostDeployment\_Svg\Vkt7\Vkt7HeatSys.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A230.1b.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A230.1c.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A230.1d.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A230.2b.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A230.2d.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A230.2с.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A231.1.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A231.2.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A260.1b.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A260.1c.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A260.1d.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A260.1e.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A260.1f.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A266.1a.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A266.2.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A266.9.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A266.1b.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A331.1.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A331.2.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A361.1.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A361.2.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A368.1.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A368.2.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A368.3.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\A368.4.svg" />
+    <None Include="PostDeployment\Core\Core.Entity.data.sql" />
+    <None Include="PostDeployment\Core\Core.EntityProperty.data.sql" />
+    <None Include="PostDeployment\_Xml\CommandMenus\EntityTreeContextCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\Reports\MeasurementDeviceSignalQuality.frx" />
+    <None Include="PostDeployment\_Xml\CommandMenus\MeasurementDeviceGridContextCommandMenu.xml" />
+    <None Include="PostDeployment\Core\Core.ReportType.data.sql" />
+    <None Include="PostDeployment\Core\Core.ReportSelector.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\HeatAccountingParamSheetSelector.frx" />
+    <None Include="PostDeployment\_Svg\Km5\Km5HeatSys.svg" />
+    <None Include="PostDeployment\_Svg\Km5\Km5Hws.svg" />
+    <None Include="PostDeployment\_Svg\Km5\Km5HwsSupply.svg" />
+    <None Include="PostDeployment\_Svg\Km5\Km5HwsReturn.svg" />
+    <None Include="PostDeployment\_Svg\Km5\Km5CwsSupply.svg" />
+    <None Include="PostDeployment\_Svg\Km5\Km5CwsReturn.svg" />
+    <None Include="PostDeployment\_Xml\Forms\ChannelTemplateForm.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.DeviceParameter.data.sql" />
+    <None Include="PostDeployment\Business\Business.ChannelTemplate.data.sql" />
+    <None Include="PostDeployment\Admin\Admin.Alert.data.sql" />
+    <None Include="Programmability\Migration\DDLMigrationScript .sql" />
+    <None Include="Programmability\Migration\DeleteVkt7CalculatedIntegrators.sql" />
+    <None Include="PostDeployment\_Svg\Common\Empty.svg" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetMultipleToMultipleInfoParametricDialog.xml" />
+    <None Include="PostDeployment\Rules\Rules.MeasurementUnitConverter.data.sql" />
+    <None Include="PostDeployment\_Xml\Forms\MeasurementUnitConverterForm.xml" />
+    <None Include="PostDeployment\Rules\Rules.DefaultMeasurementUnit.data.sql" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\MeasurementDeviceSignalQualityParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Forms\AlertForm.xml" />
+    <None Include="PostDeployment\_Xml\Forms\CsdModemForm.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.BinaryContentType.data.sql" />
+    <None Include="PostDeployment\_Xml\Forms\DeviceReaderForm.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\DashboardDiagrammDialogCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\DashboardIntervalSettingsParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\DashboardDiagrammDialogContextCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\MapDiagrammDialogCommandMenu.xml" />
+    <None Include="PostDeployment\CreateDeadlockMonitor.sql" />
+    <None Include="PostDeployment\_Xml\CommandMenus\MapDiagrammDialogContextCommandMenu.xml" />
+    <None Include="PostDeployment\Core\Core.PivotDiagramm.data.sql" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetPivotDiagrammByDeviceParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetPivotDiagrammByDistrictParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetPivotDiagrammByConnectionQualityParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree7.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.PortType.data.sql" />
+    <None Include="PostDeployment\_Xml\CommandMenus\AdminAreaNavBarContextCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\FlatHolderDashboardCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetFlatHolderAccountingParamSheetParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Reports\FlatHolderAccountingParamSheet.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\ArchivesParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Forms\OrganizationForm.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.OrganizationType.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.ProcessingStatus.data.sql" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree8.xml" />
+    <None Include="PostDeployment\_Xml\Reports\FlatHolderAccountsSheet.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetFlatHolderAccountsParametricDialog.xml" />
+    <None Include="PostDeployment\Core\Core.Diagramm.data.sql" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\OperAdminMapOptionsParametricDialog.xml" />
+    <None Include="PostDeployment\Admin\Admin.NewsLinkRole.data.sql" />
+    <None Include="PostDeployment\Core\Core.Binary.data.sql" />
+    <None Include="PostDeployment\_Xml\Forms\NewsForm.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\FormJournalDialogMultipleToMultipleLinkEntityCommandMenu.xml" />
+    <None Include="PostDeployment\Rules\Rules.DeviceArchiveTimeConverter.data.sql" />
+    <None Include="PostDeployment\Rules\Rules.DeviceArchiveTimeConverter.data.sql" />
+    <None Include="Programmability\Maintenance\GetMissingIndexesByStatistics.sql" />
+    <None Include="Programmability\Maintenance\GetUnusedIndexesByStatistic.sql" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\UsersParametricDialog.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.DynamicParameter.data.sql" />
+    <None Include="PostDeployment\Business\Business.DeviceLinkDynamicParameter.data.sql" />
+    <None Include="PostDeployment\Core\Core.CommandMenuTemplate.data.sql" />
+    <None Include="EnergyTechAudit.PowerAccounting.Database.External.publish.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\DynamicParameterValueParametricDialogCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\SelectDynamicParameterParametricDialog.xml" />
+    <None Include="Programmability\Maintenance\GetPoorPerformanceQueries.sql" />
+    <None Include="Programmability\Maintenance\GetExecutionQueries.sql" />
+    <None Include="PostDeployment\_Xml\Forms\CheckingAccountForm.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\FormWithCreateLinkedEntityCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\FlatDevicesConnectionQualityParametricDialog.xml" />
+    <None Include="PostDeployment\_Svg\Km5\Km5CwsImpulse.svg" />
+    <None Include="PostDeployment\_Svg\Vkt7\Vkt7Hws.svg" />
+    <None Include="PostDeployment\_Svg\Vkt7\Vkt7HwsSupply.svg" />
+    <None Include="PostDeployment\_Svg\Vkt7\Vkt7CwsPipe1.svg" />
+    <None Include="PostDeployment\_Svg\Vkt7\Vkt7CwsPipe2.svg" />
+    <None Include="PostDeployment\_Svg\Vkt7\Vkt7CwsPipe3.svg" />
+    <None Include="PostDeployment\_Svg\Km5\Rm5CwsSupply.svg" />
+    <None Include="PostDeployment\Business\Business.DeviceParameterSetting.data.sql" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\MeasurementDeviceDistributionParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Forms\FaqForm.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.SubsystemType.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.ParameterDictionary.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.ParameterDictionaryValue.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.ProtocolSubType.data.sql" />
+    <None Include="Programmability\Maintenance\DoRecoveryMissingConstraintsForMeasurementDevice.sql" />
+    <None Include="Programmability\Maintenance\BuildMissingConstraintsScript.sql" />
+    <None Include="PostDeployment\Core\Core.ReportPluginSelector.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.DeviceReaderType.data.sql" />
+    <None Include="_Deployment\eta.development.leo\EnergyTechAudit.PowerAccounting.Database.Leo.dcomp" />
+    <None Include="_Deployment\eta.development.leo\EnergyTechAudit.PowerAccounting.Database.Leo.scp" />
+    <None Include="_Deployment\eta.development.max\EnergyTechAudit.PowerAccounting.Database.Max.publish.xml" />
+    <None Include="_Deployment\eta.development.max\EnergyTechAudit.PowerAccounting.Database.VirtualMachine.publish.xml" />
+    <None Include="_Deployment\eta.development.max\SqlDataCompare.Max.dcmp" />
+    <None Include="_Deployment\eta.development.max\SqlSchemaCompare.Max.scmp" />
+    <None Include="PostDeployment\_Svg\Vkt7\Vkt7Hwsco.svg" />
+    <None Include="PostDeployment\_Svg\Km5\Km5Hwsco.svg" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHeatSysMixDiff.frx" />
+    <None Include="_Deployment\eta.development.max\EnergyTechAudit.PowerAccounting.Database.Max.scomp" />
+    <None Include="_Deployment\eta.development.max\EnergyTechAudit.PowerAccounting.Database.Max.dcomp" />
+    <None Include="_Deployment\eta.development.leo\EnergyTechAudit.PowerAccounting.Database.Leo.scomp" />
+    <None Include="_Deployment\eta.development.max\EnergyTechAudit.PowerAccounting.Database.Maxim.scomp" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\DeleteArchiveParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Forms\SystemSettingForm.xml" />
+    <None Include="PostDeployment\Admin\Admin.SystemSetting.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.InternalDeviceEvent.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\Tv7MeasurementDeviceJournal.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetTv7MeasurementDeviceJournal.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.ErrorType.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetSummaryHeatSys.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetSummarySelector.frx" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.TemperatureProfile.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.TechnologicAdjunctionType.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.AgreementParameterType.data.sql" />
+    <None Include="PostDeployment\_Xml\Forms\AgreementParameter.xml" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetSummaryHws.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHws.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHwsWithoutVolume.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHeatSys.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHeatSysWithoutVolume.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHwsc.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHwscWithoutVolume.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetCws.frx" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.ResourceSubsystemType.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetSummaryCws.frx" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.SeasonType.data.sql" />
+    <None Include="PostDeployment\_Xml\Forms\EmergencySituationParameter.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\DashboardIndividualAccountingCommandMenu.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\MassControl.json" />
+    <None Include="PostDeployment\Business\Business.EmergencySituationParameterTemplate.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.NotificationType.data.sql" />
+    <None Include="PostDeployment\_Json\SystemSettings\Template.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\TimeNormalControl.json" />
+    <None Include="PostDeployment\Script.RecreateServerObject sql" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetElectroSys.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetSummaryElectroSys.frx" />
+    <None Include="_Deployment\eta.development.leo\EnergyTechAudit.PowerAccounting.Database.Leo.publish.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\BriefcaseCommandMenu.xml" />
+    <None Include="PostDeployment\_Svg\Ecl310\A230.1a.svg" />
+    <None Include="PostDeployment\_Xml\CommandMenus\BriefcaseEntityTreeContextCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\Reports\EmergencySituationDistribution.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\EmergencySituationDistributionParametricDialog.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\SuccessConnectionTimeControl.json" />
+    <None Include="PostDeployment\_Xml\Reports\EmergencySituationLinkNotificationTypeDistribution.frx" />
+    <None Include="_Deployment\eta.development.max\EnergyTechAudit.PowerAccounting.Database.MaxChelny.publish.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\MassFlowSupplyPipeControl.json" />
+    <None Include="PostDeployment\_Xml\CommandMenus\EmergencySituationGridViewCommandMenu.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\MassFlowReturnPipeControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\MassFlowSupplyReturnPipesControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\VolumeFlowSupplyPipeControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\VolumeFlowReturnPipeControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\VolumeFlowSupplyReturnPipesControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\PressureSupplyPipeControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\PressureReturnPipeControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\PressureSupplyReturnPipesControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\TemperSupplyPipeControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\TemperReturnPipeControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\TemperSupplyReturnPipesControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\DeviceTimeControl.json" />
+    <None Include="PostDeployment\_Xml\CommandMenus\SimpleGridViewCommandMenu.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BarsConnectionControl.json" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetVzljot26MeasurementDeviceJournal.xml" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.ScheduleType.data.sql" />
+    <None Include="PostDeployment\_Xml\Forms\ScheduleItemForm.xml" />
+    <None Include="PostDeployment\_Xml\Forms\ArchiveDownloaderForm.xml" />
+    <None Include="PostDeployment\_Json\MeteoDataSourceType\OpenWeatherSettings.json" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.MeteoDataSourceType.data.sql" />
+    <None Include="PostDeployment\_Xml\CommandMenus\FormJournalDialogServerTimeEntityCommandMenu.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\HeatCurveSupplyPipeControl.json" />
+    <None Include="PostDeployment\_Xml\CommandMenus\FormJournalDialogCommandMenu.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\HeatCurveReturnPipeControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\HeatCurveSupplyReturnPipeControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\ColdWaterConsumptionByLastHour.json" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.MnemoschemeType.data.sql" />
+    <None Include="PostDeployment\Core\Core.Script.data.sql" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\Generic2.svg" />
+    <None Include="PostDeployment\_Xml\Forms\MnemoschemeForm.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\CodeMirrorEditorDialogCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\CommandMenus\MnemoschemeImageDialogCommandMenu.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\BoilerStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\BoilerEmergencyStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SystemPumpStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\HwsPumpStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\MakeupPumpStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\RecirculatingPumpStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\PowerStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\GasLeaksStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\TankLevelStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\GranitGuardStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\Test.json" />
+    <None Include="PostDeployment\_Xml\CommandMenus\DashboardPlacementLevelMnemoschemeCommandMenu.xml" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\Generic3.svg" />
+    <None Include="PostDeployment\_Xml\Reports\EmergencySituationSummary.frx" />
+    <None Include="_Deployment\eta.development.leo\DeploymentSupport.Leo.linq" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\EmergencySituationSummaryParametricDialog.xml" />
+    <None Include="_Deployment\eta.development.leo\Диаграммы планов исполнения.pptx" />
+    <None Include="PostDeployment\_Svg\Common\TypicalElectricityMeter.svg" />
+    <None Include="PostDeployment\Admin\Admin.Faq.data.sql" />
+    <None Include="PostDeployment\Admin\Admin.FaqLinkRole.data.sql" />
+    <None Include="PostDeployment\_Xml\Forms\UserGroupForm.xml" />
+    <None Include="PostDeployment\Admin\Admin.UserGroup.data.sql" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\HeatCurveReturnPipeMeltDownControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\HeatCurveReturnPipeCoolDownControl.json" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\DashboardDiagrammSettingsParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\EntitiesParametricDialogs\Binary.xml" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Hws\HwsChannelTemplates.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Cws\CwsChannelTemplates.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\HeatSys\HeatSysChannelTemplates.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Electro\ElectroChannelTemplates.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\HeatSys\ParameterMapDeviceParameter.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Hws\ParameterMapDeviceParameter.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Cws\ParameterMapDeviceParameter.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHeatSysVolume.frx" />
+    <None Include="PostDeployment\_Svg\Common\ClosedHeatSys.svg" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Regulator\RegulatorChannelTemplates.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Regulator\ParameterMapDeviceParameter.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Monitoring\MonitoringChannelTemplates.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Monitoring\ParameterMapDeviceParameter.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetElectroSysWithReactive.frx" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Electro\ParameterMapDeviceParameter.data.sql" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\GetSystemProtocolsParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\EntityTrees\EntityTree9.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Processings\DoUserLinkChannelParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Processings\DoMeasurementDevicePollingIntervalParametricDialog.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\EntranceDoorStateControl.json" />
+    <None Include="PostDeployment\_Svg\Pulsar\Pulsar2Panel.svg" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.AgreementSystemParameter.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Gas\GasChannelTemplates.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetGas.frx" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Gas\ParameterMapDeviceParameter.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\UnitedAccountingParamSheet.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\UnitedAccountingParamSheetParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetSummaryAccountingSheetParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetAccountingParamSheetParametricDialog.xml" />
+    <None Include="PostDeployment\Core\Core.Binary2.data.sql" />
+    <None Include="PostDeployment\Dictionaries\Dictionaries.Device2.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetElectroSysOneTariff.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetElectroSysHours.frx" />
+    <None Include="PostDeployment\Core\Core.Binary3.data.sql" />
+    <None Include="PostDeployment\Core\Core.Binary4.data.sql" />
+    <None Include="PostDeployment\Core\Core.Binary5.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHeatSysOnePipeInfo.frx" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\AccessButtonStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\FloodingStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\PumpHeatSys1StateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\PumpHeatSys2StateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\PumpHwsStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\AstraStateControl.json" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\TverCrystal46.svg" />
+    <None Include="PostDeployment\_Ai\TverCrystal46.ai" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHwscAlmetRK2.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHwscWithoutVolumeAlmetRK2.frx" />
+    <None Include="PostDeployment\_Xml\CommandMenus\FormPluginCommandMenu.xml" />
+    <None Include="PostDeployment\_Svg\Scripts\TverCrystal.js" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\AlmetKvartalBoilerRoom14.svg" />
+    <None Include="PostDeployment\_Ai\AlmetKvartalBoilerRoom14.ai" />
+    <None Include="PostDeployment\_Xml\Reports\CoalEquivalentReport.frx" />
+    <None Include="PostDeployment\_Ai\AlmetKvartalBoilerRoom5.ai" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\AlmetKvartalBoilerRoom5.svg" />
+    <None Include="PostDeployment\Business\ChannelTemplate\MeteoStation\ParameterMapDeviceParameter.data.sql" />
+    <None Include="PostDeployment\Business\ChannelTemplate\MeteoStation\MeteoStationChannelTemplates.data.sql" />
+    <None Include="PostDeployment\_Ai\AlmetKvartalBoilerRoom27.ai" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\AlmetKvartalBoilerRoom27.svg" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetResourceReleaseBalanceParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Reports\ResourceRealeaseBalanceSheet.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Maps\ParameterMapDeviceParameterParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Maps\BuildingMapResourceBuildingParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetElectroSysWithReactiveAndSubTotals.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetElectroSysOneTariffPlusMinusSubTotals.frx" />
+    <None Include="PostDeployment\Core\Core.Binary6.data.sql" />
+    <None Include="PostDeployment\_Xml\CommandMenus\AdminAreaMiniboardDialogCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetGasWithIntegrators.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetElectroPowerWorkingDayParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Reports\ActiveReactivePowerConsumptionInWorkingDayGraph.frx" />
+    <None Include="PostDeployment\_Ai\ECL310_A368_1.ai" />
+    <None Include="PostDeployment\_Ai\ECL310_A368_3.ai" />
+    <None Include="PostDeployment\_Ai\ECL310_A266_1a.ai" />
+    <None Include="PostDeployment\_Xml\Reports\RegulatorsTimeSlicesSummary.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetRegulatorsTimeSlicesParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetElectroSysHoursWithSummary.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetElectroSysActiveTwoTariffsAndSubTotals.frx" />
+    <None Include="PostDeployment\_Xml\DashboardExtentions\VKT7TestExtention.xml" />
+    <None Include="PostDeployment\_Xml\DashboardExtentions\KM5TestExtention.xml" />
+    <None Include="PostDeployment\Core\Core.DashboardExtentionTemplate.data.sql" />
+    <None Include="PostDeployment\_Xml\DashboardExtentions\ECLTestExtention.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetHeatEnergyConsumptionAnalysisParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Reports\HeatEnergyConsumptionAnalysis.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHeatSysMakeup.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHeatSysVolumeAndMakeup.frx" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetGasSimpleVolume.frx" />
+    <None Include="PostDeployment\_Svg\Pulsar\PulsarPanelForGas.svg" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\ColdWaterVolumeAccumulationControl.json" />
+    <None Include="PostDeployment\Business\ChannelTemplate\Regulator\EtaRelayCalendarParameterMapDeviceParameter.data.sql" />
+    <None Include="PostDeployment\_Ai\CarevoBoilerRoom.ai" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\CarevoBoilerRoom.svg" />
+    <None Include="PostDeployment\_Xml\DashboardExtentions\ETARelayExtention.xml" />
+    <None Include="PostDeployment\_Xsd\WebAPI\WebAPI.xsd" />
+    <None Include="PostDeployment\_Xsd\WebAPI\GetNativeDatabaseStructureExample.xsd" />
+    <None Include="_Deployment\eta.development.leo\ETADBMostValuablePartERDiagramm.dbd" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetGasIrvisFactoryReport.frx" />
+    <None Include="PostDeployment\_Xml\DashboardExtentions\IrvisExtention.xml" />
+    <None Include="PostDeployment\_Svg\Scripts\Carevo.js" />
+    <None Include="PostDeployment\_Svg\Styles\Carevo.css" />
+    <None Include="PostDeployment\Core\Core.Binary7.data.sql" />
+    <None Include="PostDeployment\Core\Core.Binary8.data.sql" />
+    <None Include="PostDeployment\_Ai\VesnaBoilerRoom.ai" />
+    <None Include="PostDeployment\_Svg\Scripts\Vesna.js" />
+    <None Include="PostDeployment\_Svg\Styles\Vesna.css" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\VesnaBoilerRoom.svg" />
+    <None Include="PostDeployment\_Ai\CarevoColdWaterPressureMonitor.ai" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\CarevoColdWaterPressureMonitor.svg" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetEmergencySituations.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetAccountingParamSheetEmergencySituations.xml" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetDeviceSettingsParametricDialog.xml" />
+    <None Include="PostDeployment\_Xml\Reports\DeviceSettings.frx" />
+    <None Include="PostDeployment\_Ai\ECL310_A368_6.ai" />
+    <None Include="PostDeployment\_Xml\DashboardExtentions\ECL310Extention.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\AccidentBoilerBurnerControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\AccidentMakeupPumpControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\CarbonMonoxideControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\MethaneControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SecurityAlarmControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\FireControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\AccidentThreeWayValveControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyTemperatureSensorControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnTemperatureSensorControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyTemperatureCrashUpperLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyTemperatureWarningUpperLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyTemperatureWarningLowerLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyTemperatureCrashLowerLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnTemperatureCrashUpperLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnTemperatureWarningUpperLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnTemperatureWarningLowerLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnTemperatureCrashLowerLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\OutdoorAirSensorControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\AccidentSystemPumpControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\DryRunningNetworkPumpControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\EmergencyStopNetworkPumpsAPCSControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\EmergencyNetworkPumpsAPCSControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyPressureSensorControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnPressureSensorControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyPressureCrashUpperLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyPressureWarningUpperLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyPressureWarningLowerLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SupplyPressureCrashLowerLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnPressureCrashUpperLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnPressureWarningUpperLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnPressureWarningLowerLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\ReturnPressureCrashLowerLimitControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\AccidentRecirculatingPumpControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\AccidentReturnValveControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\SystemPumpsPressureControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\MakeupPumpsPressureControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\AccidentDeflatingDieselFuelPumpControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\AccidentDieselFuelPumpControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\AccidentDieselFuelConcentrationControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\CarbonMonoxideLevel2Control.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\GasValveStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BoilerRoom\DieselFuelValveStateControl.json" />
+    <None Include="PostDeployment\_Xml\CommandMenus\ChannelDeviceExtendedInfoViewCommandMenu.xml" />
+    <None Include="PostDeployment\_Ai\ArtCityBoilerRoom.ai" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\ArtCityBoilerRoom.svg" />
+    <None Include="PostDeployment\_Svg\Scripts\ArtCity.js" />
+    <None Include="PostDeployment\_Ai\DanfossMCX2.ai" />
+    <None Include="PostDeployment\_Svg\Ecl310\DanfossMCX2.svg" />
+    <None Include="PostDeployment\Core\Core.Binary9.data.sql" />
+    <None Include="PostDeployment\_Ai\ECL310_A217_3.ai" />
+    <None Include="PostDeployment\_Svg\Ecl310\ECL310_A217_3.svg" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\ElectricityVoltagePhasesControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BatteryVoltageControl.json" />
+    <None Include="PostDeployment\_Svg\Styles\ArtCity.css" />
+    <None Include="PostDeployment\_Xml\CommandMenus\EmergencySituationMobileGridViewCommandMenu.xml" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetGasIrvisUltraFactoryReport.frx" />
+    <None Include="PostDeployment\_Ai\MirasBoilerRoom.ai" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\MirasBoilerRoom.svg" />
+    <None Include="PostDeployment\_Svg\Styles\Miras.css" />
+    <None Include="PostDeployment\_Svg\Scripts\Miras.js" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\TemperSupplyPipeHwsRegulatorMonitoringControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\TemperReturnPipeHwsRegulatorMonitoringControl.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\Sirius\2L.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\Sirius\2V.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\Test\KTCHeatCurveReturnPipe.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\Test\KTCHeatCurveSupplyPipe.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\AnalogValueArchiveType.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\AnalogValueConvert.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\DanfossMcxKey.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\DateWithTime.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\Ecl300Key.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\Ecl310Key.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\HeatCurveReturnPipe.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\HeatCurveSupplyPipe.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\HeatCurveTemplate.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\MobileOperatorType.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\Psch4tm5mkNumber.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\SbtAccessType.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\SigneticsKey.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\TemFlashType.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\WebServiceProvider.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\TemperSupplyPipeHeatSysRegulatorMonitoringControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\TemperReturnPipeHeatSysRegulatorMonitoringControl.json" />
+    <None Include="PostDeployment\_Json\DynamicParameter\Ecl110Key.json" />
+    <None Include="PostDeployment\_Ai\ECL110_130.ai" />
+    <None Include="PostDeployment\_Svg\Ecl310\ECL110_130.svg" />
+    <None Include="PostDeployment\_Svg\Ecl310\ECL310_A368_6.svg" />
+    <None Include="PostDeployment\_Svg\Ecl300\C66.svg" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\VolumeFlowMakeupPipeControl.json" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetPramer710Hours.frx" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetAccountingParamSheetPramer710ParametricDialog.xml" />
+    <None Include="PostDeployment\_Svg\HeatSysWithMassFlow.svg" />
+    <None Include="PostDeployment\_Svg\CwsForHwsWithMassFlow.svg" />
+    <None Include="PostDeployment\_Ai\ECL310_A260_1.ai" />
+    <None Include="PostDeployment\_Svg\Ecl310\ECL310_A260_1.svg" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\EntranceDoorSensorStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\FloodingSensorStateControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BatteryChargeEntranceDoorsControl.json" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\BasementAndAtticDoorsEtaDiscreteInputControl.json" />
+    <None Include="PostDeployment\_Svg\Vega\CI11_CWS.svg" />
+    <None Include="PostDeployment\_Svg\Vega\CI11_HWS.svg" />
+    <None Include="PostDeployment\_Svg\HotWaterMeter.svg" />
+    <None Include="PostDeployment\_Svg\ColdWaterMeter.svg" />
+    <None Include="PostDeployment\_Svg\ArtCity\Ershova62G.svg" />
+    <None Include="PostDeployment\_Svg\Scripts\Ershova62G.js" />
+    <None Include="PostDeployment\_Svg\ArtCity\Ershova62D.svg" />
+    <None Include="PostDeployment\_Ai\ArtCity\Ershova62G.ai" />
+    <None Include="PostDeployment\_Ai\ArtCity\Ershova62D.ai" />
+    <None Include="PostDeployment\_Svg\Scripts\Ershova62D.js" />
+    <None Include="PostDeployment\_Svg\Scripts\Ershova62B.js" />
+    <None Include="PostDeployment\_Ai\ArtCity\Ershova62B.ai" />
+    <None Include="PostDeployment\_Svg\ArtCity\Ershova62B.svg" />
+    <None Include="PostDeployment\_Ai\ArtCity\Akhmerova5.ai" />
+    <None Include="PostDeployment\_Svg\Scripts\Akhmerova5.js" />
+    <None Include="PostDeployment\_Svg\ArtCity\Akhmerova5.svg" />
+    <None Include="PostDeployment\_Ai\ArtCity\Akhmetzyanova10.ai" />
+    <None Include="PostDeployment\_Svg\ArtCity\Akhmetzyanova10.svg" />
+    <None Include="PostDeployment\_Svg\Scripts\Akhmetzyanova10.js" />
+    <None Include="PostDeployment\_Xml\DashboardExtentions\VegaTP11Extention.xml" />
+    <None Include="PostDeployment\_Json\EmergencySituationParameterTemplate\FloodingWellSensorStateControl.json" />
+    <None Include="PostDeployment\_Xml\ParametricDialogs\Reports\GetIndividualAccountingBalanceSheetParametricDialog.xml" />
+    <None Include="PostDeployment\_Script\Python\EntityTrees\EntityTree7.py" />
+    <None Include="PostDeployment\_Script\Python\EntityTrees\EntityTree1.py" />
+    <None Include="PostDeployment\_Script\Python\EntityTrees\EntityTree2.py" />
+    <None Include="PostDeployment\_Script\Python\EntityTrees\EntityTree3.py" />
+    <None Include="PostDeployment\_Script\Python\EntityTrees\EntityTree4.py" />
+    <None Include="PostDeployment\_Script\Python\EntityTrees\EntityTree5.py" />
+    <None Include="PostDeployment\_Script\Python\EntityTrees\EntityTree6.py" />
+    <None Include="PostDeployment\_Script\Python\EntityTrees\EntityTree8.py" />
+    <None Include="PostDeployment\_Script\Python\EntityTrees\EntityTree9.py" />
+    <None Include="PostDeployment\_Xml\Reports\IndividualAccountingBalanceSheet.frx" />
+    <None Include="PostDeployment\_Xml\Queries\MeasurementDeviceListForOperAdmin.xml" />
+    <None Include="PostDeployment\_Script\Python\QueryExtenders\MeasurementDeviceListForOperAdmin.py" />
+    <None Include="PostDeployment\Core\Core.Binary10.data.sql" />
+    <None Include="PostDeployment\_Xml\Reports\AccountingParamSheetHeatSysWithVolumeOnePipeInfo.frx" />
+    <None Include="PostDeployment\_Ai\Vkt7\Vkt7HeatSysScheme4WithoutPressureSensors.ai" />
+    <None Include="PostDeployment\_Svg\Vkt7\Vkt7HeatSysScheme4WithoutPressureSensors.svg" />
+    <None Include="PostDeployment\_Ai\Vkt7\Vkt7HeatSysScheme4WithPressureSensors.ai" />
+    <None Include="PostDeployment\_Svg\Vkt7\Vkt7HeatSysScheme4WithPressureSensors.svg" />
+    <None Include="PostDeployment\_Xml\Reports\Tv7DeviceSettings.frx" />
+    <None Include="PostDeployment\_Xml\Reports\Tv7DeviceSettingsModel05.frx" />
+    <None Include="PostDeployment\_Ai\AlmetKvartalBoilerRoom6.ai" />
+    <None Include="PostDeployment\_Svg\BoilerRoom\AlmetKvartalBoilerRoom6.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeployment\CreateSystemAccount.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployment\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Dictionaries\Dictionaries.StatusConnection.sql" />
+    <Build Include="Dictionaries\Dictionaries.TypeConnection.sql" />
+    <Build Include="Schemas\Dictionaries.sql" />
+    <Build Include="Schemas\Rules.sql" />
+    <Build Include="Dictionaries\Dictionaries.City.sql" />
+    <Build Include="Dictionaries\Dictionaries.PlacementPurpose.sql" />
+    <Build Include="Dictionaries\Dictionaries.BuildingPurpose.sql" />
+    <Build Include="Dictionaries\Dictionaries.MeasurementUnit.sql" />
+    <Build Include="Dictionaries\Dictionaries.ResourceSystemType.sql" />
+    <Build Include="Dictionaries\Dictionaries.PhysicalParameter.sql" />
+    <Build Include="Dictionaries\Dictionaries.DeviceEventParameter.sql" />
+    <Build Include="Schemas\Business.sql" />
+    <Build Include="Business\Business.MeasurementDevice.sql" />
+    <Build Include="Dictionaries\Dictionaries.Device.sql" />
+    <Build Include="Business\Business.AccessPoint.sql" />
+    <Build Include="Business\Business.Building.sql" />
+    <Build Include="Business\Business.UserAdditionalInfo.sql" />
+    <Build Include="Business\Business.Placement.sql" />
+    <Build Include="Business\Business.Channel.sql" />
+    <Build Include="Schemas\Core.sql" />
+    <Build Include="Core\Core.MetaObjectType.sql" />
+    <Build Include="Core\Core.MetaObject.sql" />
+    <Build Include="Core\Core.Parametric.sql" />
+    <Build Include="Core\Core.Report.sql" />
+    <Build Include="Core\Core.Pivot.sql" />
+    <Build Include="Core\Core.Query.sql" />
+    <Build Include="Core\Core.Dictionary.sql" />
+    <Build Include="Core\Core.Menu.sql" />
+    <Build Include="Core\Core.MenuItem.sql" />
+    <Build Include="Dictionaries\Dictionaries.AgreementSystemParameter.sql" />
+    <Build Include="Dictionaries\Dictionaries.Dimension.sql" />
+    <Build Include="Dictionaries\Dictionaries.Parameter.sql" />
+    <Build Include="Dictionaries\Dictionaries.PeriodType.sql" />
+    <Build Include="Business\Business.TimeSignature.sql" />
+    <Build Include="Business\Business.Archive.sql" />
+    <Build Include="PreDeployment\FileGroups\FileStreamFileGroup.sql" />
+    <Build Include="Core\Core.Source.sql" />
+    <Build Include="Core\Core.Form.sql" />
+    <Build Include="Dictionaries\Dictionaries.Parity.sql" />
+    <Build Include="Dictionaries\Dictionaries.Baud.sql" />
+    <Build Include="Dictionaries\Dictionaries.StopBit.sql" />
+    <Build Include="Dictionaries\Dictionaries.ComPort.sql" />
+    <Build Include="Dictionaries\Dictionaries.DataBit.sql" />
+    <Build Include="Dictionaries\Dictionaries.TransportType.sql" />
+    <Build Include="Business\Business.DeviceEvent.sql" />
+    <Build Include="Dictionaries\Dictionaries.TransportServerModel.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\Files\ArchiveDay.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\Files\ArchiveHour.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\Files\ArchiveInstant.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\Files\ArchiveMonth.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\ArchiveHour.sql" />
+    <Build Include="PreDeployment\Partitioning\ArchivePartitionByPeriodType.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\ArchiveDay.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\ArchiveMonth.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\ArchiveInstant.sql" />
+    <Build Include="PreDeployment\Partitioning\ArchivePartitionSchemeByPeriodType.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\ArchiveFinal.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\ArchiveFinalInstant.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\Files\ArchiveFinal.sql" />
+    <Build Include="PreDeployment\FileGroups\Archive\Files\ArchiveFinalInstant.sql" />
+    <Build Include="Business\Business.AccessPointLinkBuilding.sql" />
+    <Build Include="Dictionaries\Dictionaries.Gender.sql" />
+    <Build Include="Dictionaries\Dictionaries.District.sql" />
+    <Build Include="Business\Business.DeviceReaderErrorLog.sql" />
+    <Build Include="Business\Business.Hub.sql" />
+    <Build Include="Business\Business.Channel_InstedOfInsert.sql" />
+    <Build Include="Business\Business.Channel_InstedOfUpdate.sql" />
+    <Build Include="Schemas\Help.sql" />
+    <Build Include="Help\Help.Article.sql" />
+    <None Include="PostDeployment\Help\Help.Article.data.sql" />
+    <Build Include="Help\Help.Picture.sql" />
+    <Build Include="Admin\Admin.ErrorLogEntry.sql" />
+    <Build Include="Admin\Admin.News.sql" />
+    <Build Include="Admin\Admin.Role.sql" />
+    <Build Include="Admin\Admin.User.sql" />
+    <Build Include="Business\Business.Mnemoscheme.sql" />
+    <Build Include="Admin\Admin.EntityHistory.sql" />
+    <Build Include="Core\Core.EntityTree.sql" />
+    <Build Include="Core\Core.EntityTreeLinkRole.sql" />
+    <Build Include="Core\Core.MetaObjectLinkRole.sql" />
+    <Build Include="Core\Core.MetaObjectLinkDevice.sql" />
+    <Build Include="Schemas\Admin.sql" />
+    <Build Include="Schemas\Programmability.sql" />
+    <Build Include="Core\Core.MetaObjectReferenceMeasurementDevice.sql" />
+    <Build Include="Core\Core.MapInfoWindow.sql" />
+    <Build Include="WebApi\WebApi.GetMeasurementDeviceArchive.sql" />
+    <Build Include="WebApi\WebApi.GetDictionary.sql" />
+    <Build Include="Schemas\WebApi.sql" />
+    <Build Include="Admin\Admin.Audit.sql" />
+    <Build Include="Core\Core.GoogleMapsStyle.sql" />
+    <Build Include="Schemas\DeviceReader.sql" />
+    <Build Include="Core\Core.Processing.sql" />
+    <Build Include="Programmability\Types\Programmability.CodePullTableType.sql" />
+    <Build Include="Programmability\Types\Programmability.ResultSetNameTableType.sql" />
+    <Build Include="Programmability\Types\Programmability.ColumnCaptionTableType.sql" />
+    <Build Include="Programmability\Types\Programmability.CustomParameterTableType.sql" />
+    <Build Include="Core\Core.Entity.sql" />
+    <Build Include="Core\Core.EntityProperty.sql" />
+    <None Include="PostDeployment\CreateDatabaseMail.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetAccountingParamSheet.sql" />
+    <Build Include="Programmability\Business\Query\Programmability.MeasurementDeviceCustomInfoListForOperAdmin.sql" />
+    <Build Include="Programmability\Business\Pivots\Programmability.GetChannelDistribution.sql" />
+    <Build Include="Programmability\Business\QueryReports\Programmability.MeasurementDeviceListForOperAdmin.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetPhysicalParameter.procedure.sql" />
+    <Build Include="Programmability\Business\Tasks\Programmability.DoUserLinkChannel.sql" />
+    <Build Include="Programmability\Common\Business.StringSplitToArray.sql" />
+    <Build Include="Core\Core.ReportType.sql" />
+    <Build Include="Core\Core.ReportSelector.sql" />
+    <Build Include="Programmability\Programmability.GetSysMessage.sql" />
+    <Build Include="Dictionaries\Dictionaries.DeviceParameter.sql" />
+    <Build Include="Business\Business.ParameterMapDeviceParameter.sql" />
+    <Build Include="Business\Business.ChannelTemplate.sql" />
+    <Build Include="Business\Business.ChannelTemplate_AfterUpdate.sql" />
+    <Build Include="Admin\Admin.Alert.sql" />
+    <Build Include="Programmability\Programmability.GetSchemaTableByName.sql" />
+    <Build Include="Rules\Rules.MeasurementUnitConverter.sql" />
+    <Build Include="Programmability\Types\Programmability.PreferenceMeasurementUnitTableType.sql" />
+    <None Include="PostDeployment\CreateHourlyJobs.sql" />
+    <Build Include="Programmability\Programmability.CheckMeasurementUnitConverter.sql" />
+    <Build Include="Rules\Rules.DefaultMeasurementUnit.sql" />
+    <Build Include="Programmability\Business\QueryReports\Programmability.GetMeasurementDeviceSignalQuality.sql" />
+    <Build Include="Core\Core.Binary.sql" />
+    <Build Include="Business\Business.CsdModem.sql" />
+    <Build Include="Business\Business.RegulatorParameterValue.sql" />
+    <Build Include="Business\Business.DeviceReader.sql" />
+    <Build Include="Dictionaries\Dictionaries.BinaryContentType.sql" />
+    <None Include="PostDeployment\CreateWeeklyJobs.sql" />
+    <Build Include="Core\Core.PivotDiagramm.sql" />
+    <Build Include="Programmability\Business\PivotDiagramm\Programmability.GetPivotDiagrammByDevice.sql" />
+    <Build Include="Programmability\Business\PivotDiagramm\Programmability.GetPivotDiagrammByDistrict.sql" />
+    <Build Include="Programmability\Business\PivotDiagramm\Programmability.GetPivotDiagrammByConnectionQuality.sql" />
+    <Build Include="Programmability\Business\Programmability.GetPivotDiagrammDatasource.sql" />
+    <Build Include="Business\Business.UserLinkChannel.sql" />
+    <Build Include="Programmability\Common\Programmability.GetUserLinkChannel.sql" />
+    <Build Include="Dictionaries\Dictionaries.PortType.sql" />
+    <Build Include="Programmability\Common\Programmability.GetUserInfo.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetFlatHolderAccountingParamSheet.sql" />
+    <Build Include="Admin\Admin.DeletedEntityEntry.sql" />
+    <Build Include="Programmability\Business\Query\Programmability.GetArchives.sql" />
+    <Build Include="Programmability\Business\Query\Programmability.MeasurementDeviceArchiveData.sql" />
+    <Build Include="Business\Business.Organization.sql" />
+    <Build Include="Dictionaries\Dictionaries.OrganizationType.sql" />
+    <Build Include="Dictionaries\Dictionaries.ProcessingStatus.sql" />
+    <Build Include="Admin\Admin.UserMessage.sql" />
+    <Build Include="Core\Core.Diagramm.sql" />
+    <Build Include="Admin\Admin.NewsLinkRole.sql" />
+    <None Include="PostDeployment\CreateMonthlyJobs.sql" />
+    <None Include="PostDeployment\CreateJobsOperator.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.CorrectArchiveTime.sql" />
+    <Build Include="Rules\Rules.DeviceArchiveTimeConverter.sql" />
+    <Build Include="WebApi\WebApi.GetMeasurementDeviceInfo.sql" />
+    <Build Include="WebApi\WebApi.GetSchema.sql" />
+    <None Include="Programmability\Maintenance\DoRecoveryMissingConstraints.sql" />
+    <None Include="Programmability\Maintenance\DoReplaceDatabaseLocation.sql" />
+    <Build Include="Core\Core.ProcessingLogEntry.sql" />
+    <Build Include="Dictionaries\Dictionaries.DynamicParameter.sql" />
+    <Build Include="Business\Business.DeviceLinkDynamicParameter.sql" />
+    <Build Include="Core\Core.DynamicParameterValue.sql" />
+    <Build Include="Core\Core.CommandMenuTemplate.sql" />
+    <Build Include="Programmability\Common\Programmability.EncryptData.sql" />
+    <Build Include="PreDeployment\Security\MasterKey.sql" />
+    <Build Include="PreDeployment\Security\Certificate.sql" />
+    <Build Include="PreDeployment\Security\SymmetricKey.sql" />
+    <Build Include="Programmability\Common\Programmability.DecryptData.sql" />
+    <None Include="Admin\Admin.User_InstedOfUpdate.sql" />
+    <None Include="Admin\Admin.User_InstedOfInsert.sql" />
+    <Build Include="Programmability\Business\Admin\Job\Programmability.DoClearAudit.sql" />
+    <Build Include="Programmability\Business\Admin\Job\Programmability.DoClearStatusConnectionLog.sql" />
+    <Build Include="Programmability\Business\Admin\Query\Programmability.GetFlatHolderAccounts.sql" />
+    <Build Include="Programmability\Business\Admin\Query\Programmability.GetMultipleToMultipleInfo.sql" />
+    <Build Include="Programmability\Business\Admin\Query\Programmability.GetParametersInfoByDevice.sql" />
+    <Build Include="Programmability\Business\Admin\Query\Programmability.GetUserMessages.sql" />
+    <Build Include="Programmability\Business\Admin\Task\Programmability.DoDifferentialBackup.sql" />
+    <Build Include="Programmability\Business\Admin\Task\Programmability.DoFullBackup.sql" />
+    <Build Include="Programmability\Business\Admin\Task\Programmability.DoIndexesReorganize.sql" />
+    <Build Include="Business\Business.CheckingAccount.sql" />
+    <Build Include="Business\Business.CheckingAccountLinkPlacement.sql" />
+    <Build Include="Programmability\Business\Pivots\Programmability.GetMeasurementDeviceDistribution.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetIndividualAccountingFinalInstantArchives.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetIndividualAccountingFinalInstantByPeriodArchives.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetIndividualAccountingPlacementInfo.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetMeasurementResultArchives.sql" />
+    <Build Include="Business\Business.DeviceParameterSetting.sql" />
+    <Build Include="Admin\Admin.Faq.sql" />
+    <Build Include="Admin\Admin.FaqLinkRole.sql" />
+    <Build Include="Dictionaries\Dictionaries.SubsystemType.sql" />
+    <Build Include="Dictionaries\Dictionaries.ParameterDictionary.sql" />
+    <Build Include="Dictionaries\Dictionaries.ParameterDictionaryValue.sql" />
+    <None Include="Programmability\Maintenance\DoDatabaseCryptographyObjectsRecreation.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetRegulatorParameterValues.sql" />
+    <Build Include="Dictionaries\Dictionaries.ProtocolSubType.sql" />
+    <None Include="PostDeployment\CreateEveryDayJob.sql" />
+    <Build Include="Programmability\Business\Admin\Job\Programmability.DoCheckMissingConstraints.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetDashboardDiagrammArchives.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetDashboardDiagrammParameterMapDeviceParameterWithUnitCovertor.sql" />
+    <Build Include="Core\Core.ReportPluginSelector.sql" />
+    <Build Include="Dictionaries\Dictionaries.DeviceReaderType.sql" />
+    <Build Include="Programmability\Business\Common\Programmability.MeasurementUnitConverterWithDefaultMeasurementUnitView.sql" />
+    <Build Include="Programmability\Business\Admin\Query\Programmability.GetLostMeasurementDevices.sql" />
+    <Build Include="Business\Business.MeasurementDevice_InstedOf_Delete.sql" />
+    <Build Include="Programmability\DeviceReader\Tv7\Programmability.CalculateTv7StartingPoint.sql" />
+    <Build Include="Programmability\DeviceReader\Tv7\Programmability.GetTv7IntegratingParameters.sql" />
+    <Build Include="Programmability\DeviceReader\Tv7\Programmability.GetTv7MinMaxHourNotCalculatedDates.sql" />
+    <Build Include="Admin\Admin.SystemSetting.sql" />
+    <Build Include="Dictionaries\Dictionaries.InternalDeviceEvent.sql" />
+    <Build Include="Business\Business.MeasurementDeviceJournal.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetSummaryAccountingSheet.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetTv7MeasurementDeviceJournal.sql" />
+    <Build Include="Dictionaries\Dictionaries.ErrorType.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetSummaryAccountingAbstractParameters.sql" />
+    <Build Include="Dictionaries\Dictionaries.TemperatureProfile.sql" />
+    <Build Include="Dictionaries\Dictionaries.TechnologicAdjunctionType.sql" />
+    <Build Include="Dictionaries\Dictionaries.AgreementParameterType.sql" />
+    <Build Include="Business\Business.AgreementParameter.sql" />
+    <Build Include="Business\Business.ChannelLinkAgreementParameter.sql" />
+    <Build Include="Dictionaries\Dictionaries.ResourceSubsystemType.sql" />
+    <Build Include="Dictionaries\Dictionaries.SeasonType.sql" />
+    <Build Include="Business\Business.EmergencySituationParameter.sql" />
+    <Build Include="Business\Business.EmergencySituationParameterTemplate.sql" />
+    <Build Include="Dictionaries\Dictionaries.NotificationType.sql" />
+    <Build Include="Business\Business.EmergencyTimeSignature.sql" />
+    <Build Include="Business\Business.EmergencyLog.sql" />
+    <Build Include="Business\Business.EmergencyMessage.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetSummaryAccountingSheet2.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetSummaryAccountingAbstractParameters2.sql" />
+    <Build Include="Business\Business.AccessPointStatusConnectionLog.sql" />
+    <Build Include="Business\Business.MeasurementDeviceStatusConnectionLog.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetSummaryAccountingSheet3.sql" />
+    <Build Include="Core\Core.Briefcase.sql" />
+    <Build Include="Core\Core.BriefcaseItem.sql" />
+    <Build Include="Programmability\Business\QueryReports\Programmability.GetChannelsEmergencySituationParameters.sql" />
+    <Build Include="Business\Business.UserLinkEmergencyNotificationType.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetVzljot26MeasurementDeviceJournal.sql" />
+    <Build Include="Programmability\Business\OperAdmin\Programmability.GetEmergencyLogList.sql" />
+    <Build Include="WebApi\WebApi.ArchiveDownloader.sql" />
+    <Build Include="Core\Core.ScheduleItem.sql" />
+    <Build Include="Dictionaries\Dictionaries.ScheduleType.sql" />
+    <Build Include="WebApi\WebApi.ArchiveDownloaderLinkScheduleItem.sql" />
+    <Build Include="Dictionaries\Dictionaries.MeteoDataSourceType.sql" />
+    <Build Include="WebApi\WebApi.ActionRequestStatisticItem.sql" />
+    <Build Include="WebApi\WebApi.GetScheduleInfo.sql" />
+    <Build Include="Dictionaries\Dictionaries.MnemoschemeType.sql" />
+    <Build Include="Core\Core.Script.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetMnemoschemeArchives.sql" />
+    <Build Include="Business\Business.UserAdditionalInfoLinkScheduleItem.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetMnemoschemeMeasurementDeviceSummaryInfo.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetEmergencySituationSummary.sql" />
+    <Build Include="Business\Business.IntegrationArchiveInfo.sql" />
+    <Build Include="Programmability\Business\Admin\Job\Programmability.DoMemoryPressure.sql" />
+    <Build Include="Admin\Admin.UserGroup.sql" />
+    <Build Include="Business\Business.DeviceReaderLinkScheduleItem.sql" />
+    <Build Include="Programmability\Business\QueryReports\Programmability.GetSystemProtocols.sql" />
+    <Build Include="Schemas\Temp.sql" />
+    <Build Include="Programmability\Business\Tasks\Programmability.DoMeasurementDevicePollingInterval.sql" />
+    <None Include="PostDeployment\CreateSystemStartup.sql" />
+    <None Include="Programmability\Maintenance\GetSizeAllTables.sql" />
+    <Build Include="Programmability\Business\Admin\Job\Programmability.DoClearDeviceReaderLogs.sql" />
+    <Build Include="Programmability\Business\Admin\Job\Programmability.DoClearArchives.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetUnitedAccountingParamSheet.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetAccountingParamSheetStub.sql" />
+    <Build Include="Business\Business.BuildingMapResourceBuilding.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetResourceReleaseBalance.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetPreliminaryElectroWorkingDayGraphDataSource.sql" />
+    <Build Include="Programmability\Business\Admin\Job\Programmability.DoClearEmergencyLogs.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetRegulatorsTimeSlices.sql" />
+    <Build Include="Core\Core.DashboardExtentionTemplate.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetHeatEnergyConsumptionAnalysis.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetArchiveRowByDate.sql" />
+    <Build Include="Programmability\Business\Common\Programmability.GetOrganizationHeatCurves.sql" />
+    <Build Include="WebApi\WebApi.GetNativeDatabaseStructureExample.sql">
+      <SuppressTSqlWarnings>
+      </SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Business\Business.DeviceTechnicalParameter.sql" />
+    <Build Include="Programmability\DeviceReader\Vkt7\Programmability.CalculateVkt7IntegratorAfterFinalDate.sql" />
+    <Build Include="Programmability\DeviceReader\Programmability.GetAllDeviceTechnicalParameters.sql" />
+    <Build Include="Programmability\Business\OperAdminMobile\Programmability.GetBuildingListForOperAdminMobile.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetAccountingParamSheetEmergencySituations.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetIndividualAccountingPeriodicalAverageResourceConsumptionByParameter.sql" />
+    <Build Include="Programmability\Business\Dashboard\Programmability.GetIndividualAccountingFinalInstantByChannel.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetDeviceSettings.sql" />
+    <Build Include="Business\Business.MobileDevice.sql" />
+    <Build Include="Business\Business.MobileEmergencyMessage.sql" />
+    <Build Include="Business\Business.MeasurementDeviceLinkScheduleItem.sql" />
+    <Build Include="Programmability\Business\Admin\Job\Programmability.DoClearEmergencyTimeSignatures.sql" />
+    <Build Include="Programmability\Business\Reports\Programmability.GetIndividualAccountingBalanceSheet.sql" />
+    <Build Include="Business\Business.MobileGeolocationServicingMarker.sql" />
+    <Build Include="Programmability\Business\OperAdminMobile\Programmability.GetUserExtendedInfoSummary.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="EnergyTechAudit.PowerAccounting.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data">
+      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data.Entity.Design">
+      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <SqlCmdVariable Include="ClearDeploy">
+      <DefaultValue>0</DefaultValue>
+      <Value>$(SqlCmdVar__3)</Value>
+    </SqlCmdVariable>
+    <SqlCmdVariable Include="DeployTestData">
+      <DefaultValue>1</DefaultValue>
+      <Value>$(SqlCmdVar__1)</Value>
+    </SqlCmdVariable>
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\120\SqlSchemas\master.dacpac">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\120\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>True</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+    <ArtifactReference Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\120\SqlSchemas\msdb.dacpac">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\120\SqlSchemas\msdb.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>True</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>msdb</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\msdb.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\msdb.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>msdb</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Programmability\Clr\HtmlStatusConnectionBarHelper.cs" />
+    <Compile Include="Programmability\Clr\MathHelper.cs" />
+    <Compile Include="Programmability\Clr\HtmlGridHyperLink.cs" />
+    <Compile Include="Programmability\Clr\TextHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\EnergyTechAudit.PowerAccounting.Common\Math\MathParser.cs">
+      <Link>Programmability\Clr\MathParser.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDeployment\Security\ClrStrictSecurityDisable.sql" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties PostDeployment_4_3Json_4EmergencySituationParameterTemplate_4TemperSupplyPipeControl_1json__JSONSchema="http://json.schemastore.org/chrome-manifest" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

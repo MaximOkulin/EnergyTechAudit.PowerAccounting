@@ -1,0 +1,292 @@
+﻿<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   width="1400" height="700"
+	 viewBox="-30 -30 1200 600" style="enable-background:new 0 0 565 264;" xml:space="preserve"
+   description="Ключ C66 Независимое присоединение системы отопления и ГВС (обычно при централизованном теплоснабжении)"
+   deviceId="8" 
+   internalNumber="C66"
+   data-core-parameters="Monitoring.Temper.OutdoorAir,Monitoring.Temper.IndoorAir,Monitoring.Temper.SupplyPipe,Monitoring.Temper.HwsSupplyPipe,Monitoring.Temper.ReturnPipe,Monitoring.Temper.HwsReturnPipe"
+   >
+<style type="text/css">
+	.st0{fill:none;stroke:#8B0000;stroke-width:2;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#0072C6;stroke-width:2;stroke-miterlimit:10;}
+	.st2{stroke:#8B0000;stroke-width:2;stroke-miterlimit:10;}
+	.st3{fill:none;}
+	.st4{fill:#8B0000;stroke:#8B0000;stroke-width:2;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st6{font-family:Tahoma, Geneva, sans-serif;}
+	.st7{font-size:0.9em;}
+	.st8{stroke:#000000;stroke-miterlimit:10;}
+	.st9{font-family:Tahoma, Geneva, sans-serif;}
+	.st10{font-size:0.9em}
+	.st11{fill:#1D1D1B;stroke:#000000;stroke-miterlimit:10;}
+	.st12{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:11.6903,11.6903;}
+	.st13{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:10.6667,10.6667;}
+	.st14{fill:#1D1D1B;stroke:#1D1D1B;stroke-miterlimit:10;}
+	.st15{fill:#FFFFFF;stroke:#1D1D1B;stroke-miterlimit:10;}
+	.st16{fill:#0072C6;stroke:#0072C6;stroke-width:2;stroke-miterlimit:10;}
+  .error { visibility: hidden; }
+</style>
+  <script>       	
+    jQuery(Core.Common.Mnemoscheme.Selector).on(Core.Common.EventTypes.MnemoschemeWidgetManager.MnemoschemeLoadComplete, 
+		function()
+      	{      		          		
+      		Core.Common.Mnemoscheme.TextParameterRenderer = function(tagName, jQElement, parameter)
+            {
+                var splitter = " = ";
+              	var text = jQElement.text();
+              	if(text.indexOf(splitter) > 0)
+ 				        {
+ 					        text = text.split(splitter)[Number.zero];    
+ 				        }
+              
+             	  jQElement.text("{3}{4}{0} {1}{2}".format
+                   (
+						            parseFloat(parameter.value).toFixed(2),
+                       	parameter.dimensionPrefix,
+                       	parameter.measurementUnitDescription,
+                  		  text, 
+                  		  splitter
+                   )); 	 	 
+            };
+		});  	
+	</script>
+<line class="st0" x1="220.961" y1="85.752" x2="355.796" y2="85.752"/>
+<line class="st1" x1="220.961" y1="132.216" x2="549.501" y2="132.216"/>
+<line class="st1" x1="167.814" y1="129.053" x2="134.268" y2="129.053"/>
+<line class="st2" x1="394.875" y1="86.002" x2="374.989" y2="86.002"/>
+<line class="st1" x1="220.961" y1="216.316" x2="276.157" y2="216.316"/>
+<line class="st3" x1="141" y1="-140" x2="141" y2="-158.976"/>
+<line class="st3" x1="141" y1="-133" x2="141" y2="-168.464"/>
+<line class="st3" x1="-198" y1="242.815" x2="-198" y2="207.352"/>
+<line class="st3" x1="665" y1="99.78" x2="1047.822" y2="104.78"/>
+<polygon class="st4" points="18.901,73.801 27.55,77.295 18.901,80.788 "/>
+<polygon class="st5" points="98.902,211.961 112.053,216.453 98.902,220.946 "/>
+<polygon class="st5" points="125.202,220.946 112.053,216.453 125.202,211.961 "/>
+<polygon class="st5" points="89.837,213.357 98.902,216.453 89.837,219.551 "/>
+<polygon class="st5" points="134.268,219.551 125.202,216.453 134.268,213.357 "/>
+<ellipse class="st5" cx="112.053" cy="198.554" rx="9.059" ry="9.348"/>
+<line class="st5" x1="112.053" y1="208.004" x2="112.053" y2="216.453"/>
+<text transform="translate(106.8916 203.248)" class="st6 st7">M</text>
+<text transform="translate(105.2363 98.0513)" class="st6 st7">M1</text>
+<g>
+	<path class="st5" d="M86.813,46.684l9.275-7.826L86.813,46.684z"/>
+	<ellipse class="st8" cx="98.99" cy="36.433" rx="3.895" ry="3.251"/>
+</g>
+<text transform="translate(28.1011 25.8877)" class="st6 st7" data-core-parameter="Monitoring.Temper.OutdoorAir">S1</text>
+  <text transform="translate(48.1011 25.8877)" fill="darkred" class="error" data-core-parameter-error="Monitoring.Temper.OutdoorAir" style="font-family: Glyphicons">&#xe505;</text>
+<g>
+	<line class="st5" x1="112.57" y1="15.047" x2="112.57" y2="49.981"/>
+	<line class="st5" x1="119.767" y1="15.047" x2="119.767" y2="49.981"/>
+	<line class="st5" x1="112.57" y1="49.981" x2="119.752" y2="40.444"/>
+	<line class="st5" x1="117.649" y1="50.514" x2="119.752" y2="47.722"/>
+	<line class="st5" x1="112.57" y1="42.703" x2="119.752" y2="33.166"/>
+	<line class="st5" x1="112.57" y1="35.426" x2="119.752" y2="25.888"/>
+	<line class="st5" x1="112.57" y1="28.148" x2="119.752" y2="18.609"/>
+	<line class="st5" x1="112.57" y1="20.869" x2="116.568" y2="15.56"/>
+</g>
+<g>
+	<rect x="198.355" y="21.963" class="st5" width="57.979" height="24.72"/>
+	<rect x="198.355" y="28.34" class="st5" width="57.979" height="12.009"/>
+	<line class="st5" x1="220.097" y1="28.34" x2="220.097" y2="40.348"/>
+	<line class="st5" x1="237.698" y1="28.34" x2="237.698" y2="40.348"/>
+	<ellipse class="st5" cx="247.016" cy="34.328" rx="4.271" ry="3.566"/>
+	<ellipse class="st5" cx="247.016" cy="34.323" rx="5.823" ry="4.863"/>
+	<path class="st5" d="M252.839,28.437c0,0,1.844,2.647,1.844,5.701c0,3.053-1.844,6.024-1.844,6.024"/>
+</g>
+<text transform="translate(201 17.189)" class="st6 st7">ECL 300</text>
+<rect x="291.535" y="34.344" class="st5" width="14.753" height="2.091"/>
+<path class="st5" d="M291.535,34.344c0,0,1.491,0.039,2.212-0.972c0.72-1.01,2.014-5.003,2.447-6.089
+	c0.388-1.153,1.131-1.763,2.941-1.763c1.814,0,2.408,0.664,2.795,1.907c0.388,1.242,1.597,4.539,2.027,5.691
+	c0.431,1.153,2.329,1.225,2.329,1.225"/>
+<path class="st8" d="M301.015,36.435c0,0.971-0.938,1.757-2.103,1.757c-1.161,0-2.102-0.786-2.102-1.757c0,0,0.941,0,2.102,0
+	C300.075,36.435,301.015,36.435,301.015,36.435z"/>
+<text transform="translate(293.5166 50)" class="st9 st10">R4</text>
+<polygon class="st5" points="98.902,124.559 112.053,129.053 98.902,133.543 "/>
+<polygon class="st5" points="125.202,133.543 112.053,129.051 125.202,124.559 "/>
+<polygon class="st5" points="89.837,125.955 98.902,129.053 89.837,132.148 "/>
+<polygon class="st5" points="134.268,132.148 125.202,129.051 134.268,125.955 "/>
+<ellipse class="st5" cx="112.053" cy="110.828" rx="9.059" ry="9.654"/>
+<line class="st5" x1="112.053" y1="120.601" x2="112.053" y2="129.053"/>
+<text transform="translate(106.8916 114.8472)" class="st6 st7">M</text>
+<line class="st1" x1="89.837" y1="216.316" x2="56.531" y2="216.316"/>
+<text transform="translate(105.2363 185.3779)" class="st6 st7">M2</text>
+<line class="st1" x1="89.837" y1="129.053" x2="8.5" y2="129.053"/>
+<g>
+	<line class="st2" x1="168.079" y1="77.55" x2="8.5" y2="77.55"/>
+</g>
+<line class="st5" x1="174.549" y1="135.43" x2="165.418" y2="125.955"/>
+<ellipse class="st8" cx="164.063" cy="124.388" rx="2.319" ry="1.936"/>
+<text transform="translate(135.6385 147.0083)" class="st6 st7" data-core-parameter="Monitoring.Temper.ReturnPipe">S4</text>
+  <text transform="translate(155.6385 147.0083)" fill="darkred" class="error" data-core-parameter-error="Monitoring.Temper.ReturnPipe" style="font-family: Glyphicons">&#xe505;</text>
+<line class="st5" x1="215.051" y1="175.858" x2="224.327" y2="168.033"/>
+<text transform="translate(229.1076 159.4805)" class="st6 st7" data-core-parameter="Monitoring.Temper.HwsSupplyPipe">S5</text>
+  <text transform="translate(249.1076 159.4805)" fill="darkred" class="error" data-core-parameter-error="Monitoring.Temper.HwsSupplyPipe" style="font-family: Glyphicons">&#xe505;</text>
+<rect x="167.814" y="73.456" class="st5" width="53.146" height="63.4"/>
+<g>
+	<line class="st5" x1="167.814" y1="136.856" x2="220.961" y2="73.456"/>
+</g>
+<g>
+	<line class="st0" x1="168.079" y1="164.305" x2="72.979" y2="164.305"/>
+</g>
+<rect x="167.814" y="159.839" class="st5" width="53.146" height="63.4"/>
+<g>
+	<line class="st5" x1="167.814" y1="223.238" x2="220.961" y2="159.837"/>
+</g>
+<line class="st5" x1="174.549" y1="221.478" x2="165.418" y2="213.357"/>
+<text transform="translate(135.6385 237.0404)" class="st6 st7" data-core-parameter="Monitoring.Temper.HwsReturnPipe">S6</text>
+  <text transform="translate(155.6385 237.0404)" fill="darkred" class="error" data-core-parameter-error="Monitoring.Temper.HwsReturnPipe" style="font-family: Glyphicons">&#xe505;</text>
+<line class="st5" x1="214.319" y1="90.795" x2="223.595" y2="82.97"/>
+<text transform="translate(229.1074 74.874)" class="st6 st7" data-core-parameter="Monitoring.Temper.SupplyPipe">S3</text>
+  <text transform="translate(249.1074 74.874)" fill="darkred" class="error" data-core-parameter-error="Monitoring.Temper.SupplyPipe" style="font-family: Glyphicons">&#xe505;</text>
+<g>
+	<ellipse class="st5" cx="365.393" cy="86.002" rx="9.596" ry="9.041"/>
+	<polygon class="st8" points="367.354,82.7 373.422,86.001 367.354,89.303 	"/>
+</g>
+<rect x="434.66" y="89.573" class="st5" width="72.221" height="34.759"/>
+<line class="st5" x1="499.972" y1="92.507" x2="499.972" y2="119.49"/>
+<line class="st5" x1="487.921" y1="92.474" x2="487.921" y2="119.457"/>
+<line class="st5" x1="475.964" y1="92.539" x2="475.964" y2="119.523"/>
+<line class="st5" x1="463.352" y1="92.457" x2="463.352" y2="119.44"/>
+<line class="st5" x1="451.395" y1="92.523" x2="451.395" y2="119.505"/>
+<line class="st5" x1="439.344" y1="92.491" x2="439.344" y2="119.474"/>
+<line class="st5" x1="434.66" y1="90.864" x2="434.66" y2="124.474"/>
+<ellipse class="st5" cx="410.133" cy="91.561" rx="6.853" ry="5.842"/>
+<polygon class="st8" points="405.962,93.758 409.905,88.573 413.846,93.758 "/>
+<line class="st0" x1="549.471" y1="127.527" x2="394.297" y2="127.527"/>
+<line class="st0" x1="394.297" y1="128.5" x2="394.157" y2="85.752"/>
+<line class="st0" x1="410.133" y1="127.527" x2="410.133" y2="97.795"/>
+<line class="st0" x1="416.987" y1="90.914" x2="434" y2="90.864"/>
+<line class="st1" x1="507.625" y1="121.374" x2="512.5" y2="121.374"/>
+<line class="st1" x1="511.404" y1="121.374" x2="511.404" y2="124.177"/>
+<line class="st1" x1="511.819" y1="129.188" x2="511.819" y2="132.216"/>
+<path class="st5" d="M220.097,171.642"/>
+<g>
+	<path class="st5" d="M366.701,161.388"/>
+</g>
+<path class="st5" d="M506.438,175.463"/>
+<path class="st5" d="M434.218,175.463"/>
+<path class="st5" d="M409.69,173.224"/>
+<path class="st8" d="M409.69,174.446"/>
+<path class="st5" d="M393.715,171.642"/>
+<path class="st5" d="M220.961,218.106"/>
+<path class="st5" d="M393.761,171.642"/>
+<g>
+	<path class="st5" d="M433.881,162.559"/>
+</g>
+<line class="st1" x1="167.814" y1="216.453" x2="134.268" y2="216.453"/>
+<line class="st1" x1="56.531" y1="129.403" x2="56.531" y2="216.316"/>
+<line class="st3" x1="72.979" y1="77.55" x2="72.979" y2="124.559"/>
+<line class="st3" x1="72.979" y1="133.543" x2="72.979" y2="164.305"/>
+<line class="st3" x1="72.979" y1="164.305" x2="72.979" y2="195.066"/>
+<line class="st3" x1="72.979" y1="180.711" x2="72.979" y2="144.816"/>
+<line class="st3" x1="72.979" y1="161.942" x2="72.979" y2="135.946"/>
+<line class="st3" x1="72.979" y1="159.481" x2="72.979" y2="128.82"/>
+<line class="st3" x1="72.979" y1="128.82" x2="72.979" y2="153.739"/>
+<line class="st0" x1="72.979" y1="132.148" x2="72.979" y2="164.305"/>
+<line class="st0" x1="72.979" y1="77.55" x2="72.979" y2="122.154"/>
+<line class="st1" x1="56.531" y1="129.403" x2="56.531" y2="172.454"/>
+<g>
+	<g>
+		<line class="st5" x1="500" y1="171.642" x2="506" y2="171.642"/>
+		<line class="st5" x1="518" y1="171.642" x2="524" y2="171.642"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st5" x1="486" y1="171.642" x2="492" y2="171.642"/>
+		<line class="st5" x1="494" y1="171.642" x2="500" y2="171.642"/>
+	</g>
+</g>
+<line class="st0" x1="220.097" y1="171.642" x2="486" y2="171.642"/>
+<polygon class="st11" points="276.157,211.823 289.308,216.315 276.157,220.809 "/>
+<polygon class="st5" points="302.457,220.809 289.308,216.315 302.457,211.823 "/>
+<line class="st5" x1="240" y1="216.453" x2="240" y2="248.5"/>
+<line class="st5" x1="240" y1="248.5" x2="276.157" y2="248.5"/>
+<polygon class="st11" points="276.158,244.008 289.309,248.5 276.158,252.993 "/>
+<polygon class="st5" points="302.458,252.993 289.309,248.5 302.458,244.008 "/>
+<path class="st5" d="M293.102,389.604c-1.211-1.509-2.519-2.935-3.916-4.267"/>
+<line class="st1" x1="302.756" y1="216.454" x2="356.4" y2="216.316"/>
+<g>
+	<g>
+		<line class="st5" x1="383.406" y1="216.316" x2="389.406" y2="216.322"/>
+		<line class="st12" x1="401.097" y1="216.334" x2="512.155" y2="216.442"/>
+		<line class="st5" x1="518" y1="216.448" x2="524" y2="216.454"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st5" x1="524" y1="216.454" x2="524" y2="210.454"/>
+		<line class="st13" x1="524" y1="199.787" x2="524" y2="183.787"/>
+		<line class="st5" x1="524" y1="178.454" x2="524" y2="172.454"/>
+	</g>
+</g>
+<text transform="translate(342.1436 234.4766)" class="st6 st7">P3</text>
+<text transform="translate(360.3369 107.669)" class="st6 st7">P1</text>
+<rect x="365.393" y="27.645" class="st5" width="37.887" height="14.024"/>
+<line class="st5" x1="369.008" y1="27.645" x2="369.008" y2="41.981"/>
+<line class="st5" x1="384.335" y1="27.645" x2="384.335" y2="41.815"/>
+<ellipse class="st5" cx="393.401" cy="34.813" rx="5.138" ry="4.836"/>
+<path class="st5" d="M398.182,27.645c0,0,2.094,4.695,2.094,7.708c0,3.011-0.689,5.943-0.689,5.943"/>
+<path class="st5" d="M427.807,182.8"/>
+<path class="st5" d="M403.279,180.561"/>
+<path class="st8" d="M403.279,181.783"/>
+<path class="st5" d="M466.564,184.028"/>
+<path class="st5" d="M466.564,184.028"/>
+<path class="st5" d="M439.267,180.561"/>
+<path class="st8" d="M439.267,181.783"/>
+<path class="st5" d="M473.873,181.789"/>
+<path class="st8" d="M473.873,183.012"/>
+<g>
+	<line class="st5" x1="406.885" y1="171.642" x2="406.884" y2="187.023"/>
+	<line class="st5" x1="406.3" y1="186.667" x2="414.127" y2="186.667"/>
+	<g>
+		<ellipse class="st8" cx="421.834" cy="186.42" rx="1.645" ry="2.432"/>
+		<rect x="421.575" y="179.329" class="st8" width="0.518" height="4.661"/>
+		<rect x="417.55" y="176.695" class="st14" width="8.568" height="2.634"/>
+		<path class="st8" d="M430.551,193.96c0,0-0.201-5.79-8.976-5.894c0-2.702,0-2.702,0-2.702c12.458,0.289,10.564,8.596,10.564,8.596
+			C431.315,193.96,430.551,193.96,430.551,193.96z"/>
+		<rect x="413.61" y="185.364" class="st8" width="7.965" height="2.678"/>
+	</g>
+</g>
+<rect x="153" y="519.29" class="st15" width="68.611" height="13.21"/>
+<path class="st5" d="M464.561,183.324"/>
+<path class="st5" d="M501.503,184.879"/>
+<path class="st5" d="M501.503,184.879"/>
+<path class="st5" d="M499.5,184.175"/>
+<g>
+	<line class="st5" x1="440.866" y1="172.165" x2="440.865" y2="187.546"/>
+	<line class="st5" x1="440.281" y1="187.19" x2="448.108" y2="187.19"/>
+	<g>
+		<ellipse class="st8" cx="455.815" cy="186.943" rx="1.645" ry="2.432"/>
+		<rect x="455.557" y="179.853" class="st8" width="0.518" height="4.661"/>
+		<rect x="451.531" y="177.219" class="st14" width="8.568" height="2.634"/>
+		<path class="st8" d="M464.532,194.483c0,0-0.201-5.79-8.976-5.894c0-2.702,0-2.702,0-2.702
+			c12.458,0.289,10.564,8.596,10.564,8.596C465.297,194.483,464.532,194.483,464.532,194.483z"/>
+		<rect x="447.592" y="185.888" class="st8" width="7.965" height="2.678"/>
+	</g>
+</g>
+<g>
+	<line class="st5" x1="474.728" y1="172.448" x2="474.727" y2="187.829"/>
+	<line class="st5" x1="474.144" y1="187.474" x2="481.971" y2="187.474"/>
+	<g>
+		<ellipse class="st8" cx="489.678" cy="187.227" rx="1.645" ry="2.432"/>
+		<rect x="489.419" y="180.136" class="st8" width="0.518" height="4.661"/>
+		<rect x="485.394" y="177.502" class="st14" width="8.568" height="2.634"/>
+		<path class="st8" d="M498.395,194.767c0,0-0.201-5.79-8.976-5.894c0-2.702,0-2.702,0-2.702
+			c12.458,0.289,10.564,8.596,10.564,8.596C499.159,194.767,498.395,194.767,498.395,194.767z"/>
+		<rect x="481.454" y="186.171" class="st8" width="7.965" height="2.678"/>
+	</g>
+</g>
+<line class="st5" x1="302.756" y1="248.5" x2="367.144" y2="248.5"/>
+<text transform="translate(409.6904 32.5142)" class="st6 st7" data-core-parameter="Monitoring.Temper.IndoorAir">T комн</text>
+  <text transform="translate(459.6904 32.5142)" fill="darkred" class="error" data-core-parameter-error="Monitoring.Temper.IndoorAir" style="font-family: Glyphicons">&#xe505;</text>
+<polygon class="st16" points="23.226,125.326 14.577,128.82 23.226,132.313 "/>
+<ellipse class="st8" cx="163.1" cy="211.823" rx="2.319" ry="1.936"/>
+<ellipse class="st8" cx="225.914" cy="167.157" rx="2.319" ry="1.936"/>
+<ellipse class="st8" cx="225.1" cy="81.823" rx="2.319" ry="1.936"/>
+<polygon class="st8" points="375.497,245.006 366.848,248.5 375.497,251.994 "/>
+<g>
+	<ellipse class="st5" cx="365.393" cy="216.316" rx="9.596" ry="9.041"/>
+	<polygon class="st8" points="363.431,213.015 357.363,216.316 363.431,219.618 	"/>
+</g>
+</svg>

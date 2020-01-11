@@ -1,0 +1,104 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>dashboardCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>450</Width>
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>showHistory</Name>
+    <CommandName>showHistory</CommandName>
+    <ToolTip>Показать историю изменений</ToolTip>
+    <IconClass>font-icon-history font-icon-color-darkred font-icon-x1_3</IconClass>
+    <Visible>false</Visible>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>gotoMap</Name>
+    <ToolTip>Перейти к карте объектов</ToolTip>
+    <Text />
+    <CommandName>gotoMap</CommandName>
+    <IconClass>font-icon-map font-icon-x1_2 font-icon-color-red indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>showOnMap</Name>
+    <ToolTip>Показать строение на карте</ToolTip>
+    <CommandName>showOnMap</CommandName>
+    <Text />
+    <IconClass>font-icon-location-map font-icon-x1_3 font-icon-moor indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>gotoEntityTree</Name>
+    <ToolTip>Синхронизировать с деревом</ToolTip>
+    <CommandName>gotoEntityTree</CommandName>
+    <IconClass>font-icon-tree font-icon-x1_2 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>showOptions</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <ToolTip>Настройки</ToolTip>
+    <CommandName>showOptions</CommandName>
+    <Text />
+    <IconClass>font-icon-options font-icon-x1_2 font-icon-darkslateblue indent-right-5px</IconClass>
+    <CommandMenuItem>
+      <Name>showParameters</Name>
+      <Text>Выбрать параметры...</Text>
+      <CommandName>showParameters</CommandName>
+      <IconClass>font-icon-abstract-parameter font-icon-x1_2 font-icon-darkmagenta indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Name>showInterval</Name>
+      <Text>Временной интервал...</Text>
+      <CommandName>showInterval</CommandName>
+      <IconClass>font-icon-interval font-icon-x1_3 font-icon-black indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>showDiagrammDialog</Name>
+    <CommandName>showDiagrammDialog</CommandName>
+    <ToolTip>Диаграммы</ToolTip>
+    <IconClass>font-icon-charts font-icon-x1_2 font-icon-lightblue</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>showArchiveJournal</Name>
+    <CommandName>showArchiveJournal</CommandName>
+    <AdditionalInfo>Archive</AdditionalInfo>
+    <ToolTip>Журнал архивов устройства</ToolTip>
+    <IconClass>font-icon-archive font-icon-x1_2 font-icon-orangered</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>readCurrents</Name>
+    <CommandName>readCurrents</CommandName>
+    <IconClass>font-icon-read-currents font-icon-darkgreen font-icon-x1_2</IconClass>
+    <ToolTip>Чтение текущих значений</ToolTip>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>checkConnection</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>checkConnection</CommandName>
+    <IconClass>font-icon-checkconnection font-icon-color-darkred indent-right-5px</IconClass>
+    <ToolTip>Проверка связи</ToolTip>
+    <CommandMenuItem>
+      <Name>checkConnectionWithMeasurementDevice</Name>
+      <Text>Проверка связи с устройством</Text>
+      <CommandName>checkConnectionWithMeasurementDevice</CommandName>
+      <IconClass>font-icon-measurement-device font-icon-darkslateblue indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Name>checkConnectionWithAccessPoint</Name>
+      <Text>Проверка связи с точкой доступа</Text>
+      <CommandName>checkConnectionWithAccessPoint</CommandName>
+      <IconClass>font-icon-access-point font-icon-color-darkred indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>  
+  <CommandMenuItem>
+    <Name>gotoDashboardInNewTab</Name>
+    <CommandName>gotoDashboardInNewTab</CommandName>
+    <ToolTip>Открыть в новой вкладке...</ToolTip>
+    <IconClass>font-icon-new-window font-icon-darkred font-icon-x1_2</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>Active{0}_{1}</value>
+  </data>
+  <data name="ASC" xml:space="preserve">
+    <value>{0} ASC</value>
+  </data>
+  <data name="CallGetAllDeviceTechnicalParametersSP" xml:space="preserve">
+    <value>EXEC [Programmability].[GetAllDeviceTechnicalParameters] @measurementDeviceId={0}</value>
+  </data>
+  <data name="DateStringInSqlStyle" xml:space="preserve">
+    <value>{0:D4}{1:D2}{2:D2} {3:D2}:{4:D2}:{5:D2}</value>
+  </data>
+  <data name="DESC" xml:space="preserve">
+    <value>{0} DESC</value>
+  </data>
+  <data name="DiffParameter" xml:space="preserve">
+    <value>{0}.Diff</value>
+  </data>
+  <data name="EmergencyParameterColumn" xml:space="preserve">
+    <value>{0}.EmergencyParameter</value>
+  </data>
+  <data name="ErrorInfoColumn" xml:space="preserve">
+    <value>{0}.ErrorInfo</value>
+  </data>
+  <data name="HourMinuteSecondFormat" xml:space="preserve">
+    <value>{0:d2}:{1:d2}:{2:d2} (час:мин:сек)</value>
+  </data>
+  <data name="IrvisDayTimeString" xml:space="preserve">
+    <value>{0:00}.{1:00}-{2:00}.{3:00}</value>
+  </data>
+  <data name="IrvisHourTimeString" xml:space="preserve">
+    <value>{0:00}.{1:00} {2:00}:00-{3:00}.{4:00} {5:00}:00</value>
+  </data>
+  <data name="Km5ErrorsPluginErrorDaysCondition" xml:space="preserve">
+    <value>IsValidRowState = true and {0}.Time.Normal.Diff is not null and {0}.Time.Normal.Diff &lt; 24</value>
+    <comment>Условие отбора дней с временем наработки меньше, чем 24 часа</comment>
+  </data>
+  <data name="Km5ErrorsPluginErrorsCondition" xml:space="preserve">
+    <value>Time &gt; '{0:o}' and Time &lt; '{1:o}'</value>
+    <comment>Условие отбора ошибок КМ-5 из таблицы ErrorsData за выбранный день</comment>
+  </data>
+  <data name="Km5ErrorsResultInfoString" xml:space="preserve">
+    <value>{0, -25} (U) {1, -40}{2}{3, -25} (E) {4, -40}{5}{6,-25} (D) {7, -40}{8}{9, -25} (g) {10, -40}{11}{12, -25} (G) {13, -40}</value>
+    <comment>Результирующая информационная строка об ошибках КМ-5</comment>
+  </data>
+  <data name="MinuteFormat" xml:space="preserve">
+    <value> {0} мин</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>{0}.Next</value>
+  </data>
+  <data name="PeriodAfterReset" xml:space="preserve">
+    <value>Время работы прибора после сброса {0} ч{1}</value>
+  </data>
+  <data name="PeriodBeginSql" xml:space="preserve">
+    <value>periodBegin = '{0}'</value>
+  </data>
+  <data name="PeriodEndSql" xml:space="preserve">
+    <value>periodEnd = '{0}'</value>
+  </data>
+  <data name="Reactive" xml:space="preserve">
+    <value>Reactive{0}_{1}</value>
+  </data>
+  <data name="SelectByTimeColumnCondition" xml:space="preserve">
+    <value>{1} = '{0:o}'</value>
+  </data>
+  <data name="SelectByTimeColumnCondition2" xml:space="preserve">
+    <value>Time = '{0:o}'</value>
+  </data>
+  <data name="TimeDenial" xml:space="preserve">
+    <value>{0}.Time.Denial</value>
+  </data>
+  <data name="TimeDenialDiff" xml:space="preserve">
+    <value>{0}.Time.Denial.Diff</value>
+  </data>
+  <data name="TimeDenialPeriod" xml:space="preserve">
+    <value>Период отсутст. счета{0} {1} ч{2}</value>
+  </data>
+  <data name="TimeNormal" xml:space="preserve">
+    <value>{0}.Time.Normal</value>
+  </data>
+  <data name="TimeNormalDiff" xml:space="preserve">
+    <value>{0}.Time.Normal.Diff</value>
+  </data>
+  <data name="TimeNormalPeriod" xml:space="preserve">
+    <value>Период нормальной работы {0} ч{1}</value>
+  </data>
+  <data name="V" xml:space="preserve">
+    <value>V{0}_{1}</value>
+  </data>
+  <data name="Avg" xml:space="preserve">
+    <value>AVG([{0}])</value>
+  </data>
+  <data name="HeatTotal" xml:space="preserve">
+    <value>{0}.Heat.Total</value>
+  </data>
+  <data name="HeatTotalDiff" xml:space="preserve">
+    <value>{0}.Heat.Total.Diff</value>
+  </data>
+  <data name="HeatTotalNext" xml:space="preserve">
+    <value>{0}.Heat.Total.Next</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>Channel{0}</value>
+  </data>
+</root>

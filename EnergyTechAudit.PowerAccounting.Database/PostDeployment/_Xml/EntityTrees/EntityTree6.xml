@@ -1,0 +1,39 @@
+﻿<EntityTreeRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EntityTree.xsd">
+  <Title>Строения</Title>
+  <EntityTypeName>Building</EntityTypeName>
+  
+  <IconClass>et-b</IconClass>
+  <Visible>false</Visible>
+  <Script>
+    <Id>6</Id>
+  </Script>
+  <EntityTreeInverseProperties>    
+    <EntityTreeInverseProperty>UserLinksChannel.User</EntityTreeInverseProperty>
+    <EntityTreeInverseProperty>Placement.PlacementPurpose</EntityTreeInverseProperty>    
+  </EntityTreeInverseProperties>
+  <EntityTreeNodes>
+    <EntityTreeNode >
+      <EntityTypeName>Placement</EntityTypeName>
+      <Property>Placements</Property>
+      <CustomPropertyChain>Placements.PlacementPurpose</CustomPropertyChain>
+      <IconClass>et-pl</IconClass>
+      <Visible>true</Visible>
+      <EntityTreeNodes>
+        <EntityTreeNode>
+          <EntityTypeName>Channel</EntityTypeName>
+          <Property>Channels</Property>                    
+          <Visible>false</Visible>
+          <EntityTreeNodes>
+            <EntityTreeNode>
+              <EntityTypeName>MeasurementDevice</EntityTypeName>
+              <Property>MeasurementDevice</Property>              
+              <IconClass>et-md</IconClass>
+              <Visible>true</Visible>
+            </EntityTreeNode>
+          </EntityTreeNodes>
+        </EntityTreeNode>
+      </EntityTreeNodes>
+    </EntityTreeNode>
+    
+  </EntityTreeNodes>
+</EntityTreeRoot>

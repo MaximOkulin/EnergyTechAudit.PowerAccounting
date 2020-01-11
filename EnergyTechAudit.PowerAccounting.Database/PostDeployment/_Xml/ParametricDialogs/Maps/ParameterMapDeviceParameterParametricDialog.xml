@@ -1,0 +1,462 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  
+  <!--Описывает диалоговое окно для ручного ввода компонентов адреса на форме "Строения"-->
+  <Id>parameterMapDeviceParameterParametricDialog</Id>
+  <Height>0</Height>
+  <Width>450</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <Title>Добавление ассоциации параметра</Title>
+  <IsSavedState>false</IsSavedState>
+  <Descriptors>
+
+    <FormLayoutItemDescriptor ClientVisible="false">
+      <Caption></Caption>
+      <Name>IHistoryChangeTrackEntity</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <Value></Value>     
+    </FormLayoutItemDescriptor>
+    
+    <!--Наличие данного скрытого параметра будет требовать проброса Id конкретной модели прибора-->
+    <FormLayoutItemDescriptor>
+      <Caption></Caption>
+      <Name>DeviceId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <Value>0</Value>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption></Caption>
+      <Name>ResourceSystemTypeId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <Value>0</Value>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Параметр</Caption>
+      <Name>ParameterId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [P].[Id] [Id],
+          [P].[Code] [Code],
+          [P].[Description] [Description]
+          FROM [Dictionaries].[Parameter] [P] WITH(NOLOCK)
+          WHERE [P].[ResourceSystemTypeId] = @resourceSystemTypeId
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>40</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>150</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+
+      </FormLayoutItemListBoxSetting>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+        
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Тип периода</Caption>
+      <Name>PeriodTypeId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [P].[Id] [Id],
+          [P].[Code] [Code],
+          [P].[Description] [Description]
+          FROM [Dictionaries].[PeriodType] [P] WITH(NOLOCK)
+
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>150</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+
+      </FormLayoutItemListBoxSetting>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+
+    </FormLayoutItemDescriptor>
+   
+    <FormLayoutItemDescriptor>
+      <Caption>Единица измерения</Caption>
+      <Name>MeasurementUnitId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <Value>1</Value>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [Mu].[Id] [Id],
+          [Mu].[Code] [Code],
+          [Mu].[Description]
+          FROM [Dictionaries].[MeasurementUnit] [Mu] WITH(NOLOCK)
+        </DataSourceQuery>
+
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>100</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>200</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{2}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Размерность</Caption>
+      <Name>DimensionId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <Value>1</Value>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [Dm].[Id] [Id],
+          [Dm].[Code] [Code],
+          CONCAT(''['', [Dm].[Description], '']'', '' ['', [Dm].[Value], '']'') [Description]
+          FROM [Dictionaries].[Dimension] [Dm] WITH(NOLOCK)
+
+        </DataSourceQuery>
+        
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>100</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>200</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <Value>0</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{2}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Параметр прибора</Caption>
+      <Name>DeviceParameterId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [Dp].[Id] [Id],
+          [Dp].[Code] [Code],
+          [Dp].[Description] [Description]
+          FROM [Dictionaries].[DeviceParameter] [Dp] WITH(NOLOCK)
+          WHERE [Dp].[DeviceId] = @deviceId
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>40</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>200</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+
+      </FormLayoutItemListBoxSetting>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+
+    </FormLayoutItemDescriptor>
+    <FormLayoutItemDescriptor>
+      <Caption>Тип подсистемы</Caption>
+      <Name>SubsystemTypeId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [P].[Id] [Id],
+          [P].[Code] [Code],
+          [P].[Description] [Description]
+          FROM [Dictionaries].[SubsystemType] [P] WITH(NOLOCK)
+          ORDER BY [Id] DESC
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>150</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+
+      </FormLayoutItemListBoxSetting>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Словарь значений</Caption>
+      <Name>ParameterDictionaryId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          DISTINCT [P].[Id] [Id],
+          [P].[Description] [Description]
+          FROM [Dictionaries].[ParameterDictionary] [P] WITH(NOLOCK)
+          INNER JOIN [Dictionaries].[ParameterDictionaryValue] [PDV] WITH(NOLOCK) ON [P].[Id] = [PDV].[ParameterDictionaryId] OR [P].[Id] = 1
+          WHERE [PDV].[DeviceId] = @deviceId
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+
+      </FormLayoutItemListBoxSetting>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Порядок</Caption>
+      <Name>Order</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>SpinEdit</NestedExtension>
+      <Value>1</Value>
+    </FormLayoutItemDescriptor>
+    
+  </Descriptors>
+</ParametricDialog>

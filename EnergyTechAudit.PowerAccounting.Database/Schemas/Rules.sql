@@ -1,0 +1,2 @@
+﻿CREATE SCHEMA [Rules] AUTHORIZATION [dbo];
+

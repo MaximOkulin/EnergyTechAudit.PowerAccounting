@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="EntityTreeRoot">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Title" type="xs:string"/>
+        <xs:element name="EntityTypeName" type="xs:string"/>
+        <xs:element minOccurs="0" name="InjectedCss" type="xs:string"/>
+        <xs:element minOccurs="0" name="IconClass" type="xs:string"/>
+        <xs:element name="Visible" type="xs:boolean" minOccurs="1"/>
+        <xs:element minOccurs="0" ref="PropertyCustomizerExpression"/>
+        <xs:element minOccurs="0" name="EntityTreeDictionaries">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="EntityTreeDictionary" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="EntityTreeInverseProperties">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="EntityTreeInverseProperty"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="EntityTreeNodes">
+          <xs:complexType>
+            <xs:sequence minOccurs="0">
+              <xs:element maxOccurs="unbounded" minOccurs="0" ref="EntityTreeNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Script">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id" type="xs:integer"/>
+        <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="Language" type="xs:string"/>
+        <xs:element minOccurs="0" name="Template" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PropertyCustomizerExpression">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Expression" type="xs:string"/>
+        <xs:element minOccurs="0" ref="Script"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EntityTreeNodeCollectionSorterInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="KeySelectorExpression" type="xs:string"/>
+        <xs:element name="KeySelectorType">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="String"/>
+              <xs:enumeration value="Int32"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Ascending" type="xs:boolean"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EntityTreeNode">
+    <xs:complexType>
+      <xs:sequence maxOccurs="1" minOccurs="1">
+        <xs:element name="EntityTypeName" type="xs:string"/>
+        <xs:element name="Property" type="xs:string"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="EntityTreeNodeCollectionSorterInfo"/>
+        <xs:element minOccurs="0" name="CustomPropertyChain" type="xs:string"/>
+        <xs:element minOccurs="0" name="IconClass" type="xs:string"/>
+        <xs:element name="Visible" type="xs:boolean"/>
+        <xs:element minOccurs="0" ref="PropertyCustomizerExpression"/>
+        <xs:element minOccurs="0" name="EntityTreeNodes">
+          <xs:complexType>
+            <xs:sequence minOccurs="0">
+              <xs:element maxOccurs="unbounded" minOccurs="0" ref="EntityTreeNode"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

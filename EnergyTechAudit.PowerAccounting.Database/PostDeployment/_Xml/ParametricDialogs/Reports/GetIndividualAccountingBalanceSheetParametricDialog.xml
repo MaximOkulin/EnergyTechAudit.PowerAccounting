@@ -1,0 +1,293 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+	<!-- Parametric of the GetIndividualAccountingBalanceSheet report  -->
+	<Id>getIndividualAccountingBalanceSheetParametricDialog</Id>
+	<Height>100</Height>
+	<Width>400</Width>
+	<Buttons>
+		<DialogButton>
+			<Title>OK</Title>
+			<Order>0</Order>
+			<DialogModalResult>Ok</DialogModalResult>
+		</DialogButton>
+		<DialogButton>
+			<Title>Отмена</Title>
+			<Order>1</Order>
+			<DialogModalResult>Cancel</DialogModalResult>
+		</DialogButton>
+	</Buttons>
+	<AllowResize>true</AllowResize>
+  <ScrollBars>None</ScrollBars>
+	<Title>Параметры</Title>
+	<CloseAction>CloseButton</CloseAction>
+	<IsSavedState>true</IsSavedState>
+	<IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+	<InitScript HasEscapedContent="true">
+    <![CDATA[
+    function(sender, args)
+    {     
+        const dxEntityTree = Core.Helpers.DevExpress.getDxControlByName("entityTree");
+        let resultNode = null, resultEntityInfo = null;
+
+        if (dxEntityTree)
+        {
+            var selectedNode = dxEntityTree.GetSelectedNode();
+
+            var searchPredicate = function(leafNode)
+            {
+                if (resultNode === null)
+                {
+                    var entityInfoFromEntityInfo =
+                        Core.Helpers.DevExpress.dxTreeViewGetEntityInfoFromNode(leafNode);
+
+                    if (entityInfoFromEntityInfo)
+                    {
+                        if (entityInfoFromEntityInfo.entityTypeName ==
+                            Core.Common.Entities.Business.Building)
+                        {
+                            resultNode = leafNode;
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            };
+
+            if (selectedNode)
+            {
+                var entityInfoFromEntityInfo = Core.Helpers.DevExpress.dxTreeViewGetEntityInfoFromNode(selectedNode);
+                if (entityInfoFromEntityInfo)
+                {
+                    if (entityInfoFromEntityInfo.entityTypeName == Core.Common.Entities.Business.Building)
+                    {
+                        resultNode = selectedNode;
+                    }
+                }
+
+                if (!resultNode)
+                {
+                    Core.Helpers.DevExpress.dxTreeViewNodeUpTraverse(selectedNode, searchPredicate);
+
+                    if (!resultNode)
+                    {
+                        Core.Helpers.DevExpress.dxTreeViewNodeDownTraverse(selectedNode, searchPredicate);
+                    }
+                }
+            } else
+            {
+                Core.Helpers.DevExpress.dxTreeViewNodeDownTraverse(dxEntityTree.GetRootNode(), searchPredicate);
+            }
+            Core.Helpers.DevExpress.dxTreeViewMakeNodeVisible(resultNode);
+
+            resultEntityInfo = Core.Helpers.DevExpress.dxTreeViewGetEntityInfoFromNode(resultNode);
+        }
+        
+      sender.Shown.AddHandler(function(s, a)
+      {                 
+        const
+          parametricDialogInstanse = Core.Dialogs.ParametricDialog.prototype.currentInstance,                
+          periodBeginControlDefaultValue = (new Date()).addDays(-1),
+          periodEndControlDefaultValue = new Date(),                   
+          periodBeginControl = parametricDialogInstanse.getControlByParameterName("periodBegin"),
+          periodEndControl = parametricDialogInstanse.getControlByParameterName("periodEnd"),         
+          dxButtonOk = parametricDialogInstanse.getModalResultButton(Core.Resources.Dialogs.DialogModalResults.Ok);
+
+          dxButtonOk.SetEnabled(false);
+            
+        if(periodBeginControl !== null && (periodBeginControl.GetValue() === null || periodBeginControl.GetValue().valueOf() === (new Date(0)).valueOf()))
+        {
+          periodBeginControl.SetValue(periodBeginControlDefaultValue);
+        }
+        if(periodEndControl !== null && (periodEndControl.GetValue() === null || periodEndControl.GetValue().valueOf() === (new Date(0)).valueOf()))
+        {
+          periodEndControl.SetValue(periodEndControlDefaultValue);
+        }   
+        if (resultNode)
+        {   
+          Core.Helpers.InternalApi.getEntitiesAsObjectsListAsync({
+                  entityTypeName: "Channel", 
+                  takeCount: 1,
+                  filterExpression: "Placement.BuildingId={0} AND Placement.PlacementPurposeId=1 AND Placement.HasIndividualAccounting=true".format(resultEntityInfo.entityId),
+                  includeEntities: ["Placement"],
+                  fieldList:["Id"]
+              }).done((r) => 
+              {
+                if(r && r.length > 0)
+                {
+                  dxButtonOk.SetEnabled(true);  
+                  
+                  Core.Helpers.InternalApi
+                  .getEntityAsync(resultEntityInfo)
+                  .fail(function(response)
+                  {
+                      $.event.trigger(Core.Common.EventTypes.CoreAsyncError);
+                  })
+                  .done(function(entity)
+                  {
+                      var buildingIdControl1 = parametricDialogInstanse.getControlByParameterName("buildingId1");
+                      buildingIdControl1.AddItem([entity.id.toString(), entity.description], entity.id);
+                      buildingIdControl1.SetSelectedItem(buildingIdControl1.FindItemByValue(entity.id));
+
+                      parametricDialogInstanse.setParameterValueByName("buildingId", entity.id);
+                  });
+
+                  const buildingIdControl = parametricDialogInstanse.getControlByParameterName("buildingId");
+                  buildingIdControl.SetValue(resultEntityInfo.entityId);
+                  parametricDialogInstanse.setParameterValueByName("buildingId", resultEntityInfo.entityId);            
+                }
+                else
+                {
+                  ( new Core.Dialogs.Alert(
+	                  {
+	                    message: "Отчет <b>\"Балансовая ведомость индивидуальных приборов учета\"</b> не может быть сформирован. " +
+                        "В выбранном строении отсутствуют изменительные каналы индивидуальных приборов учета.",
+	                    type: Core.AlertTypes.warning,
+	                    timeOut: 10000    
+	                  })).show();
+                    
+                    parametricDialogInstanse.getParametricDialog().Hide();
+                }
+              });             
+          }
+      });      
+    }
+    ]]>
+    </InitScript>
+	<Descriptors>
+		
+    <FormLayoutItemDescriptor ClientVisible="false">
+			<Caption></Caption>
+			<Name>buildingId</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>SpinEdit</NestedExtension>
+			<Value>0</Value>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Cтроение</Caption>
+			<Name>buildingId1</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT
+          [Building].[Id] [Id],
+          [Building].[Description] [Description]
+          FROM [Business].[Building]  [Building] WITH(NOLOCK)
+          WHERE NULL IS NOT NULL
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Caption></Caption>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption></Caption>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>0</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{1}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Caption>Тип ресурсной системы</Caption>
+			<Name>resourceSystemTypeId</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT [ResourceSystemType].[Id] [Id], [ResourceSystemType].[ShortName] [Code], [ResourceSystemType].[Description]
+          FROM [Dictionaries].[ResourceSystemType] [ResourceSystemType] WITH(NOLOCK)
+          WHERE [ResourceSystemType].[Id] IN (2, 5)
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Caption></Caption>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Caption></Caption>
+						<Width>100</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption></Caption>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>2</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{2}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+    
+		<FormLayoutItemDescriptor>
+			<Caption>Начальная дата архива</Caption>
+			<Name>periodBegin</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Конечная дата архива</Caption>
+			<Name>periodEnd</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+		</FormLayoutItemDescriptor>
+  </Descriptors>
+</ParametricDialog>

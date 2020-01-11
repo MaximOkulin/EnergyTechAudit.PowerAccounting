@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E6B753CA-B583-45BD-8F64-848B4F93E61D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EnergyTechAudit.PowerAccounting.ReportSupport</RootNamespace>
+    <AssemblyName>EnergyTechAudit.PowerAccounting.ReportSupport</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\EnergyTechAudit.PowerAccounting.Web\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport, Version=2017.4.3.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <HintPath>..\EnergyTechAudit.PowerAccounting.Web\bin\FastReport.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aggregate\AggregateExtension.cs" />
+    <Compile Include="DictionariesValueResources.Designer.cs">
+      <DependentUpon>DictionariesValueResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="FieldsNamesResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FieldsNamesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\BaseHelper.cs" />
+    <Compile Include="Helpers\CommonHelper.cs" />
+    <Compile Include="Helpers\MathHelper.cs" />
+    <Compile Include="Helpers\PowerProfileHelper.cs" />
+    <Compile Include="Helpers\VistHelper.cs" />
+    <Compile Include="Plugin\ElfEmergencySituationsPlugin.cs" />
+    <Compile Include="Plugin\HeatEnergyConsumptionAnalysisPlugin.cs" />
+    <Compile Include="Plugin\DiffCalculatorPlugin.cs" />
+    <Compile Include="Plugin\Ek270DaySheetViaHourPlugin.cs" />
+    <Compile Include="Plugin\ElectroSysCalculateWithDesignFactorPlugin.cs" />
+    <Compile Include="Plugin\ElectroSysPowerProfilePlugin.cs" />
+    <Compile Include="Plugin\ElectroSysWorkingDayGraphPlugin.cs" />
+    <Compile Include="Plugin\EnergomeraPowerProfilePlugin.cs" />
+    <Compile Include="Plugin\ErrorInfoSupportPlugin.cs" />
+    <Compile Include="Plugin\IrvisFactoryReportPlugin.cs" />
+    <Compile Include="Plugin\IslandDataSourceReportPlugin.cs" />
+    <Compile Include="Plugin\Km5ErrorsPlugin.cs" />
+    <Compile Include="Plugin\Km5ImpulseCwsPlugin.cs" />
+    <Compile Include="Plugin\Pramer710ReportPlugin.cs" />
+    <Compile Include="Plugin\RemoveHourInDayArchivePlugin.cs" />
+    <Compile Include="Plugin\ReportHelper.cs" />
+    <Compile Include="Plugin\ReportPluginBase.cs" />
+    <Compile Include="Plugin\ResourceReleaseBalanceSheetPlugin.cs" />
+    <Compile Include="Plugin\Spt94xPlugin.cs" />
+    <Compile Include="Plugin\UnitedAccountingParamSheetPlugin.cs" />
+    <Compile Include="Plugin\UniversalDeviceSettingsPlugin.cs" />
+    <Compile Include="Plugin\VistSheetViaHourPlugin.cs" />
+    <Compile Include="Plugin\Vkt7ErrorsPlugin.cs" />
+    <Compile Include="Plugin\Vkt7ForSummaryParamSheetsPlugin.cs" />
+    <Compile Include="Plugin\Vkt7InfoPlugin.cs" />
+    <Compile Include="Plugin\Vkt7SummaryDataPlugin.cs" />
+    <Compile Include="Plugin\VolumeDifferencePlugin.cs" />
+    <Compile Include="Plugin\Vzljot25EmergencySituationsPlugin.cs" />
+    <Compile Include="Plugin\Vzljot26MReportPlugin.cs" />
+    <Compile Include="Plugin\VzljotReportPlugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportInternalColumnNameResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportInternalColumnNameResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPluginResources.Designer.cs">
+      <DependentUpon>ReportPluginResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SettingsResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SettingsResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StringFormatResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringFormatResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Types\Duration.cs" />
+    <Compile Include="Types\ElfFailCauseFlags.cs" />
+    <Compile Include="Types\Km5Error.cs" />
+    <Compile Include="Types\Km5ErrorSchedule.cs" />
+    <Compile Include="Types\Km5InternalDeviceEventDuration.cs" />
+    <Compile Include="Types\Km5ErrorTimes.cs" />
+    <Compile Include="Types\Km5ErrorType.cs" />
+    <Compile Include="Types\Km5ScheduleByErrorType.cs" />
+    <Compile Include="Types\SummaryParameterInfo.cs" />
+    <Compile Include="Types\VistPrecisionDeviceParameter.cs" />
+    <Compile Include="Types\VistPrecisionInfo.cs" />
+    <Compile Include="Types\VistPrecisionType.cs" />
+    <Compile Include="Types\Vzljot25Failure.cs" />
+    <Compile Include="Types\Vzljot25FailureType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.Common.Resources\EnergyTechAudit.PowerAccounting.Common.Resources.csproj">
+      <Project>{2B232B08-ED35-4BDE-B57B-AC97986A2DB4}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.Common\EnergyTechAudit.PowerAccounting.Common.csproj">
+      <Project>{6BD68999-72F5-43F8-B4C1-8224E44B9A88}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.Core\EnergyTechAudit.PowerAccounting.Core.csproj">
+      <Project>{4E43C4AE-B5CA-4205-A4E9-2D3B00662ABF}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.DataAccess\EnergyTechAudit.PowerAccounting.DataAccess.csproj">
+      <Project>{14e16dd5-99e5-404e-865d-958b665fa9f4}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.Domain\EnergyTechAudit.PowerAccounting.Domain.csproj">
+      <Project>{78ef615d-acf4-46bb-93b7-051cb341097b}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.Infrastructure\EnergyTechAudit.PowerAccounting.Infrastructure.csproj">
+      <Project>{A403CC9B-4233-4843-B0A3-AE38C4569326}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.ReportEngine\EnergyTechAudit.PowerAccounting.ReportEngine.csproj">
+      <Project>{a01b98d3-9f52-414b-b2a2-fcea12c3213e}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.ReportEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.Web.Models\EnergyTechAudit.PowerAccounting.Web.Models.csproj">
+      <Project>{3da8f642-b424-43d0-b08e-64d935417efd}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.Web.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DictionariesValueResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DictionariesValueResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FieldsNamesResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FieldsNamesResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportInternalColumnNameResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportInternalColumnNameResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPluginResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportPluginResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SettingsResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StringFormatResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringFormatResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

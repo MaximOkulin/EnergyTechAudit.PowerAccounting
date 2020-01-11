@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll&#13;&#10;System.Core.dll" DoublePass="true" TextQuality="ClearType" ReportInfo.Name="MeasurementDeviceSignalQuality" ReportInfo.Author="Leo" ReportInfo.Version="Id = 6;ReportTypeId = 1;HasPluginProcessing = 0" ReportInfo.Description="Показатели качества связи с приборами" ReportInfo.Created="05/23/2014 10:40:50" ReportInfo.Modified="03/25/2017 12:56:50" ReportInfo.CreatorVersion="2016.1.2.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using  System.Linq;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Aggregate;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+</ScriptText>
+  <Styles>
+    <Style Name="Стиль1" Fill.Color="WhiteSmoke" ApplyBorder="false"/>
+  </Styles>
+  <Dictionary>
+    <Total Name="MainData.MeasurementDeviceTotal" TotalType="Count" Evaluator="MainDataBand" PrintOn="GroupFooter1" EvaluateCondition="[MainData.MeasurementDeviceId] != 0"/>
+    <Total Name="MainData.AccessPointTotal" TotalType="Count" Evaluator="MainDataBand" PrintOn="GroupFooter1" EvaluateCondition="[MainData.MeasurementDeviceId] == 0"/>
+    <Total Name="MainData.MeasurementDeviceTotalSuccess" TotalType="Count" Evaluator="MainDataBand" PrintOn="GroupFooter1" EvaluateCondition="[MainData.MeasurementDeviceId] != 0 &amp;&amp; [MainData.StatusConnectionDescription] == &quot;ОК&quot;"/>
+    <Total Name="MainData.AccessPointTotalSuccess" TotalType="Count" Evaluator="MainDataBand" PrintOn="GroupFooter1" EvaluateCondition="[MainData.MeasurementDeviceId] == 0 &amp;&amp; [MainData.StatusConnectionDescription] == &quot;ОК&quot;"/>
+    <Total Name="MainData.MeasurementDeviceTotalTotal" TotalType="Count" Evaluator="MainDataBand" PrintOn="ReportSummary1" EvaluateCondition="[MainData.MeasurementDeviceId] != 0"/>
+    <Total Name="MainData.AccessPointTotalTotal" TotalType="Count" Evaluator="MainDataBand" PrintOn="ReportSummary1" EvaluateCondition="[MainData.MeasurementDeviceId] == 0"/>
+    <Total Name="MainData.MeasurementDeviceTotalTotalSuccess" TotalType="Count" Evaluator="MainDataBand" PrintOn="ReportSummary1" EvaluateCondition="[MainData.MeasurementDeviceId] != 0 &amp;&amp; [MainData.StatusConnectionDescription] == &quot;ОК&quot;"/>
+    <Total Name="MainData.AccessPointTotalTotalSuccess" TotalType="Count" Evaluator="MainDataBand" PrintOn="ReportSummary1" EvaluateCondition="[MainData.MeasurementDeviceId] == 0 &amp;&amp; [MainData.StatusConnectionDescription] == &quot;ОК&quot;"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" LeftMargin="15" BottomMargin="15" Guides="1020.6" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle1" Width="1028.16" Height="90.72">
+      <TextObject Name="Text1" Left="113.4" Top="11.34" Width="801.36" Height="34.02" Text="[IIf([IsFlatAccounting] == &quot;1&quot;, &quot;Показатели качества связи с приборами квартирного учета&quot;, &quot;Показатели качества связи с приборами учета&quot;)]" HorzAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text82" Top="68.04" Width="132.3" Height="18.9" Text="Оператор:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text81" Left="136.08" Top="68.04" Width="328.86" Height="18.9" Text="[IIf(string.IsNullOrEmpty([UserInfoDescription]),&quot;(не указано)&quot;, [UserInfoDescription])] ([UserName])" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <PictureObject Name="CustomerReportLogo" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="94.17" Width="1028.16" Height="49.14">
+      <TextObject Name="Text4" Left="49.14" Width="234.36" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Адрес потребителя" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text13" Left="283.5" Width="173.88" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Доп. информация" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text14" Left="457.38" Width="120.96" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Время последнего опроса" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text15" Left="578.34" Width="132.3" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Устройство" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text16" Left="710.64" Width="94.5" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Сетевой адрес" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text24" Left="910.98" Width="109.62" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Процент успешных соединений" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text17" Left="805.14" Width="105.84" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Статус" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text32" Width="49.14" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Ид." HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="146.76" Width="1028.16" Height="22.68" Condition="[MainData.DistrictId]" SortOrder="None">
+      <TextObject Name="Text23" Width="1020.6" Height="22.68" Border.Lines="All" Fill.Color="WhiteSmoke" CanGrow="true" GrowToBottom="true" Text="[MainData.DistrictDescription]" Padding="5, 0, 5, 0" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold" Wysiwyg="true"/>
+      <DataBand Name="MainDataBand" Top="172.88" Width="1028.16" Height="22.68" CanGrow="true" FirstRowStartsNewPage="true">
+        <TextObject Name="Text11" Left="49.14" Width="234.36" Height="22.68" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[string.Join(&quot;,&quot;, [MainData.Address].Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries).Take(2))]" Padding="5, 0, 5, 0" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold" Wysiwyg="true"/>
+        <TextObject Name="Text18" Left="283.5" Width="173.88" Height="22.68" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.IpAddress]" Padding="5, 0, 5, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text19" Left="457.38" Width="120.96" Height="22.68" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.LastConnectionTime]" HideZeros="true" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text20" Left="578.34" Width="132.3" Height="22.68" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.DeviceCode]" Padding="5, 0, 5, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text21" Left="710.64" Width="94.5" Height="22.68" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.NetworkAddress]" Padding="5, 0, 5, 0" HideZeros="true" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text22" Left="805.14" Width="105.84" Height="22.68" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.StatusConnectionDescription]" Padding="5, 0, 5, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text25" Left="910.98" Width="109.62" Height="22.68" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.SuccessConnectionPercent] %" Padding="5, 0, 5, 0" Format="Number" Format.UseLocale="true" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text33" Width="49.14" Height="22.68" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.EntityId]" Padding="5, 0, 5, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="199.01" Width="1028.16" Height="45.36">
+        <TextObject Name="Text26" Width="158.76" Height="45.36" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Итого по группе:" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+        <TextObject Name="Text27" Left="158.76" Width="861.84" Height="22.68" Border.Lines="All" Fill.Color="WhiteSmoke" CanGrow="true" Text="[MainData.AccessPointTotalSuccess] модемов на связи из [MainData.AccessPointTotal]" Padding="5, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold" Wysiwyg="true"/>
+        <TextObject Name="Text28" Left="158.76" Top="22.68" Width="861.84" Height="22.68" Border.Lines="All" Fill.Color="WhiteSmoke" CanGrow="true" Text="[MainData.MeasurementDeviceTotalSuccess] устройств на связи из [MainData.MeasurementDeviceTotal]" Padding="5, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold" Wysiwyg="true"/>
+      </GroupFooterBand>
+    </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="247.82" Width="1028.16" Height="45.36">
+      <TextObject Name="Text29" Width="158.76" Height="45.36" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Итого по группе:" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text30" Left="158.76" Width="861.84" Height="22.68" Border.Lines="All" Fill.Color="WhiteSmoke" CanGrow="true" Text="[MainData.AccessPointTotalTotalSuccess] модемов на связи из [MainData.AccessPointTotalTotal]" Padding="5, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold" Wysiwyg="true"/>
+      <TextObject Name="Text31" Left="158.76" Top="22.68" Width="861.84" Height="22.68" Border.Lines="All" Fill.Color="WhiteSmoke" CanGrow="true" Text="[MainData.MeasurementDeviceTotalTotalSuccess] устройств на связи из [MainData.MeasurementDeviceTotalTotal]" Padding="5, 0, 5, 0" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold" Wysiwyg="true"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="296.63" Width="1028.16" Height="30.24" FirstRowStartsNewPage="true">
+      <TextObject Name="Text10" Left="457.38" Top="7.56" Width="113.4" Height="15.12" Text="[Page]" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

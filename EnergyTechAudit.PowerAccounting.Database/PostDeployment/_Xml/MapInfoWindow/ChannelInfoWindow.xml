@@ -1,0 +1,313 @@
+<MapInfoWindowOptions>
+	<EntityTypeName>Channel</EntityTypeName>
+	<InverseProperties>
+		<InverseProperty>MeasurementDevice</InverseProperty>
+		<InverseProperty>ResourceSystemType</InverseProperty>
+	</InverseProperties>
+	<Size>
+		<Width>0</Width>
+		<!--0 is max width-->
+		<Height>195</Height>
+	</Size>
+	<CaptionColumnWidth>140</CaptionColumnWidth>
+	<InfoWindowItems>
+    
+		<InfoWindowItem>
+      <Id>chdesc</Id>
+			<Caption>Канал</Caption>
+			<PropertyChain>Description</PropertyChain>
+		</InfoWindowItem>
+    
+		<InfoWindowItem>
+			<Caption>Ресурсная система</Caption>
+			<PropertyChain>ResourceSystemType.ShortName</PropertyChain>
+		</InfoWindowItem>
+	
+		<InfoWindowItem>
+      <Id>mdsc</Id>
+			<Caption>Статусы прибора</Caption>
+			<PropertyChain></PropertyChain>     
+		</InfoWindowItem>
+
+    <InfoWindowItem>
+      <Id>apsc</Id>
+      <Caption>Статусы точки доступа</Caption>
+      <PropertyChain></PropertyChain>     
+    </InfoWindowItem>
+
+	  <InfoWindowItem>
+	    <Id>lmt</Id>
+	    <Caption>Время измерения</Caption>
+	    <PropertyChain></PropertyChain>
+	  </InfoWindowItem>
+		
+		<InfoWindowItem>
+			<Caption></Caption>
+			<PropertyChain>MeasurementDevice.Id</PropertyChain>
+			<Hidden>true</Hidden>
+		</InfoWindowItem>
+	  
+    <InfoWindowItem>
+	    <Caption></Caption>
+	    <PropertyChain>MeasurementDevice.DeviceId</PropertyChain>
+	    <Hidden>true</Hidden>
+	  </InfoWindowItem>
+    
+    <InfoWindowItem>
+	    <Caption></Caption>
+	    <PropertyChain>MeasurementDevice.AccessPointId</PropertyChain>
+	    <Hidden>true</Hidden>
+	  </InfoWindowItem>
+    
+	  <InfoWindowItem>
+	    <Caption></Caption>
+	    <PropertyChain>Id</PropertyChain>
+	    <Hidden>true</Hidden>
+	  </InfoWindowItem>
+	  <InfoWindowItem>
+	    <Caption></Caption>
+	    <PropertyChain>ResourceSystemTypeId</PropertyChain>
+	    <Hidden>true</Hidden>
+	  </InfoWindowItem>
+
+	</InfoWindowItems>
+	<CustomMarkup HasEscapedContent="true">          
+     &lt;style&gt;
+    .gm-style-iw .map-info-window-link-container
+    {
+      width: 100%;
+    }
+    .gm-style-iw .map-info-window-link
+    {
+      margin-left: 10px;
+	   
+      float: right;
+    }
+    .gm-style-iw .info-window-table tr:nth-child(1) td:last-child, .gm-style-iw .info-window-table tr:nth-child(2) td:last-child    
+    {
+      font-weight: 500;
+    }
+    .gm-style-iw .info-window-table [data-core-uid-apsc], .gm-style-iw .info-window-table [data-core-uid-mdsc]
+    {
+      width: 100px !important;
+      height: 22px !important;
+    }
+     .gm-style-iw .info-window-table [data-core-uid-chdesc] div
+     {
+        width: 125px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+     }
+    .info-window-table .nodata
+    {
+      margin: 0 !important;
+      width: 120px !important;
+    }
+    #miniboardContainer
+    {
+      height: 230px;
+	    margin-bottom: 10px;
+    }   
+    .info-window-table [data-core-uid-lmt]
+    {
+      width: 120px;
+    }	
+	 .map-info-window-link-container [class^="font-icon-"] 
+	 {
+	 	margin-left: 5px;
+	 }
+	 .map-info-window-link-container [class^="font-icon-"]:hover
+   {
+	  transform: none; 
+    color: #0072C6;
+		cursor: pointer;		  
+   }
+    &lt;/style&gt;
+	    &lt;div id="miniboardContainer" class="core-simple-grid-wrapper"&gt;&lt;/div&gt;	    
+	    &lt;div id="miniregboardContainer" class="core-simple-grid-wrapper"&gt;&lt;/div&gt;	    
+      &lt;div class="map-info-window-link-container"&gt;
+        &lt;i title="Переход к карточке строения" class="font-icon-building font-icon-x1_2 map-info-window-link" style="float: right" href="javascript:;" data-core-traverse="Up" data-core-entityTypeName="Building"&gt;&lt;/i&gt;
+	      &lt;i title="Переход на главную приборную панель" class="font-icon-dashboard font-icon-x1_3 map-info-window-link " style="float: right" href="javascript:;" data-core-traverse="Down" data-core-go-dashboard data-core-entityTypeName="Channel" &gt;&lt;/i&gt;
+	      &lt;i title="Проверка связи с устройством" class="font-icon-checkconnection font-icon-x1_2" style="float:right;"&gt;&lt;/i&gt;
+        &lt;i title="Переключить приборную панель" class="font-icon-FinalInstantAlt font-icon-toggle-dashboard font-icon-x1_3" style="float:right;"&gt;&lt;/i&gt;
+	      &lt;i title="Поиск" class="font-icon-search2 font-icon-x1_3"&gt;&lt;/i&gt;
+      &lt;/div&gt;
+    </CustomMarkup>
+	<CustomScript HasEscapedContent="true">          
+    (function () {
+      var infoWindowController = new Core.OperAdmin.MapController.InfoWindowController();
+      infoWindowController.execute();
+      
+      jQuery(".info-window-table [data-core-uid-chdesc]")
+          .wrapInner(jQuery("&lt;div/&gt;"));
+          
+	    Core.Helpers.Common.awaiterAsync
+      (
+        function() 
+        {
+          return jQuery("[data-core-hidden-properties]").length > Number.zero; 
+        }, 300, 1000
+      )
+      .done(function()
+      {                    
+        var hidden = JSON.parse( jQuery("[data-core-hidden-properties]").val() );	  
+      	jQuery(".info-window-table [data-core-uid-chdesc]")
+          .wrapInner(jQuery("&lt;div/&gt;"));    
+	      var channelIdProperty = hidden.find(function(e)
+	        {	  		  		
+			      return e.propertyChain == "Id"		
+	        }),
+        channelResourceSystemTypeIdProperty = hidden.find(function(e)
+	        {	  		  		
+			      return e.propertyChain == "ResourceSystemTypeId"		
+	        }),
+		    measurementDeviceIdProperty = hidden.find(function(e)
+	      {	  		  		
+			    return e.propertyChain == "MeasurementDevice.Id"			  		
+	      }),		  
+        accessPointIdProperty = hidden.find(function(e)
+	      {	  		  		
+			    return e.propertyChain == "MeasurementDevice.AccessPointId"		
+	      }),
+        lastPeriodTypeId = Core.Helpers.Storage.LocalStorage.getValue("infoWindowMapMiniboardLastPeriodTypeId"),
+        periodTypeId = lastPeriodTypeId !== null ? lastPeriodTypeId : 1;	  
+	      
+        var toggleDashboardClass = periodTypeId == 5 ? "font-icon-InstantAlt" : "font-icon-FinalInstantAlt"
+        
+        jQuery(".map-info-window-link-container .font-icon-toggle-dashboard")
+          .removeClass("font-icon-InstantAlt font-icon-FinalInstantAlt")
+          .addClass(toggleDashboardClass);
+    
+        if(measurementDeviceIdProperty)    
+	      {  
+            var miniboardOptions = 
+            {
+              dashboardRequest: 
+              {
+                entityInfo: 
+	              {
+                  entityTypeName: Core.Common.Entities.Business.Channel,
+                  entityId: channelIdProperty.value
+                },
+	              channelDeviceInfo: 
+                  {
+	                  id: channelIdProperty.value,
+	                  measurementDeviceInfo:
+	                  {
+	                    id: measurementDeviceIdProperty.value,                                
+	                  }                
+	                },
+	                periodTypeId: periodTypeId,
+	                parameterIdentifiers: []
+	            },
+              dxDataGridExtendSettings:{ width: jQuery(".info-window-table").width()}              
+            };
+
+	          var miniboardController = channelResourceSystemTypeIdProperty.value != 6 
+	           ? new Core.Common.MiniboardController()
+                : new Core.Common.MiniregboardController();
+
+            jQuery(".gm-style-iw #{0}".format(channelResourceSystemTypeIdProperty.value != 6 
+	            ? "miniregboardContainer": "miniboardContainer" )).hide();
+            
+	          miniboardController.execute(miniboardOptions)
+              .done(function(response)
+              {                                  
+                  if(response.lastMeasurementTime)
+                  {
+                    jQuery(".info-window-table [data-core-uid-lmt]").html(response.lastMeasurementTime.toFormatString(Date.formatStringWithTimeEmphasis));
+                  }
+                  else
+				          {
+				  	        jQuery(".info-window-table [data-core-uid-lmt]")
+                      .html(Core.Resources.HtmlTemplate.nodata);                      
+				          }	               
+              });
+
+              jQuery(".map-info-window-link-container .font-icon-search2").click(function(e)
+	            {
+	              const dxDataGrid = jQuery(miniboardController.getBoardContainer()).dxDataGrid("instance");     
+	              dxDataGrid.clearFilter();
+                dxDataGrid.option({
+                    filterRow: { visible: !dxDataGrid.option("filterRow.visible")}
+                });
+	              jQuery(".gm-style-iw .dx-datagrid-filter-row input").focus();	              
+	              
+	            });
+
+	          jQuery(".map-info-window-link-container .font-icon-checkconnection").click(function(e)
+	          {
+	            (new Core.Common.DeviceReaderResponseCommandDialog(
+	            {
+	              entityId: measurementDeviceIdProperty.value,
+                entityTypeName: Core.Common.Entities.Business.MeasurementDevice,
+	              targetEntityTypeName: Core.Common.Entities.Business.MeasurementDevice,
+	              command: Core.Resources.DeviceReaderCommands.checkConnection
+	            })).show();  
+	          });
+
+            jQuery(".map-info-window-link-container .font-icon-toggle-dashboard").click(function(e)
+            {          
+              if (channelResourceSystemTypeIdProperty.value == 6) return;
+              periodTypeId = periodTypeId == 1 ? 5: 1;
+              
+              var toggleDashboardClass = periodTypeId == 5 ? "font-icon-InstantAlt" : "font-icon-FinalInstantAlt"        
+              jQuery(".map-info-window-link-container .font-icon-toggle-dashboard")
+                .removeClass("font-icon-InstantAlt font-icon-FinalInstantAlt")
+                .addClass(toggleDashboardClass);
+          
+	            Core.Helpers.Storage.LocalStorage.setValue("infoWindowMapMiniboardLastPeriodTypeId", periodTypeId);              
+		          miniboardOptions.dashboardRequest.periodTypeId = periodTypeId;
+		          miniboardController.execute(miniboardOptions)
+                .done(function(response)
+                {                            
+                  if(response.lastMeasurementTime)
+                  {                  
+                    jQuery(".info-window-table [data-core-uid-lmt]").html(response.lastMeasurementTime.toFormatString(Date.formatStringWithTimeEmphasis));
+                  }
+                  else
+				          {
+				  	         jQuery(".info-window-table [data-core-uid-lmt]")
+                      .html(Core.Resources.HtmlTemplate.nodata);
+				          }
+                });
+              e.stopPropagation();
+              return;
+            });
+            	          
+	          Core.Common.StatusConnectionBarController
+	              .getStatusConnectionBarAsync({ entityTypeName: Core.Common.Entities.Business.MeasurementDevice, entityId: measurementDeviceIdProperty.value }, false)
+	              .fail(function()
+	              {
+	                jQuery(".info-window-table [data-core-uid-apsc]").html(Core.Resources.HtmlTemplate.nodata);
+	              })
+	              .done(function(response)
+	              {
+			              var statusBar$ = jQuery(response);
+                    statusBar$.hide();
+	            	    jQuery(".info-window-table [data-core-uid-mdsc]").html(statusBar$);	
+                    statusBar$.fadeIn();
+	            });                       
+	      }
+	      	  
+	      if(accessPointIdProperty)    
+	      {  	          
+		       Core.Common.StatusConnectionBarController
+	              .getStatusConnectionBarAsync({ entityTypeName: Core.Common.Entities.Business.AccessPoint, entityId: accessPointIdProperty.value }, false)
+	              .fail(function()
+	              {
+	                jQuery(".info-window-table [data-core-uid-apsc]").html(Core.Resources.HtmlTemplate.nodata);
+	              })
+	              .done(function(response)
+	              {				      
+                    var statusBar$ = jQuery(response);
+                    statusBar$.hide();
+	            	    jQuery(".info-window-table [data-core-uid-apsc]").html(statusBar$);	
+                    statusBar$.fadeIn();
+	            });     
+	      }
+      });                
+    })();   
+    </CustomScript>
+</MapInfoWindowOptions>

@@ -1,0 +1,34 @@
+﻿<EntityTreeRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EntityTree.xsd">
+  <Title>Строения</Title>
+  <EntityTypeName>Building</EntityTypeName>
+  <IconClass>et-b</IconClass>
+  <Visible>false</Visible>
+  <Script>
+    <Id>3</Id>
+  </Script>
+  <EntityTreeNodes>
+    <EntityTreeNode >
+      <EntityTypeName>Placement</EntityTypeName>
+      <Property>Placements</Property>
+      <CustomPropertyChain>Placements.PlacementPurpose</CustomPropertyChain>      
+      <IconClass>et-pl</IconClass>
+      <Visible>true</Visible>
+      <EntityTreeNodes>
+        <EntityTreeNode>
+          <EntityTypeName>UserAdditionalInfo</EntityTypeName>
+          <Property>UserAdditionalInfo</Property>          
+          <IconClass>et-uai</IconClass>
+          <Visible>true</Visible>
+          <EntityTreeNodes>
+            <EntityTreeNode>
+              <EntityTypeName>User</EntityTypeName>
+              <Property>User</Property>                            
+              <IconClass>et-us</IconClass>
+              <Visible>true</Visible>
+            </EntityTreeNode>
+          </EntityTreeNodes>
+        </EntityTreeNode>
+      </EntityTreeNodes>
+    </EntityTreeNode>
+  </EntityTreeNodes>
+</EntityTreeRoot>

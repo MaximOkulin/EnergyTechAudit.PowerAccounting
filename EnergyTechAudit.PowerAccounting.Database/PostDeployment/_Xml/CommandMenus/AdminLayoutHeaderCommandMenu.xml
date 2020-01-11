@@ -1,0 +1,29 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>adminLayoutHeaderCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>115</Width>
+  <CommandMenuItem>
+    <Name>gotoStartPage</Name>
+    <Text>
+    </Text>
+    <CommandName>gotoStartPage</CommandName>
+    <ToolTip>К стартовой странице</ToolTip>
+    <IconClass>font-icon-home font-icon-dimgray font-icon-x1_1</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>gotoBackward</Name>
+    <Text>
+    </Text>
+    <CommandName>gotoBackward</CommandName>
+    <ToolTip>К предыдущей странице</ToolTip>
+    <IconClass>font-icon-left font-icon-dimgray font-icon-x1_1</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>gotoForward</Name>
+    <Text>
+    </Text>
+    <CommandName>gotoForward</CommandName>
+    <ToolTip>К следующей странице</ToolTip>
+    <IconClass>font-icon-right font-icon-dimgray font-icon-x1_1</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

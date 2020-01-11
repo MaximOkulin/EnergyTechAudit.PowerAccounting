@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EnergyTechAudit.PowerAccounting.Database", "EnergyTechAudit.PowerAccounting.Database\EnergyTechAudit.PowerAccounting.Database.sqlproj", "{6F133303-52C8-41AD-A260-FC45F8E4B3B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleCodeWebAPI", "SampleCodeWebAPI\SampleCodeWebAPI.csproj", "{DF5AD5D6-3071-441E-9EFA-0AD631D42460}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyTechAudit.PowerAccounting.DataAccess", "EnergyTechAudit.PowerAccounting.DataAccess\EnergyTechAudit.PowerAccounting.DataAccess.csproj", "{14E16DD5-99E5-404E-865D-958B665FA9F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyTechAudit.PowerAccounting.Domain", "EnergyTechAudit.PowerAccounting.Domain\EnergyTechAudit.PowerAccounting.Domain.csproj", "{78EF615D-ACF4-46BB-93B7-051CB341097B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyTechAudit.PowerAccounting.ReportEngine", "EnergyTechAudit.PowerAccounting.ReportEngine\EnergyTechAudit.PowerAccounting.ReportEngine.csproj", "{A01B98D3-9F52-414B-B2A2-FCEA12C3213E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyTechAudit.PowerAccounting.ReportSupport", "EnergyTechAudit.PowerAccounting.ReportSupport\EnergyTechAudit.PowerAccounting.ReportSupport.csproj", "{E6B753CA-B583-45BD-8F64-848B4F93E61D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F133303-52C8-41AD-A260-FC45F8E4B3B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F133303-52C8-41AD-A260-FC45F8E4B3B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F133303-52C8-41AD-A260-FC45F8E4B3B1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6F133303-52C8-41AD-A260-FC45F8E4B3B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F133303-52C8-41AD-A260-FC45F8E4B3B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F133303-52C8-41AD-A260-FC45F8E4B3B1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DF5AD5D6-3071-441E-9EFA-0AD631D42460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5AD5D6-3071-441E-9EFA-0AD631D42460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5AD5D6-3071-441E-9EFA-0AD631D42460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5AD5D6-3071-441E-9EFA-0AD631D42460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14E16DD5-99E5-404E-865D-958B665FA9F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14E16DD5-99E5-404E-865D-958B665FA9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14E16DD5-99E5-404E-865D-958B665FA9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14E16DD5-99E5-404E-865D-958B665FA9F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78EF615D-ACF4-46BB-93B7-051CB341097B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78EF615D-ACF4-46BB-93B7-051CB341097B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78EF615D-ACF4-46BB-93B7-051CB341097B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78EF615D-ACF4-46BB-93B7-051CB341097B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A01B98D3-9F52-414B-B2A2-FCEA12C3213E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A01B98D3-9F52-414B-B2A2-FCEA12C3213E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A01B98D3-9F52-414B-B2A2-FCEA12C3213E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A01B98D3-9F52-414B-B2A2-FCEA12C3213E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6B753CA-B583-45BD-8F64-848B4F93E61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6B753CA-B583-45BD-8F64-848B4F93E61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6B753CA-B583-45BD-8F64-848B4F93E61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6B753CA-B583-45BD-8F64-848B4F93E61D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E6F7A31-D402-4966-AEC4-C03587442A05}
+	EndGlobalSection
+EndGlobal

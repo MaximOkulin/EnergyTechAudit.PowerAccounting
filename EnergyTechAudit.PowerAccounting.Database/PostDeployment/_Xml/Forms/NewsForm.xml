@@ -1,0 +1,286 @@
+<FormLayout Name="newsForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function (sender, args) 
+    {
+      jQuery(document).off(Core.Common.EventTypes.FormController.FormLoadComplete_Form);
+      
+      jQuery(document).on(Core.Common.EventTypes.FormController.FormLoadComplete_Form, function () 
+      {
+        var commandMenuBarController = new Core.Common.CommandMenuBarController("formCommandMenu");
+        var formController = Core.Admin.FormController.prototype.currentInstance;
+        var modelManager = formController.getModelManager();
+
+        commandMenuBarController.bind(
+        {
+
+          previewNews: function()
+          {
+            var model = modelManager.getModel();
+            var newsId = model.id;
+
+            $.ajax({
+              url: Core.Routes.Common.Home.newsPreview,
+              type: Core.Common.HttpRequestTypes.Post,
+              data: {newsId: newsId}
+            }).done(function(html)
+            {
+              var dlg = new Core.Dialogs.MessageBox(
+              {
+                id: "newsPreviewDialog",
+                title: "Новость",
+                width: 400,
+                message: html,
+                allowResize: true,
+	              scrollBars: "Vertical",
+                buttons: Core.Resources.Dialogs.Buttons.Close
+              });
+
+              dlg.show().done(function ()
+              {
+                jQuery("img.dxeImage").removeClass("transparent");
+              });
+            });
+
+          }   // previewNews
+
+        }); // bind
+
+      });
+    }
+    </InitScript>
+	<InitStyle HasEscapedContent="true">
+    .CodeMirror
+    {
+      line-height: 1.5;
+      height: auto;
+    }
+    </InitStyle>
+	<CommandMenu>
+		<Name>newsFormCommandMenu</Name>
+		<ClientVisible>true</ClientVisible>
+		<Width>30</Width>
+		<CommandMenuItem>
+			<Name>previewNews</Name>
+			<CommandName>previewNews</CommandName>
+			<ToolTip>Показать новость</ToolTip>
+			<Enabled>true</Enabled>
+			<IconClass>font-icon-eye_open font-icon-color-darkblue indent-right-5px</IconClass>
+		</CommandMenuItem>
+	</CommandMenu>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Код" Enabled="true" Order="2">
+					<BoundProperty>Code</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaxLength</PropertiesChain>
+							<Value>64</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var context$ = jQuery(sender.GetMainElement());
+                  jQuery(".dxeButton:last img", context$).hide();                  
+                  jQuery(".dxeButton:last", context$).append(jQuery("&lt;i style=&apos;margin-right: 2px&apos; class=&apos;font-icon-keys&apos; title=&apos;Генерировать последовательность символов&apos;&gt;&lt;i/&gt;"));                  
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ButtonClick</PropertiesChain>
+							<Value HasEscapedContent="true">
+            function(sender, args)
+            {                            
+                  $.ajax({
+                    url: Core.Routes.Common.InternalApi.getGeneratedCharset,
+                    type: Core.Common.HttpRequestTypes.Post,
+                    dataType: Core.Common.HttpDataTypes.Json,
+                    data:
+                    {
+                        length: 16,
+                        onlySymbols: true
+                    }
+                  }).fail(function(response)
+                  {
+                      $.event.trigger(Core.Common.EventTypes.CoreAsyncError);
+                  }).done(function(response)
+                  {            
+                      sender.SetText(response);    
+                      
+                      Core.Admin.FormController.prototype
+                        .currentInstance
+                        .getModelManager()
+                        .onModelChanged();                                              
+                  });              
+            }
+            </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дата" Enabled="true" Order="2">
+					<BoundProperty>Date</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+							<Value>DateTime</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+					    <Value>false</Value>
+					  </FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Изображение" Order="3" Enabled="true">
+					<BoundProperty>BinaryId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					    <Value HasEscapedContent="true">
+					      function(sender, args)
+					      {
+					      (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute({sender: sender});
+					      }
+					    </Value>
+					  </FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Содержание" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Заголовок" Order="1" Enabled="true">
+					<BoundProperty>Caption</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  sender.SetHeight(50);
+							    var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender);
+							    inlineMemoEditorController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Текст" Order="1" Enabled="true">
+					<BoundProperty>Text</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender);
+							    inlineMemoEditorController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Связи" ColSpan="2" Order="3">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Роли" Enabled="true" Order="1">
+					<BoundProperty>NewsLinksRole</BoundProperty>
+					<NestedExtension>ListBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                var inlineListBoxController = new Core.Admin.FormController.InlineListBoxController(sender);
+							  inlineListBoxController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+					<FormLayoutItemListBoxSetting>
+						<DataSourceType>Entity</DataSourceType>
+						<DataSource>NewsLinksRole</DataSource>
+						<FormLayoutItemListBoxColumns>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Id</FieldName>
+								<Caption>Ид</Caption>
+								<Width>25</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Description</FieldName>
+								<Caption>Наименование</Caption>
+							</FormLayoutItemListBoxColumn>
+						</FormLayoutItemListBoxColumns>
+					</FormLayoutItemListBoxSetting>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

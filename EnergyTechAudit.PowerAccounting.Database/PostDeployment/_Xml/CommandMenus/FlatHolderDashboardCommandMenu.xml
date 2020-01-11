@@ -1,0 +1,45 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>flatHolderDashboardCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>250</Width>
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>showOptions</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <ToolTip>Настройки</ToolTip>
+    <CommandName>showOptions</CommandName>
+    <Text></Text>
+    <IconClass>font-icon-options font-icon-x1_2 font-icon-darkslateblue indent-right-5px</IconClass>
+
+    <CommandMenuItem>
+      <Name>showInterval</Name>
+      <Text>Временной интервал...</Text>
+      <CommandName>showInterval</CommandName>
+      <IconClass>font-icon-interval font-icon-x1_3 font-icon-black indent-right-5px</IconClass>
+    </CommandMenuItem>
+
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>showArchiveJournal</Name>
+    <CommandName>showArchiveJournal</CommandName>
+    <AdditionalInfo>Archive</AdditionalInfo>
+    <ToolTip>Журнал архивов устройства</ToolTip>
+    <IconClass>font-icon-archive font-icon-x1_2 font-icon-orangered</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>checkConnection</Name>
+    <ToolTip>Проверка связи с устройством...</ToolTip>
+    <CommandName>checkConnection</CommandName>
+    <IconClass>font-icon-checkconnection font-icon-x1_3 font-icon-color-darkred indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+</CommandMenu>

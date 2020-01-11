@@ -1,0 +1,35 @@
+﻿-- ====================================================================================================
+-- Author:  	Leo
+-- Create date: 2015-03-31
+-- Description: Позволяет восстановить серверные объекты после переустановки системы и восстановления 
+-- базы данных из резервной копии
+-- ===================================================================================================
+
+:r CreateDatabaseMail.sql
+GO
+
+:r CreateJobsOperator.sql
+GO
+
+:r CreateHourlyJobs.sql
+GO
+
+:r CreateDailyJobs.sql
+GO
+
+:r CreateWeeklyJobs.sql
+GO
+
+:r CreateMonthlyJobs.sql
+GO
+
+:r CreateSystemBackup.sql
+GO
+
+ALTER DATABASE [EnergyTechAudit.PowerAccounting.Database]
+  SET ALLOW_SNAPSHOT_ISOLATION ON;
+
+GO
+
+:r CreateDeadlockMonitor.sql
+GO

@@ -1,0 +1,228 @@
+<FormLayout Name="measurementDeviceForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+      function (sender, args) 
+      {
+        jQuery(document).off(Core.Common.EventTypes.FormController.FormLoadComplete_Form);
+        
+        jQuery(document).on(Core.Common.EventTypes.FormController.FormLoadComplete_Form, function () 
+          {
+            var commandMenuBarController = new Core.Common.CommandMenuBarController("formCommandMenu");
+                        
+            var formController = Core.Admin.FormController.prototype.currentInstance;                 
+            var entityTypeName = formController.getEntityTypeName();
+                                   
+            var doSendRequest = Core.Common.DeviceReaderResponseCommandDialog.prototype.sendRequestFromFormController;
+            
+            commandMenuBarController.bind(
+            {   
+              checkServiceStatus: function()
+              {                                
+                doSendRequest("checkServiceStatus", entityTypeName);
+              },
+              
+              startService: function()
+              {                                                              
+                doSendRequest("startService", entityTypeName);
+              },
+              
+              startServices: function()
+              {                                                              
+                doSendRequest("startServices", entityTypeName);
+              },
+              
+              stopService: function()
+              {                                                                
+                doSendRequest("stopService", entityTypeName);
+              },
+              
+              stopServices: function()
+              {                                                                
+                doSendRequest("stopServices", entityTypeName);
+              } 
+            });
+          });
+      }
+    </InitScript>
+	<CommandMenu>
+		<Name>deviceReaderFormCommandMenu</Name>
+		<ClientVisible>true</ClientVisible>
+		<Width>125</Width>
+		<CommandMenuItem>
+			<Name>startServices</Name>
+			<ToolTip>Запуск всех служб считывателей</ToolTip>
+			<CommandName>startServices</CommandName>
+			<IconClass>font-icon-start font-icon-darkgreen indent-right-5px</IconClass>
+		</CommandMenuItem>
+		<CommandMenuItem>
+			<Name>stopServices</Name>
+			<ToolTip>Останов всех служб считывателей</ToolTip>
+			<CommandName>stopServices</CommandName>
+			<IconClass>font-icon-stop font-icon-red indent-right-5px</IconClass>
+		</CommandMenuItem>
+		<CommandMenuItem>
+			<Name>deviceReaderControl</Name>
+			<DropDownMode>true</DropDownMode>
+			<BeginGroup>true</BeginGroup>
+			<CommandName>deviceReaderControl</CommandName>
+			<IconClass>font-icon-checkconnection font-icon-color-darkred indent-right-5px</IconClass>
+			<ToolTip>Управление службой считывателя устройств</ToolTip>
+			<CommandMenuItem>
+				<Name>startService</Name>
+				<Text>Запуск службы считывателя...</Text>
+				<CommandName>startService</CommandName>
+				<IconClass>font-icon-start font-icon-darkgreen indent-right-5px</IconClass>
+			</CommandMenuItem>
+			<CommandMenuItem>
+				<Name>stopService</Name>
+				<Text>Останов службы считывателя...</Text>
+				<CommandName>stopService</CommandName>
+				<IconClass>font-icon-stop font-icon-red indent-right-5px</IconClass>
+			</CommandMenuItem>
+			<CommandMenuItem>
+				<Name>checkServiceStatus</Name>
+				<Text>Проверка состояния службы считывателя...</Text>
+				<CommandName>checkServiceStatus</CommandName>
+				<IconClass>font-icon-devicereader font-icon-black font-icon-x1_3 indent-right-5px</IconClass>
+			</CommandMenuItem>
+		</CommandMenuItem>
+	</CommandMenu>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Order="1" Enabled="false">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<Tooltip>
+						<HelpId>1</HelpId>
+						<Text>Уникальный идентификатор сущности</Text>
+					</Tooltip>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Код" Order="2" Enabled="true">
+					<BoundProperty>Code</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="3" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Тип службы" Order="4" Enabled="true">
+					<BoundProperty>DeviceReaderTypeId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Настройки" ColSpan="1" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="IP-адрес SignalR" Order="1" Enabled="true">
+					<BoundProperty>EditableSignalRNetAddress</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaskSettings.Mask</PropertiesChain>
+							<Value>999.999.999.999</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaskSettings.IncludeLiterals</PropertiesChain>
+							<Value>DecimalSymbol</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValidationSettings.Display</PropertiesChain>
+							<Value>None</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Порт SignalR" Order="2" Enabled="true">
+					<BoundProperty>SignalRPort</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Хаб SignalR" Order="3" Enabled="true">
+					<BoundProperty>SignalRHub</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Взаимодействие с IIS" ColSpan="1" Order="3">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Адрес для коммуникаций" Order="1" Enabled="true">
+					<BoundProperty>ServerCommunicatorNetAddress</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Учетная запись" Order="2" Enabled="true">
+					<BoundProperty>UserId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					    <Value HasEscapedContent="true">
+					      function(sender, args)
+					      {
+					        (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute({sender: sender});
+					      }
+					    </Value>
+					  </FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Контроллер" Order="3" Enabled="true">
+					<BoundProperty>ServerCommunicatorController</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Действие" Order="4" Enabled="true">
+					<BoundProperty>ServerCommunicatorReceiveAction</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Параметры опроса" ColSpan="2" Order="4">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Интервал обновления конфигурации (мин.)" Order="1" Enabled="true">
+					<BoundProperty>UpdateConfigInterval</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Кол-во потоков опроса" Order="2" Enabled="true">
+					<BoundProperty>MaxThreadCount</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Просмотр очереди (сек.)" Order="3" Enabled="true">
+					<BoundProperty>QueuePollingInterval</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Снятие зависших потоков (мин.)" Order="4" Enabled="true">
+					<BoundProperty>HoveringTaskRemoveTime</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

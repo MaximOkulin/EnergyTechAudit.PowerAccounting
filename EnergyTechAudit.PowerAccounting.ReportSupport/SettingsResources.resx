@@ -1,0 +1,1308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ClockChange" xml:space="preserve">
+    <value>ClockChange</value>
+  </data>
+  <data name="ContractPressure" xml:space="preserve">
+    <value>ContractPressure</value>
+  </data>
+  <data name="ContractTemp" xml:space="preserve">
+    <value>ContractTemp</value>
+  </data>
+  <data name="ContractVolume" xml:space="preserve">
+    <value>ContractVolume</value>
+  </data>
+  <data name="ControlV" xml:space="preserve">
+    <value>ControlV</value>
+  </data>
+  <data name="ControlWC" xml:space="preserve">
+    <value>ControlWC</value>
+  </data>
+  <data name="Database1DayFrom" xml:space="preserve">
+    <value>Database1DayFrom</value>
+  </data>
+  <data name="Database1HourFrom" xml:space="preserve">
+    <value>Database1HourFrom</value>
+  </data>
+  <data name="Database1MonthFrom" xml:space="preserve">
+    <value>Database1MonthFrom</value>
+  </data>
+  <data name="Database2DayFrom" xml:space="preserve">
+    <value>Database2DayFrom</value>
+  </data>
+  <data name="Database2HourFrom" xml:space="preserve">
+    <value>Database2HourFrom</value>
+  </data>
+  <data name="Database2IsUse" xml:space="preserve">
+    <value>Database2IsUse</value>
+  </data>
+  <data name="Database2MonthFrom" xml:space="preserve">
+    <value>Database2MonthFrom</value>
+  </data>
+  <data name="DatabaseSwitchAccess" xml:space="preserve">
+    <value>DatabaseSwitchAccess</value>
+  </data>
+  <data name="DatabaseSwitchNetworkAccess" xml:space="preserve">
+    <value>DatabaseSwitchNetworkAccess</value>
+  </data>
+  <data name="DatabaseSwitchType" xml:space="preserve">
+    <value>DatabaseSwitchType</value>
+  </data>
+  <data name="DisplayInversion" xml:space="preserve">
+    <value>DisplayInversion</value>
+  </data>
+  <data name="dMControl" xml:space="preserve">
+    <value>dMControl</value>
+  </data>
+  <data name="dMmax" xml:space="preserve">
+    <value>dMmax</value>
+  </data>
+  <data name="dtControl" xml:space="preserve">
+    <value>dtControl</value>
+  </data>
+  <data name="dtmin" xml:space="preserve">
+    <value>dtmin</value>
+  </data>
+  <data name="EmptyPipeAccounting" xml:space="preserve">
+    <value>EmptyPipeAccounting</value>
+  </data>
+  <data name="EmptyPipeInput" xml:space="preserve">
+    <value>EmptyPipeInput</value>
+  </data>
+  <data name="Firmware" xml:space="preserve">
+    <value>Firmware</value>
+  </data>
+  <data name="FlowDirection" xml:space="preserve">
+    <value>FlowDirection</value>
+  </data>
+  <data name="FRT" xml:space="preserve">
+    <value>FRT</value>
+  </data>
+  <data name="HeightAdjustment" xml:space="preserve">
+    <value>HeightAdjustment</value>
+  </data>
+  <data name="HighLimitSensor" xml:space="preserve">
+    <value>HighLimitSensor</value>
+  </data>
+  <data name="ImpulseInputHigh" xml:space="preserve">
+    <value>ImpulseInputHigh</value>
+  </data>
+  <data name="ImpulseInputImpulseWeightOrConfirmTime" xml:space="preserve">
+    <value>ImpulseInputImpulseWeightOrConfirmTime</value>
+  </data>
+  <data name="ImpulseInputLow" xml:space="preserve">
+    <value>ImpulseInputLow</value>
+  </data>
+  <data name="ImpulseInputMeasurementUnit" xml:space="preserve">
+    <value>ImpulseInputMeasurementUnit</value>
+  </data>
+  <data name="ImpulseInputSignalLevel" xml:space="preserve">
+    <value>ImpulseInputSignalLevel</value>
+  </data>
+  <data name="ImpulseInputTarget" xml:space="preserve">
+    <value>ImpulseInputTarget</value>
+  </data>
+  <data name="ImpulseWeight" xml:space="preserve">
+    <value>ImpulseWeight</value>
+  </data>
+  <data name="IsNewFirmware2_20" xml:space="preserve">
+    <value>IsNewFirmware2_20</value>
+  </data>
+  <data name="MeasurementScheme" xml:space="preserve">
+    <value>MeasurementScheme</value>
+  </data>
+  <data name="MeasurementUnit" xml:space="preserve">
+    <value>MeasurementUnit</value>
+  </data>
+  <data name="Pipe3Config" xml:space="preserve">
+    <value>Pipe3Config</value>
+  </data>
+  <data name="PipeParameterStringFormat" xml:space="preserve">
+    <value>Tv{0}Pipe{1}{2}_Db{3}</value>
+  </data>
+  <data name="PressureSensor" xml:space="preserve">
+    <value>PressureSensor</value>
+  </data>
+  <data name="PxContract" xml:space="preserve">
+    <value>PxContract</value>
+  </data>
+  <data name="QControl" xml:space="preserve">
+    <value>QControl</value>
+  </data>
+  <data name="ReportDay" xml:space="preserve">
+    <value>ReportDay</value>
+  </data>
+  <data name="ReportHour" xml:space="preserve">
+    <value>ReportHour</value>
+  </data>
+  <data name="ReverseInput" xml:space="preserve">
+    <value>ReverseInput</value>
+  </data>
+  <data name="tControl" xml:space="preserve">
+    <value>tControl</value>
+  </data>
+  <data name="ThermoSensorType" xml:space="preserve">
+    <value>ThermoSensorType</value>
+  </data>
+  <data name="Tv1dMControl_Db1" xml:space="preserve">
+    <value>Tv1dMControl_Db1</value>
+  </data>
+  <data name="Tv1dMControl_Db2" xml:space="preserve">
+    <value>Tv1dMControl_Db2</value>
+  </data>
+  <data name="Tv1dMmax_Db1" xml:space="preserve">
+    <value>Tv1dMmax_Db1</value>
+  </data>
+  <data name="Tv1dMmax_Db2" xml:space="preserve">
+    <value>Tv1dMmax_Db2</value>
+  </data>
+  <data name="Tv1dtControl_Db1" xml:space="preserve">
+    <value>Tv1dtControl_Db1</value>
+  </data>
+  <data name="Tv1dtControl_Db2" xml:space="preserve">
+    <value>Tv1dtControl_Db2</value>
+  </data>
+  <data name="Tv1dtmin_Db1" xml:space="preserve">
+    <value>Tv1dtmin_Db1</value>
+  </data>
+  <data name="Tv1dtmin_Db2" xml:space="preserve">
+    <value>Tv1dtmin_Db2</value>
+  </data>
+  <data name="Tv1FRT_Db1" xml:space="preserve">
+    <value>Tv1FRT_Db1</value>
+  </data>
+  <data name="Tv1FRT_Db2" xml:space="preserve">
+    <value>Tv1FRT_Db2</value>
+  </data>
+  <data name="Tv1MeasurementScheme_Db1" xml:space="preserve">
+    <value>Tv1MeasurementScheme_Db1</value>
+  </data>
+  <data name="Tv1MeasurementScheme_Db2" xml:space="preserve">
+    <value>Tv1MeasurementScheme_Db2</value>
+  </data>
+  <data name="Tv1Pipe1ContractPressure_Db1" xml:space="preserve">
+    <value>Tv1Pipe1ContractPressure_Db1</value>
+  </data>
+  <data name="Tv1Pipe1ContractPressure_Db2" xml:space="preserve">
+    <value>Tv1Pipe1ContractPressure_Db2</value>
+  </data>
+  <data name="Tv1Pipe1ContractTemp_Db1" xml:space="preserve">
+    <value>Tv1Pipe1ContractTemp_Db1</value>
+  </data>
+  <data name="Tv1Pipe1ContractTemp_Db2" xml:space="preserve">
+    <value>Tv1Pipe1ContractTemp_Db2</value>
+  </data>
+  <data name="Tv1Pipe1ContractVolume_Db1" xml:space="preserve">
+    <value>Tv1Pipe1ContractVolume_Db1</value>
+  </data>
+  <data name="Tv1Pipe1ContractVolume_Db2" xml:space="preserve">
+    <value>Tv1Pipe1ContractVolume_Db2</value>
+  </data>
+  <data name="Tv1Pipe1ControlV_Db1" xml:space="preserve">
+    <value>Tv1Pipe1ControlV_Db1</value>
+  </data>
+  <data name="Tv1Pipe1ControlV_Db2" xml:space="preserve">
+    <value>Tv1Pipe1ControlV_Db2</value>
+  </data>
+  <data name="Tv1Pipe1ControlWC_Db1" xml:space="preserve">
+    <value>Tv1Pipe1ControlWC_Db1</value>
+  </data>
+  <data name="Tv1Pipe1ControlWC_Db2" xml:space="preserve">
+    <value>Tv1Pipe1ControlWC_Db2</value>
+  </data>
+  <data name="Tv1Pipe1EmptyPipeAccounting_Db1" xml:space="preserve">
+    <value>Tv1Pipe1EmptyPipeAccounting_Db1</value>
+  </data>
+  <data name="Tv1Pipe1EmptyPipeAccounting_Db2" xml:space="preserve">
+    <value>Tv1Pipe1EmptyPipeAccounting_Db2</value>
+  </data>
+  <data name="Tv1Pipe1EmptyPipeInput_Db1" xml:space="preserve">
+    <value>Tv1Pipe1EmptyPipeInput_Db1</value>
+  </data>
+  <data name="Tv1Pipe1EmptyPipeInput_Db2" xml:space="preserve">
+    <value>Tv1Pipe1EmptyPipeInput_Db2</value>
+  </data>
+  <data name="Tv1Pipe1FlowDirection_Db1" xml:space="preserve">
+    <value>Tv1Pipe1FlowDirection_Db1</value>
+  </data>
+  <data name="Tv1Pipe1FlowDirection_Db2" xml:space="preserve">
+    <value>Tv1Pipe1FlowDirection_Db2</value>
+  </data>
+  <data name="Tv1Pipe1HeightAdjustment_Db1" xml:space="preserve">
+    <value>Tv1Pipe1HeightAdjustment_Db1</value>
+  </data>
+  <data name="Tv1Pipe1HeightAdjustment_Db2" xml:space="preserve">
+    <value>Tv1Pipe1HeightAdjustment_Db2</value>
+  </data>
+  <data name="Tv1Pipe1HighLimitSensor_Db1" xml:space="preserve">
+    <value>Tv1Pipe1HighLimitSensor_Db1</value>
+  </data>
+  <data name="Tv1Pipe1HighLimitSensor_Db2" xml:space="preserve">
+    <value>Tv1Pipe1HighLimitSensor_Db2</value>
+  </data>
+  <data name="Tv1Pipe1ImpulseWeight_Db1" xml:space="preserve">
+    <value>Tv1Pipe1ImpulseWeight_Db1</value>
+  </data>
+  <data name="Tv1Pipe1ImpulseWeight_Db2" xml:space="preserve">
+    <value>Tv1Pipe1ImpulseWeight_Db2</value>
+  </data>
+  <data name="Tv1Pipe1PressureSensor_Db1" xml:space="preserve">
+    <value>Tv1Pipe1PressureSensor_Db1</value>
+  </data>
+  <data name="Tv1Pipe1PressureSensor_Db2" xml:space="preserve">
+    <value>Tv1Pipe1PressureSensor_Db2</value>
+  </data>
+  <data name="Tv1Pipe1ReverseInput_Db1" xml:space="preserve">
+    <value>Tv1Pipe1ReverseInput_Db1</value>
+  </data>
+  <data name="Tv1Pipe1ReverseInput_Db2" xml:space="preserve">
+    <value>Tv1Pipe1ReverseInput_Db2</value>
+  </data>
+  <data name="Tv1Pipe1VolumeMax_Db1" xml:space="preserve">
+    <value>Tv1Pipe1VolumeMax_Db1</value>
+  </data>
+  <data name="Tv1Pipe1VolumeMax_Db2" xml:space="preserve">
+    <value>Tv1Pipe1VolumeMax_Db2</value>
+  </data>
+  <data name="Tv1Pipe1VolumeMin_Db1" xml:space="preserve">
+    <value>Tv1Pipe1VolumeMin_Db1</value>
+  </data>
+  <data name="Tv1Pipe1VolumeMin_Db2" xml:space="preserve">
+    <value>Tv1Pipe1VolumeMin_Db2</value>
+  </data>
+  <data name="Tv1Pipe1WaterCounterType_Db1" xml:space="preserve">
+    <value>Tv1Pipe1WaterCounterType_Db1</value>
+  </data>
+  <data name="Tv1Pipe1WaterCounterType_Db2" xml:space="preserve">
+    <value>Tv1Pipe1WaterCounterType_Db2</value>
+  </data>
+  <data name="Tv1Pipe2ContractPressure_Db1" xml:space="preserve">
+    <value>Tv1Pipe2ContractPressure_Db1</value>
+  </data>
+  <data name="Tv1Pipe2ContractPressure_Db2" xml:space="preserve">
+    <value>Tv1Pipe2ContractPressure_Db2</value>
+  </data>
+  <data name="Tv1Pipe2ContractTemp_Db1" xml:space="preserve">
+    <value>Tv1Pipe2ContractTemp_Db1</value>
+  </data>
+  <data name="Tv1Pipe2ContractTemp_Db2" xml:space="preserve">
+    <value>Tv1Pipe2ContractTemp_Db2</value>
+  </data>
+  <data name="Tv1Pipe2ContractVolume_Db1" xml:space="preserve">
+    <value>Tv1Pipe2ContractVolume_Db1</value>
+  </data>
+  <data name="Tv1Pipe2ContractVolume_Db2" xml:space="preserve">
+    <value>Tv1Pipe2ContractVolume_Db2</value>
+  </data>
+  <data name="Tv1Pipe2ControlV_Db1" xml:space="preserve">
+    <value>Tv1Pipe2ControlV_Db1</value>
+  </data>
+  <data name="Tv1Pipe2ControlV_Db2" xml:space="preserve">
+    <value>Tv1Pipe2ControlV_Db2</value>
+  </data>
+  <data name="Tv1Pipe2ControlWC_Db1" xml:space="preserve">
+    <value>Tv1Pipe2ControlWC_Db1</value>
+  </data>
+  <data name="Tv1Pipe2ControlWC_Db2" xml:space="preserve">
+    <value>Tv1Pipe2ControlWC_Db2</value>
+  </data>
+  <data name="Tv1Pipe2EmptyPipeAccounting_Db1" xml:space="preserve">
+    <value>Tv1Pipe2EmptyPipeAccounting_Db1</value>
+  </data>
+  <data name="Tv1Pipe2EmptyPipeAccounting_Db2" xml:space="preserve">
+    <value>Tv1Pipe2EmptyPipeAccounting_Db2</value>
+  </data>
+  <data name="Tv1Pipe2EmptyPipeInput_Db1" xml:space="preserve">
+    <value>Tv1Pipe2EmptyPipeInput_Db1</value>
+  </data>
+  <data name="Tv1Pipe2EmptyPipeInput_Db2" xml:space="preserve">
+    <value>Tv1Pipe2EmptyPipeInput_Db2</value>
+  </data>
+  <data name="Tv1Pipe2FlowDirection_Db1" xml:space="preserve">
+    <value>Tv1Pipe2FlowDirection_Db1</value>
+  </data>
+  <data name="Tv1Pipe2FlowDirection_Db2" xml:space="preserve">
+    <value>Tv1Pipe2FlowDirection_Db2</value>
+  </data>
+  <data name="Tv1Pipe2HeightAdjustment_Db1" xml:space="preserve">
+    <value>Tv1Pipe2HeightAdjustment_Db1</value>
+  </data>
+  <data name="Tv1Pipe2HeightAdjustment_Db2" xml:space="preserve">
+    <value>Tv1Pipe2HeightAdjustment_Db2</value>
+  </data>
+  <data name="Tv1Pipe2HighLimitSensor_Db1" xml:space="preserve">
+    <value>Tv1Pipe2HighLimitSensor_Db1</value>
+  </data>
+  <data name="Tv1Pipe2HighLimitSensor_Db2" xml:space="preserve">
+    <value>Tv1Pipe2HighLimitSensor_Db2</value>
+  </data>
+  <data name="Tv1Pipe2ImpulseWeight_Db1" xml:space="preserve">
+    <value>Tv1Pipe2ImpulseWeight_Db1</value>
+  </data>
+  <data name="Tv1Pipe2ImpulseWeight_Db2" xml:space="preserve">
+    <value>Tv1Pipe2ImpulseWeight_Db2</value>
+  </data>
+  <data name="Tv1Pipe2PressureSensor_Db1" xml:space="preserve">
+    <value>Tv1Pipe2PressureSensor_Db1</value>
+  </data>
+  <data name="Tv1Pipe2PressureSensor_Db2" xml:space="preserve">
+    <value>Tv1Pipe2PressureSensor_Db2</value>
+  </data>
+  <data name="Tv1Pipe2ReverseInput_Db1" xml:space="preserve">
+    <value>Tv1Pipe2ReverseInput_Db1</value>
+  </data>
+  <data name="Tv1Pipe2ReverseInput_Db2" xml:space="preserve">
+    <value>Tv1Pipe2ReverseInput_Db2</value>
+  </data>
+  <data name="Tv1Pipe2VolumeMax_Db1" xml:space="preserve">
+    <value>Tv1Pipe2VolumeMax_Db1</value>
+  </data>
+  <data name="Tv1Pipe2VolumeMax_Db2" xml:space="preserve">
+    <value>Tv1Pipe2VolumeMax_Db2</value>
+  </data>
+  <data name="Tv1Pipe2VolumeMin_Db1" xml:space="preserve">
+    <value>Tv1Pipe2VolumeMin_Db1</value>
+  </data>
+  <data name="Tv1Pipe2VolumeMin_Db2" xml:space="preserve">
+    <value>Tv1Pipe2VolumeMin_Db2</value>
+  </data>
+  <data name="Tv1Pipe2WaterCounterType_Db1" xml:space="preserve">
+    <value>Tv1Pipe2WaterCounterType_Db1</value>
+  </data>
+  <data name="Tv1Pipe2WaterCounterType_Db2" xml:space="preserve">
+    <value>Tv1Pipe2WaterCounterType_Db2</value>
+  </data>
+  <data name="Tv1Pipe3Config_Db1" xml:space="preserve">
+    <value>Tv1Pipe3Config_Db1</value>
+  </data>
+  <data name="Tv1Pipe3Config_Db2" xml:space="preserve">
+    <value>Tv1Pipe3Config_Db2</value>
+  </data>
+  <data name="Tv1Pipe3ContractPressure_Db1" xml:space="preserve">
+    <value>Tv1Pipe3ContractPressure_Db1</value>
+  </data>
+  <data name="Tv1Pipe3ContractPressure_Db2" xml:space="preserve">
+    <value>Tv1Pipe3ContractPressure_Db2</value>
+  </data>
+  <data name="Tv1Pipe3ContractTemp_Db1" xml:space="preserve">
+    <value>Tv1Pipe3ContractTemp_Db1</value>
+  </data>
+  <data name="Tv1Pipe3ContractTemp_Db2" xml:space="preserve">
+    <value>Tv1Pipe3ContractTemp_Db2</value>
+  </data>
+  <data name="Tv1Pipe3ContractVolume_Db1" xml:space="preserve">
+    <value>Tv1Pipe3ContractVolume_Db1</value>
+  </data>
+  <data name="Tv1Pipe3ContractVolume_Db2" xml:space="preserve">
+    <value>Tv1Pipe3ContractVolume_Db2</value>
+  </data>
+  <data name="Tv1Pipe3ControlV_Db1" xml:space="preserve">
+    <value>Tv1Pipe3ControlV_Db1</value>
+  </data>
+  <data name="Tv1Pipe3ControlV_Db2" xml:space="preserve">
+    <value>Tv1Pipe3ControlV_Db2</value>
+  </data>
+  <data name="Tv1Pipe3ControlWC_Db1" xml:space="preserve">
+    <value>Tv1Pipe3ControlWC_Db1</value>
+  </data>
+  <data name="Tv1Pipe3ControlWC_Db2" xml:space="preserve">
+    <value>Tv1Pipe3ControlWC_Db2</value>
+  </data>
+  <data name="Tv1Pipe3EmptyPipeAccounting_Db1" xml:space="preserve">
+    <value>Tv1Pipe3EmptyPipeAccounting_Db1</value>
+  </data>
+  <data name="Tv1Pipe3EmptyPipeAccounting_Db2" xml:space="preserve">
+    <value>Tv1Pipe3EmptyPipeAccounting_Db2</value>
+  </data>
+  <data name="Tv1Pipe3EmptyPipeInput_Db1" xml:space="preserve">
+    <value>Tv1Pipe3EmptyPipeInput_Db1</value>
+  </data>
+  <data name="Tv1Pipe3EmptyPipeInput_Db2" xml:space="preserve">
+    <value>Tv1Pipe3EmptyPipeInput_Db2</value>
+  </data>
+  <data name="Tv1Pipe3FlowDirection_Db1" xml:space="preserve">
+    <value>Tv1Pipe3FlowDirection_Db1</value>
+  </data>
+  <data name="Tv1Pipe3FlowDirection_Db2" xml:space="preserve">
+    <value>Tv1Pipe3FlowDirection_Db2</value>
+  </data>
+  <data name="Tv1Pipe3HeightAdjustment_Db1" xml:space="preserve">
+    <value>Tv1Pipe3HeightAdjustment_Db1</value>
+  </data>
+  <data name="Tv1Pipe3HeightAdjustment_Db2" xml:space="preserve">
+    <value>Tv1Pipe3HeightAdjustment_Db2</value>
+  </data>
+  <data name="Tv1Pipe3HighLimitSensor_Db1" xml:space="preserve">
+    <value>Tv1Pipe3HighLimitSensor_Db1</value>
+  </data>
+  <data name="Tv1Pipe3HighLimitSensor_Db2" xml:space="preserve">
+    <value>Tv1Pipe3HighLimitSensor_Db2</value>
+  </data>
+  <data name="Tv1Pipe3ImpulseWeight_Db1" xml:space="preserve">
+    <value>Tv1Pipe3ImpulseWeight_Db1</value>
+  </data>
+  <data name="Tv1Pipe3ImpulseWeight_Db2" xml:space="preserve">
+    <value>Tv1Pipe3ImpulseWeight_Db2</value>
+  </data>
+  <data name="Tv1Pipe3PressureSensor_Db1" xml:space="preserve">
+    <value>Tv1Pipe3PressureSensor_Db1</value>
+  </data>
+  <data name="Tv1Pipe3PressureSensor_Db2" xml:space="preserve">
+    <value>Tv1Pipe3PressureSensor_Db2</value>
+  </data>
+  <data name="Tv1Pipe3ReverseInput_Db1" xml:space="preserve">
+    <value>Tv1Pipe3ReverseInput_Db1</value>
+  </data>
+  <data name="Tv1Pipe3ReverseInput_Db2" xml:space="preserve">
+    <value>Tv1Pipe3ReverseInput_Db2</value>
+  </data>
+  <data name="Tv1Pipe3VolumeMax_Db1" xml:space="preserve">
+    <value>Tv1Pipe3VolumeMax_Db1</value>
+  </data>
+  <data name="Tv1Pipe3VolumeMax_Db2" xml:space="preserve">
+    <value>Tv1Pipe3VolumeMax_Db2</value>
+  </data>
+  <data name="Tv1Pipe3VolumeMin_Db1" xml:space="preserve">
+    <value>Tv1Pipe3VolumeMin_Db1</value>
+  </data>
+  <data name="Tv1Pipe3VolumeMin_Db2" xml:space="preserve">
+    <value>Tv1Pipe3VolumeMin_Db2</value>
+  </data>
+  <data name="Tv1Pipe3WaterCounterType_Db1" xml:space="preserve">
+    <value>Tv1Pipe3WaterCounterType_Db1</value>
+  </data>
+  <data name="Tv1Pipe3WaterCounterType_Db2" xml:space="preserve">
+    <value>Tv1Pipe3WaterCounterType_Db2</value>
+  </data>
+  <data name="Tv1PxContract_Db1" xml:space="preserve">
+    <value>Tv1PxContract_Db1</value>
+  </data>
+  <data name="Tv1PxContract_Db2" xml:space="preserve">
+    <value>Tv1PxContract_Db2</value>
+  </data>
+  <data name="Tv1QControl_Db1" xml:space="preserve">
+    <value>Tv1QControl_Db1</value>
+  </data>
+  <data name="Tv1QControl_Db2" xml:space="preserve">
+    <value>Tv1QControl_Db2</value>
+  </data>
+  <data name="Tv1tControl_Db1" xml:space="preserve">
+    <value>Tv1tControl_Db1</value>
+  </data>
+  <data name="Tv1tControl_Db2" xml:space="preserve">
+    <value>Tv1tControl_Db2</value>
+  </data>
+  <data name="Tv1txContract_Db1" xml:space="preserve">
+    <value>Tv1txContract_Db1</value>
+  </data>
+  <data name="Tv1txContract_Db2" xml:space="preserve">
+    <value>Tv1txContract_Db2</value>
+  </data>
+  <data name="Tv1UseQtv_Db1" xml:space="preserve">
+    <value>Tv1UseQtv_Db1</value>
+  </data>
+  <data name="Tv1UseQtv_Db2" xml:space="preserve">
+    <value>Tv1UseQtv_Db2</value>
+  </data>
+  <data name="Tv1Usetnv_Db1" xml:space="preserve">
+    <value>Tv1Usetnv_Db1</value>
+  </data>
+  <data name="Tv1Usetnv_Db2" xml:space="preserve">
+    <value>Tv1Usetnv_Db2</value>
+  </data>
+  <data name="Tv1Usetx_Db1" xml:space="preserve">
+    <value>Tv1Usetx_Db1</value>
+  </data>
+  <data name="Tv1Usetx_Db2" xml:space="preserve">
+    <value>Tv1Usetx_Db2</value>
+  </data>
+  <data name="Tv2dMControl_Db1" xml:space="preserve">
+    <value>Tv2dMControl_Db1</value>
+  </data>
+  <data name="Tv2dMControl_Db2" xml:space="preserve">
+    <value>Tv2dMControl_Db2</value>
+  </data>
+  <data name="Tv2dMmax_Db1" xml:space="preserve">
+    <value>Tv2dMmax_Db1</value>
+  </data>
+  <data name="Tv2dMmax_Db2" xml:space="preserve">
+    <value>Tv2dMmax_Db2</value>
+  </data>
+  <data name="Tv2dtControl_Db1" xml:space="preserve">
+    <value>Tv2dtControl_Db1</value>
+  </data>
+  <data name="Tv2dtControl_Db2" xml:space="preserve">
+    <value>Tv2dtControl_Db2</value>
+  </data>
+  <data name="Tv2dtmin_Db1" xml:space="preserve">
+    <value>Tv2dtmin_Db1</value>
+  </data>
+  <data name="Tv2dtmin_Db2" xml:space="preserve">
+    <value>Tv2dtmin_Db2</value>
+  </data>
+  <data name="Tv2FRT_Db1" xml:space="preserve">
+    <value>Tv2FRT_Db1</value>
+  </data>
+  <data name="Tv2FRT_Db2" xml:space="preserve">
+    <value>Tv2FRT_Db2</value>
+  </data>
+  <data name="Tv2MeasurementScheme_Db1" xml:space="preserve">
+    <value>Tv2MeasurementScheme_Db1</value>
+  </data>
+  <data name="Tv2MeasurementScheme_Db2" xml:space="preserve">
+    <value>Tv2MeasurementScheme_Db2</value>
+  </data>
+  <data name="Tv2Pipe1ContractPressure_Db1" xml:space="preserve">
+    <value>Tv2Pipe1ContractPressure_Db1</value>
+  </data>
+  <data name="Tv2Pipe1ContractPressure_Db2" xml:space="preserve">
+    <value>Tv2Pipe1ContractPressure_Db2</value>
+  </data>
+  <data name="Tv2Pipe1ContractTemp_Db1" xml:space="preserve">
+    <value>Tv2Pipe1ContractTemp_Db1</value>
+  </data>
+  <data name="Tv2Pipe1ContractTemp_Db2" xml:space="preserve">
+    <value>Tv2Pipe1ContractTemp_Db2</value>
+  </data>
+  <data name="Tv2Pipe1ContractVolume_Db1" xml:space="preserve">
+    <value>Tv2Pipe1ContractVolume_Db1</value>
+  </data>
+  <data name="Tv2Pipe1ContractVolume_Db2" xml:space="preserve">
+    <value>Tv2Pipe1ContractVolume_Db2</value>
+  </data>
+  <data name="Tv2Pipe1ControlV_Db1" xml:space="preserve">
+    <value>Tv2Pipe1ControlV_Db1</value>
+  </data>
+  <data name="Tv2Pipe1ControlV_Db2" xml:space="preserve">
+    <value>Tv2Pipe1ControlV_Db2</value>
+  </data>
+  <data name="Tv2Pipe1ControlWC_Db1" xml:space="preserve">
+    <value>Tv2Pipe1ControlWC_Db1</value>
+  </data>
+  <data name="Tv2Pipe1ControlWC_Db2" xml:space="preserve">
+    <value>Tv2Pipe1ControlWC_Db2</value>
+  </data>
+  <data name="Tv2Pipe1EmptyPipeAccounting_Db1" xml:space="preserve">
+    <value>Tv2Pipe1EmptyPipeAccounting_Db1</value>
+  </data>
+  <data name="Tv2Pipe1EmptyPipeAccounting_Db2" xml:space="preserve">
+    <value>Tv2Pipe1EmptyPipeAccounting_Db2</value>
+  </data>
+  <data name="Tv2Pipe1EmptyPipeInput_Db1" xml:space="preserve">
+    <value>Tv2Pipe1EmptyPipeInput_Db1</value>
+  </data>
+  <data name="Tv2Pipe1EmptyPipeInput_Db2" xml:space="preserve">
+    <value>Tv2Pipe1EmptyPipeInput_Db2</value>
+  </data>
+  <data name="Tv2Pipe1FlowDirection_Db1" xml:space="preserve">
+    <value>Tv2Pipe1FlowDirection_Db1</value>
+  </data>
+  <data name="Tv2Pipe1FlowDirection_Db2" xml:space="preserve">
+    <value>Tv2Pipe1FlowDirection_Db2</value>
+  </data>
+  <data name="Tv2Pipe1HeightAdjustment_Db1" xml:space="preserve">
+    <value>Tv2Pipe1HeightAdjustment_Db1</value>
+  </data>
+  <data name="Tv2Pipe1HeightAdjustment_Db2" xml:space="preserve">
+    <value>Tv2Pipe1HeightAdjustment_Db2</value>
+  </data>
+  <data name="Tv2Pipe1HighLimitSensor_Db1" xml:space="preserve">
+    <value>Tv2Pipe1HighLimitSensor_Db1</value>
+  </data>
+  <data name="Tv2Pipe1HighLimitSensor_Db2" xml:space="preserve">
+    <value>Tv2Pipe1HighLimitSensor_Db2</value>
+  </data>
+  <data name="Tv2Pipe1ImpulseWeight_Db1" xml:space="preserve">
+    <value>Tv2Pipe1ImpulseWeight_Db1</value>
+  </data>
+  <data name="Tv2Pipe1ImpulseWeight_Db2" xml:space="preserve">
+    <value>Tv2Pipe1ImpulseWeight_Db2</value>
+  </data>
+  <data name="Tv2Pipe1PressureSensor_Db1" xml:space="preserve">
+    <value>Tv2Pipe1PressureSensor_Db1</value>
+  </data>
+  <data name="Tv2Pipe1PressureSensor_Db2" xml:space="preserve">
+    <value>Tv2Pipe1PressureSensor_Db2</value>
+  </data>
+  <data name="Tv2Pipe1ReverseInput_Db1" xml:space="preserve">
+    <value>Tv2Pipe1ReverseInput_Db1</value>
+  </data>
+  <data name="Tv2Pipe1ReverseInput_Db2" xml:space="preserve">
+    <value>Tv2Pipe1ReverseInput_Db2</value>
+  </data>
+  <data name="Tv2Pipe1VolumeMax_Db1" xml:space="preserve">
+    <value>Tv2Pipe1VolumeMax_Db1</value>
+  </data>
+  <data name="Tv2Pipe1VolumeMax_Db2" xml:space="preserve">
+    <value>Tv2Pipe1VolumeMax_Db2</value>
+  </data>
+  <data name="Tv2Pipe1VolumeMin_Db1" xml:space="preserve">
+    <value>Tv2Pipe1VolumeMin_Db1</value>
+  </data>
+  <data name="Tv2Pipe1VolumeMin_Db2" xml:space="preserve">
+    <value>Tv2Pipe1VolumeMin_Db2</value>
+  </data>
+  <data name="Tv2Pipe1WaterCounterType_Db1" xml:space="preserve">
+    <value>Tv2Pipe1WaterCounterType_Db1</value>
+  </data>
+  <data name="Tv2Pipe1WaterCounterType_Db2" xml:space="preserve">
+    <value>Tv2Pipe1WaterCounterType_Db2</value>
+  </data>
+  <data name="Tv2Pipe2ContractPressure_Db1" xml:space="preserve">
+    <value>Tv2Pipe2ContractPressure_Db1</value>
+  </data>
+  <data name="Tv2Pipe2ContractPressure_Db2" xml:space="preserve">
+    <value>Tv2Pipe2ContractPressure_Db2</value>
+  </data>
+  <data name="Tv2Pipe2ContractTemp_Db1" xml:space="preserve">
+    <value>Tv2Pipe2ContractTemp_Db1</value>
+  </data>
+  <data name="Tv2Pipe2ContractTemp_Db2" xml:space="preserve">
+    <value>Tv2Pipe2ContractTemp_Db2</value>
+  </data>
+  <data name="Tv2Pipe2ContractVolume_Db1" xml:space="preserve">
+    <value>Tv2Pipe2ContractVolume_Db1</value>
+  </data>
+  <data name="Tv2Pipe2ContractVolume_Db2" xml:space="preserve">
+    <value>Tv2Pipe2ContractVolume_Db2</value>
+  </data>
+  <data name="Tv2Pipe2ControlV_Db1" xml:space="preserve">
+    <value>Tv2Pipe2ControlV_Db1</value>
+  </data>
+  <data name="Tv2Pipe2ControlV_Db2" xml:space="preserve">
+    <value>Tv2Pipe2ControlV_Db2</value>
+  </data>
+  <data name="Tv2Pipe2ControlWC_Db1" xml:space="preserve">
+    <value>Tv2Pipe2ControlWC_Db1</value>
+  </data>
+  <data name="Tv2Pipe2ControlWC_Db2" xml:space="preserve">
+    <value>Tv2Pipe2ControlWC_Db2</value>
+  </data>
+  <data name="Tv2Pipe2EmptyPipeAccounting_Db1" xml:space="preserve">
+    <value>Tv2Pipe2EmptyPipeAccounting_Db1</value>
+  </data>
+  <data name="Tv2Pipe2EmptyPipeAccounting_Db2" xml:space="preserve">
+    <value>Tv2Pipe2EmptyPipeAccounting_Db2</value>
+  </data>
+  <data name="Tv2Pipe2EmptyPipeInput_Db1" xml:space="preserve">
+    <value>Tv2Pipe2EmptyPipeInput_Db1</value>
+  </data>
+  <data name="Tv2Pipe2EmptyPipeInput_Db2" xml:space="preserve">
+    <value>Tv2Pipe2EmptyPipeInput_Db2</value>
+  </data>
+  <data name="Tv2Pipe2FlowDirection_Db1" xml:space="preserve">
+    <value>Tv2Pipe2FlowDirection_Db1</value>
+  </data>
+  <data name="Tv2Pipe2FlowDirection_Db2" xml:space="preserve">
+    <value>Tv2Pipe2FlowDirection_Db2</value>
+  </data>
+  <data name="Tv2Pipe2HeightAdjustment_Db1" xml:space="preserve">
+    <value>Tv2Pipe2HeightAdjustment_Db1</value>
+  </data>
+  <data name="Tv2Pipe2HeightAdjustment_Db2" xml:space="preserve">
+    <value>Tv2Pipe2HeightAdjustment_Db2</value>
+  </data>
+  <data name="Tv2Pipe2HighLimitSensor_Db1" xml:space="preserve">
+    <value>Tv2Pipe2HighLimitSensor_Db1</value>
+  </data>
+  <data name="Tv2Pipe2HighLimitSensor_Db2" xml:space="preserve">
+    <value>Tv2Pipe2HighLimitSensor_Db2</value>
+  </data>
+  <data name="Tv2Pipe2ImpulseWeight_Db1" xml:space="preserve">
+    <value>Tv2Pipe2ImpulseWeight_Db1</value>
+  </data>
+  <data name="Tv2Pipe2ImpulseWeight_Db2" xml:space="preserve">
+    <value>Tv2Pipe2ImpulseWeight_Db2</value>
+  </data>
+  <data name="Tv2Pipe2PressureSensor_Db1" xml:space="preserve">
+    <value>Tv2Pipe2PressureSensor_Db1</value>
+  </data>
+  <data name="Tv2Pipe2PressureSensor_Db2" xml:space="preserve">
+    <value>Tv2Pipe2PressureSensor_Db2</value>
+  </data>
+  <data name="Tv2Pipe2ReverseInput_Db1" xml:space="preserve">
+    <value>Tv2Pipe2ReverseInput_Db1</value>
+  </data>
+  <data name="Tv2Pipe2ReverseInput_Db2" xml:space="preserve">
+    <value>Tv2Pipe2ReverseInput_Db2</value>
+  </data>
+  <data name="Tv2Pipe2VolumeMax_Db1" xml:space="preserve">
+    <value>Tv2Pipe2VolumeMax_Db1</value>
+  </data>
+  <data name="Tv2Pipe2VolumeMax_Db2" xml:space="preserve">
+    <value>Tv2Pipe2VolumeMax_Db2</value>
+  </data>
+  <data name="Tv2Pipe2VolumeMin_Db1" xml:space="preserve">
+    <value>Tv2Pipe2VolumeMin_Db1</value>
+  </data>
+  <data name="Tv2Pipe2VolumeMin_Db2" xml:space="preserve">
+    <value>Tv2Pipe2VolumeMin_Db2</value>
+  </data>
+  <data name="Tv2Pipe2WaterCounterType_Db1" xml:space="preserve">
+    <value>Tv2Pipe2WaterCounterType_Db1</value>
+  </data>
+  <data name="Tv2Pipe2WaterCounterType_Db2" xml:space="preserve">
+    <value>Tv2Pipe2WaterCounterType_Db2</value>
+  </data>
+  <data name="Tv2Pipe3Config_Db1" xml:space="preserve">
+    <value>Tv2Pipe3Config_Db1</value>
+  </data>
+  <data name="Tv2Pipe3Config_Db2" xml:space="preserve">
+    <value>Tv2Pipe3Config_Db2</value>
+  </data>
+  <data name="Tv2Pipe3ContractPressure_Db1" xml:space="preserve">
+    <value>Tv2Pipe3ContractPressure_Db1</value>
+  </data>
+  <data name="Tv2Pipe3ContractPressure_Db2" xml:space="preserve">
+    <value>Tv2Pipe3ContractPressure_Db2</value>
+  </data>
+  <data name="Tv2Pipe3ContractTemp_Db1" xml:space="preserve">
+    <value>Tv2Pipe3ContractTemp_Db1</value>
+  </data>
+  <data name="Tv2Pipe3ContractTemp_Db2" xml:space="preserve">
+    <value>Tv2Pipe3ContractTemp_Db2</value>
+  </data>
+  <data name="Tv2Pipe3ContractVolume_Db1" xml:space="preserve">
+    <value>Tv2Pipe3ContractVolume_Db1</value>
+  </data>
+  <data name="Tv2Pipe3ContractVolume_Db2" xml:space="preserve">
+    <value>Tv2Pipe3ContractVolume_Db2</value>
+  </data>
+  <data name="Tv2Pipe3ControlV_Db1" xml:space="preserve">
+    <value>Tv2Pipe3ControlV_Db1</value>
+  </data>
+  <data name="Tv2Pipe3ControlV_Db2" xml:space="preserve">
+    <value>Tv2Pipe3ControlV_Db2</value>
+  </data>
+  <data name="Tv2Pipe3ControlWC_Db1" xml:space="preserve">
+    <value>Tv2Pipe3ControlWC_Db1</value>
+  </data>
+  <data name="Tv2Pipe3ControlWC_Db2" xml:space="preserve">
+    <value>Tv2Pipe3ControlWC_Db2</value>
+  </data>
+  <data name="Tv2Pipe3EmptyPipeAccounting_Db1" xml:space="preserve">
+    <value>Tv2Pipe3EmptyPipeAccounting_Db1</value>
+  </data>
+  <data name="Tv2Pipe3EmptyPipeAccounting_Db2" xml:space="preserve">
+    <value>Tv2Pipe3EmptyPipeAccounting_Db2</value>
+  </data>
+  <data name="Tv2Pipe3EmptyPipeInput_Db1" xml:space="preserve">
+    <value>Tv2Pipe3EmptyPipeInput_Db1</value>
+  </data>
+  <data name="Tv2Pipe3EmptyPipeInput_Db2" xml:space="preserve">
+    <value>Tv2Pipe3EmptyPipeInput_Db2</value>
+  </data>
+  <data name="Tv2Pipe3FlowDirection_Db1" xml:space="preserve">
+    <value>Tv2Pipe3FlowDirection_Db1</value>
+  </data>
+  <data name="Tv2Pipe3FlowDirection_Db2" xml:space="preserve">
+    <value>Tv2Pipe3FlowDirection_Db2</value>
+  </data>
+  <data name="Tv2Pipe3HeightAdjustment_Db1" xml:space="preserve">
+    <value>Tv2Pipe3HeightAdjustment_Db1</value>
+  </data>
+  <data name="Tv2Pipe3HeightAdjustment_Db2" xml:space="preserve">
+    <value>Tv2Pipe3HeightAdjustment_Db2</value>
+  </data>
+  <data name="Tv2Pipe3HighLimitSensor_Db1" xml:space="preserve">
+    <value>Tv2Pipe3HighLimitSensor_Db1</value>
+  </data>
+  <data name="Tv2Pipe3HighLimitSensor_Db2" xml:space="preserve">
+    <value>Tv2Pipe3HighLimitSensor_Db2</value>
+  </data>
+  <data name="Tv2Pipe3ImpulseWeight_Db1" xml:space="preserve">
+    <value>Tv2Pipe3ImpulseWeight_Db1</value>
+  </data>
+  <data name="Tv2Pipe3ImpulseWeight_Db2" xml:space="preserve">
+    <value>Tv2Pipe3ImpulseWeight_Db2</value>
+  </data>
+  <data name="Tv2Pipe3PressureSensor_Db1" xml:space="preserve">
+    <value>Tv2Pipe3PressureSensor_Db1</value>
+  </data>
+  <data name="Tv2Pipe3PressureSensor_Db2" xml:space="preserve">
+    <value>Tv2Pipe3PressureSensor_Db2</value>
+  </data>
+  <data name="Tv2Pipe3ReverseInput_Db1" xml:space="preserve">
+    <value>Tv2Pipe3ReverseInput_Db1</value>
+  </data>
+  <data name="Tv2Pipe3ReverseInput_Db2" xml:space="preserve">
+    <value>Tv2Pipe3ReverseInput_Db2</value>
+  </data>
+  <data name="Tv2Pipe3VolumeMax_Db1" xml:space="preserve">
+    <value>Tv2Pipe3VolumeMax_Db1</value>
+  </data>
+  <data name="Tv2Pipe3VolumeMax_Db2" xml:space="preserve">
+    <value>Tv2Pipe3VolumeMax_Db2</value>
+  </data>
+  <data name="Tv2Pipe3VolumeMin_Db1" xml:space="preserve">
+    <value>Tv2Pipe3VolumeMin_Db1</value>
+  </data>
+  <data name="Tv2Pipe3VolumeMin_Db2" xml:space="preserve">
+    <value>Tv2Pipe3VolumeMin_Db2</value>
+  </data>
+  <data name="Tv2Pipe3WaterCounterType_Db1" xml:space="preserve">
+    <value>Tv2Pipe3WaterCounterType_Db1</value>
+  </data>
+  <data name="Tv2Pipe3WaterCounterType_Db2" xml:space="preserve">
+    <value>Tv2Pipe3WaterCounterType_Db2</value>
+  </data>
+  <data name="Tv2PxContract_Db1" xml:space="preserve">
+    <value>Tv2PxContract_Db1</value>
+  </data>
+  <data name="Tv2PxContract_Db2" xml:space="preserve">
+    <value>Tv2PxContract_Db2</value>
+  </data>
+  <data name="Tv2QControl_Db1" xml:space="preserve">
+    <value>Tv2QControl_Db1</value>
+  </data>
+  <data name="Tv2QControl_Db2" xml:space="preserve">
+    <value>Tv2QControl_Db2</value>
+  </data>
+  <data name="Tv2tControl_Db1" xml:space="preserve">
+    <value>Tv2tControl_Db1</value>
+  </data>
+  <data name="Tv2tControl_Db2" xml:space="preserve">
+    <value>Tv2tControl_Db2</value>
+  </data>
+  <data name="Tv2txContract_Db1" xml:space="preserve">
+    <value>Tv2txContract_Db1</value>
+  </data>
+  <data name="Tv2txContract_Db2" xml:space="preserve">
+    <value>Tv2txContract_Db2</value>
+  </data>
+  <data name="Tv2UseQtv_Db1" xml:space="preserve">
+    <value>Tv2UseQtv_Db1</value>
+  </data>
+  <data name="Tv2UseQtv_Db2" xml:space="preserve">
+    <value>Tv2UseQtv_Db2</value>
+  </data>
+  <data name="Tv2Usetnv_Db1" xml:space="preserve">
+    <value>Tv2Usetnv_Db1</value>
+  </data>
+  <data name="Tv2Usetnv_Db2" xml:space="preserve">
+    <value>Tv2Usetnv_Db2</value>
+  </data>
+  <data name="Tv2Usetx_Db1" xml:space="preserve">
+    <value>Tv2Usetx_Db1</value>
+  </data>
+  <data name="Tv2Usetx_Db2" xml:space="preserve">
+    <value>Tv2Usetx_Db2</value>
+  </data>
+  <data name="Tv3dMControl_Db1" xml:space="preserve">
+    <value>Tv3dMControl_Db1</value>
+  </data>
+  <data name="Tv3dMControl_Db2" xml:space="preserve">
+    <value>Tv3dMControl_Db2</value>
+  </data>
+  <data name="Tv3dMmax_Db1" xml:space="preserve">
+    <value>Tv3dMmax_Db1</value>
+  </data>
+  <data name="Tv3dMmax_Db2" xml:space="preserve">
+    <value>Tv3dMmax_Db2</value>
+  </data>
+  <data name="Tv3dtControl_Db1" xml:space="preserve">
+    <value>Tv3dtControl_Db1</value>
+  </data>
+  <data name="Tv3dtControl_Db2" xml:space="preserve">
+    <value>Tv3dtControl_Db2</value>
+  </data>
+  <data name="Tv3dtmin_Db1" xml:space="preserve">
+    <value>Tv3dtmin_Db1</value>
+  </data>
+  <data name="Tv3dtmin_Db2" xml:space="preserve">
+    <value>Tv3dtmin_Db2</value>
+  </data>
+  <data name="Tv3FRT_Db1" xml:space="preserve">
+    <value>Tv3FRT_Db1</value>
+  </data>
+  <data name="Tv3FRT_Db2" xml:space="preserve">
+    <value>Tv3FRT_Db2</value>
+  </data>
+  <data name="Tv3MeasurementScheme_Db1" xml:space="preserve">
+    <value>Tv3MeasurementScheme_Db1</value>
+  </data>
+  <data name="Tv3MeasurementScheme_Db2" xml:space="preserve">
+    <value>Tv3MeasurementScheme_Db2</value>
+  </data>
+  <data name="Tv3Pipe1ContractPressure_Db1" xml:space="preserve">
+    <value>Tv3Pipe1ContractPressure_Db1</value>
+  </data>
+  <data name="Tv3Pipe1ContractPressure_Db2" xml:space="preserve">
+    <value>Tv3Pipe1ContractPressure_Db2</value>
+  </data>
+  <data name="Tv3Pipe1ContractTemp_Db1" xml:space="preserve">
+    <value>Tv3Pipe1ContractTemp_Db1</value>
+  </data>
+  <data name="Tv3Pipe1ContractTemp_Db2" xml:space="preserve">
+    <value>Tv3Pipe1ContractTemp_Db2</value>
+  </data>
+  <data name="Tv3Pipe1ContractVolume_Db1" xml:space="preserve">
+    <value>Tv3Pipe1ContractVolume_Db1</value>
+  </data>
+  <data name="Tv3Pipe1ContractVolume_Db2" xml:space="preserve">
+    <value>Tv3Pipe1ContractVolume_Db2</value>
+  </data>
+  <data name="Tv3Pipe1ControlV_Db1" xml:space="preserve">
+    <value>Tv3Pipe1ControlV_Db1</value>
+  </data>
+  <data name="Tv3Pipe1ControlV_Db2" xml:space="preserve">
+    <value>Tv3Pipe1ControlV_Db2</value>
+  </data>
+  <data name="Tv3Pipe1ControlWC_Db1" xml:space="preserve">
+    <value>Tv3Pipe1ControlWC_Db1</value>
+  </data>
+  <data name="Tv3Pipe1ControlWC_Db2" xml:space="preserve">
+    <value>Tv3Pipe1ControlWC_Db2</value>
+  </data>
+  <data name="Tv3Pipe1EmptyPipeAccounting_Db1" xml:space="preserve">
+    <value>Tv3Pipe1EmptyPipeAccounting_Db1</value>
+  </data>
+  <data name="Tv3Pipe1EmptyPipeAccounting_Db2" xml:space="preserve">
+    <value>Tv3Pipe1EmptyPipeAccounting_Db2</value>
+  </data>
+  <data name="Tv3Pipe1EmptyPipeInput_Db1" xml:space="preserve">
+    <value>Tv3Pipe1EmptyPipeInput_Db1</value>
+  </data>
+  <data name="Tv3Pipe1EmptyPipeInput_Db2" xml:space="preserve">
+    <value>Tv3Pipe1EmptyPipeInput_Db2</value>
+  </data>
+  <data name="Tv3Pipe1FlowDirection_Db1" xml:space="preserve">
+    <value>Tv3Pipe1FlowDirection_Db1</value>
+  </data>
+  <data name="Tv3Pipe1FlowDirection_Db2" xml:space="preserve">
+    <value>Tv3Pipe1FlowDirection_Db2</value>
+  </data>
+  <data name="Tv3Pipe1HeightAdjustment_Db1" xml:space="preserve">
+    <value>Tv3Pipe1HeightAdjustment_Db1</value>
+  </data>
+  <data name="Tv3Pipe1HeightAdjustment_Db2" xml:space="preserve">
+    <value>Tv3Pipe1HeightAdjustment_Db2</value>
+  </data>
+  <data name="Tv3Pipe1HighLimitSensor_Db1" xml:space="preserve">
+    <value>Tv3Pipe1HighLimitSensor_Db1</value>
+  </data>
+  <data name="Tv3Pipe1HighLimitSensor_Db2" xml:space="preserve">
+    <value>Tv3Pipe1HighLimitSensor_Db2</value>
+  </data>
+  <data name="Tv3Pipe1ImpulseWeight_Db1" xml:space="preserve">
+    <value>Tv3Pipe1ImpulseWeight_Db1</value>
+  </data>
+  <data name="Tv3Pipe1ImpulseWeight_Db2" xml:space="preserve">
+    <value>Tv3Pipe1ImpulseWeight_Db2</value>
+  </data>
+  <data name="Tv3Pipe1PressureSensor_Db1" xml:space="preserve">
+    <value>Tv3Pipe1PressureSensor_Db1</value>
+  </data>
+  <data name="Tv3Pipe1PressureSensor_Db2" xml:space="preserve">
+    <value>Tv3Pipe1PressureSensor_Db2</value>
+  </data>
+  <data name="Tv3Pipe1ReverseInput_Db1" xml:space="preserve">
+    <value>Tv3Pipe1ReverseInput_Db1</value>
+  </data>
+  <data name="Tv3Pipe1ReverseInput_Db2" xml:space="preserve">
+    <value>Tv3Pipe1ReverseInput_Db2</value>
+  </data>
+  <data name="Tv3Pipe1VolumeMax_Db1" xml:space="preserve">
+    <value>Tv3Pipe1VolumeMax_Db1</value>
+  </data>
+  <data name="Tv3Pipe1VolumeMax_Db2" xml:space="preserve">
+    <value>Tv3Pipe1VolumeMax_Db2</value>
+  </data>
+  <data name="Tv3Pipe1VolumeMin_Db1" xml:space="preserve">
+    <value>Tv3Pipe1VolumeMin_Db1</value>
+  </data>
+  <data name="Tv3Pipe1VolumeMin_Db2" xml:space="preserve">
+    <value>Tv3Pipe1VolumeMin_Db2</value>
+  </data>
+  <data name="Tv3Pipe1WaterCounterType_Db1" xml:space="preserve">
+    <value>Tv3Pipe1WaterCounterType_Db1</value>
+  </data>
+  <data name="Tv3Pipe1WaterCounterType_Db2" xml:space="preserve">
+    <value>Tv3Pipe1WaterCounterType_Db2</value>
+  </data>
+  <data name="Tv3Pipe2ContractPressure_Db1" xml:space="preserve">
+    <value>Tv3Pipe2ContractPressure_Db1</value>
+  </data>
+  <data name="Tv3Pipe2ContractPressure_Db2" xml:space="preserve">
+    <value>Tv3Pipe2ContractPressure_Db2</value>
+  </data>
+  <data name="Tv3Pipe2ContractTemp_Db1" xml:space="preserve">
+    <value>Tv3Pipe2ContractTemp_Db1</value>
+  </data>
+  <data name="Tv3Pipe2ContractTemp_Db2" xml:space="preserve">
+    <value>Tv3Pipe2ContractTemp_Db2</value>
+  </data>
+  <data name="Tv3Pipe2ContractVolume_Db1" xml:space="preserve">
+    <value>Tv3Pipe2ContractVolume_Db1</value>
+  </data>
+  <data name="Tv3Pipe2ContractVolume_Db2" xml:space="preserve">
+    <value>Tv3Pipe2ContractVolume_Db2</value>
+  </data>
+  <data name="Tv3Pipe2ControlV_Db1" xml:space="preserve">
+    <value>Tv3Pipe2ControlV_Db1</value>
+  </data>
+  <data name="Tv3Pipe2ControlV_Db2" xml:space="preserve">
+    <value>Tv3Pipe2ControlV_Db2</value>
+  </data>
+  <data name="Tv3Pipe2ControlWC_Db1" xml:space="preserve">
+    <value>Tv3Pipe2ControlWC_Db1</value>
+  </data>
+  <data name="Tv3Pipe2ControlWC_Db2" xml:space="preserve">
+    <value>Tv3Pipe2ControlWC_Db2</value>
+  </data>
+  <data name="Tv3Pipe2EmptyPipeAccounting_Db1" xml:space="preserve">
+    <value>Tv3Pipe2EmptyPipeAccounting_Db1</value>
+  </data>
+  <data name="Tv3Pipe2EmptyPipeAccounting_Db2" xml:space="preserve">
+    <value>Tv3Pipe2EmptyPipeAccounting_Db2</value>
+  </data>
+  <data name="Tv3Pipe2EmptyPipeInput_Db1" xml:space="preserve">
+    <value>Tv3Pipe2EmptyPipeInput_Db1</value>
+  </data>
+  <data name="Tv3Pipe2EmptyPipeInput_Db2" xml:space="preserve">
+    <value>Tv3Pipe2EmptyPipeInput_Db2</value>
+  </data>
+  <data name="Tv3Pipe2FlowDirection_Db1" xml:space="preserve">
+    <value>Tv3Pipe2FlowDirection_Db1</value>
+  </data>
+  <data name="Tv3Pipe2FlowDirection_Db2" xml:space="preserve">
+    <value>Tv3Pipe2FlowDirection_Db2</value>
+  </data>
+  <data name="Tv3Pipe2HeightAdjustment_Db1" xml:space="preserve">
+    <value>Tv3Pipe2HeightAdjustment_Db1</value>
+  </data>
+  <data name="Tv3Pipe2HeightAdjustment_Db2" xml:space="preserve">
+    <value>Tv3Pipe2HeightAdjustment_Db2</value>
+  </data>
+  <data name="Tv3Pipe2HighLimitSensor_Db1" xml:space="preserve">
+    <value>Tv3Pipe2HighLimitSensor_Db1</value>
+  </data>
+  <data name="Tv3Pipe2HighLimitSensor_Db2" xml:space="preserve">
+    <value>Tv3Pipe2HighLimitSensor_Db2</value>
+  </data>
+  <data name="Tv3Pipe2ImpulseWeight_Db1" xml:space="preserve">
+    <value>Tv3Pipe2ImpulseWeight_Db1</value>
+  </data>
+  <data name="Tv3Pipe2ImpulseWeight_Db2" xml:space="preserve">
+    <value>Tv3Pipe2ImpulseWeight_Db2</value>
+  </data>
+  <data name="Tv3Pipe2PressureSensor_Db1" xml:space="preserve">
+    <value>Tv3Pipe2PressureSensor_Db1</value>
+  </data>
+  <data name="Tv3Pipe2PressureSensor_Db2" xml:space="preserve">
+    <value>Tv3Pipe2PressureSensor_Db2</value>
+  </data>
+  <data name="Tv3Pipe2ReverseInput_Db1" xml:space="preserve">
+    <value>Tv3Pipe2ReverseInput_Db1</value>
+  </data>
+  <data name="Tv3Pipe2ReverseInput_Db2" xml:space="preserve">
+    <value>Tv3Pipe2ReverseInput_Db2</value>
+  </data>
+  <data name="Tv3Pipe2VolumeMax_Db1" xml:space="preserve">
+    <value>Tv3Pipe2VolumeMax_Db1</value>
+  </data>
+  <data name="Tv3Pipe2VolumeMax_Db2" xml:space="preserve">
+    <value>Tv3Pipe2VolumeMax_Db2</value>
+  </data>
+  <data name="Tv3Pipe2VolumeMin_Db1" xml:space="preserve">
+    <value>Tv3Pipe2VolumeMin_Db1</value>
+  </data>
+  <data name="Tv3Pipe2VolumeMin_Db2" xml:space="preserve">
+    <value>Tv3Pipe2VolumeMin_Db2</value>
+  </data>
+  <data name="Tv3Pipe2WaterCounterType_Db1" xml:space="preserve">
+    <value>Tv3Pipe2WaterCounterType_Db1</value>
+  </data>
+  <data name="Tv3Pipe2WaterCounterType_Db2" xml:space="preserve">
+    <value>Tv3Pipe2WaterCounterType_Db2</value>
+  </data>
+  <data name="Tv3Pipe3Config_Db1" xml:space="preserve">
+    <value>Tv3Pipe3Config_Db1</value>
+  </data>
+  <data name="Tv3Pipe3Config_Db2" xml:space="preserve">
+    <value>Tv3Pipe3Config_Db2</value>
+  </data>
+  <data name="Tv3PxContract_Db1" xml:space="preserve">
+    <value>Tv3PxContract_Db1</value>
+  </data>
+  <data name="Tv3PxContract_Db2" xml:space="preserve">
+    <value>Tv3PxContract_Db2</value>
+  </data>
+  <data name="Tv3QControl_Db1" xml:space="preserve">
+    <value>Tv3QControl_Db1</value>
+  </data>
+  <data name="Tv3QControl_Db2" xml:space="preserve">
+    <value>Tv3QControl_Db2</value>
+  </data>
+  <data name="Tv3tControl_Db1" xml:space="preserve">
+    <value>Tv3tControl_Db1</value>
+  </data>
+  <data name="Tv3tControl_Db2" xml:space="preserve">
+    <value>Tv3tControl_Db2</value>
+  </data>
+  <data name="Tv3txContract_Db1" xml:space="preserve">
+    <value>Tv3txContract_Db1</value>
+  </data>
+  <data name="Tv3txContract_Db2" xml:space="preserve">
+    <value>Tv3txContract_Db2</value>
+  </data>
+  <data name="Tv3UseQtv_Db1" xml:space="preserve">
+    <value>Tv3UseQtv_Db1</value>
+  </data>
+  <data name="Tv3UseQtv_Db2" xml:space="preserve">
+    <value>Tv3UseQtv_Db2</value>
+  </data>
+  <data name="Tv3Usetnv_Db1" xml:space="preserve">
+    <value>Tv3Usetnv_Db1</value>
+  </data>
+  <data name="Tv3Usetnv_Db2" xml:space="preserve">
+    <value>Tv3Usetnv_Db2</value>
+  </data>
+  <data name="Tv3Usetx_Db1" xml:space="preserve">
+    <value>Tv3Usetx_Db1</value>
+  </data>
+  <data name="Tv3Usetx_Db2" xml:space="preserve">
+    <value>Tv3Usetx_Db2</value>
+  </data>
+  <data name="TvParameterStringFormat" xml:space="preserve">
+    <value>Tv{0}{1}_Db{2}</value>
+  </data>
+  <data name="txContract" xml:space="preserve">
+    <value>txContract</value>
+  </data>
+  <data name="UseQtv" xml:space="preserve">
+    <value>UseQtv</value>
+  </data>
+  <data name="Usetnv" xml:space="preserve">
+    <value>Usetnv</value>
+  </data>
+  <data name="Usetx" xml:space="preserve">
+    <value>Usetx</value>
+  </data>
+  <data name="VolumeMax" xml:space="preserve">
+    <value>VolumeMax</value>
+  </data>
+  <data name="VolumeMin" xml:space="preserve">
+    <value>VolumeMin</value>
+  </data>
+  <data name="WaterCounterType" xml:space="preserve">
+    <value>WaterCounterType</value>
+  </data>
+</root>

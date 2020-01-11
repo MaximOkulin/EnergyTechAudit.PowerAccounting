@@ -1,0 +1,122 @@
+﻿<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   width="1400" height="700"
+	 viewBox="0 0 1200 600"
+     style="enable-background:new 0 0 565 264;" xml:space="preserve"
+     description="Учет объема ХВС для ГВС" 
+     deviceId="1" 
+     internalNumber="2"
+     data-core-parameters="Cws.Temper.SupplyPipe,Cws.MassFlow.SupplyPipe,Cws.Pressure.SupplyPipe"
+   >
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st1{font-family:Tahoma, Geneva, sans-serif;}
+	.st2{font-size:10px;}
+	.st3{stroke:#2172B9;stroke-width:3;stroke-miterlimit:10;}
+	.st4{stroke:#2172B9;fill:#2172B9;stroke-width:3;stroke-miterlimit:10;}
+	.st5{stroke:#000000;stroke-miterlimit:10;}
+	.st6{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
+	.st7{font-size:0.9em;}
+	.st8{stroke:#2172B9;stroke-miterlimit:10;stroke-width:2;}
+	.st9{fill:#2172B9;stroke:#2172B9;stroke-width:3;stroke-miterlimit:10;}
+	.st10{fill:#2172B9;}
+	.st11{fill:#2172B9;}
+	.st12{fill:none;stroke:#010101;stroke-miterlimit:10;}
+	.st13{fill:#010101;stroke:#010101;stroke-miterlimit:10;}
+	.st14{fill:#1D1D1B;stroke:#1D1D1B;stroke-miterlimit:10;}
+	.st15{fill:#2172B9;stroke:#2172B9;stroke-width:3;stroke-miterlimit:10;}
+  .error { visibility: hidden; }
+</style>
+  
+  <script>       	
+    jQuery(Core.Common.Mnemoscheme.Selector).on(Core.Common.EventTypes.MnemoschemeWidgetManager.MnemoschemeLoadComplete, 
+		function()
+      	{      		          		
+      		Core.Common.Mnemoscheme.TextParameterRenderer = function(tagName, jQElement, parameter)
+            {
+                var splitter = " = ";
+              	var text = jQElement.text();
+              	if(text.indexOf(splitter) > 0)
+ 				        {
+ 					        text = text.split(splitter)[Number.zero];    
+ 				        }
+              
+             	  jQElement.text("{3}{4}{0} {1}{2}".format
+                   (
+						            parseFloat(parameter.value).toFixed(2),
+                       	parameter.dimensionPrefix,
+                       	parameter.measurementUnitDescription,
+                  		  text, 
+                  		  splitter
+                   )); 	 	 
+            };
+		});  	
+	</script>
+<path class="st0" d="M316.8-71.8"/>
+<path class="st0" d="M529.3,189"/>
+<line class="st0" x1="119.6" y1="68.1" x2="119.6" y2="86.4"/>
+<path class="st0" d="M104.5,57.6"/>
+<text transform="translate(50.9664 50.9805)" class="st1 st7" data-core-parameter="Cws.Temper.SupplyPipe">T1</text>
+  <text transform="translate(35.9664 50.9805)" fill="darkred" class="error" data-core-parameter-error="Cws.Temper.SupplyPipe" style="font-family: Glyphicons">&#xe505;</text>
+<g>
+	<line class="st4" x1="166.4" y1="86.7" x2="95.7" y2="86.7"/>
+</g>
+<g>
+	<path class="st0" d="M315,193.6"/>
+</g>
+<path class="st0" d="M266.3,202.5"/>
+<path class="st0" d="M266.3,190.6"/>
+<ellipse class="st5" cx="119.6" cy="63.8" rx="4.9" ry="4.4"/>
+<polygon class="st4" points="104.5,83 112.4,86.4 104.5,89.8 "/>
+<path class="st0" d="M155.8,76.8"/>
+<path class="st0" d="M140,90.2"/>
+<g>
+	<g>
+		<ellipse class="st0" cx="179.3" cy="86.7" rx="12.4" ry="13.2"/>
+	</g>
+	<polyline class="st0" points="184.7,98.6 166.4,87 184.7,74.8 	"/>
+</g>
+<line class="st4" x1="191.7" y1="86.4" x2="464.4" y2="86.4"/>
+<g>
+	<line class="st6" x1="248.8" y1="81.4" x2="266.3" y2="81.4"/>
+	<line class="st0" x1="257.5" y1="80.9" x2="257.5" y2="61.4"/>
+</g>
+<text transform="translate(149.0661 50.9805)" class="st1 st7" data-core-parameter="Cws.MassFlow.SupplyPipe">G1</text>
+  <text transform="translate(134.0661 50.9805)" fill="darkred" class="error" data-core-parameter-error="Cws.MassFlow.SupplyPipe" style="font-family: Glyphicons">&#xe505;</text>
+<text transform="translate(253.2136 50.9805)" class="st1 st7" data-core-parameter="Cws.Pressure.SupplyPipe">P1</text>
+  <text transform="translate(238.2136 50.9805)" fill="darkred" class="error" data-core-parameter-error="Cws.Pressure.SupplyPipe" style="font-family: Glyphicons">&#xe505;</text>
+<path class="st0" d="M334.5,75.6"/>
+<path class="st0" d="M318.6,89"/>
+<line class="st8" x1="279.5" y1="86.4" x2="279.5" y2="106.7"/>
+<line class="st8" x1="279.5" y1="105.7" x2="347.3" y2="105.7"/>
+<polygon class="st9" points="456.5,83.2 464.4,86.7 456.5,90.1 "/>
+<path class="st0" d="M261.5,200.2"/>
+<line class="st12" x1="347.2" y1="105.5" x2="347.2" y2="126.5"/>
+<g>
+	<ellipse class="st13" cx="362.2" cy="120.3" rx="1.6" ry="2.4"/>
+	<rect x="361.9" y="113.2" class="st13" width="0.5" height="4.7"/>
+	<rect x="357.9" y="110.6" class="st14" width="8.6" height="2.6"/>
+	<path class="st13" d="M370.9,127.8c0,0-0.2-5.8-9-5.9c0-2.7,0-2.7,0-2.7c12.5,0.3,10.6,8.6,10.6,8.6
+		C371.7,127.8,370.9,127.8,370.9,127.8z"/>
+	<rect x="354" y="119.2" class="st13" width="8" height="2.7"/>
+</g>
+<line class="st12" x1="347.3" y1="126.5" x2="347.3" y2="160.5"/>
+<line class="st12" x1="347" y1="141.6" x2="354.8" y2="141.6"/>
+<g>
+	<ellipse class="st13" cx="362.5" cy="141.3" rx="1.6" ry="2.4"/>
+	<rect x="362.2" y="134.2" class="st13" width="0.5" height="4.7"/>
+	<rect x="358.2" y="131.6" class="st14" width="8.6" height="2.6"/>
+	<path class="st13" d="M371.2,148.9c0,0-0.2-5.8-9-5.9c0-2.7,0-2.7,0-2.7c12.5,0.3,10.6,8.6,10.6,8.6
+		C372,148.9,371.2,148.9,371.2,148.9z"/>
+	<rect x="354.3" y="140.3" class="st13" width="8" height="2.7"/>
+</g>
+<line class="st12" x1="347.1" y1="120.6" x2="355" y2="120.6"/>
+<line class="st12" x1="347.3" y1="160.7" x2="355.1" y2="160.7"/>
+<g>
+	<ellipse class="st13" cx="361.8" cy="160.5" rx="1.6" ry="2.4"/>
+	<rect x="361.5" y="153.4" class="st13" width="0.5" height="4.7"/>
+	<rect x="357.5" y="150.8" class="st14" width="8.6" height="2.6"/>
+	<path class="st13" d="M370.5,168c0,0-0.2-5.8-9-5.9c0-2.7,0-2.7,0-2.7c12.5,0.3,10.6,8.6,10.6,8.6C371.3,168,370.5,168,370.5,168z"
+		/>
+	<rect x="353.6" y="159.4" class="st13" width="8" height="2.7"/>
+</g>
+</svg>

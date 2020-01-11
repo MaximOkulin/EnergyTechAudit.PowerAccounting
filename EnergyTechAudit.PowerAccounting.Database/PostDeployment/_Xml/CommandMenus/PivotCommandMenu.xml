@@ -1,0 +1,86 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>pivotCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>290</Width>
+  
+  <CommandMenuItem>
+    <ToolTip>Перестроить</ToolTip>
+    <CommandName>rebuild</CommandName>
+    <Name>rebuild</Name>
+    <BeginGroup>true</BeginGroup>
+    <IconClass>font-icon-rebuild font-icon-x1_2 font-icon-darkgreen</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>refresh</CommandName>
+    <BeginGroup>true</BeginGroup>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text>Операции</Text>
+    <CommandMenuItem>
+      <Text>Отобразить поля</Text>
+      <CommandName>showCustomizationWindow</CommandName>
+      <Name>showCustomizationWindow</Name>
+      <BeginGroup>true</BeginGroup>
+      <IconClass>dev-icon-Customization_16x16  indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>gridExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Формат Csv</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Csv</AdditionalInfo>
+      <IconClass>dev-icon-ExportToCSV_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Pdf</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Pdf</AdditionalInfo>
+      <IconClass>dev-icon-ExportToPDF_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Rtf</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Rtf</AdditionalInfo>
+      <IconClass>dev-icon-ExportToRTF_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Xls</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xls</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXLS_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Name>gridSettings</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridSettings</CommandName>
+    <IconClass>font-icon-options font-icon-x1_2 font-icon-color-marine</IconClass>
+    <ToolTip>Настройки</ToolTip>
+    <CommandMenuItem>
+      <Text>Формат данных</Text>
+      <CommandName>showDisplayFormatDialog</CommandName>
+      <Name>showDisplayFormatDialog</Name>
+      <IconClass>dev-icon-DisplayFormat_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+</CommandMenu>

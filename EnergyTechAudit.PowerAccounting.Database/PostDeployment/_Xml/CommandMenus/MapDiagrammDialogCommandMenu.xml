@@ -1,0 +1,64 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>mapDiagrammDialogCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>220</Width>
+
+  <CommandMenuItem>
+    <Name>selectDiagrammByType</Name>
+    <CommandName>selectDiagrammBy</CommandName>
+    <IconClass>font-icon-pie_chart font-icon-x1_3 font-icon-darkred</IconClass>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <ToolTip>Типы диаграмм</ToolTip>
+
+    <CommandMenuItem>
+      <AdditionalInfo>byDevice</AdditionalInfo>
+      <GroupName>selectDiagrammByTypeGroup</GroupName>
+      <Text>По типу прибора</Text>
+      <CommandName>selectDiagrammByType</CommandName>
+      <Name>selectDiagrammByDevice</Name>
+      <Checked>true</Checked>
+    </CommandMenuItem>
+
+    <CommandMenuItem>
+      <AdditionalInfo>byDistrict</AdditionalInfo>
+      <GroupName>selectDiagrammByTypeGroup</GroupName>
+      <Text>По районам</Text>
+      <CommandName>selectDiagrammByType</CommandName>
+      <Name>selectDiagrammByDistrict</Name>
+    </CommandMenuItem>
+
+    <CommandMenuItem>
+      <AdditionalInfo>byConnectionQuality</AdditionalInfo>
+      <GroupName>selectDiagrammByTypeGroup</GroupName>
+      <Text>По качеству связи</Text>
+      <CommandName>selectDiagrammByType</CommandName>
+      <Name>selectDiagrammByDistrict</Name>
+    </CommandMenuItem>
+    
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>mapDiagrammExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>dashboardDiagrammExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportXlsx</CommandName>
+      <Name>exportToXlsx</Name>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+
+    <CommandMenuItem>
+      <Text>Формат Svg</Text>
+      <CommandName>exportSvg</CommandName>
+      <Name>exportToSvg</Name>
+      <IconClass>dev-icon-ExportToCSV_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+
+</CommandMenu>

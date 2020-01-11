@@ -1,0 +1,19 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  <Id>getDeviceSettingsParametricDialog</Id>
+  <Height>100</Height>
+  <Width>400</Width>
+  <Buttons></Buttons>
+  <Title>Параметры</Title>
+  <IsSavedState>true</IsSavedState>
+  <Descriptors>
+    <FormLayoutItemDescriptor>
+      <Caption></Caption>
+      <Name>channelId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <Value>0</Value>
+    </FormLayoutItemDescriptor>
+  </Descriptors>
+</ParametricDialog>

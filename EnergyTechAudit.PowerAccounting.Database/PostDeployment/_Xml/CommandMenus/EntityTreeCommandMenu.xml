@@ -1,0 +1,43 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>entityTreeCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>220</Width>
+  <CommandMenuItem>
+    <Name>view</Name>
+    <Text>Вид</Text>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <IconClass>font-icon-refresh font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Перестроить дерево</ToolTip>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>showSearchPanel</Name>
+    <Text></Text>
+    <CommandName>showSearchPanel</CommandName>
+    <IconClass>font-icon-search2 font-icon-x1_2 font-icon-darkgreen</IconClass>
+    <GroupName>showSearchPanel</GroupName>
+    <ToolTip>Показать панель поиска</ToolTip>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>expandAll</Name>
+    <Text></Text>
+    <CommandName>expandAll</CommandName>
+    <ToolTip>Развернуть дерево</ToolTip>
+    <IconClass>font-icon-tree-expand-all font-icon-slategray</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>collapseAll</Name>
+    <Text></Text>
+    <CommandName>collapseAll</CommandName>
+    <ToolTip>Свернуть дерево</ToolTip>
+    <IconClass>font-icon-tree-collapse-all font-icon-slategray</IconClass>
+  </CommandMenuItem>
+ </CommandMenu>

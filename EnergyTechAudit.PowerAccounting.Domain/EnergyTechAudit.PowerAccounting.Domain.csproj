@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{78EF615D-ACF4-46BB-93B7-051CB341097B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EnergyTechAudit.PowerAccounting.Domain</RootNamespace>
+    <AssemblyName>EnergyTechAudit.PowerAccounting.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.XtraReports.v18.1, Version=18.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analytics\Argument.cs" />
+    <Compile Include="Analytics\ConditionPart.cs" />
+    <Compile Include="Analytics\EmergencyCondition.cs" />
+    <Compile Include="Analytics\Expression.cs" />
+    <Compile Include="Analytics\FieldValues.cs" />
+    <Compile Include="Analytics\MultipleTitle.cs" />
+    <Compile Include="Analytics\PreCondition.cs" />
+    <Compile Include="Analytics\RawHeatCurve.cs" />
+    <Compile Include="Analytics\Requirement.cs" />
+    <Compile Include="Analytics\StringFormatPart.cs" />
+    <Compile Include="Analytics\SurrogateArgument.cs" />
+    <Compile Include="Analytics\UserInputValue.cs" />
+    <Compile Include="Attributes\DependencyDescribablePropertyAttribute.cs" />
+    <Compile Include="Attributes\DisplayColumnMetadataAttribute.cs" />
+    <Compile Include="Attributes\DynamicDataEntityAttribute.cs" />
+    <Compile Include="Attributes\EntityNameAttribute.cs" />
+    <Compile Include="Attributes\JsonObjectSignalRCamelCasePropertyNamesAttribute.cs" />
+    <Compile Include="Attributes\LinkDisplayGridAttribute.cs" />
+    <Compile Include="Attributes\LoggedDeletedTrackEntityAttribute.cs" />
+    <Compile Include="Attributes\NotDisplayGridAttribute.cs" />
+    <Compile Include="Attributes\OneToOneForeignKeyAttribute.cs" />
+    <Compile Include="Attributes\PossibleCascadeDeletedEntityAttribute.cs" />
+    <Compile Include="Attributes\RequiredDescribablePropertyAttribute.cs" />
+    <Compile Include="Attributes\RequireIncludeDescribablePropertiesEntityAttribute.cs" />
+    <Compile Include="Attributes\SetNullOnCascadeDeletingPropertyAttribute.cs" />
+    <Compile Include="Attributes\UserRestrictedPermissionEntityAttribute.cs" />
+    <Compile Include="EnumTypes\GridColumnSortOrder.cs" />
+    <Compile Include="EnumTypes\MetaObjectTypes.cs" />
+    <Compile Include="EnumTypes\Operation.cs" />
+    <Compile Include="EnumTypes\PeriodType.cs" />
+    <Compile Include="EnumTypes\RegulatorParameterValueType.cs" />
+    <Compile Include="Interfaces\ErrorLogEntryBase.cs" />
+    <Compile Include="Interfaces\IPredicateExpressionMedium.cs" />
+    <Compile Include="Interfaces\EntityLogEntryBase.cs" />
+    <Compile Include="Interfaces\DescribableEntityHelper.cs" />
+    <Compile Include="Interfaces\DictionaryEntityBase.cs" />
+    <Compile Include="Interfaces\IdentityEntityEqualityComparer.cs" />
+    <Compile Include="Interfaces\IDynamicData.cs" />
+    <Compile Include="Interfaces\IHistoryChangeTrackEntity.cs" />
+    <Compile Include="Interfaces\IPreviousStateIdEntity.cs" />
+    <Compile Include="Interfaces\IServerTimeSignatureEntity.cs" />
+    <Compile Include="Interfaces\IStatusConnectionLog.cs" />
+    <Compile Include="Interfaces\ISuccessConnectionPercent.cs" />
+    <Compile Include="Interfaces\ITemplatableEntity.cs" />
+    <Compile Include="Interfaces\TemplateEntityBase.cs" />
+    <Compile Include="Mapping\Admin\AuditMapping.cs" />
+    <Compile Include="Mapping\Admin\FaqLinkRoleMapping.cs" />
+    <Compile Include="Mapping\Admin\FaqMapping.cs" />
+    <Compile Include="Mapping\Admin\NewsLinkRoleMapping.cs" />
+    <Compile Include="Mapping\Admin\DeletedEntityLogEntryMapping.cs" />
+    <Compile Include="Mapping\Admin\EntityHistoryMapping.cs" />
+    <Compile Include="Mapping\Admin\AlertMapping.cs" />
+    <Compile Include="Mapping\Admin\NewsMapping.cs" />
+    <Compile Include="Mapping\Admin\SystemSettingMapping.cs" />
+    <Compile Include="Mapping\Admin\UserGroupMapping.cs" />
+    <Compile Include="Mapping\Admin\UserManager\UserManagerPlacementMapping.cs" />
+    <Compile Include="Mapping\Admin\UserManager\UserManagerRoleMapping.cs" />
+    <Compile Include="Mapping\Admin\UserManager\UserManagerUserAdditionalInfoMapping.cs" />
+    <Compile Include="Mapping\Admin\UserManager\UserManagerUserMapping.cs" />
+    <Compile Include="Mapping\Admin\UserMessageMapping.cs" />
+    <Compile Include="Mapping\Business\AccessPointConnectionStatusMapping.cs" />
+    <Compile Include="Mapping\Business\AccessPointLinkBuildingMapping.cs" />
+    <Compile Include="Mapping\Business\AccessPointMapping.cs" />
+    <Compile Include="Mapping\Business\AgreementParameterMapping.cs" />
+    <Compile Include="Mapping\Business\DeviceReaderLinkScheduleItemMapping.cs" />
+    <Compile Include="Mapping\Business\DeviceTechnicalParameterMapping.cs" />
+    <Compile Include="Mapping\Business\IntegrationArchiveInfoMapping.cs" />
+    <Compile Include="Mapping\Business\MeasurementDeviceLinkScheduleItemMapping.cs" />
+    <Compile Include="Mapping\Business\UserAdditionalInfoLinkScheduleItemMapping.cs" />
+    <Compile Include="Mapping\Core\DashboardExtentionTemplateMapping.cs" />
+    <Compile Include="Mapping\Core\ScriptMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\MnemoschemeTypeMapping.cs" />
+    <Compile Include="Mapping\WebApi\ActionRequestStatisticItemMapping.cs" />
+    <Compile Include="Mapping\WebApi\ArchiveDownloaderLinkScheduleItemMapping.cs" />
+    <Compile Include="Mapping\Business\ArchiveMapping.cs" />
+    <Compile Include="Mapping\Business\ChannelLinkAgreementParameterMapping.cs" />
+    <Compile Include="Mapping\Business\ChannelMapping.cs" />
+    <Compile Include="Mapping\Business\CheckingAccountLinkPlacementMapping.cs" />
+    <Compile Include="Mapping\Business\CheckingAccountMapping.cs" />
+    <Compile Include="Mapping\Business\CsdModemMapping.cs" />
+    <Compile Include="Mapping\Business\DeviceLinkDynamicParameterMapping.cs" />
+    <Compile Include="Mapping\Business\DeviceParameterSettingMapping.cs" />
+    <Compile Include="Mapping\Business\DeviceReaderLogMapping.cs" />
+    <Compile Include="Mapping\Business\EmergencyLogMapping.cs" />
+    <Compile Include="Mapping\Business\EmergencyMessageMapping.cs" />
+    <Compile Include="Mapping\Business\EmergencySituationParameterMapping.cs" />
+    <Compile Include="Mapping\Business\EmergencySituationParameterTemplateMapping.cs" />
+    <Compile Include="Mapping\Business\EmergencyTimeSignatureMapping.cs" />
+    <Compile Include="Mapping\Business\MeasurementDeviceJournalMapping.cs" />
+    <Compile Include="Mapping\Business\OrganizationMapping.cs" />
+    <Compile Include="Mapping\Business\ParameterMapDeviceParameterMapping.cs" />
+    <Compile Include="Mapping\Business\UserLinkEmergencyNotificationTypeMapping.cs" />
+    <Compile Include="Mapping\Core\BriefcaseItemMapping.cs" />
+    <Compile Include="Mapping\Core\BriefcaseMapping.cs" />
+    <Compile Include="Mapping\Core\DynamicParameterValueMapping.cs" />
+    <Compile Include="Mapping\Core\CommandMenuTemplateMapping.cs" />
+    <Compile Include="Mapping\Core\ReportPluginSelectorMapping.cs" />
+    <Compile Include="Mapping\Core\ScheduleItemMapping.cs" />
+    <Compile Include="Mapping\Core\ProcessingLogEntryMapping.cs" />
+    <Compile Include="Mapping\Business\UserLinkChannelMapping.cs" />
+    <Compile Include="Mapping\Core\BinaryMapping.cs" />
+    <Compile Include="Mapping\Core\DiagrammMapping.cs" />
+    <Compile Include="Mapping\Core\ReportSelectorMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\AgreementParameterTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\BinaryContentTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\DeviceParameterMapping.cs" />
+    <Compile Include="Mapping\Business\HubMapping.cs" />
+    <Compile Include="Mapping\Business\MeasurementDeviceInfoMapping.cs" />
+    <Compile Include="Mapping\Business\MnemoschemeMapping.cs" />
+    <Compile Include="Mapping\Business\MeasurementDeviceStatusConnectionLogMapping.cs" />
+    <Compile Include="Mapping\Core\EntityMapping.cs" />
+    <Compile Include="Mapping\Core\EntityPropertyMapping.cs" />
+    <Compile Include="Mapping\Core\ProcessingMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\DeviceReaderTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\DynamicParameterMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ErrorTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\InternalDeviceEvent.cs" />
+    <Compile Include="Mapping\Dictionaries\MeteoDataSourceTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\NotificationTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\OrganizationTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ParameterDictionaryMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ParameterDictionaryValueMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\PortTypeMapping.cs" />
+    <Compile Include="Mapping\Business\RegulatorParameterValueMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ProtocolSubTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ResourceSubsystemTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ScheduleTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\SeasonTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\SubsystemTypeMapping.cs" />
+    <Compile Include="Mapping\Core\GoogleMapsStyleMapping.cs" />
+    <Compile Include="Mapping\Core\MapInfoWindowMapping.cs" />
+    <Compile Include="Mapping\Core\EntityTreeMapping.cs" />
+    <Compile Include="Mapping\Core\EntityTreeLinkRoleMapping.cs" />
+    <Compile Include="Mapping\Core\MetaObjectLinkDeviceMapping.cs" />
+    <Compile Include="Mapping\Core\MetaObjectLinkRoleMapping.cs" />
+    <Compile Include="Mapping\Core\MetaObjectReferenceMeasurementDeviceMapping.cs" />
+    <Compile Include="Mapping\Core\PivotDiagrammMapping.cs" />
+    <Compile Include="Mapping\Business\DeviceReaderMapping.cs" />
+    <Compile Include="Mapping\Business\ChannelTemplateMapping.cs" />
+    <Compile Include="Mapping\Business\DeviceEventMapping.cs" />
+    <Compile Include="Mapping\Business\MeasurementDeviceMapping.cs" />
+    <Compile Include="Mapping\Business\PlacementMapping.cs" />
+    <Compile Include="Mapping\Business\TimeSignatureMapping.cs" />
+    <Compile Include="Mapping\Business\UserAdditionalInfoMapping.cs" />
+    <Compile Include="Mapping\Core\FormMapping.cs" />
+    <Compile Include="Mapping\Core\MenuItemMapping.cs" />
+    <Compile Include="Mapping\Core\MenuMapping.cs" />
+    <Compile Include="Mapping\Core\MetaObjectMapping.cs" />
+    <Compile Include="Mapping\Core\MetaObjectTypeMapping.cs" />
+    <Compile Include="Mapping\Core\ParametricMapping.cs" />
+    <Compile Include="Mapping\Core\PivotMapping.cs" />
+    <Compile Include="Mapping\Business\BuildingMapping.cs" />
+    <Compile Include="Mapping\Core\QueryMapping.cs" />
+    <Compile Include="Mapping\Core\ReportMapping.cs" />
+    <Compile Include="Mapping\Core\SourceMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\AgreementSystemParameterMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\DataBitMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ComPortMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\DistrictMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ParityMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\BaudMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\GenderMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\StopBitMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\DeviceMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\DimensionMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ParameterMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\PeriodTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\MeasurementUnitMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\DeviceEventParameterMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\PhysicalParameterMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\SystemTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\ProcessingStatusMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\TechnologicAdjunctionTypeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\TemperatureProfileMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\TransportServerModelMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\TransportTypeMapping.cs" />
+    <Compile Include="Mapping\Help\ArticleMapping.cs" />
+    <Compile Include="Mapping\Help\PictureMapping.cs" />
+    <Compile Include="Mapping\Rules\DefaultMeasurementUnitMapping.cs" />
+    <Compile Include="Mapping\Rules\DeviceArchiveTimeConverterMapping.cs" />
+    <Compile Include="Mapping\Rules\MeasurementUnitConverterMapping.cs" />
+    <Compile Include="Mapping\WebApi\ArchiveDowloaderMapping.cs" />
+    <Compile Include="Models\Admin\Audit.cs" />
+    <Compile Include="Models\Admin\Alert.cs" />
+    <Compile Include="Models\Admin\CascadeDeletedEntity.cs" />
+    <Compile Include="Models\Admin\UserGroup.cs" />
+    <Compile Include="Models\Admin\DataViewItemBase.cs" />
+    <Compile Include="Models\Admin\DeletedEntityLogEntry.cs" />
+    <Compile Include="Models\Admin\EntityHistory.cs" />
+    <Compile Include="Models\Admin\Faq.cs" />
+    <Compile Include="Models\Admin\FaqLinkRole.cs" />
+    <Compile Include="Models\Admin\LinkRoleBase.cs" />
+    <Compile Include="Models\Admin\News.cs" />
+    <Compile Include="Models\Admin\NewsLinkRole.cs" />
+    <Compile Include="Models\Admin\SystemSetting.cs" />
+    <Compile Include="Models\Admin\UserManager\UserManagerRole.cs" />
+    <Compile Include="Models\Admin\UserManager\UserManagerUser.cs" />
+    <Compile Include="Models\Admin\UserManager\UserManagerPlacement.cs" />
+    <Compile Include="Models\Admin\UserManager\UserManagerUserAdditionalInfo.cs" />
+    <Compile Include="Models\Admin\UserMessage.cs" />
+    <Compile Include="Models\Business\AccessPoint.cs" />
+    <Compile Include="Models\Business\AccessPointStatusConnectionLog.cs" />
+    <Compile Include="Models\Business\AccessPointLinkBuilding.cs" />
+    <Compile Include="Models\Business\AgreementParameter.cs" />
+    <Compile Include="Models\Business\Archive.cs" />
+    <Compile Include="Models\Business\BuildingMapResourceBuilding.cs" />
+    <Compile Include="Models\Business\ChannelLinkAgreementParameter.cs" />
+    <Compile Include="Models\Business\CheckingAccount.cs" />
+    <Compile Include="Models\Business\CheckingAccountLinkPlacement.cs" />
+    <Compile Include="Models\Business\DeviceTechnicalParameter.cs" />
+    <Compile Include="Models\Business\MobileDevice.cs" />
+    <Compile Include="Models\Business\DeviceLinkDynamicParameter.cs" />
+    <Compile Include="Models\Business\DeviceParameterSetting.cs" />
+    <Compile Include="Models\Business\DeviceReaderLinkScheduleItem.cs" />
+    <Compile Include="Models\Business\EmergencyLog.cs" />
+    <Compile Include="Models\Business\EmergencyMessage.cs" />
+    <Compile Include="Models\Business\EmergencySituationParameter.cs" />
+    <Compile Include="Models\Business\EmergencySituationParameterTemplate.cs" />
+    <Compile Include="Models\Business\EmergencyTimeSignature.cs" />
+    <Compile Include="Models\Business\IntegrationArchiveInfo.cs" />
+    <Compile Include="Models\Business\MeasurementDeviceBase.cs" />
+    <Compile Include="Models\Business\MeasurementDeviceJournal.cs" />
+    <Compile Include="Models\Business\MeasurementDeviceLinkScheduleItem.cs" />
+    <Compile Include="Models\Business\MobileGeolocationServicingMarker.cs" />
+    <Compile Include="Models\Business\Organization.cs" />
+    <Compile Include="Models\Business\Building.cs" />
+    <Compile Include="Models\Business\Channel.cs" />
+    <Compile Include="Models\Business\CsdModem.cs" />
+    <Compile Include="Models\Business\DeviceReaderErrorLog.cs" />
+    <Compile Include="Interfaces\IDescribableEntity.cs" />
+    <Compile Include="Models\Business\Mnemoscheme.cs" />
+    <Compile Include="Models\Business\ParameterMapDeviceParameter.cs" />
+    <Compile Include="Models\Business\MeasurementDeviceStatusConnectionLog.cs" />
+    <Compile Include="Models\Business\UserAdditionalInfoLinkScheduleItem.cs" />
+    <Compile Include="Models\Business\Validation\AccessPointLinkBuilding.cs" />
+    <Compile Include="Models\Core\DashboardExtentionTemplate.cs" />
+    <Compile Include="Models\Core\Script.cs" />
+    <Compile Include="Models\Dictionaries\MnemoschemeType.cs" />
+    <Compile Include="Models\WebApi\ActionRequestStatisticItem.cs" />
+    <Compile Include="Models\WebApi\ArchiveDownloaderLinkScheduleItem.cs" />
+    <Compile Include="Models\Business\UserLinkEmergencyNotificationType.cs" />
+    <Compile Include="Models\Business\Validation\Channel.cs" />
+    <Compile Include="Models\Business\Validation\MeasurementDevice.cs" />
+    <Compile Include="Models\Core\BriefcaseItem.cs" />
+    <Compile Include="Models\Core\Briefcase.cs" />
+    <Compile Include="Models\Core\CommandMenuTemplate.cs" />
+    <Compile Include="Models\Core\DynamicParameterValue.cs" />
+    <Compile Include="Models\Core\ReportPluginSelector.cs" />
+    <Compile Include="Models\Core\ScheduleItem.cs" />
+    <Compile Include="Models\Core\ProcessingLogEntry.cs" />
+    <Compile Include="Models\Business\UserLinkChannel.cs" />
+    <Compile Include="Models\Core\Binary.cs" />
+    <Compile Include="Models\Core\Diagramm.cs" />
+    <Compile Include="Models\Core\ReportSelector.cs" />
+    <Compile Include="Models\Core\Entity.cs" />
+    <Compile Include="Models\Core\EntityProperty.cs" />
+    <Compile Include="Models\Core\Processing.cs" />
+    <Compile Include="Models\Dictionaries\AgreementParameterType.cs" />
+    <Compile Include="Models\Dictionaries\BinaryContentType.cs" />
+    <Compile Include="Models\Dictionaries\DeviceParameter.cs" />
+    <Compile Include="Models\Dictionaries\DeviceReaderType.cs" />
+    <Compile Include="Models\Dictionaries\DictionatyEntity.cs" />
+    <Compile Include="Models\Dictionaries\DynamicParameter.cs" />
+    <Compile Include="Models\Dictionaries\ErrorType.cs" />
+    <Compile Include="Models\Dictionaries\InternalDeviceEvent.cs" />
+    <Compile Include="Models\Dictionaries\MeteoDataSourceType.cs" />
+    <Compile Include="Models\Dictionaries\NotificationType.cs" />
+    <Compile Include="Models\Dictionaries\OrganizationType.cs" />
+    <Compile Include="Models\Dictionaries\ParameterDictionary.cs" />
+    <Compile Include="Models\Dictionaries\ParameterDictionaryValue.cs" />
+    <Compile Include="Models\Dictionaries\PortType.cs" />
+    <Compile Include="Models\Core\GoogleMapsStyle.cs" />
+    <Compile Include="Models\Dictionaries\ProtocolSubType.cs" />
+    <Compile Include="Models\Dictionaries\ResourceSubsystemType.cs" />
+    <Compile Include="Models\Dictionaries\ScheduleType.cs" />
+    <Compile Include="Models\Dictionaries\SeasonType.cs" />
+    <Compile Include="Models\Dictionaries\ProcessingStatus.cs" />
+    <Compile Include="EnumTypes\ParameterValueSourceType.cs" />
+    <Compile Include="Models\Core\MapInfoWindow.cs" />
+    <Compile Include="Models\Core\MetaObjectReferenceMeasurementDevice.cs" />
+    <Compile Include="Models\Core\MetaObjectLinkRole.cs" />
+    <Compile Include="Models\Core\MetaObjectLinkDevice.cs" />
+    <Compile Include="Models\Core\Parametric.cs" />
+    <Compile Include="Models\Core\EntityTreeLinkRole.cs" />
+    <Compile Include="Models\Core\PivotDiagramm.cs" />
+    <Compile Include="Models\Business\Hub.cs" />
+    <Compile Include="Models\Business\DeviceReader.cs" />
+    <Compile Include="Models\Business\ChannelTemplate.cs" />
+    <Compile Include="Models\Business\DeviceEvent.cs" />
+    <Compile Include="Models\Business\MeasurementDevice.cs" />
+    <Compile Include="Models\Business\Placement.cs" />
+    <Compile Include="Models\Business\TimeSignature.cs" />
+    <Compile Include="Models\Business\UserAdditionalInfo.cs" />
+    <Compile Include="Models\Core\Form.cs" />
+    <Compile Include="Models\Core\Menu.cs" />
+    <Compile Include="Models\Core\MenuItem.cs" />
+    <Compile Include="Models\Core\MetaObject.cs" />
+    <Compile Include="Models\Core\MetaObjectType.cs" />
+    <Compile Include="Models\Core\EntityTree.cs" />
+    <Compile Include="Models\Core\Pivot.cs" />
+    <Compile Include="Models\Core\Query.cs" />
+    <Compile Include="Models\Core\Report.cs" />
+    <Compile Include="Models\Core\Source.cs" />
+    <Compile Include="Models\Dictionaries\AgreementSystemParameter.cs" />
+    <Compile Include="Models\Dictionaries\DataBit.cs" />
+    <Compile Include="Models\Dictionaries\ComPort.cs" />
+    <Compile Include="Models\Dictionaries\District.cs" />
+    <Compile Include="Models\Dictionaries\Parity.cs" />
+    <Compile Include="Models\Dictionaries\Baud.cs" />
+    <Compile Include="Models\Dictionaries\Gender.cs" />
+    <Compile Include="Models\Dictionaries\StopBit.cs" />
+    <Compile Include="Models\Dictionaries\Device.cs" />
+    <Compile Include="Models\Dictionaries\Dimension.cs" />
+    <Compile Include="Models\Dictionaries\Parameter.cs" />
+    <Compile Include="Models\Dictionaries\PeriodType.cs" />
+    <Compile Include="Models\Dictionaries\MeasurementUnit.cs" />
+    <Compile Include="Mapping\Dictionaries\PlacementPurposeMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\BuildingPurposeMapping.cs" />
+    <Compile Include="Models\Dictionaries\TechnologicAdjunctionType.cs" />
+    <Compile Include="Models\Dictionaries\TemperatureProfile.cs" />
+    <Compile Include="Models\Dictionaries\TransportServerModel.cs" />
+    <Compile Include="Models\Dictionaries\TransportType.cs" />
+    <Compile Include="Models\Business\RegulatorParameterValue.cs" />
+    <Compile Include="Models\Dictionaries\SubsystemType.cs" />
+    <Compile Include="Models\Help\Article.cs" />
+    <Compile Include="Models\Help\Picture.cs" />
+    <Compile Include="Mapping\Dictionaries\CityMapping.cs" />
+    <Compile Include="Mapping\Admin\RoleMapping.cs" />
+    <Compile Include="Mapping\Admin\UserMapping.cs" />
+    <Compile Include="Models\Dictionaries\City.cs" />
+    <Compile Include="Models\Core\Dictionary.cs" />
+    <Compile Include="Models\Dictionaries\DeviceEventParameter.cs" />
+    <Compile Include="Models\Dictionaries\PhysicalParameter.cs" />
+    <Compile Include="Models\Dictionaries\ResourceSystemType.cs" />
+    <Compile Include="Models\Admin\ErrorLogEntry.cs" />
+    <Compile Include="Interfaces\IDictionaryEntity.cs" />
+    <Compile Include="Mapping\Core\DictionaryMapping.cs" />
+    <Compile Include="Mapping\Admin\ErrorLogEntryMapping.cs" />
+    <Compile Include="Mapping\Dictionaries\StatusConnectionMapping.cs" />
+    <Compile Include="Models\Dictionaries\PlacementPurpose.cs" />
+    <Compile Include="Models\Dictionaries\BuildingPurpose.cs" />
+    <Compile Include="Models\Dictionaries\StatusConnection.cs" />
+    <Compile Include="Models\Dictionaries\TypeConnection.cs" />
+    <Compile Include="Models\Admin\User.cs" />
+    <Compile Include="Models\Admin\Role.cs" />
+    <Compile Include="Models\Rules\DefaultMeasurementUnit.cs" />
+    <Compile Include="Models\Rules\DeviceArchiveTimeConverter.cs" />
+    <Compile Include="Models\Rules\MeasurementUnitConverter.cs" />
+    <Compile Include="Models\WebApi\ArchiveDownloader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mapping\Dictionaries\TypeConnectionMapping.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.Common.Resources\EnergyTechAudit.PowerAccounting.Common.Resources.csproj">
+      <Project>{2B232B08-ED35-4BDE-B57B-AC97986A2DB4}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.Common\EnergyTechAudit.PowerAccounting.Common.csproj">
+      <Project>{6BD68999-72F5-43F8-B4C1-8224E44B9A88}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnergyTechAudit.PowerAccounting.Core\EnergyTechAudit.PowerAccounting.Core.csproj">
+      <Project>{4e43c4ae-b5ca-4205-a4e9-2d3b00662abf}</Project>
+      <Name>EnergyTechAudit.PowerAccounting.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

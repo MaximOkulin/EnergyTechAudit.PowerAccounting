@@ -1,0 +1,55 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>helpTreeViewCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>250</Width>
+  <CommandMenuItem>
+    <Name>gotoStartPage</Name>
+    <Text></Text>
+    <CommandName>gotoStartPage</CommandName>
+    <ToolTip>К стартовой странице</ToolTip>
+    <IconClass>icon-home indent-right-5px</IconClass>    
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>gotoBackward</Name>
+    <Text></Text>
+    <CommandName>gotoBackward</CommandName>
+    <ToolTip>К предыдущей странице</ToolTip>
+    <IconClass>icon-backward-disabled indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>gotoForward</Name>
+    <Text></Text>
+    <CommandName>gotoForward</CommandName>
+    <ToolTip>К следующей странице</ToolTip>
+    <IconClass>icon-forward-disabled indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>expandAll</Name>
+    <Text></Text>
+    <CommandName>expandAll</CommandName>
+    <ToolTip>Развернуть дерево</ToolTip>
+    <IconClass>font-icon-tree-expand-all indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>collapseAll</Name>
+    <Text></Text>
+    <CommandName>collapseAll</CommandName>
+    <ToolTip>Свернуть дерево</ToolTip>
+    <IconClass>font-icon-tree-collapse-all indent-right-5px</IconClass>   
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>showSearchPanel</Name>
+    <Text></Text>
+    <CommandName>showSearchPanel</CommandName>
+    <ToolTip>Показать панель поиска</ToolTip>
+    <IconClass>font-icon-search indent-right-5px</IconClass>
+    <GroupName>showSearchPanel</GroupName>
+  </CommandMenuItem>
+
+</CommandMenu>

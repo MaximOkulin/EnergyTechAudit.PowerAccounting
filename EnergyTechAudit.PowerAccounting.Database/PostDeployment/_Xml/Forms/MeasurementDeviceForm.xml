@@ -1,0 +1,791 @@
+<FormLayout Name="measurementDeviceForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function(sender, args)
+    {
+    var formController = Core.Admin.FormController.prototype.currentInstance;
+        
+    jQuery(document).off(Core.Common.EventTypes.FormController.FormLoadComplete_Form);
+    
+    jQuery(document).on(Core.Common.EventTypes.FormController.FormLoadComplete_Form, function()
+    {
+        var commandMenuBarController = new Core.Common.CommandMenuBarController("formCommandMenu");
+        
+        var entityTypeName = formController.getEntityTypeName();
+
+        var doSendRequest = Core.Common.DeviceReaderResponseCommandDialog.prototype.sendRequestFromFormController;
+
+        commandMenuBarController.bind(
+        {
+            checkConnectionWithMeasurementDevice: function()
+            {
+                doSendRequest("checkConnection", Core.Common.Entities.Business.MeasurementDevice);
+            },
+
+            checkConnectionWithAccessPoint: function()
+            {
+                doSendRequest("checkConnection", Core.Common.Entities.Business.AccessPoint);
+            },
+
+            checkServiceStatus: function()
+            {
+                doSendRequest("checkServiceStatus", Core.Common.Entities.Business.DeviceReader);
+            },
+            
+            showStatusConnection: function()
+            {                               
+                Core.Common.StatusConnectionBarController.showStatusConnectionDialog(formController.getEntityInfo());
+            },
+            
+            // удаление архивов по критерию 
+            removeArchiveByCriteria: function()
+            {
+                var formControllerEx = Core.Admin.FormController.prototype.currentInstance;               
+                        
+                var doProcess = function()
+                {                    
+                    Core.Helpers.InternalApi
+                        .getParametricDialogObjectAsync("DeleteArchiveParametricDialog")
+                        .fail(function(response)
+                        {
+                            $.event.trigger(Core.Common.EventTypes.CoreAsyncError);
+                        })
+                        .done(function(parametricDialogObject)
+                        {
+                            var parametricDialog = new Core.Dialogs.ParametricDialog(parametricDialogObject);
+                            var modelManager = formControllerEx.getModelManager();
+                            
+                            parametricDialog.show(function(modalResult)
+                            {
+                                if(modalResult == Core.Resources.Dialogs.DialogModalResults.Ok)
+                                {
+                                  var parametricObject = parametricDialog.getParametricObject(true);
+                                  // приведение дат к строчному представлению ISO
+                                  for(var indx in parametricObject.descriptors)
+                                  {
+                                    var desc = parametricObject.descriptors[indx];
+                                    
+                                    if(desc.typeCode == Core.TypeCodes.DateTime)
+                                    {
+                                      desc.value = desc.value.toJSON();
+                                    }
+                                  }
+                                                                    
+                                  formControllerEx.removeCurrentAsyncExternal(true,
+                                  {
+                                      entityId: modelManager.getEntityId(),
+                                      entityTypeName: entityTypeName,
+                                      linkedTypeEntityInfo:
+                                      {
+                                          entityId: Number.zero,
+                                          entityTypeName: Core.Common.Entities.Business.Archive
+                                      }
+                                  }, parametricObject);
+                                }
+                            });
+                        }); 
+                };
+                
+                formControllerEx.checkPossibilityRemoveEntityAsync()
+                    .done(function(canceletionToken)
+                    {
+                        if (!canceletionToken.cancel)
+                        {
+                            doProcess();
+                        }
+                    });                             
+            }            
+        });
+    });
+    
+    jQuery(document).off(Core.Common.EventTypes.FormController.LongRunningRemoveOperationComplete);
+    
+    jQuery(document).on(Core.Common.EventTypes.FormController.LongRunningRemoveOperationComplete, function(event, args)
+    {        
+        var formControllerEx = Core.Admin.FormController.prototype.currentInstance;               
+        if(formControllerEx)
+        {
+          var entityTypeName = formControllerEx.getEntityTypeName();
+          if(entityTypeName == args.entityInfo.entityTypeName)
+          {            
+            formControllerEx.refresh();
+          }
+        }              
+    });
+    
+    formController.checkPossibilityRemoveEntityAsync = function()
+    {
+        
+        var modelManager = formController.getModelManager();
+
+        var entityTypeName = formController.getEntityTypeName();
+        var entityId = modelManager.getEntityId();
+        
+        var deferred = jQuery.Deferred();
+        
+        if (entityId &amp;&amp; entityId != 0)
+        {
+            var commandEntityInfo =
+            {
+                entityId: entityId,
+                entityTypeName: entityTypeName,
+                command: Core.Resources.DeviceReaderCommands.getRunningServicesCount,
+                targetEntityTypeName: entityTypeName
+            };
+            
+            var deviceReaderResponseCompleteEventName = "{0}.{1}".format
+            (
+                Core.Common.EventTypes.FormController.DeviceReaderResponseComplete,
+                Core.Resources.DeviceReaderCommands.getRunningServicesCount.name
+            );
+            
+            jQuery(document).on(deviceReaderResponseCompleteEventName, function(event, args)
+            {         
+                
+                var response = args.result;   
+                if(response &amp;&amp;  response.CommandKey === Core.Resources.DeviceReaderCommands.getRunningServicesCount.name)
+                {
+                  var canceletionToken = {cancel : true};
+                  if (response &amp;&amp; response.RunningServicesCountKey != undefined)
+                  {
+                    if(response.RunningServicesCountKey &gt; 0)
+                    {
+                        var messageBoxSettings = 
+                        {
+                            title: Core.Resources.Messages.informationMessageBoxTitle,
+                            type: Core.Resources.Dialogs.MessageBoxType.Stop,
+                            iconColorStyle: "crimson",
+                            buttons: Core.Resources.Dialogs.Buttons.Close,
+                            width: 450,
+                            id: "requiredShutDoneDeviceReaderServices" + entityTypeName +  "MessageBox",
+                            message: Core.Resources.Messages.deleteEntityRequiredShutDoneDeviceReaderServices 
+                        };
+                      
+                        var messageBox = new Core.Dialogs.MessageBox(messageBoxSettings);
+                      
+                        messageBox.show().done(function()
+                        {
+                          jQuery("#" + messageBoxSettings.id + "Wrapper").on(Core.Common.EventTypes.Click, "a", function()
+                          {
+                            var dxMessageBox = Core.Helpers.DevExpress.getDxControlByName(messageBoxSettings.id);
+                            dxMessageBox.Hide();        
+                        
+                            window.open("/admin/admin?metaObjectId=58", "_blank")
+                          });
+                        });
+                      
+                        canceletionToken.cancel = true;                    
+                        deferred.resolve(canceletionToken);
+                    }
+                    else
+                    {
+                        canceletionToken.cancel = false;                    
+                        deferred.resolve(canceletionToken);
+                    }
+                  }
+                  jQuery(document).off(deviceReaderResponseCompleteEventName);
+                }
+                
+            });
+            
+            var deviceReaderCommunicator = new Core.Common.DeviceReaderCommunicator();
+            deviceReaderCommunicator.sendRequestAsync(commandEntityInfo);
+        };
+        
+        return deferred.promise();
+    }
+}
+    </InitScript>
+	<CommandMenu>
+		<Name>measurementDeviceFormCommandMenu</Name>
+		<ClientVisible>true</ClientVisible>
+		<Width>90</Width>
+		<CommandMenuItem>
+			<Name>checkConnection</Name>
+			<DropDownMode>true</DropDownMode>
+			<BeginGroup>true</BeginGroup>
+			<CommandName>checkConnection</CommandName>
+			<IconClass>font-icon-checkconnection font-icon-color-darkred indent-right-5px</IconClass>
+			<ToolTip>Проверка связи</ToolTip>
+			<CommandMenuItem>
+				<Name>checkConnectionWithMeasurementDevice</Name>
+				<Text>Проверка связи с устройством...</Text>
+				<CommandName>checkConnectionWithMeasurementDevice</CommandName>
+				<IconClass>font-icon-measurement-device font-icon-darkslateblue indent-right-5px</IconClass>
+			</CommandMenuItem>
+			<CommandMenuItem>
+				<Name>checkConnectionWithAccessPoint</Name>
+				<Text>Проверка связи с точкой доступа...</Text>
+				<CommandName>checkConnectionWithAccessPoint</CommandName>
+				<IconClass>font-icon-access-point font-icon-color-darkred indent-right-5px</IconClass>
+			</CommandMenuItem>
+			<CommandMenuItem>
+				<Name>checkServiceStatus</Name>
+				<Text>Проверка состояния службы считывателя...</Text>
+				<CommandName>checkServiceStatus</CommandName>
+				<IconClass>font-icon-devicereader font-icon-black indent-right-5px</IconClass>
+			</CommandMenuItem>
+		</CommandMenuItem>
+		<CommandMenuItem>
+			<Name>removeGroup</Name>
+			<DropDownMode>true</DropDownMode>
+			<TryMergeByName>true</TryMergeByName>
+			<CommandMenuItem>
+				<Text>Удаление архивов по критерию...</Text>
+				<Name>removeArchiveByCriteria</Name>
+				<CommandName>removeArchiveByCriteria</CommandName>
+				<IconClass>font-icon-remove-archive font-icon-x1_3 font-icon-color-darkred indent-right-5px</IconClass>
+				<ToolTip></ToolTip>
+			</CommandMenuItem>
+		</CommandMenuItem>
+		<CommandMenuItem>
+			<Name>showStatusConnection</Name>
+			<ToolTip>Статусы соединения...</ToolTip>
+			<CommandName>showStatusConnection</CommandName>
+			<IconClass>font-icon-statusbar font-icon-darkblue indent-right-5px</IconClass>
+		</CommandMenuItem>
+	</CommandMenu>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Order="1" Enabled="false">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<Tooltip>
+						<HelpId>1</HelpId>
+						<Text>Уникальный идентификатор сущности</Text>
+					</Tooltip>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Прибор включен" Enabled="true" Order="3">
+					<BoundProperty>TurnOn</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Ид. последней временной сигнатуры" Enabled="true" Order="4" ClientVisible="false">
+					<BoundProperty>LastTimeSignatureId</BoundProperty>
+					<NestedExtension>Default</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="1" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Заводской номер" Order="1" Enabled="true">
+					<BoundProperty>FactoryNumber</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<IsNotClonable>true</IsNotClonable>
+					<Tooltip>
+						<HelpId>2</HelpId>
+						<Text>Заводской номер прибора, установленный заводом изготовителем</Text>
+					</Tooltip>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+							<Value>Integer</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.NumberFormat</PropertiesChain>
+							<Value>Number</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+							<Value>1</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.DisplayFormatString</PropertiesChain>
+							<Value>N0</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.DisplayFormatInEditMode</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+							<Value>9223372036854775807</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Номер версии ПО" Order="2" Enabled="true">
+					<BoundProperty>Firmware</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Модель прибора" Order="3" Enabled="true">
+					<BoundProperty>DeviceId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+							  function(sender, args)
+							  {
+							    (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute({sender: sender});
+							  }
+              </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Модель исполнения" Order="4" Enabled="true">
+					<BoundProperty>SubModel</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Статус последнего подключения" Order="6" Enabled="true">
+					<BoundProperty>LastStatusConnectionId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Время последнего опроса" Order="7" Enabled="true">
+					<BoundProperty>LastConnectionTime</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+					<IsNotClonable>true</IsNotClonable>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+							<Value>DateTime</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+					    <Value>false</Value>
+					  </FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Точка доступа" Order="8" Enabled="true">
+					<BoundProperty>AccessPointId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+							  function(sender, args)
+							  {
+							    (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute({sender: sender});
+							  }
+              </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Концентратор" Order="9" Enabled="true">
+					<BoundProperty>HubId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+							  function(sender, args)
+							  {
+							    (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute({sender: sender});
+							  }
+              </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Сетевые" ColSpan="1" Order="3">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Сетевой адрес" Order="1" Enabled="true">
+					<BoundProperty>NetworkAddress</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Com-порт" Order="2" Enabled="true">
+					<BoundProperty>ComPortId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Бод" Order="3" Enabled="true">
+					<BoundProperty>BaudId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Значимые биты" Order="4" Enabled="true">
+					<BoundProperty>DataBitId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Стоповые биты" Order="5" Enabled="true">
+					<BoundProperty>StopBitId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Четность" Order="6" Enabled="true">
+					<BoundProperty>ParityId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Приоритет" Order="7" Enabled="true">
+					<BoundProperty>Priority</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Тип порта" Order="8" Enabled="true">
+					<BoundProperty>PortTypeId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Подтип протокола" Order="9" Enabled="true">
+					<BoundProperty>ProtocolSubTypeId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Качество подключения" ColSpan="1" Order="4">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Процент успешных соединений" Order="1" Enabled="true">
+					<BoundProperty>SuccessConnectionPercent</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<IsNotClonable>true</IsNotClonable>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Время последнего успешного опроса" Order="2" Enabled="true">
+					<BoundProperty>LastSuccessConnectionTime</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+					<IsNotClonable>true</IsNotClonable>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+							<Value>DateTime</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+					    <Value>false</Value>
+					  </FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Таймауты" ColSpan="1" Order="5">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Автоматический таймаут (мс)" Order="1" Enabled="true">
+					<BoundProperty>AutoDefTimeoutAnswer</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<Tooltip>
+						<HelpId>1</HelpId>
+						<Text>Отрегулируйте временную задержку, необходимую прибору для ответа на запрос</Text>
+					</Tooltip>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Количество попыток подключения" Order="2" Enabled="true">
+					<BoundProperty>AmountAttempt</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Интервал опроса (мин.)" Order="3" Enabled="true">
+					<BoundProperty>PollingInterval</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<Tooltip>
+						<HelpId>1</HelpId>
+						<Text>Установите периодичность, с которой требуется опрашивать прибор</Text>
+					</Tooltip>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Даты" ColSpan="1" Order="6">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Начальная дата архива" Order="1" Enabled="true">
+					<BoundProperty>StartReadArchiveDate</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.UseMaskBehavior</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+							<Value>3</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.EditFormatString</PropertiesChain>
+							<Value>dd/MM/yyyy</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дата действующей поверки" Order="2" Enabled="true">
+					<BoundProperty>CurrentAccreditationDate</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дата следующей поверки" Order="3" Enabled="true">
+					<BoundProperty>NextAccreditationDate</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дата производства" Order="4" Enabled="true">
+					<BoundProperty>ManufacturingDate</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Сбор данных" ColSpan="1" Order="7">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Мгновенные данные" Order="1" Enabled="true">
+					<BoundProperty>GiveCurrData</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.AllowGrayed</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Часовой архив" Order="2" Enabled="true">
+					<BoundProperty>GiveHArcData</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.AllowGrayed</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дневной архив" Order="3" Enabled="true">
+					<BoundProperty>GiveDArcData</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.AllowGrayed</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Месячный архив" Order="4" Enabled="true">
+					<BoundProperty>GiveMArcData</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.AllowGrayed</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+    <FormLayoutGroup Caption="Связи" ColSpan="2" Order="5">
+      <FormLayoutItems>
+        <FormLayoutItem Caption="Расписание опроса" Enabled="true" Order="1">
+          <BoundProperty>MeasurementDeviceLinksScheduleItem</BoundProperty>
+          <NestedExtension>ListBox</NestedExtension>
+          <FormLayoutItemExtenders>
+            <FormLayoutItemExtender>
+              <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+              <Value>Top</Value>
+            </FormLayoutItemExtender>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+              <Value>Id</Value>
+            </FormLayoutItemExtender>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+              <Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                var inlineListBoxController = new Core.Admin.FormController.InlineListBoxController(sender);
+                inlineListBoxController.execute();
+                }
+              </Value>
+            </FormLayoutItemExtender>
+          </FormLayoutItemExtenders>
+          <FormLayoutItemListBoxSetting>
+            <DataSourceType>Entity</DataSourceType>
+            <DataSource>MeasurementDeviceLinksScheduleItem</DataSource>
+            <FormLayoutItemListBoxColumns>
+              <FormLayoutItemListBoxColumn>
+                <FieldName>Id</FieldName>
+                <Caption>Ид</Caption>
+                <Width>25</Width>
+              </FormLayoutItemListBoxColumn>
+              <FormLayoutItemListBoxColumn>
+                <FieldName>Description</FieldName>
+                <Caption>Время опроса</Caption>
+                <Width>150</Width>
+              </FormLayoutItemListBoxColumn>
+              <FormLayoutItemListBoxColumn>
+                <FieldName>Enabled</FieldName>
+                <Caption>Опрос разрешен</Caption>
+                <Width>150</Width>
+              </FormLayoutItemListBoxColumn>
+            </FormLayoutItemListBoxColumns>
+          </FormLayoutItemListBoxSetting>
+        </FormLayoutItem>
+      </FormLayoutItems>
+    </FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

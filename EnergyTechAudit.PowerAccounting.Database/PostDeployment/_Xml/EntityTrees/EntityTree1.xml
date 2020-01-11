@@ -1,0 +1,65 @@
+﻿<EntityTreeRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EntityTree.xsd">
+  <Title>Города</Title>
+  <EntityTypeName>City</EntityTypeName>
+  <IconClass>et-ci</IconClass>
+  <Visible>false</Visible>
+
+  <Script>
+    <Id>1</Id>
+  </Script>
+
+  <EntityTreeDictionaries>
+    <EntityTreeDictionary>ResourceSystemType</EntityTreeDictionary>
+    <EntityTreeDictionary>PlacementPurpose</EntityTreeDictionary>
+  </EntityTreeDictionaries>
+  <EntityTreeInverseProperties>
+    <EntityTreeInverseProperty>UserLinksChannel.User</EntityTreeInverseProperty>
+    <EntityTreeInverseProperty>Placement.Building.District.City</EntityTreeInverseProperty>
+  </EntityTreeInverseProperties>
+  <EntityTreeNodes>
+    <EntityTreeNode>
+      <EntityTypeName>District</EntityTypeName>
+      <Property>Districts</Property>
+
+      <IconClass>et-di</IconClass>
+      <Visible>true</Visible>
+      <EntityTreeNodes>
+        <EntityTreeNode>
+          <EntityTypeName>Building</EntityTypeName>
+          <Property>Buildings</Property>
+          <EntityTreeNodeCollectionSorterInfo>
+            <KeySelectorExpression>Regex.Replace(objNode.Description, &quot;(улица|ул\\.|проспект|пр\\.|\\s+улица)&quot;, String.Empty).Trim()</KeySelectorExpression>
+            <KeySelectorType>String</KeySelectorType>
+            <Ascending>true</Ascending>
+          </EntityTreeNodeCollectionSorterInfo>
+          <IconClass>et-b</IconClass>
+          <Visible>true</Visible>
+          <EntityTreeNodes>
+            <EntityTreeNode >
+              <EntityTypeName>Placement</EntityTypeName>
+              <Property>Placements</Property>
+              <CustomPropertyChain>Placements.PlacementPurpose</CustomPropertyChain>
+              <Visible>false</Visible>
+              <EntityTreeNodes>
+                <EntityTreeNode>
+                  <EntityTypeName>Channel</EntityTypeName>
+                  <Property>Channels</Property>
+                  <IconClass>et-ch</IconClass>
+                  <Visible>true</Visible>
+                  <EntityTreeNodes>
+                    <EntityTreeNode>
+                      <EntityTypeName>MeasurementDevice</EntityTypeName>
+                      <Property>MeasurementDevice</Property>
+                      <IconClass>et-md</IconClass>
+                      <Visible>true</Visible>
+                    </EntityTreeNode>
+                  </EntityTreeNodes>
+                </EntityTreeNode>
+              </EntityTreeNodes>
+            </EntityTreeNode>
+          </EntityTreeNodes>
+        </EntityTreeNode>
+      </EntityTreeNodes>
+    </EntityTreeNode>
+  </EntityTreeNodes>
+</EntityTreeRoot>

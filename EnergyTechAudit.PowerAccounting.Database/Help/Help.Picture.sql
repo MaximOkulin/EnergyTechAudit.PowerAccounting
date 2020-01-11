@@ -1,0 +1,7 @@
+﻿CREATE TABLE [Help].[Picture]
+(
+	[Id] INT NOT NULL IDENTITY(1,1), 
+	[Caption] NVARCHAR(128) NULL,
+	[Image] VARBINARY(MAX) NOT NULL,   	
+    CONSTRAINT PK_Help_Picture PRIMARY KEY (Id)
+)

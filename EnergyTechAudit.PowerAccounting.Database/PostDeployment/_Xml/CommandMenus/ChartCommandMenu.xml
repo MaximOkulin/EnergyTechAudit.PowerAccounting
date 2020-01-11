@@ -1,0 +1,63 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>pivotDiagrammCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>255</Width>
+
+  <CommandMenuItem>
+    <ToolTip>Перестроить</ToolTip>
+    <CommandName>rebuild</CommandName>
+    <Name>rebuild</Name>
+    <BeginGroup>true</BeginGroup>
+    <IconClass>font-icon-rebuild font-icon-x1_2 font-icon-darkgreen</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>pivotDiagrammOptions</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>pivotDiagrammSettings</CommandName>
+    <IconClass>font-icon-options font-icon-x1_2 font-icon-color-marine</IconClass>
+    <ToolTip>Настройки диаграмм</ToolTip>
+
+    <CommandMenuItem>
+      <Name>percentageToggle</Name>
+      <Text>Показать персентаж</Text>
+      <CommandName>percentageToggle</CommandName>
+      <Checked>false</Checked>
+      <GroupName>percentageToggleGroup</GroupName>
+    </CommandMenuItem>
+
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>pivotDiagrammExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>pivotDiagrammExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportXlsx</CommandName>
+      <Name>exportToXlsx</Name>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+
+    <CommandMenuItem>
+      <Text>Формат Svg</Text>
+      <CommandName>exportSvg</CommandName>
+      <Name>exportToSvg</Name>
+      <IconClass>dev-icon-ExportToCSV_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+    
+  </CommandMenu>

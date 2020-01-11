@@ -1,0 +1,37 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>formJournalDialogMultipleToMultipleLinkEntityCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>250</Width>
+  
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>formJournalExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>font-icon-xlsx indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+    
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>removeMultipleToMultipleLinkEntity</CommandName>
+    <Name>removeMultipleToMultipleLinkEntity</Name>
+    <IconClass>font-icon-remove2 font-icon-x1_2 indent-right-5px font-icon-color-darkred</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

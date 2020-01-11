@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Devart (www.devart.com), compare document file -->
+<!-- Modifying this generated file will probably render it invalid -->
+<CompareDocument>
+  <Properties>
+    <DatabaseProvider>aa8afe9c-7d62-4564-b477-c12e62e0f440</DatabaseProvider>
+    <ProviderVersion>5.5.196.0</ProviderVersion>
+    <SchemaVersion>1.5</SchemaVersion>
+  </Properties>
+  <Source Type="Database">
+    <DataConnection>LOCAL</DataConnection>
+    <ConnectionString>Data Source=localhost\SQLSERVER;Encrypt=False;Initial Catalog=EnergyTechAudit.PowerAccounting.Database;Integrated Security=False;User ID=sa</ConnectionString>
+    <Category>00000000-0000-0000-0000-000000000000</Category>
+    <Schema>EnergyTechAudit.PowerAccounting.Database</Schema>
+  </Source>
+  <Target Type="Database">
+    <DataConnection>Подвал</DataConnection>
+    <ConnectionString>Data Source=91.144.143.40,61433;Encrypt=False;Initial Catalog=EnergyTechAudit.PowerAccounting.Database;Integrated Security=False;User ID=sa</ConnectionString>
+    <Category>00000000-0000-0000-0000-000000000000</Category>
+    <Schema>EnergyTechAudit.PowerAccounting.Database</Schema>
+  </Target>
+  <GroupType Value="Status" />
+  <Filter Value="0" />
+  <ComparisonOptions>
+    <DisableDependencyAnalysis>false</DisableDependencyAnalysis>
+    <IgnorePermissions>false</IgnorePermissions>
+    <QuoteObjectNames>true</QuoteObjectNames>
+    <IgnoreColumnOrderInIndexes>false</IgnoreColumnOrderInIndexes>
+    <IgnoreConstraintsNames>false</IgnoreConstraintsNames>
+    <IgnoreForeignKeys>false</IgnoreForeignKeys>
+    <TargetAzureEdition xml:space="preserve" />
+    <CountColumnsToDropUK>true</CountColumnsToDropUK>
+    <MappingIgnoreSpaces>false</MappingIgnoreSpaces>
+    <MappingIgnoreCase>false</MappingIgnoreCase>
+    <MappingSimilar>false</MappingSimilar>
+    <MappingSimilarPercent xml:space="preserve">80</MappingSimilarPercent>
+    <ForceColumnOrder>true</ForceColumnOrder>
+    <IgnoreParserErrors>false</IgnoreParserErrors>
+    <IgnoreCase>false</IgnoreCase>
+    <IgnoreComments>false</IgnoreComments>
+    <IgnoreWhiteSpace>true</IgnoreWhiteSpace>
+    <IgnoreObjectNamesInDefinitions>false</IgnoreObjectNamesInDefinitions>
+    <CompareSecurityObjectPrivileges>false</CompareSecurityObjectPrivileges>
+    <CompareDatabaseProperties>true</CompareDatabaseProperties>
+    <UserDataTypesToSystem>false</UserDataTypesToSystem>
+    <IgnoreAuthorization>false</IgnoreAuthorization>
+    <IgnoreChangeTracking>false</IgnoreChangeTracking>
+    <IgnoreCollations>false</IgnoreCollations>
+    <IgnoreDataCompression>true</IgnoreDataCompression>
+    <IgnoreDatabaseInSynonyms>true</IgnoreDatabaseInSynonyms>
+    <IgnoreDatabaseExtendedProperties>true</IgnoreDatabaseExtendedProperties>
+    <IgnoreDatabaseObjectExtendedProperties>false</IgnoreDatabaseObjectExtendedProperties>
+    <IgnoreEventNotificationOnQueues>false</IgnoreEventNotificationOnQueues>
+    <IgnoreFilegroupsPartitionSchemes>false</IgnoreFilegroupsPartitionSchemes>
+    <IgnoreFullTextCatalogPath>false</IgnoreFullTextCatalogPath>
+    <IgnoreFullTextSearch>false</IgnoreFullTextSearch>
+    <IgnoreNextFilegroups>false</IgnoreNextFilegroups>
+    <IgnoreSemicolons>false</IgnoreSemicolons>
+    <IgnoreSequenceMax>false</IgnoreSequenceMax>
+    <IgnoreSequenceMin>false</IgnoreSequenceMin>
+    <IgnoreSequenceStart>false</IgnoreSequenceStart>
+    <IgnoreTSQLtFramework>false</IgnoreTSQLtFramework>
+    <IgnoreUserDefaultSchema>true</IgnoreUserDefaultSchema>
+    <PopulateFullTextIndexes>true</PopulateFullTextIndexes>
+    <IgnoreUserPermissions>false</IgnoreUserPermissions>
+    <IgnoreUserDefaultLanguage>false</IgnoreUserDefaultLanguage>
+    <IgnoreLogins>true</IgnoreLogins>
+    <IgnoreDataTypesInColumn>false</IgnoreDataTypesInColumn>
+    <IgnoreClrDataTypesInColumn>false</IgnoreClrDataTypesInColumn>
+    <IgnoreRules>false</IgnoreRules>
+    <IgnoreIdentitySeedIncrementValues>false</IgnoreIdentitySeedIncrementValues>
+    <IgnoreIdentity>false</IgnoreIdentity>
+    <IgnoreDefaultCollations>true</IgnoreDefaultCollations>
+    <IgnoreBoundRulesDefaults>false</IgnoreBoundRulesDefaults>
+    <IgnoreLockEscalation>true</IgnoreLockEscalation>
+    <IgnoreTemporalHistoryTableName>true</IgnoreTemporalHistoryTableName>
+    <IgnoreTableDMLTriggers>false</IgnoreTableDMLTriggers>
+    <IgnoreInsteadOfTriggers>false</IgnoreInsteadOfTriggers>
+    <IgnoreDMLTriggerState>false</IgnoreDMLTriggerState>
+    <IgnoreDDLTriggerState>false</IgnoreDDLTriggerState>
+    <IgnoreTriggerFireOrder>false</IgnoreTriggerFireOrder>
+    <IgnoreIndexes>false</IgnoreIndexes>
+    <IgnoreStatistics>false</IgnoreStatistics>
+    <IgnoreIndexesNames>false</IgnoreIndexesNames>
+    <IgnoreStatisticsNorecompute>false</IgnoreStatisticsNorecompute>
+    <IgnorePadIndexAndFillfactor>false</IgnorePadIndexAndFillfactor>
+    <IgnoreIndexColumnsSortOrder>false</IgnoreIndexColumnsSortOrder>
+    <IgnoreIndexPageAndRowLock>false</IgnoreIndexPageAndRowLock>
+    <IgnoreCheckConstraints>false</IgnoreCheckConstraints>
+    <IgnoreDefaultConstraints>false</IgnoreDefaultConstraints>
+    <IgnoreNocheck>false</IgnoreNocheck>
+    <IgnoreWithNocheck>false</IgnoreWithNocheck>
+    <IgnoreConstraintSystemNames>true</IgnoreConstraintSystemNames>
+    <IgnoreNotNullConstraints>false</IgnoreNotNullConstraints>
+    <IgnoreForeignKeyActions>false</IgnoreForeignKeyActions>
+    <IgnorePrimaryKeys>false</IgnorePrimaryKeys>
+    <IgnoreUniqueKeys>false</IgnoreUniqueKeys>
+    <IgnoreNotForReplication>false</IgnoreNotForReplication>
+    <IgnoreReplicatedTables>true</IgnoreReplicatedTables>
+    <IgnoreReplicationTriggers>false</IgnoreReplicationTriggers>
+    <IgnoreReplicatedProcedures>false</IgnoreReplicatedProcedures>
+    <IgnoreReplicatedSchemas>false</IgnoreReplicatedSchemas>
+    <IgnoreReplicatedRoles>false</IgnoreReplicatedRoles>
+    <DecryptEncryptedObjects>true</DecryptEncryptedObjects>
+    <IgnoreWithEncryption>false</IgnoreWithEncryption>
+    <IgnoreSignatures>false</IgnoreSignatures>
+    <IgnoreWithOptionOrder>true</IgnoreWithOptionOrder>
+    <IgnoreKeywordReduction>true</IgnoreKeywordReduction>
+    <IgnoreQuotedIdentifierAndANSINulls>false</IgnoreQuotedIdentifierAndANSINulls>
+    <IgnoreDropIndexes>false</IgnoreDropIndexes>
+    <IgnoreDropDMLTriggers>false</IgnoreDropDMLTriggers>
+    <CheckInconsistency>false</CheckInconsistency>
+    <SetDelimiter>true</SetDelimiter>
+    <UseDelimiter>true</UseDelimiter>
+    <TargetDatabaseName xml:space="preserve">EnergyTechAudit.PowerAccounting.Database</TargetDatabaseName>
+    <TargetChangeTracking>false</TargetChangeTracking>
+    <IsTarget>false</IsTarget>
+    <OmitIgnoreOptions>false</OmitIgnoreOptions>
+    <IncludeFilesAndFilegroups>false</IncludeFilesAndFilegroups>
+    <IgnoreMemoryOptimizedProperty>false</IgnoreMemoryOptimizedProperty>
+    <IncludeSetNoExec>true</IncludeSetNoExec>
+    <CompareServerObjects>false</CompareServerObjects>
+    <IgnoreObjectTypeFilter>false</IgnoreObjectTypeFilter>
+  </ComparisonOptions>
+  <ObjectFilter>
+    <Include>Table</Include>
+    <Include>View</Include>
+    <Include>Procedure</Include>
+    <Include>Function</Include>
+    <Include>User</Include>
+    <Include>DatabaseRole</Include>
+    <Include>ApplicationRole</Include>
+    <Include>Rule</Include>
+    <Include>Default</Include>
+    <Include>UserDefinedType</Include>
+    <Include>FullTextCatalog</Include>
+    <Include>PartitionFunction</Include>
+    <Include>PartitionScheme</Include>
+    <Include>Assembly</Include>
+    <Include>AsymmetricKey</Include>
+    <Include>Certificate</Include>
+    <Include>Contract</Include>
+    <Include>DdlTrigger</Include>
+    <Include>EventNotification</Include>
+    <Include>MessageType</Include>
+    <Include>Queue</Include>
+    <Include>RemoteServiceBinding</Include>
+    <Include>Route</Include>
+    <Include>Schema</Include>
+    <Include>Service</Include>
+    <Include>SymmetricKey</Include>
+    <Include>Synonym</Include>
+    <Include>XmlSchemaCollection</Include>
+    <Include>FullTextStoplist</Include>
+    <Include>BrokerPriority</Include>
+    <Include>Sequence</Include>
+    <Include>SearchPropertyList</Include>
+    <Include>PlanGuide</Include>
+    <Include>SecurityPolicy</Include>
+    <Include>ExternalDataSource</Include>
+    <Include>ExternalFileFormat</Include>
+    <Include>ExternalTable</Include>
+    <Include>ColumnMasterKey</Include>
+    <Include>ColumnEncryptionKey</Include>
+  </ObjectFilter>
+  <ModifiedObjects>
+    <Object Name="Admin.FaqLinkRole:Admin.FaqLinkRole" Type="Table" Include="False" Operation="None" />
+    <Object Name="Admin.News:Admin.News" Type="Table" Include="False" Operation="None" />
+    <Object Name="Admin.NewsLinkRole:Admin.NewsLinkRole" Type="Table" Include="False" Operation="None" />
+    <Object Name="Admin.User:Admin.User" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.AccessPoint:Business.AccessPoint" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.AccessPointStatusConnectionLog:Business.AccessPointStatusConnectionLog" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.Archive:Business.Archive" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.Building:Business.Building" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.Channel:Business.Channel" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.ChannelTemplate:Business.ChannelTemplate" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.CsdModem:Business.CsdModem" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.DeviceLinkDynamicParameter:Business.DeviceLinkDynamicParameter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.DeviceParameterSetting:Business.DeviceParameterSetting" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.DeviceReader:Business.DeviceReader" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.DeviceReaderErrorLog:Business.DeviceReaderErrorLog" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.DeviceTechnicalParameter:Business.DeviceTechnicalParameter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.EmergencyMessage:Business.EmergencyMessage" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.EmergencySituationParameter:Business.EmergencySituationParameter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.IntegrationArchiveInfo:Business.IntegrationArchiveInfo" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.MeasurementDevice:Business.MeasurementDevice" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.MeasurementDeviceJournal:Business.MeasurementDeviceJournal" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.MeasurementDeviceStatusConnectionLog:Business.MeasurementDeviceStatusConnectionLog" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.Mnemoscheme:Business.Mnemoscheme" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.ParameterMapDeviceParameter:Business.ParameterMapDeviceParameter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.Placement:Business.Placement" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.RegulatorParameterValue:Business.RegulatorParameterValue" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.UserLinkEmergencyNotificationType:Business.UserLinkEmergencyNotificationType" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.Binary:Core.Binary" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.DynamicParameterValue:Core.DynamicParameterValue" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.EntityProperty:Core.EntityProperty" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.EntityTreeLinkRole:Core.EntityTreeLinkRole" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.MenuItem:Core.MenuItem" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.MetaObject:Core.MetaObject" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.MetaObjectLinkDevice:Core.MetaObjectLinkDevice" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.MetaObjectLinkRole:Core.MetaObjectLinkRole" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.MetaObjectReferenceMeasurementDevice:Core.MetaObjectReferenceMeasurementDevice" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.Report:Core.Report" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.ReportPluginSelector:Core.ReportPluginSelector" Type="Table" Include="False" Operation="None" />
+    <Object Name="Core.ReportSelector:Core.ReportSelector" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.AgreementSystemParameter:Dictionaries.AgreementSystemParameter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.Device:Dictionaries.Device" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.DeviceEventParameter:Dictionaries.DeviceEventParameter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.DeviceParameter:Dictionaries.DeviceParameter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.District:Dictionaries.District" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.InternalDeviceEvent:Dictionaries.InternalDeviceEvent" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.MeasurementUnit:Dictionaries.MeasurementUnit" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.Parameter:Dictionaries.Parameter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.ParameterDictionaryValue:Dictionaries.ParameterDictionaryValue" Type="Table" Include="False" Operation="None" />
+    <Object Name="Dictionaries.ResourceSubsystemType:Dictionaries.ResourceSubsystemType" Type="Table" Include="False" Operation="None" />
+    <Object Name="Rules.DefaultMeasurementUnit:Rules.DefaultMeasurementUnit" Type="Table" Include="False" Operation="None" />
+    <Object Name="Rules.DeviceArchiveTimeConverter:Rules.DeviceArchiveTimeConverter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Rules.MeasurementUnitConverter:Rules.MeasurementUnitConverter" Type="Table" Include="False" Operation="None" />
+    <Object Name="Business.MobileGeolocationServicingMarker" Type="Table" Include="False" Operation="None" />
+    <Object Name="Programmability.GetIndividualAccountingPeriodicalAverageResourceConsumptionByParameter:Programmability.GetIndividualAccountingPeriodicalAverageResourceConsumptionByParameter" Type="Procedure" Include="False" Operation="None" />
+    <Object Name="EnergyTechAudit.PowerAccounting.Database:EnergyTechAudit.PowerAccounting.Database" Type="Assembly" Include="False" Operation="None" />
+    <Object Name="EnergyTechAudit.PowerAccounting.Database.Certificate:EnergyTechAudit.PowerAccounting.Database.Certificate" Type="Certificate" Include="False" Operation="None" />
+  </ModifiedObjects>
+  <ScriptsFolderOptions>
+    <ScriptsFolderSynchronization>
+      <FolderStructure>
+        <Database Include="True" IncludeSubfolder="False" SubfolderName="Database\" FileName="$object$" FileExtension=".sql" />
+        <Table Include="True" IncludeSubfolder="True" SubfolderName="Tables\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <TableData Include="True" IncludeSubfolder="True" SubfolderName="Tables\StaticData\" FileName="$schema$.$object$.Data" FileExtension=".sql" />
+        <View Include="True" IncludeSubfolder="True" SubfolderName="Views\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Synonym Include="True" IncludeSubfolder="True" SubfolderName="Synonyms\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Procedure Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Procedures\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Function Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Functions\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <DdlTrigger Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Database Triggers\" FileName="$object$" FileExtension=".sql" />
+        <Sequence Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Sequences\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Assembly Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Assemblies\" FileName="$object$" FileExtension=".sql" />
+        <Rule Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Rules\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Default Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Defaults\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <PlanGuide Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Plan Guides\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <UserDataType Include="True" IncludeSubfolder="True" SubfolderName="Programmability\User Types\Data Types\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <UserTableType Include="True" IncludeSubfolder="True" SubfolderName="Programmability\User Types\Table Types\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <ClrType Include="True" IncludeSubfolder="True" SubfolderName="Programmability\User Types\CLR Types\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <XmlSchemaCollection Include="True" IncludeSubfolder="True" SubfolderName="Programmability\User Types\XML Schema Collections\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <MessageType Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Message Types\" FileName="$object$" FileExtension=".sql" />
+        <Contract Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Contracts\" FileName="$object$" FileExtension=".sql" />
+        <Queue Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Queues\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Service Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Services\" FileName="$object$" FileExtension=".sql" />
+        <Route Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Routes\" FileName="$object$" FileExtension=".sql" />
+        <RemoteServiceBinding Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Remote Service Bindings\" FileName="$object$" FileExtension=".sql" />
+        <BrokerPriority Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Broker Priorities\" FileName="$object$" FileExtension=".sql" />
+        <EventNotification Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Event Notifications\" FileName="$object$" FileExtension=".sql" />
+        <FullTextCatalog Include="True" IncludeSubfolder="True" SubfolderName="Storage\Full-Text Catalogs\" FileName="$object$" FileExtension=".sql" />
+        <PartitionScheme Include="True" IncludeSubfolder="True" SubfolderName="Storage\Partition Schemes\" FileName="$object$" FileExtension=".sql" />
+        <PartitionFunction Include="True" IncludeSubfolder="True" SubfolderName="Storage\Partition Functions\" FileName="$object$" FileExtension=".sql" />
+        <FullTextStoplist Include="True" IncludeSubfolder="True" SubfolderName="Storage\Full-Text Stoplists\" FileName="$object$" FileExtension=".sql" />
+        <SearchPropertyList Include="True" IncludeSubfolder="True" SubfolderName="Storage\Search Property Lists\" FileName="$object$" FileExtension=".sql" />
+        <ExternalTable Include="True" IncludeSubfolder="True" SubfolderName="External Resources\External Tables\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <ExternalDataSource Include="True" IncludeSubfolder="True" SubfolderName="External Resources\External Data Sources\" FileName="$object$" FileExtension=".sql" />
+        <ExternalFileFormat Include="True" IncludeSubfolder="True" SubfolderName="External Resources\External File Formats\" FileName="$object$" FileExtension=".sql" />
+        <User Include="True" IncludeSubfolder="True" SubfolderName="Security\Users\" FileName="$object$" FileExtension=".sql" />
+        <DatabaseRole Include="True" IncludeSubfolder="True" SubfolderName="Security\Roles\" FileName="$object$" FileExtension=".sql" />
+        <ApplicationRole Include="True" IncludeSubfolder="True" SubfolderName="Security\Application Roles\" FileName="$object$" FileExtension=".sql" />
+        <Schema Include="True" IncludeSubfolder="True" SubfolderName="Security\Schemas\" FileName="$object$" FileExtension=".sql" />
+        <AsymmetricKey Include="True" IncludeSubfolder="True" SubfolderName="Security\Asymmetric Keys\" FileName="$object$" FileExtension=".sql" />
+        <Certificate Include="True" IncludeSubfolder="True" SubfolderName="Security\Certificates\" FileName="$object$" FileExtension=".sql" />
+        <SymmetricKey Include="True" IncludeSubfolder="True" SubfolderName="Security\Symmetric Keys\" FileName="$object$" FileExtension=".sql" />
+        <SecurityPolicy Include="True" IncludeSubfolder="True" SubfolderName="Security\SecurityPolicy\" FileName="$object$" FileExtension=".sql" />
+        <ColumnMasterKey Include="True" IncludeSubfolder="True" SubfolderName="Security\Always Encrypted Keys\Column Master Keys\" FileName="$object$" FileExtension=".sql" />
+        <ColumnEncryptionKey Include="True" IncludeSubfolder="True" SubfolderName="Security\Always Encrypted Keys\Column Encryption Keys\" FileName="$object$" FileExtension=".sql" />
+      </FolderStructure>
+    </ScriptsFolderSynchronization>
+  </ScriptsFolderOptions>
+  <SynchronizationOptions>
+    <PropertyValue Name="BackupDatabase">false</PropertyValue>
+    <PropertyValue Name="BackupExtension">false</PropertyValue>
+    <PropertyValue Name="CreateBackupFolder">false</PropertyValue>
+    <PropertyValue Name="NeedCompressBackup">false</PropertyValue>
+    <PropertyValue Name="AddBackupType">false</PropertyValue>
+    <PropertyValue Name="BackupType">0</PropertyValue>
+    <PropertyValue Name="ExecuteAsSingleTransaction">true</PropertyValue>
+    <PropertyValue Name="AddingErrorHandling">false</PropertyValue>
+    <PropertyValue Name="AddTransactionIsolationLevel">false</PropertyValue>
+    <PropertyValue Name="TransactionIsolationLevel">0</PropertyValue>
+    <PropertyValue Name="DeployDatabaseInSingleUserMode">false</PropertyValue>
+    <PropertyValue Name="AddWithEncryption">false</PropertyValue>
+    <PropertyValue Name="IncludeUseDatabase">true</PropertyValue>
+    <PropertyValue Name="AffectedFileReadOnly">true</PropertyValue>
+    <PropertyValue Name="UseSchemaNamePrefix">false</PropertyValue>
+    <PropertyValue Name="IncludePrintComments">false</PropertyValue>
+    <PropertyValue Name="ExcludeComments">false</PropertyValue>
+    <PropertyValue Name="BackupPathName" xml:space="preserve">C:\Program Files\Microsoft SQL Server\MSSQL12.SQLSERVER\MSSQL\Backup</PropertyValue>
+    <PropertyValue Name="BackupExtensionName" xml:space="preserve">.bak</PropertyValue>
+    <PropertyValue Name="GenerateScriptHeader">true</PropertyValue>
+    <PropertyValue Name="UseSqlExtensionCommands">true</PropertyValue>
+    <PropertyValue Name="AllowDefaultValues">false</PropertyValue>
+    <PropertyValue Name="AssembliesStoragePath" xml:space="preserve" />
+    <PropertyValue Name="UseCreateOrAlter">true</PropertyValue>
+    <PropertyValue Name="AddWithNocheck">false</PropertyValue>
+    <PropertyValue Name="DisableDdlTriggers">false</PropertyValue>
+    <PropertyValue Name="VerifyTableData">false</PropertyValue>
+    <PropertyValue Name="CheckObjectExistence">false</PropertyValue>
+    <PropertyValue Name="UseSchemaTransfer">false</PropertyValue>
+    <PropertyValue Name="DropCreateOnly">false</PropertyValue>
+    <PropertyValue Name="DropCreateOnlyTables">false</PropertyValue>
+    <PropertyValue Name="DropCreateOnlyAssemblies">false</PropertyValue>
+    <PropertyValue Name="SynchronizeAsmViaFiles">false</PropertyValue>
+    <PropertyValue Name="RefreshViews">true</PropertyValue>
+    <PropertyValue Name="UseSubSchemaNamePrefix">true</PropertyValue>
+    <PropertyValue Name="CommentDdlForKeysCertificates">true</PropertyValue>
+    <PropertyValue Name="ExcludeDependencies">false</PropertyValue>
+    <PropertyValue Name="CanSqlExecutorAddError">true</PropertyValue>
+    <PropertyValue Name="SynchronizeType">2</PropertyValue>
+    <PropertyValue Name="SynchronizationFileName" xml:space="preserve">C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\_Deployment\eta.development.max\EnergyTechAudit_PowerAccounting_Database (SQLSERVER vs 91_144_143_40,61433)_20191125-1849.sql</PropertyValue>
+    <PropertyValue Name="SynchronizationEditorFileName" xml:space="preserve">C:\Users\MAX\AppData\Local\Temp\Devart_tvo3dl5m.n5f\sync.sql</PropertyValue>
+    <PropertyValue Name="OpenScriptInEditor">false</PropertyValue>
+    <PropertyValue Name="RefreshAfterSynchronization">true</PropertyValue>
+    <PropertyValue Name="OpenScriptsFolder">false</PropertyValue>
+    <PropertyValue Name="PureScript">false</PropertyValue>
+    <PropertyValue Name="IsPartOfScript">false</PropertyValue>
+    <PropertyValue Name="IgnoreEncryptionProperty">false</PropertyValue>
+    <PropertyValue Name="UseCommitMode">false</PropertyValue>
+    <PropertyValue Name="CommitPageLength" xml:space="preserve">0</PropertyValue>
+  </SynchronizationOptions>
+  <Mapping ExcludeUnmappedSchemas="False">
+    <Schemas>
+      <Object SourceName="Admin" TargetName="Admin" State="DefaultMapped" Included="True" />
+      <Object SourceName="Business" TargetName="Business" State="DefaultMapped" Included="True" />
+      <Object SourceName="Core" TargetName="Core" State="DefaultMapped" Included="True" />
+      <Object SourceName="dbo" TargetName="dbo" State="DefaultMapped" Included="True" />
+      <Object SourceName="DeviceReader" TargetName="DeviceReader" State="DefaultMapped" Included="True" />
+      <Object SourceName="Dictionaries" TargetName="Dictionaries" State="DefaultMapped" Included="True" />
+      <Object SourceName="guest" TargetName="guest" State="DefaultMapped" Included="True" />
+      <Object SourceName="Help" TargetName="Help" State="DefaultMapped" Included="True" />
+      <Object SourceName="Programmability" TargetName="Programmability" State="DefaultMapped" Included="True" />
+      <Object SourceName="Rules" TargetName="Rules" State="DefaultMapped" Included="True" />
+      <Object SourceName="Temp" TargetName="Temp" State="DefaultMapped" Included="True" />
+      <Object SourceName="WebApi" TargetName="WebApi" State="DefaultMapped" Included="True" />
+    </Schemas>
+    <ComparedObjects>
+      <Object SourceName="Admin.Alert" TargetName="Admin.Alert" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.Audit" TargetName="Admin.Audit" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.DeletedEntityLogEntry" TargetName="Admin.DeletedEntityLogEntry" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.EntityHistory" TargetName="Admin.EntityHistory" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.ErrorLogEntry" TargetName="Admin.ErrorLogEntry" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.Faq" TargetName="Admin.Faq" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="[Admin].[FaqLinkRole]" TargetName="[Admin].[FaqLinkRole]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.News" TargetName="[Admin].[News]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.NewsLinkRole" TargetName="[Admin].[NewsLinkRole]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.Role" TargetName="Admin.Role" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.SystemSetting" TargetName="Admin.SystemSetting" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.[User]" TargetName="[Admin].[User]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.UserGroup" TargetName="Admin.UserGroup" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Admin.UserMessage" TargetName="Admin.UserMessage" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.AccessPoint" TargetName="[Business].[AccessPoint]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.AccessPointLinkBuilding" TargetName="Business.AccessPointLinkBuilding" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.AccessPointStatusConnectionLog" TargetName="[Business].[AccessPointStatusConnectionLog]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.AgreementParameter" TargetName="Business.AgreementParameter" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.Archive" TargetName="[Business].[Archive]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.Building" TargetName="[Business].[Building]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.BuildingMapResourceBuilding" TargetName="Business.BuildingMapResourceBuilding" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.Channel" TargetName="[Business].[Channel]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.ChannelLinkAgreementParameter" TargetName="Business.ChannelLinkAgreementParameter" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.ChannelTemplate" TargetName="[Business].[ChannelTemplate]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.CheckingAccount" TargetName="Business.CheckingAccount" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.CheckingAccountLinkPlacement" TargetName="Business.CheckingAccountLinkPlacement" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.CsdModem" TargetName="[Business].[CsdModem]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.DeviceEvent" TargetName="Business.DeviceEvent" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.DeviceLinkDynamicParameter" TargetName="[Business].[DeviceLinkDynamicParameter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.DeviceParameterSetting" TargetName="[Business].[DeviceParameterSetting]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.DeviceReader" TargetName="[Business].[DeviceReader]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.DeviceReaderErrorLog" TargetName="[Business].[DeviceReaderErrorLog]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.DeviceReaderLinkScheduleItem" TargetName="Business.DeviceReaderLinkScheduleItem" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.DeviceTechnicalParameter" TargetName="[Business].[DeviceTechnicalParameter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="[Business].[EmergencyLog]" TargetName="[Business].[EmergencyLog]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.EmergencyMessage" TargetName="[Business].[EmergencyMessage]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.EmergencySituationParameter" TargetName="[Business].[EmergencySituationParameter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.EmergencySituationParameterTemplate" TargetName="Business.EmergencySituationParameterTemplate" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.EmergencyTimeSignature" TargetName="Business.EmergencyTimeSignature" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.Hub" TargetName="Business.Hub" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.IntegrationArchiveInfo" TargetName="[Business].[IntegrationArchiveInfo]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.MeasurementDevice" TargetName="[Business].[MeasurementDevice]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.MeasurementDeviceJournal" TargetName="[Business].[MeasurementDeviceJournal]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.MeasurementDeviceLinkScheduleItem" TargetName="Business.MeasurementDeviceLinkScheduleItem" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.MeasurementDeviceStatusConnectionLog" TargetName="[Business].[MeasurementDeviceStatusConnectionLog]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.Mnemoscheme" TargetName="[Business].[Mnemoscheme]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.MobileDevice" TargetName="Business.MobileDevice" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.MobileEmergencyMessage" TargetName="Business.MobileEmergencyMessage" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.Organization" TargetName="Business.Organization" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.ParameterMapDeviceParameter" TargetName="[Business].[ParameterMapDeviceParameter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.Placement" TargetName="[Business].[Placement]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.RegulatorParameterValue" TargetName="[Business].[RegulatorParameterValue]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.TimeSignature" TargetName="Business.TimeSignature" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.UserAdditionalInfo" TargetName="Business.UserAdditionalInfo" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.UserAdditionalInfoLinkScheduleItem" TargetName="Business.UserAdditionalInfoLinkScheduleItem" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.UserLinkChannel" TargetName="Business.UserLinkChannel" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Business.UserLinkEmergencyNotificationType" TargetName="[Business].[UserLinkEmergencyNotificationType]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Binary" TargetName="[Core].[Binary]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Briefcase" TargetName="Core.Briefcase" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.BriefcaseItem" TargetName="Core.BriefcaseItem" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.CommandMenuTemplate" TargetName="Core.CommandMenuTemplate" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.DashboardExtentionTemplate" TargetName="Core.DashboardExtentionTemplate" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Diagramm" TargetName="Core.Diagramm" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Dictionary" TargetName="Core.Dictionary" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.DynamicParameterValue" TargetName="[Core].[DynamicParameterValue]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Entity" TargetName="Core.Entity" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.EntityProperty" TargetName="[Core].[EntityProperty]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.EntityTree" TargetName="Core.EntityTree" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.EntityTreeLinkRole" TargetName="[Core].[EntityTreeLinkRole]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Form" TargetName="Core.Form" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.GoogleMapsStyle" TargetName="Core.GoogleMapsStyle" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.MapInfoWindow" TargetName="Core.MapInfoWindow" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Menu" TargetName="Core.Menu" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.MenuItem" TargetName="[Core].[MenuItem]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.MetaObject" TargetName="[Core].[MetaObject]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.MetaObjectLinkDevice" TargetName="[Core].[MetaObjectLinkDevice]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.MetaObjectLinkRole" TargetName="[Core].[MetaObjectLinkRole]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.MetaObjectReferenceMeasurementDevice" TargetName="[Core].[MetaObjectReferenceMeasurementDevice]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.MetaObjectType" TargetName="Core.MetaObjectType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Parametric" TargetName="Core.Parametric" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.[Pivot]" TargetName="Core.[Pivot]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.PivotDiagramm" TargetName="Core.PivotDiagramm" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Processing" TargetName="Core.Processing" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.ProcessingLogEntry" TargetName="Core.ProcessingLogEntry" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Query" TargetName="Core.Query" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Report" TargetName="[Core].[Report]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.ReportPluginSelector" TargetName="[Core].[ReportPluginSelector]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.ReportSelector" TargetName="[Core].[ReportSelector]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.ReportType" TargetName="Core.ReportType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.ScheduleItem" TargetName="Core.ScheduleItem" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Script" TargetName="Core.Script" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Core.Source" TargetName="Core.Source" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="dbo.__RefactorLog" TargetName="dbo.__RefactorLog" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.AgreementParameterType" TargetName="Dictionaries.AgreementParameterType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.AgreementSystemParameter" TargetName="[Dictionaries].[AgreementSystemParameter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.Baud" TargetName="Dictionaries.Baud" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.BinaryContentType" TargetName="Dictionaries.BinaryContentType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.BuildingPurpose" TargetName="Dictionaries.BuildingPurpose" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.City" TargetName="Dictionaries.City" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.ComPort" TargetName="Dictionaries.ComPort" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.DataBit" TargetName="Dictionaries.DataBit" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.Device" TargetName="[Dictionaries].[Device]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.DeviceEventParameter" TargetName="[Dictionaries].[DeviceEventParameter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.DeviceParameter" TargetName="[Dictionaries].[DeviceParameter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.DeviceReaderType" TargetName="Dictionaries.DeviceReaderType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.Dimension" TargetName="Dictionaries.Dimension" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.District" TargetName="[Dictionaries].[District]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.DynamicParameter" TargetName="Dictionaries.DynamicParameter" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.ErrorType" TargetName="Dictionaries.ErrorType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.Gender" TargetName="Dictionaries.Gender" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.InternalDeviceEvent" TargetName="[Dictionaries].[InternalDeviceEvent]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.MeasurementUnit" TargetName="[Dictionaries].[MeasurementUnit]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.MeteoDataSourceType" TargetName="Dictionaries.MeteoDataSourceType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.MnemoschemeType" TargetName="Dictionaries.MnemoschemeType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.NotificationType" TargetName="Dictionaries.NotificationType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.OrganizationType" TargetName="Dictionaries.OrganizationType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.Parameter" TargetName="[Dictionaries].[Parameter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.ParameterDictionary" TargetName="Dictionaries.ParameterDictionary" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.ParameterDictionaryValue" TargetName="[Dictionaries].[ParameterDictionaryValue]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.Parity" TargetName="Dictionaries.Parity" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.PeriodType" TargetName="Dictionaries.PeriodType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.PhysicalParameter" TargetName="Dictionaries.PhysicalParameter" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.PlacementPurpose" TargetName="Dictionaries.PlacementPurpose" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.PortType" TargetName="Dictionaries.PortType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.ProcessingStatus" TargetName="Dictionaries.ProcessingStatus" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.ProtocolSubType" TargetName="Dictionaries.ProtocolSubType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.ResourceSubsystemType" TargetName="[Dictionaries].[ResourceSubsystemType]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.ResourceSystemType" TargetName="Dictionaries.ResourceSystemType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.ScheduleType" TargetName="Dictionaries.ScheduleType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.SeasonType" TargetName="Dictionaries.SeasonType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.StatusConnection" TargetName="Dictionaries.StatusConnection" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.StopBit" TargetName="Dictionaries.StopBit" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.SubsystemType" TargetName="Dictionaries.SubsystemType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.TechnologicAdjunctionType" TargetName="Dictionaries.TechnologicAdjunctionType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.TemperatureProfile" TargetName="Dictionaries.TemperatureProfile" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.TransportServerModel" TargetName="Dictionaries.TransportServerModel" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.TransportType" TargetName="Dictionaries.TransportType" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Dictionaries.TypeConnection" TargetName="Dictionaries.TypeConnection" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Help.Article" TargetName="Help.Article" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Help.Picture" TargetName="Help.Picture" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Rules.DefaultMeasurementUnit" TargetName="[Rules].[DefaultMeasurementUnit]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Rules.DeviceArchiveTimeConverter" TargetName="[Rules].[DeviceArchiveTimeConverter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="Rules.MeasurementUnitConverter" TargetName="[Rules].[MeasurementUnitConverter]" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="WebApi.ActionRequestStatisticItem" TargetName="WebApi.ActionRequestStatisticItem" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="WebApi.ArchiveDownloader" TargetName="WebApi.ArchiveDownloader" SourceType="Table" TargetType="Table" State="Different" />
+      <Object SourceName="WebApi.ArchiveDownloaderLinkScheduleItem" TargetName="WebApi.ArchiveDownloaderLinkScheduleItem" SourceType="Table" TargetType="Table" State="Different" />
+    </ComparedObjects>
+  </Mapping>
+</CompareDocument>

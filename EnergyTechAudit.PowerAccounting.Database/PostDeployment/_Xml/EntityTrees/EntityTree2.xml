@@ -1,0 +1,38 @@
+﻿<EntityTreeRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EntityTree.xsd">
+  <Title>Строения</Title>
+  <EntityTypeName>Building</EntityTypeName>  
+  <IconClass>et-b</IconClass>
+  <Visible>false</Visible>
+  <Script>
+    <Id>2</Id>
+  </Script>
+  <EntityTreeInverseProperties>    
+    <EntityTreeInverseProperty>UserLinksChannel.User</EntityTreeInverseProperty>
+    <EntityTreeInverseProperty>AccessPoint.AccessPointLinksBuilding.Building</EntityTreeInverseProperty>
+  </EntityTreeInverseProperties>
+  <EntityTreeNodes>
+    <EntityTreeNode>
+      <EntityTypeName>AccessPointLinkBuilding</EntityTypeName>
+      <Property>AccessPointLinksBuilding</Property>      
+      <Visible>false</Visible>
+      <EntityTreeNodes>        
+        <EntityTreeNode>
+          <EntityTypeName>AccessPoint</EntityTypeName>
+          <Property>AccessPoint</Property>          
+          <IconClass>et-ap</IconClass>
+          <Visible>true</Visible>
+          
+          <EntityTreeNodes>
+            <EntityTreeNode>
+              <EntityTypeName>MeasurementDevice</EntityTypeName>
+              <Property>MeasurementDevices</Property>                       
+              <IconClass>et-md</IconClass>              
+              <Visible>true</Visible>
+                           
+            </EntityTreeNode>            
+          </EntityTreeNodes>
+        </EntityTreeNode>
+      </EntityTreeNodes>
+    </EntityTreeNode>
+  </EntityTreeNodes>
+</EntityTreeRoot>

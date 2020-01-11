@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 53.66 19.73" style="enable-background:new 0 0 53.66 19.73;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#1D71B8;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#1D71B8;stroke-miterlimit:10;stroke-dasharray:3.7427,3.7427;}
+	.st2{fill:none;stroke:#1D71B8;stroke-miterlimit:10;stroke-dasharray:4.9088,4.9088;}
+	.st3{font-family:'ArialMT';}
+	.st4{font-size:9px;}
+</style>
+<g transform="translate(52.134,-5.3932)">
+	<g>
+		<polyline class="st0" points="1.026,22.623 1.026,24.623 -0.974,24.623 		"/>
+		<line class="st1" x1="-4.724" y1="24.623" x2="-47.764" y2="24.623"/>
+		<polyline class="st0" points="-49.634,24.623 -51.634,24.623 -51.634,22.623 		"/>
+		<line class="st2" x1="-51.634" y1="17.713" x2="-51.634" y2="10.353"/>
+		<polyline class="st0" points="-51.634,7.903 -51.634,5.903 -49.634,5.903 		"/>
+		<line class="st1" x1="-45.894" y1="5.893" x2="-2.854" y2="5.893"/>
+		<polyline class="st0" points="-0.974,5.903 1.026,5.903 1.026,7.903 		"/>
+		<line class="st2" x1="1.026" y1="12.803" x2="1.026" y2="20.173"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 9.4101 12.52)" class="st3 st4">Блок ХВО</text>
+</svg>

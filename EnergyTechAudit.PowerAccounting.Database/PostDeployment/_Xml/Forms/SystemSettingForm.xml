@@ -1,0 +1,145 @@
+<FormLayout Name="systemSettingForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function(sender, args)
+    {             
+        var formController = Core.Admin.FormController.prototype.currentInstance;
+
+        formController.setModelValidator(function(model)
+        {
+            var result = true;    
+            
+            var validationState = 
+            {
+              isValid: result,
+              visualizationMethod: Core.Admin.FormController.ValidationVisualizationMethod.MessageBox,
+              validationSourceInfo: []
+            };
+            
+            try
+            {
+              (JSON.parse(model.customData));
+            }
+            catch (e)
+            {
+              result = false;
+            }
+
+            if (result !== true)
+            {
+                validationState.validationSourceInfo.push(
+                {                   
+                    fieldName: "customData",
+                    sourceFieldName: "CustomData",
+                    sourceCaption: "Дополнительные настройки",                                       
+                    message: "Содержимое поля не является корректным JSON форматом."
+                });
+            }
+
+            validationState.isValid = result;
+            
+            return validationState;
+        });       
+    }
+    </InitScript>
+	<InitStyle HasEscapedContent="true">
+    .CodeMirror
+    {
+      line-height: 1.5;
+      height: auto;
+    }
+    </InitStyle>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Enabled="true" Order="1">
+					<BoundProperty>SystemName</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Почта администратора" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Адрес почты" Enabled="true" Order="1">
+					<BoundProperty>EmailAdminAddress</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Настройки почты системы" ColSpan="2" Order="3">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Адрес почты" Enabled="true" Order="1">
+					<BoundProperty>EmailAddress</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Адрес сервера" Enabled="true" Order="2">
+					<BoundProperty>EmailSmtpServer</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Порт сервера" Enabled="true" Order="3">
+					<BoundProperty>EmailSmtpPort</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Учетная запись" Enabled="true" Order="4">
+					<BoundProperty>EmailUserName</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Пароль почты" Enabled="true" Order="5">
+					<BoundProperty>EmailPassword</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Password</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Разрешить SSL" Enabled="true" Order="5">
+					<BoundProperty>EmailEnableSsl</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Дополнительные настройки" ColSpan="2" Order="4">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Дополнительные настройки" Enabled="true" Order="1">
+					<BoundProperty>CustomData</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender, {mode:
+                      {
+                        name: "javascript",
+                        json: true
+                      }
+                  });                  
+                  inlineMemoEditorController.execute();                                    
+                }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

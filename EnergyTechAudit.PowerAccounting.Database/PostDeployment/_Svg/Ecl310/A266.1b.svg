@@ -1,0 +1,256 @@
+﻿<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="1400" height="700" viewBox="-30 -30 1200 600"
+     enable-background="new 0 0 565 264" xml:space="preserve" description="Ключ A266.1b Зависимое присоединение системы отопления и независимое присоединение системы ГВС" deviceId="8" internalNumber="none">
+<line fill="none" x1="141" y1="-140" x2="141" y2="-158.976" />
+<line fill="none" x1="141" y1="-133" x2="141" y2="-168.464" />
+<line fill="none" x1="-198" y1="242.814" x2="-198" y2="207.352" />
+<line fill="none" x1="665" y1="99.78" x2="1047.822" y2="104.78" />
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="98.902,211.961 112.053,216.453 98.902,220.946 " />
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="125.202,220.946 112.053,216.453 125.202,211.961 " />
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="89.837,213.357 98.902,216.453 89.837,219.551 " />
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="134.268,219.551 125.202,216.453 134.268,213.357 " />
+<ellipse fill="none" stroke="#000000" stroke-miterlimit="10" cx="112.053" cy="198.554" rx="9.348" ry="9.348" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="112.053" y1="208.004" x2="112.053" y2="216.453" />
+<text transform="matrix(1.1975 0 0 1 107.8916 203.248)" font-size="8.6454">M</text>
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M86.813,46.684l9.275-7.826L86.813,46.684z" />
+		<ellipse stroke="#000000" stroke-miterlimit="10" cx="98.99" cy="36.433" rx="3.895" ry="3.251" />
+	</g>
+	<text transform="matrix(1.1975 0 0 1 101.6011 30.7617)" font-size="8.6454">T1</text>
+</g>
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="112.57" y1="15.047" x2="112.57" y2="49.981" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="119.767" y1="15.047" x2="119.767" y2="49.981" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="112.57" y1="49.981" x2="119.752" y2="40.444" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="117.649" y1="50.514" x2="119.752" y2="47.722" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="112.57" y1="42.703" x2="119.752" y2="33.166" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="112.57" y1="35.426" x2="119.752" y2="25.888" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="112.57" y1="28.148" x2="119.752" y2="18.609" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="112.57" y1="20.869" x2="116.568" y2="15.56" />
+</g>
+<g>
+	<rect x="198.355" y="21.963" fill="none" stroke="#000000" stroke-miterlimit="10" width="57.979" height="24.72" />
+	<rect x="198.355" y="28.34" fill="none" stroke="#000000" stroke-miterlimit="10" width="57.979" height="12.009" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="220.097" y1="28.34" x2="220.097" y2="40.348" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="237.698" y1="28.34" x2="237.698" y2="40.348" />
+	<ellipse fill="none" stroke="#000000" stroke-miterlimit="10" cx="247.016" cy="34.328" rx="4.271" ry="3.566" />
+	<ellipse fill="none" stroke="#000000" stroke-miterlimit="10" cx="247.016" cy="34.323" rx="5.823" ry="4.863" />
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M252.839,28.437c0,0,1.844,2.647,1.844,5.701   c0,3.053-1.844,6.024-1.844,6.024" />
+</g>
+<text transform="matrix(1.1975 0 0 1 209.8345 17.189)" font-size="8.6454">ECL210</text>
+<rect x="291.535" y="34.344" fill="none" stroke="#000000" stroke-miterlimit="10" width="14.753" height="2.091" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M291.535,34.344c0,0,1.491,0.039,2.212-0.972  c0.72-1.01,2.014-5.003,2.447-6.089c0.388-1.153,1.131-1.763,2.941-1.763c1.813,0,2.408,0.664,2.795,1.907  c0.388,1.242,1.597,4.539,2.027,5.691c0.431,1.153,2.329,1.225,2.329,1.225" />
+<path stroke="#000000" stroke-miterlimit="10" d="M301.015,36.435c0,0.971-0.938,1.757-2.103,1.757  c-1.161,0-2.103-0.786-2.103-1.757c0,0,0.941,0,2.103,0C300.075,36.435,301.015,36.435,301.015,36.435z" />
+<text transform="matrix(1.1975 0 0 1 293.5166 45.4307)" font-size="8.6454">R4</text>
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="98.902,124.559 112.053,129.053 98.902,133.543 " />
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="125.202,133.543 112.053,129.051 125.202,124.559 " />
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="89.837,125.955 98.902,129.053 89.837,132.148 " />
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="134.268,132.148 125.202,129.051 134.268,125.955 " />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="112.053" y1="120.601" x2="112.053" y2="129.053" />
+<text transform="matrix(1.1975 0 0 1 107.8916 115.8472)" font-size="8.6454">M</text>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="89.837" y1="216.316" x2="56.531" y2="216.316" />
+<text transform="matrix(1.1975 0 0 1 105.2363 185.3779)" font-size="8.6454">M1</text>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="89.837" y1="129.403" x2="33.635" y2="129.403" />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="231.579" y1="132.787" x2="222.303" y2="124.962" />
+	<ellipse stroke="#000000" stroke-miterlimit="10" cx="219.401" cy="122.537" rx="3.895" ry="3.252" />
+	<text transform="matrix(1.1975 0 0 1 206.3345 116.8657)" font-size="8.6454">T5</text>
+</g>
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="215.051" y1="175.858" x2="224.327" y2="168.033" />
+	<ellipse stroke="#000000" stroke-miterlimit="10" cx="227.228" cy="165.608" rx="3.895" ry="3.251" />
+	<text transform="matrix(1.1975 0 0 1 229.8398 159.9365)" font-size="8.6454">T4</text>
+</g>
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="168.079" y1="164.305" x2="72.979" y2="164.305" />
+</g>
+<rect x="167.814" y="159.839" fill="none" stroke="#000000" stroke-miterlimit="10" width="53.146" height="63.4" />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="167.814" y1="223.238" x2="220.961" y2="159.837" />
+</g>
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="175.281" y1="222.129" x2="166.005" y2="214.303" />
+	<ellipse stroke="#000000" stroke-miterlimit="10" cx="163.104" cy="211.878" rx="3.895" ry="3.251" />
+	<text transform="matrix(1.1975 0 0 1 150.0376 206.207)" font-size="8.6454">T6</text>
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="549.471" y1="117.689" x2="394.297" y2="117.689" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="394.297" y1="117.689" x2="394.157" y2="73.91" />
+<g>
+	<rect x="437.823" y="73.761" fill="none" stroke="#000000" stroke-miterlimit="10" width="72.221" height="40.23" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="503.135" y1="77.157" x2="503.135" y2="108.387" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="491.084" y1="77.119" x2="491.084" y2="108.349" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="479.127" y1="77.193" x2="479.127" y2="108.424" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="466.515" y1="77.098" x2="466.515" y2="108.329" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="454.558" y1="77.174" x2="454.558" y2="108.405" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="442.507" y1="77.139" x2="442.507" y2="108.368" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="437.823" y1="75.255" x2="437.823" y2="114.156" />
+	<ellipse fill="none" stroke="#000000" stroke-miterlimit="10" cx="413.296" cy="76.062" rx="6.854" ry="6.761" />
+	<polygon stroke="#000000" stroke-miterlimit="10" points="408.581,79.763 413.296,72.585 418.009,79.763  " />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="413.296" y1="117.689" x2="413.296" y2="83.277" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="420.15" y1="75.313" x2="437.823" y2="75.255" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="510.044" y1="110.567" x2="514.982" y2="110.567" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="514.567" y1="110.567" x2="514.567" y2="113.812" />
+</g>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M220.097,171.642" />
+<g>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M366.701,161.388" />
+</g>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M506.438,175.463" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M434.218,175.463" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M409.69,173.224" />
+<path stroke="#000000" stroke-miterlimit="10" d="M409.69,174.446" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M393.715,171.642" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M220.961,218.106" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M393.761,171.642" />
+<g>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M433.881,162.559" />
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="167.814" y1="216.453" x2="134.268" y2="216.453" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="549.471" y1="129.403" x2="134.268" y2="129.403" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="56.531" y1="129.403" x2="56.531" y2="216.316" />
+<line fill="none" x1="72.979" y1="133.543" x2="72.979" y2="164.305" />
+<line fill="none" x1="72.979" y1="164.305" x2="72.979" y2="195.066" />
+<line fill="none" x1="72.979" y1="180.711" x2="72.979" y2="144.816" />
+<line fill="none" x1="72.979" y1="161.942" x2="72.979" y2="135.946" />
+<line fill="none" x1="72.979" y1="159.48" x2="72.979" y2="128.82" />
+<line fill="none" x1="72.979" y1="128.82" x2="72.979" y2="153.739" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="72.979" y1="132.148" x2="72.979" y2="164.305" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="56.531" y1="129.403" x2="56.531" y2="172.454" />
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="500" y1="164.305" x2="506" y2="164.305" />
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="518" y1="164.305" x2="524" y2="164.305" />
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="486" y1="164.305" x2="492" y2="164.305" />
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="494" y1="164.305" x2="500" y2="164.305" />
+	</g>
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="220.097" y1="164.305" x2="486" y2="164.305" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="240" y1="216.453" x2="240" y2="248.5" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="240" y1="248.5" x2="276.157" y2="248.5" />
+<polygon fill="#1D1D1B" stroke="#000000" stroke-miterlimit="10" points="276.158,244.008 289.309,248.5 276.158,252.993 " />
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="302.458,252.993 289.309,248.5 302.458,244.008 " />
+<g>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M383.406,216.316c0-7.459-6.045-13.503-13.503-13.503   c-7.457,0-13.503,6.044-13.503,13.503" />
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M356.4,216.316c0,7.457,6.046,13.502,13.503,13.502   c7.458,0,13.503-6.045,13.503-13.502" />
+	<polyline stroke="#000000" stroke-miterlimit="10" points="358.605,216.316 367.144,221.246 367.144,211.386 358.605,216.316  " />
+</g>
+<g>
+	<polygon fill="#1D1D1B" stroke="#000000" stroke-miterlimit="10" points="276.663,210.638 289.813,215.13 276.663,219.623  " />
+	<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="302.963,219.623 289.813,215.13 302.963,210.638  " />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="221.467" y1="215.131" x2="277.621" y2="215.131" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="303.262" y1="215.269" x2="356.906" y2="215.131" />
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="383.406" y1="216.316" x2="389.406" y2="216.322" />
+		
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="11.6903,11.6903" x1="401.097" y1="216.334" x2="512.155" y2="216.442" />
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="518" y1="216.448" x2="524" y2="216.454" />
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="524" y1="216.454" x2="524" y2="210.454" />
+		
+			<line fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="10.6667,10.6667" x1="524" y1="199.787" x2="524" y2="183.787" />
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="524" y1="178.454" x2="524" y2="172.454" />
+	</g>
+</g>
+<text transform="matrix(1.1183 0 0 1 360.3369 238.6748)" font-size="10.7449">P1</text>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="146.184" y1="115.216" x2="146.184" y2="129.403" />
+<text transform="matrix(1.1975 0 0 1 105.4775 99.0435)" font-size="8.6454">M2</text>
+<ellipse fill="none" stroke="#000000" stroke-miterlimit="10" cx="112.797" cy="112.187" rx="8.959" ry="8.959" />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="353.049" y1="73.91" x2="24.541" y2="73.91" />
+</g>
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="214.319" y1="78.954" x2="223.595" y2="71.128" />
+	<ellipse stroke="#000000" stroke-miterlimit="10" cx="226.496" cy="68.704" rx="3.895" ry="3.251" />
+	<text transform="matrix(1.1975 0 0 1 229.1074 63.0322)" font-size="8.6454">T3</text>
+</g>
+<g>
+	<ellipse fill="none" stroke="#000000" stroke-miterlimit="10" cx="367.144" cy="71.442" rx="13.503" ry="13.503" />
+	<polygon stroke="#000000" stroke-miterlimit="10" points="369.903,66.797 378.441,71.442 369.903,76.088  " />
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="394.204" y1="73.91" x2="380.479" y2="73.91" />
+<line fill="none" x1="72.979" y1="65.709" x2="72.979" y2="112.718" />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="73.184" y1="73.91" x2="73.184" y2="124.177" />
+<text transform="matrix(1.1183 0 0 1 360.3369 93.3145)" font-size="10.7449">P2</text>
+<polygon fill="#1D1D1B" stroke="#000000" stroke-miterlimit="10" points="141.691,86.74 146.184,99.891 150.677,86.74 " />
+<polygon fill="none" stroke="#000000" stroke-miterlimit="10" points="150.677,115.216 146.184,102.066 141.691,115.216 " />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="146.184" y1="74.283" x2="146.184" y2="86.368" />
+<g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M358.664,44.394l9.275-7.826L358.664,44.394z" />
+		<ellipse stroke="#000000" stroke-miterlimit="10" cx="370.842" cy="34.143" rx="3.895" ry="3.251" />
+	</g>
+	<text transform="matrix(1.1975 0 0 1 373.4531 28.4717)" font-size="8.6454">T2</text>
+</g>
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="303.262" y1="248.5" x2="453.703" y2="248.5" />
+<polygon stroke="#000000" stroke-miterlimit="10" points="467.234,253.392 454.189,248.5 467.234,243.608 " />
+<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="514.982" y1="122.537" x2="514.982" y2="128.314" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M448.448,174.452" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M448.448,174.452" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M445.678,173.224" />
+<path stroke="#000000" stroke-miterlimit="10" d="M445.678,174.446" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M480.284,174.452" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M429.973,175.454" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M405.445,173.215" />
+<path stroke="#000000" stroke-miterlimit="10" d="M405.445,174.438" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M468.73,176.683" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M468.73,176.683" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M441.433,173.215" />
+<path stroke="#000000" stroke-miterlimit="10" d="M441.433,174.438" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M476.039,174.443" />
+<path stroke="#000000" stroke-miterlimit="10" d="M476.039,175.666" />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="409.051" y1="164.296" x2="409.05" y2="179.677" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="408.466" y1="179.321" x2="416.293" y2="179.321" />
+	<g>
+		<ellipse stroke="#000000" stroke-miterlimit="10" cx="424" cy="179.074" rx="1.645" ry="2.432" />
+		<rect x="423.741" y="171.983" stroke="#000000" stroke-miterlimit="10" width="0.518" height="4.661" />
+		<rect x="419.716" y="169.35" fill="#1D1D1B" stroke="#1D1D1B" stroke-miterlimit="10" width="8.568" height="2.634" />
+		<path stroke="#000000" stroke-miterlimit="10" d="M432.717,186.614c0,0-0.201-5.79-8.976-5.894c0-2.702,0-2.702,0-2.702    c12.458,0.289,10.563,8.596,10.563,8.596C433.481,186.614,432.717,186.614,432.717,186.614z" />
+		<rect x="415.776" y="178.019" stroke="#000000" stroke-miterlimit="10" width="7.965" height="2.678" />
+	</g>
+</g>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M466.728,175.979" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M503.669,177.533" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M503.669,177.533" />
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M501.666,176.829" />
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="443.032" y1="164.819" x2="443.031" y2="180.2" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="442.447" y1="179.845" x2="450.274" y2="179.845" />
+	<g>
+		<ellipse stroke="#000000" stroke-miterlimit="10" cx="457.981" cy="179.598" rx="1.645" ry="2.432" />
+		<rect x="457.723" y="172.507" stroke="#000000" stroke-miterlimit="10" width="0.518" height="4.661" />
+		<rect x="453.697" y="169.873" fill="#1D1D1B" stroke="#1D1D1B" stroke-miterlimit="10" width="8.568" height="2.634" />
+		<path stroke="#000000" stroke-miterlimit="10" d="M466.698,187.138c0,0-0.201-5.79-8.976-5.894c0-2.702,0-2.702,0-2.702    c12.458,0.289,10.563,8.596,10.563,8.596C467.463,187.138,466.698,187.138,466.698,187.138z" />
+		<rect x="449.758" y="178.542" stroke="#000000" stroke-miterlimit="10" width="7.965" height="2.678" />
+	</g>
+</g>
+<g>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="476.895" y1="165.103" x2="476.894" y2="180.483" />
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="476.31" y1="180.128" x2="484.137" y2="180.128" />
+	<g>
+		<ellipse stroke="#000000" stroke-miterlimit="10" cx="491.844" cy="179.881" rx="1.645" ry="2.432" />
+		<rect x="491.585" y="172.79" stroke="#000000" stroke-miterlimit="10" width="0.518" height="4.661" />
+		<rect x="487.56" y="170.156" fill="#1D1D1B" stroke="#1D1D1B" stroke-miterlimit="10" width="8.568" height="2.634" />
+		<path stroke="#000000" stroke-miterlimit="10" d="M500.561,187.421c0,0-0.201-5.79-8.976-5.894c0-2.702,0-2.702,0-2.702    c12.458,0.289,10.563,8.596,10.563,8.596C501.325,187.421,500.561,187.421,500.561,187.421z" />
+		<rect x="483.62" y="178.825" stroke="#000000" stroke-miterlimit="10" width="7.965" height="2.678" />
+	</g>
+</g>
+<polygon stroke="#000000" stroke-miterlimit="10" points="546.676,134.295 533.631,129.403 546.676,124.512 " />
+<g>
+	<polygon stroke="#000000" stroke-miterlimit="10" points="533.631,112.798 546.676,117.69 533.631,122.581  " />
+</g>
+<g>
+	<polygon stroke="#000000" stroke-miterlimit="10" points="18.019,68.869 31.063,73.761 18.019,78.652  " />
+</g>
+<polygon stroke="#000000" stroke-miterlimit="10" points="33.635,134.295 20.59,129.403 33.635,124.512 " />
+</svg>

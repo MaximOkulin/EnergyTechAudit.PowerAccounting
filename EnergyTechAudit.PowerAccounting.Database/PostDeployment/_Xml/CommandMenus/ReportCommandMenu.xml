@@ -1,0 +1,199 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>reportCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>485</Width>
+  
+  <EnableAdaptivity>true</EnableAdaptivity>
+  
+  <CommandMenuItem>
+    <ToolTip>Перестроить</ToolTip>
+    <CommandName>rebuild</CommandName>
+    <Name>rebuild</Name>
+    <BeginGroup>true</BeginGroup>
+    <IconClass>font-icon-rebuild font-icon-x1_2 font-icon-darkgreen</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>navigate</CommandName>
+    <ToolTip>Печать c экспортом в PDF</ToolTip>
+    <AdditionalInfo>print_pdf</AdditionalInfo>
+    <Name>reportControllerPrintBrowser</Name>
+    <IconClass>font-icon-pdf indent-top-1px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>reportControllerExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>reportControllerExport</CommandName>
+    <IconClass>font-icon-print font-icon-x1_1 font-icon-dimgray</IconClass>
+    <ToolTip>Печать</ToolTip>      
+    <CommandMenuItem>
+      <Text>Печать c экспортом в PDF</Text>
+      <CommandName>navigate</CommandName>
+      <ToolTip>Печать c экспортом в PDF</ToolTip>
+      <AdditionalInfo>print_pdf</AdditionalInfo>
+      <Name>reportControllerPrintBrowser</Name>
+      <IconClass>font-icon-pdf indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Печать из браузера</Text>
+      <CommandName>navigate</CommandName>
+      <ToolTip>Печать из браузера</ToolTip>
+      <AdditionalInfo>print_browser</AdditionalInfo>
+      <Name>reportControllerPrintBrowser</Name>
+      <IconClass>dev-icon-Print_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>  
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>reportControllerExport</Name>    
+    <DropDownMode>true</DropDownMode>   
+    <BeginGroup>true</BeginGroup>    
+    <CommandName>reportControllerExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+    
+    <CommandMenuItem>
+      <Text>Формат Pdf</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>pdf</AdditionalInfo>
+      <Name>exportToPdf</Name>
+      <IconClass>font-icon-pdf</IconClass>
+    </CommandMenuItem>
+    
+    <CommandMenuItem>
+      <Text>Формат Rtf</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>rtf</AdditionalInfo>
+      <Name>exportToRtf</Name>
+      <IconClass>font-icon-rtf</IconClass>
+    </CommandMenuItem>
+    
+    <CommandMenuItem>
+      <Text>Формат Docx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>word2007</AdditionalInfo>
+      <Name>exportToDocx</Name>
+      <IconClass>font-icon-docx</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>excel2007</AdditionalInfo>
+      <Name>exportToXlsx</Name>
+      <IconClass>font-icon-xlsx</IconClass>
+    </CommandMenuItem>
+    
+    <CommandMenuItem>
+      <Text>Формат Pptx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>pp2007</AdditionalInfo>
+      <Name>exportToPptx</Name>
+      <IconClass>font-icon-pptx</IconClass>
+    </CommandMenuItem>
+    
+    <CommandMenuItem>
+      <Text>Формат Xps</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>xps</AdditionalInfo>
+      <Name>exportToXps</Name>
+      <IconClass>font-icon-xps</IconClass>
+    </CommandMenuItem>
+    
+      
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>reportControllerZoom</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>reportControllerZoom</CommandName>
+    <IconClass>font-icon-zoom font-icon-x1_2 font-icon-darkblue</IconClass>
+    <ToolTip>Масштаб</ToolTip>    
+    <CommandMenuItem>
+      <Text>Масштаб 300%</Text>
+      <CommandName>navigate</CommandName>
+      <AdditionalInfo>zoom_300</AdditionalInfo>
+      <Name>zoom_300</Name>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Масштаб 200%</Text>
+      <CommandName>navigate</CommandName>
+      <AdditionalInfo>zoom_200</AdditionalInfo>
+      <Name>zoom_200</Name>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Масштаб 150%</Text>
+      <CommandName>navigate</CommandName>
+      <AdditionalInfo>zoom_150</AdditionalInfo>
+      <Name>zoom_150</Name>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Масштаб 100%</Text>
+      <CommandName>navigate</CommandName>
+      <AdditionalInfo>zoom_100</AdditionalInfo>
+      <Name>zoom_100</Name>
+      <BeginGroup>true</BeginGroup>
+      <IconClass>font-icon-zoom font-icon-x1_2 font-icon-darkblue indent-right-5px</IconClass>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Масштаб 90%</Text>
+      <CommandName>navigate</CommandName>
+      <AdditionalInfo>zoom_90</AdditionalInfo>
+      <Name>zoom_90</Name>
+      <BeginGroup>true</BeginGroup>
+    </CommandMenuItem>
+    <CommandMenuItem>
+      <Text>Масштаб 75%</Text>
+      <CommandName>navigate</CommandName>
+      <AdditionalInfo>zoom_75</AdditionalInfo>
+      <Name>zoom_75</Name>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>navigate</CommandName>
+    <AdditionalInfo>firstPage</AdditionalInfo>
+    <Name>firstPage</Name>
+    <IconClass>font-icon-backward font-icon-x1_2 font-icon-darkslategrey indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>navigate</CommandName>
+    <AdditionalInfo>prevPage</AdditionalInfo>
+    <Name>prevPage</Name>
+    <IconClass>font-icon-prev font-icon-x1_2 font-icon-darkslategrey indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>currentPage</Name>
+    <Enabled>false</Enabled>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text>из</Text>
+    <Enabled>false</Enabled>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <Name>totalPages</Name>
+    <Enabled>false</Enabled>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>navigate</CommandName>
+    <AdditionalInfo>nextPage</AdditionalInfo>
+    <Name>nextPage</Name>
+    <IconClass>font-icon-next font-icon-x1_2 font-icon-darkslategrey indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>navigate</CommandName>
+    <AdditionalInfo>lastPage</AdditionalInfo>
+    <Name>lastPage</Name>
+    <IconClass>font-icon-forward font-icon-x1_2 font-icon-darkslategrey indent-right-5px</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

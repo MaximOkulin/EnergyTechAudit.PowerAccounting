@@ -1,0 +1,53 @@
+﻿<QueryExtension name="MeasurementDeviceListForOperAdmin">
+  <InitStyle>
+    
+  </InitStyle>
+  <InitScript>
+    (function()
+    {
+      jQuery("#measurementDeviceListForOperAdminGrid").on(Core.Common.EventTypes.GridController.GridLoadComplete, () =>
+      {
+        const dxGridView = Core.Helpers.DevExpress.getDxControlByName("measurementDeviceListForOperAdminGrid");
+        
+        var measurementDeviceId = 0;
+
+        const checkConnection = function (targetEntityTypeName)
+        {
+            const checkConnectionEntityInfo = {entityTypeName: "MeasurementDevice", entityId: measurementDeviceId};
+            checkConnectionEntityInfo.targetEntityTypeName = targetEntityTypeName;
+            checkConnectionEntityInfo.command = Core.Resources.DeviceReaderCommands.checkConnection;            
+            (new Core.Common.DeviceReaderResponseCommandDialog(checkConnectionEntityInfo)).show();
+      };
+
+      dxGridView.CustomButtonClick.AddHandler((s, a) =>
+      {
+              a.processOnServer = false;
+              if (a.buttonID == "checkConnection")
+              {
+                s.SelectRowOnPage(a.visibleIndex);
+                measurementDeviceId = s.GetRowKey(a.visibleIndex);
+                if(measurementDeviceId)
+                {
+                  checkConnection("MeasurementDevice")
+                }
+              } 
+          });
+      });
+    })();
+  </InitScript>
+
+  <QueryExtenderScriptCode>MeasurementDeviceListForOperAdminQueryExtender</QueryExtenderScriptCode>
+  <CustomCommandMenuCode>MeasurementDeviceList.CommandMenu</CustomCommandMenuCode>
+  <CommandMenu>
+    <Name>measurementDeviceListCommandMenu</Name>
+    <ClientVisible>true</ClientVisible>
+    <Width>180</Width>
+    <CommandMenuItem>
+      <ToolTip>Test</ToolTip>
+      <CommandName>test</CommandName>
+      <Name>test</Name>
+      <IconClass>font-icon-plus font-icon-x1_3 font-icon-color-darkgreen</IconClass>         
+    </CommandMenuItem>
+  </CommandMenu>
+
+</QueryExtension>

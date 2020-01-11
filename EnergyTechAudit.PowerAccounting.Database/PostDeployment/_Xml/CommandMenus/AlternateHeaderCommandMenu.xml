@@ -1,0 +1,33 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>alternateHeaderCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>0</Width>
+  <CommandMenuItem>
+    <Text>Стартовая страница</Text>
+    <CommandName>gotoHome</CommandName>
+    <Name>gotoHome</Name>
+    <IconClass>font-icon-home</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text>Настройки...</Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>showAppSettingsDialog</CommandName>
+    <Name>showAppSettingsDialog</Name>
+    <IconClass>font-icon-cogwheel</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text>О программе...</Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>showAboutDialog</CommandName>
+    <Name>showAboutDialog</Name>
+    <IconClass>font-icon-circle_question_mark</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text>Выход</Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>appLogout</CommandName>
+    <Name>appLogout</Name>
+    <IconClass>font-icon-empty</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

@@ -1,0 +1,12 @@
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\bin\Release\EnergyTechAudit.PowerAccounting.Database.dacpac
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\bin\Release\EnergyTechAudit.PowerAccounting.Database.dll
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\bin\Release\EnergyTechAudit.PowerAccounting.Database.pdb
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\bin\Release\master.dacpac
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\bin\Release\msdb.dacpac
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\obj\Release\EnergyTechAudit.PowerAccounting.Database.sqlproj.CopyComplete
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\obj\Release\EnergyTechAudit.PowerAccounting.Database.dll
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\obj\Release\EnergyTechAudit.PowerAccounting.Database.pdb
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\obj\Release\Model.xml
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\obj\Release\refactor.xml
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\obj\Release\postdeploy.sql
+C:\Projects\EnergyTechAudit.PowerAccounting\Main\EnergyTechAudit.PowerAccounting.Database\obj\Release\predeploy.sql

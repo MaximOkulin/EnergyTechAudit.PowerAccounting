@@ -1,0 +1,21 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>adminAreaMiniboardDialogCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>150</Width>
+  
+  <CommandMenuItem>
+    <Name>dashboardToggle</Name>
+    <CommandName>dashboardToggle</CommandName>
+    <ToolTip>Переключить приборную панель</ToolTip>
+    <IconClass>font-icon-toggle-dashboard font-icon-FinalInstantAlt indent-top-1px  font-icon-x1_3</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>setForcefullyHoldOnDialog</Name>
+    <CommandName>setForcefullyHoldOnDialog</CommandName>
+    <ToolTip>Удерживать на форме</ToolTip>
+    <IconClass>font-icon-toggle-pin font-icon-unpin font-icon-x1_3</IconClass>
+  </CommandMenuItem>
+  
+</CommandMenu>

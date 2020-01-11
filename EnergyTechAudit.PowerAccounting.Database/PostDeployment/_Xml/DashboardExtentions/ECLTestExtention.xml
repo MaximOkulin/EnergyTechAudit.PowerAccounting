@@ -1,0 +1,53 @@
+﻿<DashboardExtention>
+  <CommandMenu>
+    <Name>dashboardCommandMenu</Name>
+    <ClientVisible>true</ClientVisible>
+    <Width>50</Width>
+    <CommandMenuItem>
+      <Name>deviceDashboardExtentionCommand</Name>
+      <DropDownMode>true</DropDownMode>
+      <BeginGroup>true</BeginGroup>
+      <CommandName>deviceDashboardExtentionCommand</CommandName>
+      <IconClass>font-icon-formplugin font-icon-darkblue indent-right-5px</IconClass>
+      <ToolTip />
+      <Order>10</Order>
+      <CommandMenuItem>
+        <Name>eclTestDeviceCommand</Name>
+        <Text>Тестовая команда управления ECL (via DashboardExtention)</Text>
+        <CommandName>eclTestDeviceCommand</CommandName>
+        <IconClass>font-icon-formplugin font-icon-darkblue indent-right-5px</IconClass>
+      </CommandMenuItem>
+    </CommandMenuItem>
+  </CommandMenu>
+  <Script>    
+     
+        Core.OperAdmin.DashboardController.DeviceExtention = function(entityInfoProvider)
+        {
+          var commander = 
+          {
+            eclTestDeviceCommand: function()
+            {                       
+                var msgBox = new Core.Dialogs.MessageBox
+                ({
+                  title: Core.Resources.Messages.informationMessageBoxTitle,
+                  width: 300,
+                  type: Core.Resources.Dialogs.MessageBoxType.Info,
+                  id: "eclTestCommandMessageBox",
+                  message: "Hi, guys! I am {0}. My factory number is {1}. I am ready to work.".format(entityInfoProvider.description, entityInfoProvider.measurementDeviceInfo.factoryNumber)
+                });
+                
+              msgBox.show();
+            }
+          };    
+          
+          this.execute = function()
+          {
+              
+            (new Core.Common.CommandMenuBarController("dashboardCommandMenu")).bind(commander);
+          };   
+          
+          this.getCommander = function() { return commander; }   
+        };
+   
+     </Script>
+</DashboardExtention>

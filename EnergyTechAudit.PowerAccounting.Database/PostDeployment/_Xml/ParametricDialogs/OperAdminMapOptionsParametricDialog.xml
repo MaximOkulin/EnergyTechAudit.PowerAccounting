@@ -1,0 +1,173 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+   
+  <Id>operAdminMapOptionsParametricDialog</Id>
+  <Height>0</Height>
+  <Width>450</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <AllowResize>true</AllowResize>
+  <Title>Настройки отображения карты</Title>
+  <IsSavedState>true</IsSavedState>  
+  <Descriptors>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Режим отображения</Caption>
+      <Name>viewMode</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryList</DataSourceType>
+        <DataSource>
+          [{Id:1, Code: "SimpleViewMode", Description: "Простое отображение"},
+          {Id:2, Code: "MarkersClustererViewMode", Description: "Режим кластеризация"}]
+        </DataSource>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption>Ид</Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Наименование</Caption>
+            <Width>250</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>      
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Code</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Масштаб кластеризации</Caption>
+      <Name>markersClustererMaxZoom</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>      
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryList</DataSourceType>
+        <DataSource>
+          [{Id:2, Description: "Масштаб x2"},
+          {Id:4, Description: "Масштаб x4"},
+          {Id:6, Description: "Масштаб x6"},
+          {Id:8, Description: "Масштаб x8"},
+          {Id:10, Description: "Масштаб x10"},
+          {Id:12, Description: "Масштаб x12"},
+          {Id:14, Description: "Масштаб x14"},
+          {Id:16, Description: "Масштаб x16"},
+          {Id:18, Description: "Масштаб x18"}
+          ]
+        </DataSource>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption>Ид</Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Наименование</Caption>
+            <Width>250</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>      
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Решетка кластеризации</Caption>
+      <Name>markersClustererGridSize</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryList</DataSourceType>
+        <DataSource>
+          [
+          {Id:10, Description: "Размер 10x10"},
+          {Id:20, Description: "Размер 20x20"},
+          {Id:30, Description: "Размер 30x30"},
+          {Id:40, Description: "Размер 40x40"},
+          {Id:50, Description: "Размер 50x50"},
+          {Id:60, Description: "Размер 60x60"},
+          {Id:70, Description: "Размер 70x70"},
+          {Id:80, Description: "Размер 80x80"},
+          {Id:90, Description: "Размер 90x90"}
+          ]
+        </DataSource>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption>Ид</Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Наименование</Caption>
+            <Width>250</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>      
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Анимация маркеров</Caption>
+      <Name>markerAnimation</Name>
+      <TypeCode>Boolean</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>CheckBox</NestedExtension>
+      <Value>false</Value>
+    </FormLayoutItemDescriptor>
+  </Descriptors>
+</ParametricDialog>

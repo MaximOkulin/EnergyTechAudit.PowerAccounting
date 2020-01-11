@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Package">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DateTime" type="xs:dateTime"/>
+        <xs:element name="Uid" type="xs:string"/>
+        <xs:element name="MethodName" maxOccurs="1" minOccurs="1" type="xs:string"/>
+        <xs:element name="Business">
+          <xs:complexType mixed="false">
+            <xs:sequence>
+              <xs:element name="Buildings">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Building">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Description" type="xs:string"/>
+                          <xs:element name="FullAddress" type="xs:string"/>
+                          <xs:element name="Square" type="xs:float"/>
+                          <xs:element name="BuildingPurposeId" type="xs:int"/>
+                          <xs:element name="CountFlats" type="xs:int"/>
+                          <xs:element name="Location" type="xs:hexBinary"/>
+                          <xs:element name="CreatedBy" type="xs:string"/>
+                          <xs:element name="UpdatedBy" type="xs:string"/>
+                          <xs:element name="CreatedDate" type="xs:dateTime"/>
+                          <xs:element name="UpdatedDate" type="xs:dateTime"/>
+                          <xs:element name="DistrictId" type="xs:int"/>
+                          <xs:element name="AccessPointLinkBuildings">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="AccessPointLinkBuilding">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="AccessPoint">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="Id" type="xs:int"/>
+                                            <xs:element name="Description" type="xs:string"/>
+                                            <xs:element name="NetAddress" type="xs:string"/>
+                                            <xs:element name="Port" type="xs:int"/>
+                                            <xs:element name="TransportTypeId" type="xs:int"/>
+                                            <xs:element name="TransportServerModelId" type="xs:int"/>
+                                            <xs:element name="DeviceReaderId" type="xs:int"/>
+                                            <xs:element name="LastConnectionTime" type="xs:dateTime"/>
+                                            <xs:element name="LastStatusConnectionId" type="xs:int"/>
+                                            <xs:element name="SuccessConnectionPercent"
+                                              type="xs:float"/>
+                                            <xs:element name="ControllerAddress" type="xs:int"/>
+                                            <xs:element name="IsNeedToReconfigure" type="xs:boolean"/>
+                                            <xs:element name="CreatedBy" type="xs:string"/>
+                                            <xs:element name="UpdatedBy" type="xs:string"/>
+                                            <xs:element name="CreatedDate" type="xs:dateTime"/>
+                                            <xs:element name="UpdatedDate" type="xs:dateTime"/>
+                                            <xs:element name="MeasurementDevices">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="MeasurementDevice">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:int"/>
+                                                  <xs:element name="Description" type="xs:string"/>
+                                                  <xs:element name="DeviceId" type="xs:int"/>
+                                                  <xs:element minOccurs="0" name="SubModel"
+                                                  type="xs:decimal"/>
+                                                  <xs:element name="AccessPointId" type="xs:int"/>
+                                                  <xs:element name="AutoDefTimeoutAnswer"
+                                                  type="xs:int"/>
+                                                  <xs:element name="AmountAttempt" type="xs:int"/>
+                                                  <xs:element name="NetworkAddress" type="xs:int"/>
+                                                  <xs:element name="ComPortId" type="xs:int"/>
+                                                  <xs:element name="BaudId" type="xs:int"/>
+                                                  <xs:element name="DataBitId" type="xs:int"/>
+                                                  <xs:element name="StopBitId" type="xs:int"/>
+                                                  <xs:element name="ParityId" type="xs:int"/>
+                                                  <xs:element name="Priority" type="xs:int"/>
+                                                  <xs:element name="LastStatusConnectionId"
+                                                  type="xs:int"/>
+                                                  <xs:element name="SuccessConnectionPercent"
+                                                  type="xs:float"/>
+                                                  <xs:element name="LastConnectionTime"
+                                                  type="xs:dateTime"/>
+                                                  <xs:element name="PollingInterval" type="xs:int"/>
+                                                  <xs:element name="StartReadArchiveDate"
+                                                  type="xs:dateTime"/>
+                                                  <xs:element name="CurrentAccreditationDate"
+                                                  type="xs:date"/>
+                                                  <xs:element name="NextAccreditationDate"
+                                                  type="xs:date"/>
+                                                  <xs:element name="ManufacturingDate"
+                                                  type="xs:date"/>
+                                                  <xs:element name="PortTypeId" type="xs:int"/>
+                                                  <xs:element name="FactoryNumber" type="xs:int"/>
+                                                  <xs:element minOccurs="0" name="Firmware"
+                                                  type="xs:long"/>
+                                                  <xs:element name="TurnOn" type="xs:boolean"/>
+                                                  <xs:element name="GiveCurrData" type="xs:int"/>
+                                                  <xs:element name="GiveHArcData" type="xs:int"/>
+                                                  <xs:element name="GiveDArcData" type="xs:int"/>
+                                                  <xs:element name="GiveMArcData" type="xs:int"/>
+                                                  <xs:element name="CreatedBy" type="xs:string"/>
+                                                  <xs:element name="UpdatedBy" type="xs:string"/>
+                                                  <xs:element name="CreatedDate" type="xs:dateTime"/>
+                                                  <xs:element name="UpdatedDate" type="xs:dateTime"/>
+                                                  <xs:element name="ProtocolSubTypeId" type="xs:int"/>
+                                                  <xs:element minOccurs="0"
+                                                  name="LastTimeSignatureId" type="xs:int"/>
+                                                  <xs:element name="LastSuccessConnectionTime"
+                                                  type="xs:dateTime"/>
+                                                  <xs:element minOccurs="0" name="Archives">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" name="Archive">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:long"/>
+                                                  <xs:element name="TimeSignatureId" type="xs:int"/>
+                                                  <xs:element name="PeriodTypeId" type="xs:int"/>
+                                                  <xs:element name="Time" type="xs:dateTime"/>
+                                                  <xs:element name="Value" type="xs:decimal"/>
+                                                  <xs:element name="IsValid" type="xs:boolean"/>
+                                                  <xs:element name="MeasurementDeviceId"
+                                                  type="xs:int"/>
+                                                  <xs:element name="DeviceParameterId" type="xs:int"
+                                                  />
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Placements">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Placement">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="Id" type="xs:int"/>
+                                      <xs:element name="Description" type="xs:string"/>
+                                      <xs:element name="PlacementPurposeId" type="xs:int"/>
+                                      <xs:element name="BuildingId" type="xs:int"/>
+                                      <xs:element name="AmountRooms" type="xs:int"/>
+                                      <xs:element name="AmountPeople" type="xs:int"/>
+                                      <xs:element name="FrontNumber" type="xs:int"/>
+                                      <xs:element name="Area" type="xs:float"/>
+                                      <xs:element name="HasIndividualAccounting" type="xs:boolean"/>
+                                      <xs:element name="CreatedBy" type="xs:string"/>
+                                      <xs:element name="UpdatedBy" type="xs:string"/>
+                                      <xs:element name="CreatedDate" type="xs:dateTime"/>
+                                      <xs:element name="UpdatedDate" type="xs:dateTime"/>
+                                      <xs:element name="Channels">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element maxOccurs="unbounded" name="Channel">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="Id" type="xs:int"/>
+                                                  <xs:element name="Description" type="xs:string"/>
+                                                  <xs:element name="ChannelTemplateId" type="xs:int"/>
+                                                  <xs:element name="ResourceSystemTypeId"
+                                                  type="xs:int"/>
+                                                  <xs:element name="MeasurementDeviceId"
+                                                  type="xs:int"/>
+                                                  <xs:element name="PlacementId" type="xs:int"/>
+                                                  <xs:element name="TechnologicAdjunctionTypeId"
+                                                  type="xs:int"/>
+                                                  <xs:element name="MnemoschemeId" type="xs:int"/>
+                                                  <xs:element minOccurs="0"
+                                                  name="ResourceSubsystemTypeId" type="xs:int"/>
+                                                  <xs:element name="CreatedBy" type="xs:string"/>
+                                                  <xs:element name="UpdatedBy" type="xs:string"/>
+                                                  <xs:element name="CreatedDate" type="xs:dateTime"/>
+                                                  <xs:element name="UpdatedDate" type="xs:dateTime"/>
+                                                  <xs:element name="Activated" type="xs:boolean"/>
+                                                  <xs:element name="UserLinkChannels">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="UserLinkChannel">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="UserId" type="xs:int"/>
+                                                  <xs:element name="ChannelId" type="xs:int"/>
+                                                  <xs:element name="User">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:int"/>
+                                                  <xs:element name="UserName" type="xs:string"/>
+                                                  <xs:element name="Description" type="xs:string"/>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="ChannelTemplate">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:int"/>
+                                                  <xs:element name="Description" type="xs:string"/>
+                                                  <xs:element name="ResourceSystemTypeId"
+                                                  type="xs:int"/>
+                                                  <xs:element name="DeviceId" type="xs:int"/>
+                                                  <xs:element name="MnemoschemeId" type="xs:int"/>
+                                                  <xs:element name="Comment" type="xs:string"/>
+                                                  <xs:element minOccurs="0"
+                                                  name="ResourceSubsystemTypeId" type="xs:int"/>
+                                                  <xs:element name="CreatedBy" type="xs:string"/>
+                                                  <xs:element name="UpdatedBy" type="xs:string"/>
+                                                  <xs:element name="CreatedDate" type="xs:dateTime"/>
+                                                  <xs:element name="UpdatedDate" type="xs:dateTime"/>
+                                                  <xs:element name="ParameterMapDeviceParameters">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="ParameterMapDeviceParameter">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:int"/>
+                                                  <xs:element name="ParameterId" type="xs:int"/>
+                                                  <xs:element name="PeriodTypeId" type="xs:int"/>
+                                                  <xs:element name="MeasurementUnitId" type="xs:int"/>
+                                                  <xs:element name="DimensionId" type="xs:int"/>
+                                                  <xs:element name="DeviceParameterId" type="xs:int"/>
+                                                  <xs:element name="SubsystemTypeId" type="xs:int"/>
+                                                  <xs:element name="ParameterDictionaryId"
+                                                  type="xs:int"/>
+                                                  <xs:element name="Order" type="xs:int"/>
+                                                  <xs:element name="ChannelTemplateId" type="xs:int"/>
+                                                  <xs:element name="CreatedBy" type="xs:string"/>
+                                                  <xs:element name="UpdatedBy" type="xs:string"/>
+                                                  <xs:element name="CreatedDate" type="xs:dateTime"/>
+                                                  <xs:element name="UpdatedDate" type="xs:dateTime"
+                                                  />
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Dictionaries">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ResourceSystemTypes">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="ResourceSystemType">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                          <xs:element name="ShortName" type="xs:string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Devices">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Device">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="ItemId" type="xs:string"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                          <xs:element name="ArchiveDepthHour" type="xs:int"/>
+                          <xs:element name="ArchiveDepthDay" type="xs:int"/>
+                          <xs:element name="ArchiveDepthMonth" type="xs:int"/>
+                          <xs:element name="ShortName" type="xs:string"/>
+                          <xs:element minOccurs="0" name="Image" type="xs:hexBinary"/>
+                          <xs:element name="HasDigitalInterface" type="xs:boolean"/>
+                          <xs:element name="CalibrationInterval" type="xs:int"/>
+                          <xs:element name="BaudId" type="xs:int"/>
+                          <xs:element name="DataBitId" type="xs:int"/>
+                          <xs:element name="StopBitId" type="xs:int"/>
+                          <xs:element name="ParityId" type="xs:int"/>
+                          <xs:element name="ChannelsCount" type="xs:int"/>
+                          <xs:element name="IsIntegralArchiveValue" type="xs:boolean"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DeviceParameters">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="DeviceParameter">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                          <xs:element name="DeviceId" type="xs:int"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PeriodTypes">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="PeriodType">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Parameters">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Parameter">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                          <xs:element name="PhysicalParameterId" type="xs:int"/>
+                          <xs:element name="ResourceSystemTypeId" type="xs:int"/>
+                          <xs:element minOccurs="0" name="ShortDescription" type="xs:string"/>
+                          <xs:element name="IntegrableValue" type="xs:boolean"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="MeasurementUnits">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="MeasurementUnit">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                          <xs:element name="PhysicalParameterId" type="xs:int"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Dimensions">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Dimension">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                          <xs:element name="Prefix" type="xs:string"/>
+                          <xs:element name="Value" type="xs:decimal"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PhysicalParameters">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="PhysicalParameter">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                          <xs:element minOccurs="0" name="Order" type="xs:int"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PlacementPurposes">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="PlacementPurpose">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="BuildingPurposes">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="BuildingPurpose">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id" type="xs:int"/>
+                          <xs:element name="Code" type="xs:string"/>
+                          <xs:element name="Description" type="xs:string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

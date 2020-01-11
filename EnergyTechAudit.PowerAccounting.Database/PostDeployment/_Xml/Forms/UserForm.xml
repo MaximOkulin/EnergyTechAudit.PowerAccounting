@@ -1,0 +1,261 @@
+<FormLayout Name="userForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function(sender, args)
+    {
+    jQuery(document).off(Core.Common.EventTypes.FormController.FormLoadComplete_Form);
+
+    jQuery(document).on(Core.Common.EventTypes.FormController.FormLoadComplete_Form, function ()
+    {
+      var userFormCustomizerController = new Core.Admin.FormController.UserFormCustomizerController();
+	    userFormCustomizerController.execute();
+    });
+    }
+  </InitScript>
+	<CommandMenu>
+		<Name>userFormCommandMenu</Name>
+		<ClientVisible>true</ClientVisible>
+		<Width>30</Width>
+		<CommandMenuItem>
+			<Name>checkConnectionUser</Name>
+			<CommandName>checkConnectionUser</CommandName>
+			<ToolTip>Проверка связи с пользователем</ToolTip>
+			<Enabled>true</Enabled>
+			<IconClass>font-icon-checkconnection font-icon-color-navy</IconClass>
+		</CommandMenuItem>
+	</CommandMenu>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Электронная почта" Enabled="true" Order="3">
+					<BoundProperty>Email</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var context$ = jQuery(sender.GetMainElement());
+                  jQuery(".dxeButton:last img", context$).hide();
+                  jQuery(".dxeButton:first img", context$).hide();
+                  jQuery(".dxeButton:last", context$).append(jQuery("&lt;i style=&apos;margin-right: 2px&apos; class=&apos;font-icon-message_out&apos; title=&apos;Послать сообщение&apos;&gt;&lt;i/&gt;"));                
+                }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="1" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Роль" Enabled="true" Order="1">
+					<BoundProperty>RoleId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Группа" Enabled="true" Order="2">
+					<BoundProperty>UserGroupId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+					      function(sender, args)
+					      {
+					        (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute({sender: sender});
+					      }
+					    </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Логин" Enabled="true" Order="2">
+					<BoundProperty>UserName</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var context$ = jQuery(sender.GetMainElement());
+                  jQuery(".dxeButton:first img", context$).hide();
+                  jQuery(".dxeButton:first", context$).append(jQuery("&lt;i style=&apos;margin-right: 2px&apos; class=&apos;font-icon-keys&apos; title=&apos;Генерировать последовательность символов&apos;&gt;&lt;i/&gt;"));
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Пароль" Enabled="true" Order="3">
+					<BoundProperty>EditablePassword</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Password</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  var context$ = jQuery(sender.GetMainElement());
+                  jQuery(".dxeButton:last img", context$).hide();
+                  jQuery(".dxeButton:first img", context$).hide();
+                  jQuery(".dxeButton:last", context$).append(jQuery("&lt;i style=&apos;margin-right: 2px&apos; class=&apos;font-icon-keys&apos; title=&apos;Генерировать последовательность символов&apos;&gt;&lt;i/&gt;"));
+                  jQuery(".dxeButton:first", context$).append(jQuery("&lt;i style=&apos;margin-right: 2px&apos; class=&apos;font-icon-eye_open&apos; title=&apos;Показать символы&apos;&gt;&lt;i/&gt;"));
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Даты" ColSpan="1" Order="3">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Дата создания" Enabled="true" Order="1">
+					<BoundProperty>CreateDate</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дата истечения срока" Enabled="true" Order="2">
+					<BoundProperty>ExpiredDate</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Состояние" ColSpan="2" Order="4">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Временный" Enabled="true" Order="1">
+					<BoundProperty>IsTemporary</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.AllowGrayed</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Подтвержден" Enabled="true" Order="2">
+					<BoundProperty>IsApproved</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.AllowGrayed</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Связи" ColSpan="2" Order="5">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Измерительные каналы" Enabled="true" Order="2">
+					<BoundProperty>UserLinksChannel</BoundProperty>
+					<NestedExtension>ListBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  sender.gridFilterExpression = "Activated = true"; // ! only "true"
+                  var inlineListBoxController = new Core.Admin.FormController.InlineListBoxController(sender);
+							    inlineListBoxController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+					<FormLayoutItemListBoxSetting>
+						<DataSourceType>Entity</DataSourceType>
+						<DataSource>UserLinksChannel</DataSource>
+						<FormLayoutItemListBoxColumns>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Id</FieldName>
+								<Caption>Ид</Caption>
+								<Width>25</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Description</FieldName>
+								<Caption>Наименование</Caption>
+							</FormLayoutItemListBoxColumn>
+						</FormLayoutItemListBoxColumns>
+					</FormLayoutItemListBoxSetting>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

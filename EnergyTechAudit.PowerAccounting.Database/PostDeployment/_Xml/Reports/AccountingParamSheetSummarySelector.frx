@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Name="AccountingParamSheetSummarySelector" ReportInfo.Author="Leo" ReportInfo.Version="Id = 24;ReportTypeId = 2;HasPluginProcessing = 0" ReportInfo.Description="Отчет-селектор сводных отчетов по приборам учета" ReportInfo.Created="05/23/2014 10:40:50" ReportInfo.Modified="01/27/2016 12:05:21" ReportInfo.CreatorVersion="2015.4.4.0">
+  <Dictionary/>
+  <ReportPage Name="Page1" RawPaperSize="9" LeftMargin="15" TopMargin="15" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle1" Width="699.3" Height="1020.6" CanGrow="true">
+      <TextObject Name="Text1" Left="66.15" Top="122.85" Width="567" Height="52.92" Text="Отсутствует шаблон отчета для выбранного типа ресурсной системы" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text2" Left="589.68" Top="994.14" Width="94.5" Height="18.9"/>
+    </ReportTitleBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,725 @@
+﻿<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1200 850.1" style="enable-background:new 0 0 1200 850.1;" xml:space="preserve" width="1200" height="850.1">
+<style type="text/css">
+	.st0{fill:none;stroke:#BE1622;stroke-width:2;stroke-miterlimit:10;}
+	.st1{fill:#EA5B0C;stroke:#EA5B0C;stroke-width:2;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#010202;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#EA5B0C;stroke-width:2;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st5{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+	.st7{font-size:12px;}
+	.st8{fill:none;stroke:#EA5B0C;stroke-width:1.7188;stroke-miterlimit:10;}
+	.st9{fill:none;stroke:#1D71B8;stroke-width:2;stroke-miterlimit:10;}
+	.st10{fill:#1D71B8;stroke:#1D71B8;stroke-miterlimit:10;}
+	.st11{fill:#010202;stroke:#010202;stroke-miterlimit:10;}
+	.st12{fill:none;stroke:#010202;stroke-width:3;stroke-miterlimit:10;}
+	.st13{font-size:9px;}
+	.st15{fill:#1D71B8;stroke:#1D71B8;stroke-width:2;stroke-miterlimit:10;}
+	.st16{fill:#BE1622;stroke:#BE1622;stroke-width:2;stroke-miterlimit:10;}
+	.st17{fill:none;stroke:#BE1622;stroke-width:2.2359;stroke-miterlimit:10;}
+	.st18{fill:#010202;}
+	.st19{font-size:14px;}
+	.st20{fill:none;stroke:#1D71B8;stroke-width:2.0218;stroke-miterlimit:10;}
+	.st21{font-size:18px;}
+	.st22{font-size:10px;}
+	.st23{fill:#B93A00;}
+	.st24{font-size:36px;}
+	.st25{font-size:16px;}
+</style><script />
+<g id="MainLayer">
+	<line class="st0" x1="348" y1="532.6" x2="373.5" y2="532.6" />
+	<polygon class="st1" points="27.6,90.5 35.3,89 27.6,87.5  " />
+	<g transform="translate(52.134,-5.3932)">
+		<g>
+			<ellipse class="st2" cx="119.5" cy="94.4" rx="12.4" ry="12.6" />
+		</g>
+		<polyline class="st2" points="124.9,105.7 106.6,94.7 124.9,83.1   " />
+	</g>
+	<line class="st3" x1="202.9" y1="89" x2="185" y2="89" />
+	<line class="st3" x1="202.9" y1="89" x2="202.9" y2="165.3" />
+	<ellipse class="st1" cx="202.9" cy="167.2" rx="1.9" ry="1.9" />
+	<line class="st3" x1="202.9" y1="169.1" x2="202.9" y2="261.1" />
+	<ellipse class="st1" cx="202.9" cy="263" rx="1.9" ry="1.9" />
+	<line class="st3" x1="204.8" y1="167.2" x2="242.4" y2="167.2" />
+	<g>
+		<line class="st4" x1="255.1" y1="154.6" x2="274.7" y2="154.6" />
+		<line class="st4" x1="267.1" y1="167.2" x2="274.7" y2="167.2" />
+		<path class="st4" d="M267.7,167.2c0,7-5.7,12.7-12.7,12.7" />
+		<path class="st4" d="M242.4,167.2c0-7,5.7-12.7,12.7-12.7" />
+		<path class="st4" d="M242.4,167.2c0,7,5.7,12.7,12.7,12.7" />
+		<circle class="st5" cx="255.1" cy="167.2" r="10.8" />
+		<circle class="st5" cx="255.1" cy="167.2" r="3.1" />
+		<path class="st4" d="M255.1,164.2c0-3.5,2.3-6.4,5.2-6.4" />
+		<path class="st4" d="M254.9,170.1c-0.3,3.5-2.9,6.2-5.8,5.9" />
+		<path class="st4" d="M258.2,166.7c3.5,0,6.4,2.3,6.5,5.1" />
+		<path class="st4" d="M252,167.2c-3.5,0.1-6.5-2.2-6.5-5" />
+	</g>
+	<rect x="274.7" y="87.5" class="st4" width="73.8" height="92.5" />
+	<text transform="matrix(1 0 0 1 279.886 100.7671)" class="st6 st7">Котел №1</text>
+	<line class="st3" x1="204.8" y1="263.1" x2="242.4" y2="263.1" />
+	<g>
+		<line class="st4" x1="255.1" y1="250.4" x2="274.7" y2="250.4" />
+		<line class="st4" x1="267.1" y1="263.1" x2="274.7" y2="263.1" />
+		<path class="st4" d="M267.7,263.1c0,7-5.7,12.7-12.7,12.7" />
+		<path class="st4" d="M242.4,263.1c0-7,5.7-12.7,12.7-12.7" />
+		<path class="st4" d="M242.4,263.1c0,7,5.7,12.7,12.7,12.7" />
+		<circle class="st5" cx="255.1" cy="263.1" r="10.8" />
+		<circle class="st5" cx="255.1" cy="263.1" r="3.1" />
+		<path class="st4" d="M255.1,260c0-3.5,2.3-6.4,5.2-6.4" />
+		<path class="st4" d="M254.9,265.9c-0.3,3.5-2.9,6.2-5.8,5.9" />
+		<path class="st4" d="M258.2,262.5c3.5,0,6.4,2.3,6.5,5.1" />
+		<path class="st4" d="M252,263.1c-3.5,0.1-6.5-2.2-6.5-5" />
+	</g>
+	<text transform="matrix(1 0 0 1 279.886 196.6234)" class="st6 st7">Котел №2</text>
+	<line class="st3" x1="202.9" y1="265" x2="202.9" y2="460" />
+	<line class="st8" x1="201.9" y1="359.4" x2="242.4" y2="359.4" />
+	<g>
+		<line class="st4" x1="255" y1="346.2" x2="274.7" y2="346.2" />
+		<line class="st4" x1="267" y1="358.9" x2="274.7" y2="358.9" />
+		<path class="st4" d="M267.7,358.9c0,7-5.7,12.7-12.7,12.7" />
+		<path class="st4" d="M242.4,358.9c0-7,5.7-12.7,12.7-12.7" />
+		<path class="st4" d="M242.4,358.9c0,7,5.7,12.7,12.7,12.7" />
+		<circle class="st5" cx="255" cy="358.9" r="10.8" />
+		<circle class="st5" cx="255" cy="358.9" r="3.1" />
+		<path class="st4" d="M255,355.8c0-3.5,2.3-6.4,5.2-6.4" />
+		<path class="st4" d="M254.9,361.8c-0.3,3.5-2.9,6.2-5.8,5.9" />
+		<path class="st4" d="M258.2,358.4c3.5,0,6.4,2.3,6.5,5.1" />
+		<path class="st4" d="M252,358.9c-3.5,0.1-6.5-2.2-6.5-5" />
+	</g>
+	<line class="st9" x1="348.5" y1="167.2" x2="373" y2="167.2" />
+	<ellipse class="st10" cx="433.5" cy="263.1" rx="1.9" ry="1.9" />
+	<line class="st9" x1="348.5" y1="263.1" x2="374.3" y2="263.1" />
+	<line class="st9" x1="348.6" y1="358.9" x2="373.7" y2="358.9" />
+	<line class="st9" x1="433.5" y1="456.7" x2="433.5" y2="261.5" />
+	<line class="st9" x1="433.4" y1="263" x2="433.4" y2="166.6" />
+	<line class="st9" x1="400.5" y1="167.2" x2="433" y2="167.2" />
+	<g>
+		<line class="st2" x1="46.6" y1="69.2" x2="46.6" y2="89" />
+		<ellipse class="st11" cx="46.6" cy="64.9" rx="4.9" ry="4.4" />
+	</g>
+	<line class="st3" x1="158.3" y1="89" x2="35.7" y2="89" />
+	<g transform="translate(52.134,-5.3932)">
+		<line class="st12" x1="51.7" y1="90.1" x2="69.2" y2="90.1" />
+		<line class="st2" x1="60.4" y1="89.6" x2="60.4" y2="70.1" />
+	</g>
+	<text transform="matrix(1 0 0 1 279.8863 291.9874)" class="st6 st7">Котел №3</text>
+	<rect x="274.7" y="183.4" class="st4" width="73.8" height="92.5" />
+	<line class="st0" x1="349" y1="110" x2="375" y2="110" />
+	<rect x="274.7" y="279.2" class="st4" width="73.8" height="92.5" />
+	<line class="st0" x1="633.7" y1="364" x2="670.4" y2="364" />
+	<text transform="matrix(1 0 0 1 48.4906 103.9632)" class="st6 st13">    </text>
+	<text transform="matrix(1 0 0 1 48.4906 103.9632)" class="st14 st7">от газоснабжающей</text>
+	<text transform="matrix(1 0 0 1 48.9369 116.7633)" class="st14 st7">организации для ЦО</text>
+	<line class="st9" x1="639" y1="421.8" x2="670.4" y2="421.8" />
+	<line class="st0" x1="349" y1="206.6" x2="373.7" y2="206.6" />
+	<line class="st0" x1="349" y1="301.9" x2="375" y2="301.9" />
+	<line class="st9" x1="122.9" y1="709.6" x2="31.3" y2="709.6" />
+	<polygon class="st15" points="30.1,711.1 37.7,709.6 30.1,708.1  " />
+	<line class="st9" x1="200.5" y1="709.6" x2="148.2" y2="709.6" />
+	<g transform="translate(52.134,-5.3932)">
+		<g>
+			<ellipse class="st2" cx="83.2" cy="715" rx="12.4" ry="12.5" />
+		</g>
+		<polyline class="st2" points="88.6,726.3 70.3,715.3 88.6,703.7   " />
+	</g>
+	<polygon class="st15" points="32.3,643.1 40,641.6 32.3,640.1  " />
+	<line class="st9" x1="122.5" y1="641.6" x2="36.2" y2="641.6" />
+	<text transform="matrix(1 0 0 1 30.0569 722.1426)" class="st6 st13">от водоканала</text>
+	<text transform="matrix(1 0 0 1 33.219 654.158)" class="st6 st13">скважина </text>
+	<text transform="matrix(1 0 0 1 33.219 664.9579)" class="st6 st13">артезианской воды</text>
+	<line class="st9" x1="200.3" y1="641.6" x2="148.1" y2="641.6" />
+	<g transform="translate(52.134,-5.3932)">
+		<g>
+			<ellipse class="st2" cx="83.5" cy="647.2" rx="12.4" ry="12.5" />
+		</g>
+		<polyline class="st2" points="88.9,658.5 70.6,647.4 88.9,635.8   " />
+	</g>
+	<g transform="translate(52.134,-5.3932)">
+		<path class="st9" d="M803,411.1c0-9.1,4.8-16.4,10.6-16.4h13.4c5.9,0,10.6,7.4,10.6,16.4v59.6c0,9.1-4.8,16.4-10.6,16.4h-13.4    c-5.9,0-10.6-7.4-10.6-16.4C803,470.7,803,411.1,803,411.1z" />
+	</g>
+	<line class="st9" x1="399" y1="574.3" x2="670.4" y2="574.3" />
+	<line class="st9" x1="744.4" y1="573.3" x2="827" y2="573.3" />
+	<line class="st9" x1="744.6" y1="421.6" x2="766.3" y2="421.6" />
+	<line class="st9" x1="618" y1="263.7" x2="618" y2="119.3" />
+	<line class="st0" x1="745" y1="529.4" x2="773.7" y2="529.4" />
+	<line class="st0" x1="744.4" y1="357.6" x2="863" y2="357.6" />
+	<ellipse class="st16" cx="771.8" cy="358.3" rx="1.9" ry="1.9" />
+	<rect x="670.6" y="341.5" class="st4" width="73.8" height="92.5" />
+	<rect x="670.6" y="505.4" class="st4" width="73.8" height="92.5" />
+	<polygon class="st16" points="1050.7,111.9 1058.4,110.4 1050.7,108.9  " />
+	<polygon class="st15" points="1062.4,261.2 1054.7,262.7 1062.4,264.2  " />
+	<line class="st4" x1="670.6" y1="434" x2="744.4" y2="341.5" />
+	<line class="st4" x1="670.6" y1="597.8" x2="744.4" y2="505.4" />
+	<rect x="273.7" y="378.2" class="st4" width="73.8" height="92.5" />
+	<text transform="matrix(1 0 0 1 280.8863 393.9874)" class="st6 st7">Котел №4</text>
+	<g>
+		<line class="st4" x1="254" y1="446.2" x2="273.7" y2="446.2" />
+		<line class="st4" x1="266" y1="458.9" x2="273.7" y2="458.9" />
+		<path class="st4" d="M266.7,458.9c0,7-5.7,12.7-12.7,12.7" />
+		<path class="st4" d="M241.4,458.9c0-7,5.7-12.7,12.7-12.7" />
+		<path class="st4" d="M241.4,458.9c0,7,5.7,12.7,12.7,12.7" />
+		<circle class="st5" cx="254" cy="458.9" r="10.8" />
+		<circle class="st5" cx="254" cy="458.9" r="3.1" />
+		<path class="st4" d="M254,455.8c0-3.5,2.3-6.4,5.2-6.4" />
+		<path class="st4" d="M253.9,461.8c-0.3,3.5-2.9,6.2-5.8,5.9" />
+		<path class="st4" d="M257.2,458.4c3.5,0,6.4,2.3,6.5,5.1" />
+		<path class="st4" d="M251,458.9c-3.5,0.1-6.5-2.2-6.5-5" />
+	</g>
+	<line class="st3" x1="202.9" y1="459.4" x2="240.7" y2="459.4" />
+	<ellipse class="st1" cx="203.2" cy="359.8" rx="1.9" ry="1.9" />
+	<rect x="273.7" y="514" class="st4" width="73.8" height="92.5" />
+	<text transform="matrix(1 0 0 1 280.7196 530.4874)" class="st6 st7">Котел №5</text>
+	<g>
+		<line class="st4" x1="253.7" y1="582.2" x2="273.4" y2="582.2" />
+		<line class="st4" x1="265.7" y1="594.8" x2="273.4" y2="594.8" />
+		<path class="st4" d="M266.4,594.8c0,7-5.7,12.7-12.7,12.7" />
+		<path class="st4" d="M241.1,594.8c0-7,5.7-12.7,12.7-12.7" />
+		<path class="st4" d="M241.1,594.8c0,7,5.7,12.7,12.7,12.7" />
+		<circle class="st5" cx="253.7" cy="594.8" r="10.8" />
+		<circle class="st5" cx="253.7" cy="594.8" r="3.1" />
+		<path class="st4" d="M253.7,591.8c0-3.5,2.3-6.4,5.2-6.4" />
+		<path class="st4" d="M253.6,597.7c-0.3,3.5-2.9,6.2-5.8,5.9" />
+		<path class="st4" d="M256.8,594.3c3.5,0,6.4,2.3,6.5,5.1" />
+		<path class="st4" d="M250.7,594.8c-3.5,0.1-6.5-2.2-6.5-5" />
+	</g>
+	<line class="st3" x1="202.6" y1="593.4" x2="240.3" y2="593.4" />
+	<line class="st3" x1="203.4" y1="510.7" x2="203.4" y2="593.7" />
+	<line class="st3" x1="203.2" y1="510.7" x2="185.3" y2="510.7" />
+	<g transform="translate(52.134,-5.3932)">
+		<g>
+			<ellipse class="st2" cx="121.8" cy="516.1" rx="12.4" ry="12.6" />
+		</g>
+		<polyline class="st2" points="127.2,527.4 108.9,516.4 127.2,504.8   " />
+	</g>
+	<line class="st3" x1="160.7" y1="510.7" x2="38" y2="510.7" />
+	<polygon class="st1" points="33.9,512.2 41.6,510.7 33.9,509.2  " />
+	<g>
+		<line class="st2" x1="52.7" y1="489.7" x2="52.7" y2="509.5" />
+		<ellipse class="st11" cx="52.7" cy="485.4" rx="4.9" ry="4.4" />
+	</g>
+	<g transform="translate(52.134,-5.3932)">
+		<line class="st12" x1="56.9" y1="511.5" x2="74.4" y2="511.5" />
+		<line class="st2" x1="65.6" y1="511" x2="65.6" y2="491.5" />
+	</g>
+	<text transform="matrix(1 0 0 1 52.3239 527.9632)" class="st14 st7">от газоснабжающей</text>
+	<text transform="matrix(1 0 0 1 50.7702 542.7633)" class="st14 st7">организации для ГВС</text>
+	<g>
+		<polygon class="st2" points="386.5,574 373.4,578.5 373.4,569.5   " />
+		<polygon class="st2" points="386.5,574 399.7,569.5 399.7,578.5   " />
+	</g>
+	<line class="st9" x1="347.7" y1="574.3" x2="373.2" y2="574.3" />
+	<g>
+		<polygon class="st2" points="386.2,532.7 373,537.2 373,528.2   " />
+		<polygon class="st2" points="386.2,532.7 399.3,528.2 399.3,537.2   " />
+	</g>
+	<line class="st0" x1="400" y1="532.3" x2="425.5" y2="532.3" />
+	<line class="st0" x1="425.1" y1="515.7" x2="425.1" y2="548.3" />
+	<line class="st0" x1="424" y1="515.6" x2="449.5" y2="515.6" />
+	<line class="st0" x1="424.7" y1="547.6" x2="450.2" y2="547.6" />
+	<g>
+		<ellipse class="st2" cx="458.8" cy="516.2" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="466.8,516.2 460.8,519.7 460.8,512.7   " />
+	</g>
+	<g>
+		<ellipse class="st2" cx="460.1" cy="548.9" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="468.2,548.9 462.1,552.3 462.1,545.4   " />
+	</g>
+	<line class="st0" x1="469" y1="515.6" x2="494.5" y2="515.6" />
+	<line class="st0" x1="470.3" y1="548.3" x2="495.8" y2="548.3" />
+	<line class="st0" x1="494.4" y1="516.3" x2="494.4" y2="549" />
+	<line class="st0" x1="495" y1="530.9" x2="671" y2="530.9" />
+	<line class="st9" x1="348" y1="454.9" x2="373.5" y2="454.9" />
+	<line class="st0" x1="348" y1="398.6" x2="373.5" y2="398.6" />
+	<g>
+		<polygon class="st2" points="386.8,454.7 373.7,459.2 373.7,450.2   " />
+		<polygon class="st2" points="386.8,454.7 400,450.2 400,459.2   " />
+	</g>
+	<g>
+		<polygon class="st2" points="387.2,398.3 374,402.8 374,393.8   " />
+		<polygon class="st2" points="387.2,398.3 400.3,393.8 400.3,402.8   " />
+	</g>
+	<g>
+		<polygon class="st2" points="387.8,359.7 374.7,364.2 374.7,355.2   " />
+		<polygon class="st2" points="387.8,359.7 401,355.2 401,364.2   " />
+	</g>
+	<line class="st9" x1="399.7" y1="455.3" x2="433.7" y2="455.3" />
+	<line class="st9" x1="401.9" y1="359.2" x2="433" y2="359.2" />
+	<ellipse class="st15" cx="433.7" cy="359.5" rx="1.9" ry="1.9" />
+	<line class="st0" x1="400.3" y1="397.9" x2="416.3" y2="397.9" />
+	<line class="st0" x1="415.5" y1="398.7" x2="415.5" y2="366" />
+	<g>
+		<path class="st0" d="M419.9,360.7c0,2.4-2,4.4-4.4,4.4" />
+		<path class="st0" d="M419.9,360.7c0-2.4-2-4.4-4.4-4.4" />
+	</g>
+	<g>
+		<polygon class="st2" points="388.2,301.7 375,306.2 375,297.2   " />
+		<polygon class="st2" points="388.2,301.7 401.3,297.2 401.3,306.2   " />
+	</g>
+	<line class="st0" x1="402.7" y1="301.9" x2="418.3" y2="301.9" />
+	<line class="st0" x1="416.5" y1="355.7" x2="416.5" y2="268.6" />
+	<ellipse class="st16" cx="416.9" cy="301" rx="1.9" ry="1.9" />
+	<g>
+		<polygon class="st2" points="387,263.3 373.9,267.8 373.9,258.8   " />
+		<polygon class="st2" points="387,263.3 400.2,258.8 400.2,267.8   " />
+	</g>
+	<line class="st9" x1="401.2" y1="263.4" x2="643.7" y2="263.4" />
+	<g>
+		<path class="st0" d="M419.6,264.4c0,2.4-2,4.4-4.4,4.4" />
+		<path class="st0" d="M419.6,264.4c0-2.4-2-4.4-4.4-4.4" />
+	</g>
+	<g>
+		<polygon class="st2" points="387,207 373.9,211.5 373.9,202.5   " />
+		<polygon class="st2" points="387,207 400.2,202.5 400.2,211.5   " />
+	</g>
+	<line class="st0" x1="401" y1="206.9" x2="417.7" y2="206.9" />
+	<line class="st0" x1="416.2" y1="260.4" x2="416.2" y2="170.3" />
+	<ellipse class="st16" cx="416.9" cy="207.3" rx="1.9" ry="1.9" />
+	<g>
+		<polygon class="st2" points="387,167.3 373.9,171.8 373.9,162.8   " />
+		<polygon class="st2" points="387,167.3 400.2,162.8 400.2,171.8   " />
+	</g>
+	<g>
+		<polygon class="st2" points="389,110.3 375.9,114.8 375.9,105.8   " />
+		<polygon class="st2" points="389,110.3 402.2,105.8 402.2,114.8   " />
+	</g>
+	<line class="st0" x1="402.7" y1="110.3" x2="605" y2="110.3" />
+	<g>
+		<path class="st0" d="M420.3,166.3c0,2.4-2,4.4-4.4,4.4" />
+		<path class="st0" d="M420.3,166.3c0-2.4-2-4.4-4.4-4.4" />
+	</g>
+	<line class="st0" x1="415.9" y1="161.4" x2="415.9" y2="110.3" />
+	<ellipse class="st16" cx="415.8" cy="110.3" rx="1.9" ry="1.9" />
+	<g>
+		<ellipse class="st2" cx="527.1" cy="190.9" rx="9.5" ry="9.6" />
+		<polygon class="st11" points="527.1,198.9 523.6,192.8 530.6,192.8   " />
+	</g>
+	<g>
+		<ellipse class="st2" cx="561.5" cy="191.2" rx="9.5" ry="9.6" />
+		<polygon class="st11" points="561.5,199.2 558,193.2 564.9,193.2   " />
+	</g>
+	<line class="st9" x1="526.3" y1="223" x2="526.3" y2="200.9" />
+	<line class="st9" x1="562" y1="223.3" x2="562" y2="201.3" />
+	<line class="st9" x1="525.9" y1="223" x2="562.3" y2="223" />
+	<line class="st9" x1="543.3" y1="263" x2="543.3" y2="224.6" />
+	<ellipse class="st15" cx="543.8" cy="223" rx="1.9" ry="1.9" />
+	<ellipse class="st16" cx="424.3" cy="532.3" rx="1.9" ry="1.9" />
+	<ellipse class="st16" cx="494.9" cy="531" rx="1.9" ry="1.9" />
+	<line class="st0" x1="561.7" y1="182" x2="561.7" y2="159.9" />
+	<line class="st0" x1="526.7" y1="181.3" x2="526.7" y2="159.3" />
+	<line class="st0" x1="526.3" y1="159.3" x2="562.7" y2="159.3" />
+	<ellipse class="st16" cx="545.1" cy="158.3" rx="1.9" ry="1.9" />
+	<line class="st17" x1="545.3" y1="158.3" x2="545.3" y2="110.3" />
+	<ellipse class="st16" cx="545.6" cy="110.6" rx="1.9" ry="1.9" />
+	<ellipse class="st15" cx="543.8" cy="263.7" rx="1.9" ry="1.9" />
+	<g>
+		<g>
+			<circle class="st2" cx="617.5" cy="91.9" r="9.7" />
+			<line class="st2" x1="617.5" y1="101.7" x2="617.5" y2="110.1" />
+			<text transform="matrix(1 0 0 1 613.3109 96.6358)" class="st18 st6 st19">~</text>
+		</g>
+		<polygon class="st2" points="617.8,110.8 620.9,119.8 614.7,119.8   " />
+		<polygon class="st2" points="617.8,110.6 604.7,115.1 604.7,106.1   " />
+		<polygon class="st2" points="617.8,110.6 631,106.1 631,115.1   " />
+	</g>
+	<ellipse class="st15" cx="618.2" cy="263.7" rx="1.9" ry="1.9" />
+	<line class="st9" x1="645.1" y1="247.3" x2="645.1" y2="280" />
+	<line class="st9" x1="644" y1="247.3" x2="669.5" y2="247.3" />
+	<line class="st9" x1="644.7" y1="279.3" x2="670.2" y2="279.3" />
+	<g>
+		<ellipse class="st2" cx="678.8" cy="247.9" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="670.8,247.9 676.8,244.4 676.8,251.3   " />
+	</g>
+	<g>
+		<ellipse class="st2" cx="680.1" cy="280.5" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="672.1,280.5 678.2,277 678.2,284   " />
+	</g>
+	<line class="st9" x1="689" y1="247.3" x2="714.5" y2="247.3" />
+	<line class="st9" x1="690.3" y1="279.9" x2="715.8" y2="279.9" />
+	<line class="st9" x1="714.4" y1="248" x2="714.4" y2="280.7" />
+	<line class="st9" x1="715" y1="262.6" x2="891" y2="262.6" />
+	<ellipse class="st15" cx="644.3" cy="263.9" rx="1.9" ry="1.9" />
+	<ellipse class="st15" cx="714.7" cy="263.4" rx="1.9" ry="1.9" />
+	<g>
+		<polygon class="st2" points="904.5,262.3 891.4,266.8 891.4,257.8   " />
+		<polygon class="st2" points="904.5,262.3 917.7,257.8 917.7,266.8   " />
+	</g>
+	<line class="st9" x1="918.7" y1="262.3" x2="1053" y2="262.3" />
+	<g>
+		<polygon class="st2" points="899.7,110.3 886.5,114.8 886.5,105.8   " />
+		<polygon class="st2" points="899.7,110.3 912.8,105.8 912.8,114.8   " />
+	</g>
+	<line class="st0" x1="630.7" y1="110.3" x2="886.3" y2="110.3" />
+	<line class="st0" x1="913.4" y1="110.3" x2="1050" y2="110.3" />
+	<g>
+		<ellipse class="st2" cx="526.5" cy="454.5" rx="9.5" ry="9.6" />
+		<polygon class="st11" points="526.5,462.6 523,456.5 529.9,456.5   " />
+	</g>
+	<g>
+		<ellipse class="st2" cx="560.8" cy="454.9" rx="9.5" ry="9.6" />
+		<polygon class="st11" points="560.8,462.9 557.3,456.8 564.3,456.8   " />
+	</g>
+	<line class="st9" x1="525.7" y1="486.7" x2="525.7" y2="464.6" />
+	<line class="st9" x1="561.3" y1="487" x2="561.3" y2="464.9" />
+	<line class="st9" x1="561" y1="445.7" x2="561" y2="423.6" />
+	<line class="st9" x1="526" y1="445" x2="526" y2="422.9" />
+	<line class="st9" x1="525.3" y1="487.3" x2="561.7" y2="487.3" />
+	<line class="st9" x1="525.9" y1="423.3" x2="562.3" y2="423.3" />
+	<line class="st9" x1="543" y1="526.3" x2="543" y2="487.9" />
+	<line class="st9" x1="543.3" y1="573.7" x2="543.3" y2="535.3" />
+	<ellipse class="st15" cx="543.1" cy="487.7" rx="1.9" ry="1.9" />
+	<ellipse class="st15" cx="543.8" cy="574.3" rx="1.9" ry="1.9" />
+	<line class="st9" x1="545.7" y1="424" x2="545.7" y2="376.3" />
+	<ellipse class="st15" cx="545.5" cy="422.3" rx="1.9" ry="1.9" />
+	<line class="st9" x1="437.7" y1="377.6" x2="546.7" y2="377.6" />
+	<g>
+		<path class="st9" d="M433,374.2c2.4,0,4.4,2,4.4,4.4" />
+		<path class="st9" d="M433,374.2c-2.4,0-4.4,2-4.4,4.4" />
+	</g>
+	<g>
+		<path class="st9" d="M416,374.9c2.4,0,4.4,2,4.4,4.4" />
+		<path class="st9" d="M416,374.9c-2.4,0-4.4,2-4.4,4.4" />
+	</g>
+	<line class="st9" x1="421" y1="379" x2="428.3" y2="379" />
+	<line class="st9" x1="360.3" y1="379" x2="411" y2="379" />
+	<line class="st9" x1="360.3" y1="379" x2="360.3" y2="359" />
+	<ellipse class="st15" cx="359.7" cy="360.2" rx="1.9" ry="1.9" />
+	<g>
+		<path class="st9" d="M547.2,531.1c0,2.4-2,4.4-4.4,4.4" />
+		<path class="st9" d="M547.2,531.1c0-2.4-2-4.4-4.4-4.4" />
+	</g>
+	<ellipse class="st16" cx="359.8" cy="301.7" rx="1.9" ry="1.9" />
+	<line class="st0" x1="359.7" y1="322.7" x2="359.7" y2="302.7" />
+	<line class="st0" x1="358.3" y1="322.5" x2="411.7" y2="322.5" />
+	<g>
+		<path class="st0" d="M415,318.7c2.4,0,4.4,2,4.4,4.4" />
+		<path class="st0" d="M415,318.7c-2.4,0-4.4,2-4.4,4.4" />
+	</g>
+	<line class="st0" x1="419.7" y1="322" x2="427.3" y2="322" />
+	<g>
+		<path class="st0" d="M433.4,318.2c2.4,0,4.4,2,4.4,4.4" />
+		<path class="st0" d="M433.4,318.2c-2.4,0-4.4,2-4.4,4.4" />
+	</g>
+	<line class="st0" x1="437.7" y1="322.1" x2="581.7" y2="322.1" />
+	<line class="st0" x1="581.3" y1="529.7" x2="581.3" y2="323.6" />
+	<ellipse class="st16" cx="581.2" cy="531.3" rx="1.9" ry="1.9" />
+	<line class="st0" x1="633.6" y1="530.3" x2="633.6" y2="363.3" />
+	<g>
+		<path class="st9" d="M634.3,425c-2.4,0-4.4-2-4.4-4.4" />
+		<path class="st9" d="M634.3,425c2.4,0,4.4-2,4.4-4.4" />
+	</g>
+	<line class="st9" x1="608.3" y1="421.1" x2="629.4" y2="421.1" />
+	<line class="st9" x1="608.7" y1="525" x2="608.7" y2="420.6" />
+	<ellipse class="st16" cx="633.7" cy="531.6" rx="1.9" ry="1.9" />
+	<g>
+		<path class="st9" d="M612.3,530c0,2.4-2,4.4-4.4,4.4" />
+		<path class="st9" d="M612.3,530c0-2.4-2-4.4-4.4-4.4" />
+	</g>
+	<line class="st9" x1="607.7" y1="573.3" x2="607.7" y2="534.9" />
+	<ellipse class="st15" cx="608.3" cy="573.7" rx="1.9" ry="1.9" />
+	<g>
+		<polygon class="st2" points="214.5,642 201.4,646.5 201.4,637.5   " />
+		<polygon class="st2" points="214.5,642 227.7,637.5 227.7,646.5   " />
+	</g>
+	<g>
+		<polygon class="st2" points="213.8,710 200.7,714.5 200.7,705.5   " />
+		<polygon class="st2" points="213.8,710 227,705.5 227,714.5   " />
+	</g>
+	<line class="st9" x1="280.3" y1="642.3" x2="228.1" y2="642.3" />
+	<g>
+		<polygon class="st2" points="294.5,642.7 281.4,647.2 281.4,638.2   " />
+		<polygon class="st2" points="294.5,642.7 307.7,638.2 307.7,647.2   " />
+	</g>
+	<g>
+		<polygon class="st2" points="254.3,677 258.8,690.1 249.8,690.1   " />
+		<polygon class="st2" points="254.3,677 249.8,663.8 258.8,663.8   " />
+	</g>
+	<line class="st9" x1="254.7" y1="664.3" x2="254.7" y2="641.7" />
+	<line class="st9" x1="280.5" y1="710.3" x2="228.2" y2="710.3" />
+	<line class="st9" x1="254.3" y1="741.7" x2="254.3" y2="691.3" />
+	<ellipse class="st15" cx="254" cy="710.6" rx="1.9" ry="1.9" />
+	<g>
+		<ellipse class="st2" cx="290.1" cy="711.5" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="298.2,711.5 292.1,715 292.1,708.1   " />
+	</g>
+	<g>
+		<ellipse class="st2" cx="290.1" cy="740.2" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="298.2,740.2 292.1,743.7 292.1,736.7   " />
+	</g>
+	<line class="st9" x1="254.3" y1="740.9" x2="279.8" y2="740.9" />
+	<line class="st9" x1="308.3" y1="642.6" x2="1084.3" y2="642.6" />
+	<line class="st9" x1="719" y1="710.9" x2="300.9" y2="710.9" />
+	<line class="st9" x1="300.7" y1="740.9" x2="326.2" y2="740.9" />
+	<line class="st9" x1="325" y1="740.3" x2="325" y2="711.3" />
+	<ellipse class="st15" cx="324.7" cy="710.7" rx="1.9" ry="1.9" />
+	<g transform="translate(52.134,-5.3932)">
+		<path class="st9" d="M562,743.5c0-9.1,4.8-16.4,10.6-16.4h13.4c5.9,0,10.6,7.4,10.6,16.4v59.6c0,9.1-4.8,16.4-10.6,16.4h-13.4    c-5.9,0-10.6-7.4-10.6-16.4C562,803.1,562,743.5,562,743.5z" />
+	</g>
+	<line class="st9" x1="593" y1="526.7" x2="593" y2="308.3" />
+	<g>
+		<path class="st9" d="M596.7,531.3c0,2.4-2,4.4-4.4,4.4" />
+		<path class="st9" d="M596.7,531.3c0-2.4-2-4.4-4.4-4.4" />
+	</g>
+	<line class="st9" x1="593" y1="569.3" x2="593" y2="536.3" />
+	<g>
+		<path class="st9" d="M596.7,574c0,2.4-2,4.4-4.4,4.4" />
+		<path class="st9" d="M596.7,574c0-2.4-2-4.4-4.4-4.4" />
+	</g>
+	<line class="st9" x1="593" y1="664.3" x2="593" y2="579.9" />
+	<ellipse class="st15" cx="254.5" cy="643" rx="1.9" ry="1.9" />
+	<g>
+		<polygon class="st2" points="593.7,677.7 598.2,690.8 589.2,690.8   " />
+		<polygon class="st2" points="593.7,677.7 589.2,664.5 598.2,664.5   " />
+	</g>
+	<g>
+		<polygon class="st2" points="593.7,741 598.2,754.1 589.2,754.1   " />
+		<polygon class="st2" points="593.7,741 589.2,727.8 598.2,727.8   " />
+	</g>
+	<ellipse class="st15" cx="593.3" cy="642.9" rx="1.9" ry="1.9" />
+	<line class="st9" x1="593.7" y1="727" x2="593.7" y2="690.3" />
+	<ellipse class="st15" cx="593.7" cy="710.6" rx="1.9" ry="1.9" />
+	<line class="st9" x1="593" y1="772.3" x2="593" y2="755" />
+	<line class="st9" x1="592.3" y1="772.6" x2="614.7" y2="772.6" />
+	<g transform="translate(52.134,-5.3932)">
+		<path class="st9" d="M445.4,745.8c0-9.1,4.8-16.4,10.6-16.4h13.4c5.9,0,10.6,7.4,10.6,16.4v59.6c0,9.1-4.8,16.4-10.6,16.4H456    c-5.9,0-10.6-7.4-10.6-16.4C445.4,805.4,445.4,745.8,445.4,745.8z" />
+	</g>
+	<line class="st9" x1="719.7" y1="667.7" x2="719.7" y2="642.3" />
+	<g>
+		<polygon class="st2" points="719.7,681.7 724.2,694.8 715.2,694.8   " />
+		<polygon class="st2" points="719.7,681.7 715.2,668.5 724.2,668.5   " />
+	</g>
+	<line class="st9" x1="720" y1="725.7" x2="720" y2="695.3" />
+	<g>
+		<polygon class="st2" points="719.7,739.7 724.2,752.8 715.2,752.8   " />
+		<polygon class="st2" points="719.7,739.7 715.2,726.5 724.2,726.5   " />
+	</g>
+	<ellipse class="st15" cx="720.2" cy="643.7" rx="1.9" ry="1.9" />
+	<ellipse class="st15" cx="719.7" cy="710.4" rx="1.9" ry="1.9" />
+	<line class="st9" x1="475.7" y1="774.7" x2="475.7" y2="757.3" />
+	<line class="st9" x1="474.3" y1="773.6" x2="496.7" y2="773.6" />
+	<g>
+		<polygon class="st2" points="475.7,745 480.2,758.1 471.2,758.1   " />
+		<polygon class="st2" points="475.7,745 471.2,731.8 480.2,731.8   " />
+	</g>
+	<line class="st9" x1="475.7" y1="731.7" x2="475.7" y2="709.7" />
+	<ellipse class="st15" cx="475.8" cy="711.7" rx="1.9" ry="1.9" />
+	<line class="st9" x1="720" y1="772" x2="720" y2="753.3" />
+	<g>
+		<polygon class="st2" points="720.3,785.7 724.8,798.8 715.8,798.8   " />
+		<polygon class="st2" points="720.3,785.7 715.8,772.5 724.8,772.5   " />
+	</g>
+	<line class="st9" x1="515.7" y1="835" x2="515.7" y2="817.7" />
+	<line class="st9" x1="634.3" y1="835" x2="634.3" y2="815" />
+	<line class="st9" x1="514.4" y1="834.6" x2="721" y2="834.6" />
+	<line class="st9" x1="720.3" y1="834.3" x2="720.3" y2="799.6" />
+	<g transform="translate(52.134,-5.3932)">
+		<path class="st9" d="M717.4,758.5c0-9.1,4.8-16.4,10.6-16.4h13.4c5.9,0,10.6,7.4,10.6,16.4v59.6c0,9.1-4.8,16.4-10.6,16.4H728    c-5.9,0-10.6-7.4-10.6-16.4C717.4,818.1,717.4,758.5,717.4,758.5z" />
+	</g>
+	<line class="st9" x1="719.7" y1="763" x2="769" y2="763" />
+	<ellipse class="st15" cx="719.8" cy="763" rx="1.9" ry="1.9" />
+	<line class="st9" x1="804" y1="794.3" x2="853.3" y2="794.3" />
+	<line class="st9" x1="879.2" y1="777.9" x2="853" y2="777.9" />
+	<g>
+		<ellipse class="st2" cx="888.8" cy="779.2" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="896.8,779.2 890.8,782.7 890.8,775.7   " />
+	</g>
+	<g>
+		<ellipse class="st2" cx="888.8" cy="807.9" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="896.8,807.9 890.8,811.3 890.8,804.4   " />
+	</g>
+	<line class="st9" x1="853" y1="808.6" x2="878.5" y2="808.6" />
+	<line class="st9" x1="925" y1="778.6" x2="899.5" y2="778.6" />
+	<line class="st9" x1="899.3" y1="808.6" x2="924.8" y2="808.6" />
+	<line class="st9" x1="853" y1="808.3" x2="853" y2="777.9" />
+	<line class="st9" x1="925" y1="808" x2="925" y2="777.6" />
+	<line class="st9" x1="926" y1="793.3" x2="975.3" y2="793.3" />
+	<line class="st9" x1="975.7" y1="793.7" x2="975.7" y2="707" />
+	<ellipse class="st15" cx="635.2" cy="833.7" rx="1.9" ry="1.9" />
+	<ellipse class="st15" cx="852.7" cy="793.9" rx="1.9" ry="1.9" />
+	<ellipse class="st15" cx="925" cy="793.1" rx="1.9" ry="1.9" />
+	<line class="st9" x1="754.3" y1="708.3" x2="975.3" y2="708.3" />
+	<g>
+		<path class="st9" d="M758.7,642.3c0,2.4-2,4.4-4.4,4.4" />
+		<path class="st9" d="M758.7,642.3c0-2.4-2-4.4-4.4-4.4" />
+	</g>
+	<line class="st20" x1="754.3" y1="709" x2="754.3" y2="646.9" />
+	<line class="st9" x1="754.3" y1="637.7" x2="754.3" y2="615.7" />
+	<line class="st9" x1="597.7" y1="616.5" x2="754.7" y2="616.5" />
+	<g>
+		<path class="st9" d="M593,613.2c2.4,0,4.4,2,4.4,4.4" />
+		<path class="st9" d="M593,613.2c-2.4,0-4.4,2-4.4,4.4" />
+	</g>
+	<line class="st9" x1="558.4" y1="615.9" x2="588.6" y2="615.9" />
+	<line class="st9" x1="558.3" y1="617" x2="558.3" y2="573.7" />
+	<ellipse class="st15" cx="558.7" cy="573.9" rx="1.9" ry="1.9" />
+	<line class="st0" x1="772.6" y1="530" x2="772.6" y2="356.3" />
+	<g>
+		<path class="st9" d="M771.3,424.7c-2.4,0-4.4-2-4.4-4.4" />
+		<path class="st9" d="M771.3,424.7c2.4,0,4.4-2,4.4-4.4" />
+	</g>
+	<line class="st9" x1="775" y1="421.5" x2="797" y2="421.5" />
+	<line class="st9" x1="796.7" y1="599" x2="796.7" y2="421.9" />
+	<g>
+		<polygon class="st2" points="796.7,611.7 801.2,624.8 792.2,624.8   " />
+		<polygon class="st2" points="796.7,611.7 792.2,598.5 801.2,598.5   " />
+	</g>
+	<line class="st9" x1="796" y1="641.7" x2="796" y2="625" />
+	<ellipse class="st15" cx="796.2" cy="642" rx="1.9" ry="1.9" />
+	<ellipse class="st15" cx="797.1" cy="573.7" rx="1.9" ry="1.9" />
+	<g>
+		<ellipse class="st2" cx="836.5" cy="574.2" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="828.4,574.2 834.5,570.7 834.5,577.7   " />
+	</g>
+	<line class="st9" x1="847.4" y1="573.9" x2="1007.7" y2="573.9" />
+	<g transform="translate(52.134,-5.3932)">
+		<g>
+			<ellipse class="st2" cx="968" cy="580.5" rx="12.4" ry="12.5" />
+		</g>
+		<polyline class="st2" points="962.6,569.2 980.9,580.2 962.6,591.8   " />
+	</g>
+	<line class="st9" x1="1033.7" y1="574.9" x2="1143.7" y2="574.9" />
+	<g>
+		<polygon class="st2" points="876.5,358 863.4,362.5 863.4,353.5   " />
+		<polygon class="st2" points="876.5,358 889.7,353.5 889.7,362.5   " />
+	</g>
+	<g>
+		<polygon class="st2" points="830.3,392.7 834.8,405.8 825.8,405.8   " />
+		<polygon class="st2" points="830.3,392.7 825.8,379.5 834.8,379.5   " />
+	</g>
+	<g>
+		<polygon class="st2" points="917,393.3 921.5,406.5 912.5,406.5   " />
+		<polygon class="st2" points="917,393.3 912.5,380.2 921.5,380.2   " />
+	</g>
+	<line class="st0" x1="890.4" y1="358.6" x2="965" y2="358.6" />
+	<line class="st9" x1="592.3" y1="308.9" x2="773.7" y2="308.9" />
+	<line class="st9" x1="773" y1="310" x2="773" y2="261.7" />
+	<ellipse class="st15" cx="773.3" cy="261.7" rx="1.9" ry="1.9" />
+	<line class="st0" x1="830.6" y1="379" x2="830.6" y2="357" />
+	<line class="st0" x1="829.9" y1="429.3" x2="829.9" y2="407.3" />
+	<line class="st0" x1="829.3" y1="429.3" x2="854.8" y2="429.3" />
+	<line class="st0" x1="916.6" y1="380.7" x2="916.6" y2="358.7" />
+	<line class="st0" x1="916.3" y1="456.3" x2="916.3" y2="406.3" />
+	<line class="st0" x1="890.3" y1="455.9" x2="915.8" y2="455.9" />
+	<ellipse class="st16" cx="830.1" cy="358.3" rx="1.9" ry="1.9" />
+	<ellipse class="st16" cx="916.5" cy="359" rx="1.9" ry="1.9" />
+	<g>
+		<polygon class="st2" points="869.3,612.3 873.8,625.5 864.8,625.5   " />
+		<polygon class="st2" points="869.3,612.3 864.8,599.2 873.8,599.2   " />
+	</g>
+	<line class="st9" x1="869" y1="643" x2="869" y2="626.3" />
+	<ellipse class="st15" cx="869.5" cy="643" rx="1.9" ry="1.9" />
+	<line class="st9" x1="868.7" y1="599.3" x2="868.7" y2="573.7" />
+	<ellipse class="st15" cx="869" cy="574.3" rx="1.9" ry="1.9" />
+	<g>
+		<polygon class="st2" points="949,611.7 953.5,624.8 944.5,624.8   " />
+		<polygon class="st2" points="949,611.7 944.5,598.5 953.5,598.5   " />
+	</g>
+	<line class="st9" x1="948.3" y1="642.7" x2="948.3" y2="626" />
+	<ellipse class="st15" cx="948.8" cy="642.7" rx="1.9" ry="1.9" />
+	<line class="st9" x1="949.3" y1="598.3" x2="949.3" y2="577.7" />
+	<g>
+		<path class="st9" d="M953,574.3c0,2.4-2,4.4-4.4,4.4" />
+		<path class="st9" d="M953,574.3c0-2.4-2-4.4-4.4-4.4" />
+	</g>
+	<line class="st9" x1="948.3" y1="570" x2="948.3" y2="449" />
+	<g>
+		<ellipse class="st2" cx="975.5" cy="358.5" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="983.5,358.5 977.4,362 977.4,355.1   " />
+	</g>
+	<g>
+		<ellipse class="st2" cx="975.5" cy="387.9" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="983.5,387.9 977.4,391.3 977.4,384.4   " />
+	</g>
+	<g>
+		<ellipse class="st2" cx="976.8" cy="419.2" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="984.8,419.2 978.8,422.7 978.8,415.7   " />
+	</g>
+	<g>
+		<ellipse class="st2" cx="976.8" cy="449.9" rx="9.6" ry="9.5" />
+		<polygon class="st11" points="984.8,449.9 978.8,453.3 978.8,446.4   " />
+	</g>
+	<line class="st0" x1="947" y1="449.3" x2="967.8" y2="449.3" />
+	<line class="st0" x1="946" y1="419.3" x2="966.8" y2="419.3" />
+	<line class="st0" x1="946.3" y1="387.3" x2="966.2" y2="387.3" />
+	<line class="st0" x1="947.6" y1="449" x2="947.6" y2="358.3" />
+	<ellipse class="st16" cx="948.3" cy="387.1" rx="1.9" ry="1.9" />
+	<ellipse class="st16" cx="947.5" cy="418.3" rx="1.9" ry="1.9" />
+	<line class="st0" x1="987" y1="449.3" x2="1006.8" y2="449.3" />
+	<line class="st0" x1="985.7" y1="418.6" x2="1005.5" y2="418.6" />
+	<line class="st0" x1="985" y1="386.6" x2="1004.8" y2="386.6" />
+	<line class="st0" x1="985.7" y1="357.9" x2="1020.3" y2="357.9" />
+	<line class="st0" x1="1005.9" y1="450.3" x2="1005.9" y2="359.7" />
+	<ellipse class="st16" cx="1006.5" cy="419" rx="1.9" ry="1.9" />
+	<ellipse class="st16" cx="1006.9" cy="387" rx="1.9" ry="1.9" />
+	<ellipse class="st16" cx="948.2" cy="358.3" rx="1.9" ry="1.9" />
+	<ellipse class="st16" cx="1006.3" cy="358.3" rx="1.9" ry="1.9" />
+	<g transform="translate(52.134,-5.3932)">
+		<g>
+			<ellipse class="st2" cx="980.8" cy="363.1" rx="12.4" ry="12.6" />
+		</g>
+		<polyline class="st2" points="986.2,374.4 967.9,363.4 986.2,351.8   " />
+	</g>
+	<line class="st0" x1="1045" y1="358.3" x2="1139.3" y2="358.3" />
+	<polygon class="st16" points="1139.4,359.5 1147.1,358 1139.4,356.5  " />
+	<polygon class="st15" points="1153.4,573.2 1145.7,574.7 1153.4,576.2  " />
+	<g>
+		<polygon class="st2" points="1083.3,613 1087.8,626.1 1078.8,626.1   " />
+		<polygon class="st2" points="1083.3,613 1078.8,599.8 1087.8,599.8   " />
+	</g>
+	<line class="st9" x1="1083" y1="642.3" x2="1083" y2="625.7" />
+	<line class="st9" x1="1083" y1="599.3" x2="1083" y2="574.3" />
+	<ellipse class="st15" cx="1082.8" cy="574.7" rx="1.9" ry="1.9" />
+	<g>
+		<line class="st2" x1="1127.1" y1="339" x2="1127.1" y2="358.9" />
+		<ellipse class="st11" cx="1127.1" cy="334.7" rx="4.9" ry="4.4" />
+	</g>
+	<g>
+		<line class="st2" x1="1130.1" y1="554" x2="1130.1" y2="573.9" />
+		<ellipse class="st11" cx="1130.1" cy="549.7" rx="4.9" ry="4.4" />
+	</g>
+	<g transform="translate(52.134,-5.3932)">
+		<line class="st12" x1="1016.9" y1="359.1" x2="1034.4" y2="359.1" />
+		<line class="st2" x1="1025.6" y1="358.6" x2="1025.6" y2="339.1" />
+	</g>
+	<g transform="translate(52.134,-5.3932)">
+		<line class="st12" x1="1010.2" y1="574.9" x2="1027.7" y2="574.9" />
+		<line class="st2" x1="1018.9" y1="574.4" x2="1018.9" y2="554.9" />
+	</g>
+	<g>
+		<line class="st2" x1="376.4" y1="622.4" x2="376.4" y2="642.2" />
+		<ellipse class="st11" cx="376.4" cy="618.1" rx="4.9" ry="4.4" />
+	</g>
+	<text transform="matrix(1 0 0 1 503.6668 756.9997)" class="st14 st21">10</text>
+	<text transform="matrix(1 0 0 1 621.6668 753.9997)" class="st14 st21">10</text>
+	<text transform="matrix(1 0 0 1 774.9997 775)" class="st14 st21">1</text>
+	<text transform="matrix(1 0 0 1 508.3335 775.667)" class="st14 st21">м</text>
+	<polygon style="fill:none;" points="-140.3,324.3 -143,324.3 -143,324.3 -140.3,324.3  " />
+	<text transform="matrix(1 0 0 1 521.0002 768.3337)" class="st14 st22">3</text>
+	<text transform="matrix(1 0 0 1 623.6669 773.0003)" class="st14 st21">м</text>
+	<text transform="matrix(1 0 0 1 785.0001 774.3337)" class="st14 st21">м</text>
+	<text transform="matrix(1 0 0 1 636.3335 766.3337)" class="st14 st22">3</text>
+	<text transform="matrix(1 0 0 1 796.6669 767.667)" class="st14 st22">3</text>
+	<text transform="matrix(1 0 0 1 862.3335 418.6664)" class="st14 st21">50</text>
+	<text transform="matrix(1 0 0 1 864.3335 437.667)" class="st14 st21">м</text>
+	<text transform="matrix(1 0 0 1 877.3335 431.0003)" class="st14 st22">3</text>
+	<text transform="matrix(1 0 0 1 1093.6666 467)" class="st23 st14 st24">ГВС</text>
+	<text transform="matrix(1 0 0 1 1092.6666 188.3333)" class="st23 st14 st24">ЦО</text>
+	<text transform="matrix(1 0 0 1 1034.6664 135.6668)" class="st14 st25">подача</text>
+	<text transform="matrix(1 0 0 1 1039.9996 283.6668)" class="st14 st25">обратка</text>
+	<text transform="matrix(1 0 0 1 1121.3334 380.9997)" class="st14 st25">подача</text>
+	<text transform="matrix(1 0 0 1 1122.6666 601)" class="st14 st25">обратка</text>
+	<text transform="matrix(1 0 0 1 862.6667 503.6664)" class="st26 st19">бак</text>
+</g>
+<text transform="matrix(1 0 0 1 390.3333 619.667)" class="st14 st21" data-core-parameter="HeatSys.Temper.MakeupPipe" id="HeatSys.Temper.MakeupPipe">TM</text>
+<text transform="matrix(1 0 0 1 964.667 334.3336)" class="st14 st25" data-core-parameter="Hws.VolumeFlow.SupplyPipe" id="Hws.VolumeFlow.SupplyPipe">HFV</text>
+<text transform="matrix(1 0 0 1 973.3333 551.667)" class="st14 st25" data-core-parameter="Hws.VolumeFlow.ReturnPipe" id="Hws.VolumeFlow.ReturnPipe">HFV</text>
+<text transform="matrix(1 0 0 1 1059.6664 318.3333)" class="st14 st25" data-core-parameter="Hws.Pressure.SupplyPipe" id="Hws.Pressure.SupplyPipe">P1</text>
+<text transform="matrix(1 0 0 1 1053 535.667)" class="st14 st25" data-core-parameter="Hws.Pressure.ReturnPipe" id="Hws.Pressure.ReturnPipe">P2</text>
+<text transform="matrix(1 0 0 1 1139.667 336)" class="st14 st25" data-core-parameter="Hws.Temper.SupplyPipe" id="Hws.Temper.SupplyPipe">T1</text>
+<text transform="matrix(1 0 0 1 1143.0004 548.6667)" class="st14 st25" data-core-parameter="Hws.Temper.ReturnPipe" id="Hws.Temper.ReturnPipe">T2</text>
+<text transform="matrix(1 0 0 1 115.6665 619.0003)" class="st14 st21" data-core-parameter="HeatSys.VolumeFlow.MakeupPipe" id="HeatSys.VolumeFlow.MakeupPipe">FW</text>
+<text transform="matrix(1 0 0 1 22.9998 50.3332)" class="st14 st25" data-core-parameter="Gas.Temperature.HeatSys" id="Gas.Temperature.HeatSys">Tgas</text>
+<text transform="matrix(1 0 0 1 103.6667 51.6667)" class="st14 st25" data-core-parameter="Gas.Pressure.HeatSys" id="Gas.Pressure.HeatSys">Pgas</text>
+<text transform="matrix(1 0 0 1 191.6665 64.3335)" class="st14 st25" data-core-parameter="Gas.VolumeFlow.Standard.HeatSys" id="Gas.VolumeFlow.Standard.HeatSys">Ggas</text>
+<text transform="matrix(1 0 0 1 20.3335 469.667)" class="st14 st25" data-core-parameter="Gas.Temperature.Hws" id="Gas.Temperature.Hws">Tgas</text>
+<text transform="matrix(1 0 0 1 100.3332 474.3333)" class="st14 st25" data-core-parameter="Gas.Pressure.Hws" id="Gas.Pressure.Hws">Pgas</text>
+<text transform="matrix(1 0 0 1 190.6665 495.3336)" class="st14 st25" data-core-parameter="Gas.VolumeFlow.Standard.Hws" id="Gas.VolumeFlow.Standard.Hws">Ggas</text>
+</svg>

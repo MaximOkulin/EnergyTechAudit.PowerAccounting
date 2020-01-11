@@ -1,0 +1,89 @@
+﻿<DashboardExtention>
+  <CommandMenu>
+    <Name>dashboardCommandMenu</Name>
+    <ClientVisible>true</ClientVisible>
+    <Width>50</Width>
+    <CommandMenuItem>
+      <Name>deviceDashboardExtentionCommand</Name>
+      <DropDownMode>true</DropDownMode>
+      <BeginGroup>true</BeginGroup>
+      <CommandName>deviceDashboardExtentionCommand</CommandName>
+      <IconClass>font-icon-formplugin font-icon-darkblue indent-right-5px</IconClass>
+      <ToolTip />
+      <Order>10</Order>
+      <CommandMenuItem>
+        <Name>etaRelayTest1DeviceCommand</Name>
+        <Text>Коррекция часов реального времени</Text>
+        <CommandName>etaRelayTest1DeviceCommand</CommandName>
+        <IconClass>font-icon-formplugin font-icon-darkgreen indent-right-5px</IconClass>
+      </CommandMenuItem>
+      <CommandMenuItem>
+        <Name>etaRelayTest2DeviceCommand</Name>
+        <Text>Выполнить регулирование освещения</Text>
+        <CommandName>etaRelayTest2DeviceCommand</CommandName>
+        <IconClass>font-icon-formplugin font-icon-darkred indent-right-5px</IconClass>
+      </CommandMenuItem>
+      <CommandMenuItem>
+        <Name>etaRelayTest3DeviceCommand</Name>
+        <Text>Считать календарь</Text>
+        <CommandName>etaRelayTest3DeviceCommand</CommandName>
+        <IconClass>font-icon-formplugin font-icon-darkred indent-right-5px</IconClass>
+      </CommandMenuItem>
+      <CommandMenuItem>
+        <Name>etaRelayTest4DeviceCommand</Name>
+        <Text>Записать календарь</Text>
+        <CommandName>etaRelayTest4DeviceCommand</CommandName>
+        <IconClass>font-icon-formplugin font-icon-darkred indent-right-5px</IconClass>
+      </CommandMenuItem>
+    </CommandMenuItem>
+  </CommandMenu>
+  <Script>
+    Core.OperAdmin.DashboardController.DeviceExtention = function (entityInfoProvider)
+    {
+        var commander =
+            {
+                etaRelayTest1DeviceCommand: function ()
+                {
+                    let deviceReaderCommandEntityInfo = entityInfoProvider.entityInfo;
+                    deviceReaderCommandEntityInfo.targetEntityTypeName = "MeasurementDevice";
+                    deviceReaderCommandEntityInfo.command = { name: "EtaRelayCorrectDeviceTimeCommand", isRequireControlService: false, isEntityIndependent: false, isRequiredDeviceReaderResponseCommandDialog: false };
+
+                    (new Core.Common.DeviceReaderResponseCommandDialog(deviceReaderCommandEntityInfo)).show();
+                },
+
+                etaRelayTest2DeviceCommand: function ()
+                {
+                    let deviceReaderCommandEntityInfo = entityInfoProvider.entityInfo;
+                    deviceReaderCommandEntityInfo.targetEntityTypeName = "MeasurementDevice";
+                    deviceReaderCommandEntityInfo.command = { name: "EtaRelayForceRegulationCommand", isRequireControlService: false, isEntityIndependent: false, isRequiredDeviceReaderResponseCommandDialog: false };
+
+                    (new Core.Common.DeviceReaderResponseCommandDialog(deviceReaderCommandEntityInfo)).show();
+                },
+
+                etaRelayTest3DeviceCommand: function ()
+                {
+                    let deviceReaderCommandEntityInfo = entityInfoProvider.entityInfo;
+                    deviceReaderCommandEntityInfo.targetEntityTypeName = "MeasurementDevice";
+                    deviceReaderCommandEntityInfo.command = { name: "EtaRelaySyncCalendarCommand", isRequireControlService: false, isEntityIndependent: false, isRequiredDeviceReaderResponseCommandDialog: false };
+
+                    (new Core.Common.DeviceReaderResponseCommandDialog(deviceReaderCommandEntityInfo)).show();
+                },
+
+                etaRelayTest4DeviceCommand: function ()
+                {
+                    let deviceReaderCommandEntityInfo = entityInfoProvider.entityInfo;
+                    deviceReaderCommandEntityInfo.targetEntityTypeName = "MeasurementDevice";
+                    deviceReaderCommandEntityInfo.command = { name: "EtaRelayWriteCalendarCommand", isRequireControlService: false, isEntityIndependent: false, isRequiredDeviceReaderResponseCommandDialog: false };
+
+                    (new Core.Common.DeviceReaderResponseCommandDialog(deviceReaderCommandEntityInfo)).show();
+                }
+            };
+
+        this.execute = function ()
+        {
+            (new Core.Common.CommandMenuBarController("dashboardCommandMenu")).bind(commander);
+        };
+      this.getCommander = function() { return commander; }   
+    };
+  </Script>
+</DashboardExtention>

@@ -1,0 +1,255 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+	<!--Параметрик для сводного отчета -->
+	<Id>emergencySituationSummaryParametricDialog</Id>
+	<Height>0</Height>
+	<Width>400</Width>
+	<Buttons>
+		<DialogButton>
+			<Title>OK</Title>
+			<Order>0</Order>
+			<DialogModalResult>Ok</DialogModalResult>
+		</DialogButton>
+		<DialogButton>
+			<Title>Отмена</Title>
+			<Order>1</Order>
+			<DialogModalResult>Cancel</DialogModalResult>
+		</DialogButton>
+	</Buttons>
+	<Title>Параметры</Title>
+	<IsSavedState>true</IsSavedState>
+	<InitScript HasEscapedContent="true">    
+    function(sender, args)
+    {           
+      var dialogId = sender.name;
+      var jQDialogWrapper = Core.Helpers.Dialog.getWrapper(dialogId);      
+    }            
+    </InitScript>
+	<Descriptors>
+		<FormLayoutItemDescriptor>
+			<Caption>Тип ресурсной системы</Caption>
+			<Name>resourceSystemTypeId</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT DISTINCT([ResourceSystemType].[Id])[Id],
+          [ResourceSystemType].[ShortName] [Code],
+          [ResourceSystemType].[Description] [Description]
+          FROM [Business].[Channel] WITH(NOLOCK)
+          INNER JOIN [Dictionaries].[ResourceSystemType] [ResourceSystemType] WITH(NOLOCK)
+          ON [ResourceSystemType].[Id] = [Channel].[ResourceSystemTypeId]
+          WHERE [Channel].[Id] IN
+          (
+          SELECT [Ul].[ChannelId]
+          FROM [Business].[UserLinkChannel] [Ul] WITH(NOLOCK)
+          WHERE [Ul].[UserId] = (SELECT TOP(1) [User].[Id] FROM [Admin].[User] [User] WITH(NOLOCK) WHERE [User].[UserName] = @userName)
+          ) AND [ResourceSystemTypeId] IN (2, 3, 4, 5)
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Caption></Caption>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Caption></Caption>
+						<Width>100</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption></Caption>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{2}</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Начало периода</Caption>
+			<Name>periodBegin</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+           function(sender, args)
+           {   
+              // sender.isSavedState = false;
+              // sender.SetDate(new Date(Date.now()).addMonths(-1));
+           }
+           </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Конец периода</Caption>
+			<Name>periodEnd</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+           function(sender, args)
+           {             
+              sender.isSavedState = false;
+              sender.SetDate(new Date(Date.now()));              
+              sender.SetMaxDate(new Date(Date.now()));              
+           }
+           </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Caption>В фоновом режиме</Caption>
+			<Name>peformBackgroundWorkItem</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+			<Value>false</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+           function(sender, args)
+           {             
+             sender.isSavedState = false;                   
+           }
+           </Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.CheckedChanged</PropertiesChain>
+					<Value HasEscapedContent="true">
+            function(sender, args)
+            {                        
+              var layout = Core.Helpers.DevExpress.getDxControlByName("emergencySituationSummaryParametricDialogLayout");   
+                                                    
+              var hasRequiredGroupPrintItem = layout.GetItemByName("emergencySituationSummaryParametricDialog_hasRequiredGroupPrint");
+              if(hasRequiredGroupPrintItem)
+              {    
+                Core.Helpers.DevExpress
+                  .getDxControlByName("emergencySituationSummaryParametricDialog_hasRequiredGroupPrint")
+                  .SetChecked(sender.GetChecked());
+                  
+                hasRequiredGroupPrintItem.SetVisible(!sender.GetChecked());  
+              }  
+            }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="true">
+			<Caption>Групповая печать</Caption>
+			<Name>hasRequiredGroupPrint</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+			<Value>false</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+           function(sender, args)
+           {             
+              sender.isSavedState = false;              
+           }
+           </Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.CheckedChanged</PropertiesChain>
+					<Value HasEscapedContent="true">
+            function(sender, args)
+            {          
+              // девизуализация параметров не имеющих смысл для групповой печати
+              var layout = Core.Helpers.DevExpress.getDxControlByName("emergencySituationSummaryParametricDialogLayout");   
+                            
+              var resourceSystemTypeIdItem = layout.GetItemByName("emergencySituationSummaryParametricDialog_resourceSystemTypeId");                                                                                                     
+              if(resourceSystemTypeIdItem)
+              {                
+                resourceSystemTypeIdItem.SetVisible(!sender.GetChecked());  
+              }     
+              
+              var peformBackgroundWorkItemItem = layout.GetItemByName("emergencySituationSummaryParametricDialog_peformBackgroundWorkItem");
+              if(peformBackgroundWorkItemItem)
+              {                
+                peformBackgroundWorkItemItem.SetVisible(!sender.GetChecked());  
+              }  
+            }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Параметр-вариатор</Caption>
+			<Name>variator</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+			<NestedExtension>Default</NestedExtension>
+			<Value>resourceSystemTypeId</Value>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Источник вариации</Caption>
+			<Name>variatorSource</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+			<NestedExtension>Default</NestedExtension>
+			<Value>
+        SELECT
+        [Variator].[Num]
+        ,[Variator].[ResourceSystemTypeId]
+        ,[Variator].[OutlineExpression]
+        FROM
+        (
+        SELECT
+          ROW_NUMBER() OVER(PARTITION BY [ResourceSystemType].[Id] ORDER BY [ResourceSystemType].[Id]) [Num],
+          [Channel].[ResourceSystemTypeId],
+          [ResourceSystemType].[ShortName] [OutlineExpression]
+
+        FROM [Business].[UserLinkChannel] [UserLinkChannel] WITH(NOLOCK)
+
+        INNER JOIN [Business].[Channel] [Channel] WITH(NOLOCK) ON [UserLinkChannel].[ChannelId] = [Channel].[Id]
+
+        INNER JOIN [Dictionaries].[ResourceSystemType] [ResourceSystemType] WITH(NOLOCK) ON [Channel].[ResourceSystemTypeId] = [ResourceSystemType].[Id]
+        
+        INNER JOIN [Admin].[User] [User] WITH(NOLOCK) ON [UserLinkChannel].[UserId] = [User].[Id]
+
+        WHERE 
+          ([User].[UserName] = &apos;{userName}&apos; AND [ResourceSystemType].[Id] NOT IN (6, 8)) 
+          AND (1 != {peformBackgroundWorkItem} OR [ResourceSystemType].[Id] = {resourceSystemTypeId})
+        ) [Variator] WHERE [Variator].[Num] = 1
+      </Value>
+		</FormLayoutItemDescriptor>
+	</Descriptors>
+</ParametricDialog>

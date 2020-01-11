@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Core.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Common.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Domain.dll&#13;&#10;EnergyTechAudit.PowerAccounting.DataAccess.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll" DoublePass="true" StartReportEvent="Start_Report" ReportInfo.Name="Tv7DeviceSettings" ReportInfo.Author="Max" ReportInfo.Version="Id = 39;ReportTypeId = 2;HasPluginProcessing = 1" ReportInfo.Description="Настройки ТВ7" ReportInfo.Created="01/22/2015 15:18:15" ReportInfo.Modified="12/20/2019 15:11:55" ReportInfo.CreatorVersion="2017.4.3.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using EnergyTechAudit.PowerAccounting.Common.Entity;
+using EnergyTechAudit.PowerAccounting.Domain.Interfaces;
+using EnergyTechAudit.PowerAccounting.DataAccess.Helper;
+using EnergyTechAudit.PowerAccounting.Common.FormatProviders;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Aggregate;
+using System.IO;
+
+namespace FastReport
+{
+  public class ReportScript
+  {     
+    private void Start_Report(object sender, EventArgs e)
+    {       
+      string database2IsUse = (string)Report.GetParameterValue(&quot;Database2IsUse&quot;);
+               
+      if (database2IsUse.Equals(&quot;не используется&quot;))
+      {
+        Db2Band.Visible = false;
+      }
+      
+      string isNewFirmware2_20 = (String)Report.GetParameterValue(&quot;IsNewFirmware2_20&quot;);
+      
+      if (isNewFirmware2_20.Equals(&quot;Нет&quot;))
+      {
+        NewFirmwareParamsBand.Visible = false;
+        NewFirmwareParams2Band.Visible = false;
+      }
+    }    
+  }
+}
+</ScriptText>
+  <Dictionary/>
+  <ReportPage Name="Page1" PaperHeight="295" RawPaperSize="9" Guides="0" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle" Width="718.2" Height="85.05">
+      <TextObject Name="Text2" Left="113.4" Width="491.4" Height="18.9" Text="Настройки ТВ7" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text29" Top="47.25" Width="79.38" Height="18.9" Text="Потребитель:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Top="66.15" Width="79.38" Height="18.9" Text="Адрес:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text31" Left="536.76" Top="47.25" Width="90.72" Height="18.9" Text="Модель:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text32" Left="536.76" Top="66.15" Width="90.72" Height="18.9" Text="Номер прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text33" Left="627.48" Top="47.25" Width="90.72" Height="18.9" Text="[SubModel]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text34" Left="627.48" Top="66.15" Width="90.72" Height="18.9" Text="[FactoryNumber]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text80" Left="79.38" Top="66.15" Width="94.5" Height="18.9" Text="[FullAddress]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text81" Left="79.38" Top="47.25" Width="245.7" Height="18.9" Text="[District]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <PictureObject Name="CustomerReportLogo" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never" Image=""/>
+      <ChildBand Name="CommonSettings" Top="86.98" Width="718.2" Height="582.12">
+        <TextObject Name="Text1" Width="113.4" Height="79.38" Border.Lines="All" Text="Системные" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text3" Left="113.4" Width="207.9" Height="11.34" Border.Lines="All" Text="Час отчета:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text4" Left="321.3" Width="162.54" Height="11.34" Border.Lines="All" Text="[ReportHour]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text82" Left="113.4" Top="11.34" Width="207.9" Height="11.34" Border.Lines="All" Text="День отчета:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text83" Left="321.3" Top="11.34" Width="162.54" Height="11.34" Border.Lines="All" Text="[ReportDay]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text84" Left="113.4" Top="79.38" Width="207.9" Height="11.34" Border.Lines="All" Text="Использование БД2:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text85" Left="321.3" Top="79.38" Width="162.54" Height="11.34" Border.Lines="All" Text="[Database2IsUse]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text86" Top="79.38" Width="113.4" Height="68.04" Border.Lines="All" Text="Управление БД" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text87" Left="113.4" Top="90.72" Width="207.9" Height="11.34" Border.Lines="All" Text="Способ переключ. БД:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text88" Left="321.3" Top="90.72" Width="162.54" Height="11.34" Border.Lines="All" Text="[DatabaseSwitchType]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text89" Left="113.4" Top="102.06" Width="207.9" Height="11.34" Border.Lines="All" Text="Доступ к переключ. БД с клавиатуры:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text90" Left="321.3" Top="102.06" Width="162.54" Height="11.34" Border.Lines="All" Text="[DatabaseSwitchAccess]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text91" Left="113.4" Top="113.4" Width="207.9" Height="11.34" Border.Lines="All" Text="Доступ к переключ. БД по сети:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text92" Left="321.3" Top="113.4" Width="162.54" Height="11.34" Border.Lines="All" Text="[DatabaseSwitchNetworkAccess]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text93" Left="113.4" Top="22.68" Width="207.9" Height="11.34" Border.Lines="All" Text="Тип термодатчиков:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text94" Left="321.3" Top="22.68" Width="162.54" Height="11.34" Border.Lines="All" Text="[ThermoSensorType]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text95" Left="113.4" Top="34.02" Width="207.9" Height="11.34" Border.Lines="All" Text="Ед. измерения:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text96" Left="113.4" Top="45.36" Width="207.9" Height="11.34" Border.Lines="All" Text="Перевод зимнее/летнее время:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text97" Left="113.4" Top="56.7" Width="207.9" Height="11.34" Border.Lines="All" Text="Инверсия дисплея:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text98" Left="321.3" Top="34.02" Width="162.54" Height="11.34" Border.Lines="All" Text="[MeasurementUnit]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text99" Left="321.3" Top="45.36" Width="162.54" Height="11.34" Border.Lines="All" Text="[ClockChange]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text100" Left="321.3" Top="56.7" Width="162.54" Height="11.34" Border.Lines="All" Text="[DisplayInversion]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text101" Left="113.4" Top="124.74" Width="207.9" Height="11.34" Border.Lines="All" Text="БД1 с: час/день/месяц" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text102" Left="113.4" Top="136.08" Width="207.9" Height="11.34" Border.Lines="All" Text="БД2 с: час/день/месяц" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text103" Left="321.3" Top="124.74" Width="162.54" Height="11.34" Border.Lines="All" Text="[Database1HourFrom]/[Database1DayFrom]/[Database1MonthFrom]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text104" Left="321.3" Top="136.08" Width="162.54" Height="11.34" Border.Lines="All" Text="[Database2HourFrom]/[Database2DayFrom]/[Database2MonthFrom]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text5" Top="226.8" Width="94.5" Height="18.9" Text="Настройки БД1" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text105" Top="245.7" Width="113.4" Height="11.34" Border.Lines="All" Text="Параметр:" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text106" Left="113.4" Top="245.7" Width="226.8" Height="11.34" Border.Lines="All" Text="Тепловой ввод 1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text107" Left="340.2" Top="245.7" Width="226.8" Height="11.34" Border.Lines="All" Text="Тепловой ввод 2" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text108" Left="113.4" Top="434.7" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text109" Left="189" Top="434.7" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 2" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text110" Left="264.6" Top="434.7" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 3" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text111" Left="340.2" Top="434.7" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text112" Left="415.8" Top="434.7" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 2" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text113" Left="491.4" Top="434.7" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 3" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text114" Top="434.7" Width="113.4" Height="11.34" Border.Lines="All" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text115" Top="446.04" Width="113.4" Height="11.34" Border.Lines="All" Text="Тип ВС" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text116" Left="113.4" Top="446.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1WaterCounterType_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text117" Left="189" Top="446.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2WaterCounterType_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text118" Left="264.6" Top="446.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3WaterCounterType_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text119" Left="340.2" Top="446.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1WaterCounterType_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text120" Left="415.8" Top="446.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2WaterCounterType_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text121" Left="491.4" Top="446.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3WaterCounterType_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text122" Top="457.38" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль V" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text123" Left="113.4" Top="457.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ControlV_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text124" Left="189" Top="457.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ControlV_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text125" Left="264.6" Top="457.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ControlV_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text126" Left="340.2" Top="457.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ControlV_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text127" Left="415.8" Top="457.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ControlV_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text128" Left="491.4" Top="457.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ControlV_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text129" Top="468.72" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль ВС" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text130" Left="113.4" Top="468.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ControlWC_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text131" Left="189" Top="468.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ControlWC_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text132" Left="264.6" Top="468.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ControlWC_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text133" Left="340.2" Top="468.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ControlWC_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text134" Left="415.8" Top="468.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ControlWC_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text135" Left="491.4" Top="468.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ControlWC_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text136" Top="480.06" Width="113.4" Height="11.34" Border.Lines="All" Text="Датчик P" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text137" Left="113.4" Top="480.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1PressureSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text138" Left="189" Top="480.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2PressureSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text139" Left="264.6" Top="480.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3PressureSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text140" Left="340.2" Top="480.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1PressureSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text141" Left="415.8" Top="480.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2PressureSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text142" Left="491.4" Top="480.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3PressureSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text143" Top="491.4" Width="113.4" Height="11.34" Border.Lines="All" Text="tдог, °С" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text144" Left="113.4" Top="491.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ContractTemp_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text150" Top="502.74" Width="113.4" Height="11.34" Border.Lines="All" Text="Pдог, МПа" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text151" Left="113.4" Top="502.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ContractPressure_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text152" Left="189" Top="491.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ContractTemp_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text153" Left="264.6" Top="491.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ContractTemp_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text154" Left="340.2" Top="491.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ContractTemp_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text155" Left="415.8" Top="491.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ContractTemp_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text156" Left="491.4" Top="491.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ContractTemp_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text157" Left="189" Top="502.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ContractPressure_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text158" Left="264.6" Top="502.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ContractPressure_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text159" Left="340.2" Top="502.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ContractPressure_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text160" Left="415.8" Top="502.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ContractPressure_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text161" Left="491.4" Top="502.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ContractPressure_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text162" Top="514.08" Width="113.4" Height="11.34" Border.Lines="All" Text="Pп, м" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text163" Left="113.4" Top="514.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1HeightAdjustment_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text164" Left="189" Top="514.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2HeightAdjustment_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text165" Left="264.6" Top="514.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3HeightAdjustment_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text166" Left="340.2" Top="514.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1HeightAdjustment_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text167" Left="415.8" Top="514.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2HeightAdjustment_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text168" Left="491.4" Top="514.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3HeightAdjustment_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text169" Top="525.42" Width="113.4" Height="11.34" Border.Lines="All" Text="Pв, МПа" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text170" Left="113.4" Top="525.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1HighLimitSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text171" Left="189" Top="525.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2HighLimitSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text172" Left="264.6" Top="525.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3HighLimitSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text173" Left="340.2" Top="525.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1HighLimitSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text174" Left="415.8" Top="525.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2HighLimitSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text175" Left="491.4" Top="525.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3HighLimitSensor_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text176" Top="536.76" Width="113.4" Height="11.34" Border.Lines="All" Text="Вес импульса, л" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text177" Left="113.4" Top="536.76" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ImpulseWeight_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text178" Left="189" Top="536.76" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ImpulseWeight_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text179" Left="264.6" Top="536.76" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ImpulseWeight_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text180" Left="340.2" Top="536.76" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ImpulseWeight_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text181" Left="415.8" Top="536.76" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ImpulseWeight_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text182" Left="491.4" Top="536.76" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ImpulseWeight_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text183" Top="548.1" Width="113.4" Height="11.34" Border.Lines="All" Text="Vmin, м3" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text184" Left="113.4" Top="548.1" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1VolumeMin_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text185" Left="189" Top="548.1" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2VolumeMin_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text186" Left="264.6" Top="548.1" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3VolumeMin_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text187" Left="340.2" Top="548.1" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1VolumeMin_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text188" Left="415.8" Top="548.1" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2VolumeMin_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text189" Left="491.4" Top="548.1" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3VolumeMin_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text190" Top="559.44" Width="113.4" Height="11.34" Border.Lines="All" Text="Vmax, м3" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text191" Left="113.4" Top="559.44" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1VolumeMax_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text192" Left="189" Top="559.44" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2VolumeMax_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text193" Left="264.6" Top="559.44" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3VolumeMax_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text194" Left="340.2" Top="559.44" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1VolumeMax_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text195" Left="415.8" Top="559.44" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2VolumeMax_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text196" Left="491.4" Top="559.44" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3VolumeMax_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text197" Top="570.78" Width="113.4" Height="11.34" Border.Lines="All" Text="Vдог, м3" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text198" Left="113.4" Top="570.78" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ContractVolume_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text199" Left="189" Top="570.78" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ContractVolume_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text200" Left="264.6" Top="570.78" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ContractVolume_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text201" Left="340.2" Top="570.78" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ContractVolume_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text202" Left="415.8" Top="570.78" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ContractVolume_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text203" Left="491.4" Top="570.78" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ContractVolume_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text204" Top="257.04" Width="113.4" Height="11.34" Border.Lines="All" Text="СИ" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text205" Left="113.4" Top="257.04" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1MeasurementScheme_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text206" Left="340.2" Top="257.04" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2MeasurementScheme_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text207" Top="268.38" Width="113.4" Height="11.34" Border.Lines="All" Text="Исп.Qтв" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text208" Left="113.4" Top="268.38" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1UseQtv_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text209" Left="340.2" Top="268.38" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2UseQtv_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text210" Top="279.72" Width="113.4" Height="11.34" Border.Lines="All" Text="dMmax, %" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text211" Left="113.4" Top="279.72" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1dMmax_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text212" Left="340.2" Top="279.72" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2dMmax_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text213" Top="291.06" Width="113.4" Height="11.34" Border.Lines="All" Text="txдог, °С" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text214" Top="302.4" Width="113.4" Height="11.34" Border.Lines="All" Text="Pxдог, МПа" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text215" Top="313.74" Width="113.4" Height="11.34" Border.Lines="All" Text="КТЗ" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text216" Left="113.4" Top="291.06" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1txContract_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text217" Left="340.2" Top="291.06" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2txContract_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text218" Left="113.4" Top="302.4" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1PxContract_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text219" Left="340.2" Top="302.4" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2PxContract_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text220" Left="113.4" Top="313.74" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3Config_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text221" Left="340.2" Top="313.74" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3Config_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text222" Top="325.08" Width="113.4" Height="11.34" Border.Lines="All" Text="ФРТ" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text223" Top="336.42" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль t" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text224" Top="347.76" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль dM" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text225" Top="359.1" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль Q" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text226" Top="370.44" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль dt" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text227" Top="381.78" Width="113.4" Height="11.34" Border.Lines="All" Text="dtmin, °С" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text228" Top="393.12" Width="113.4" Height="11.34" Border.Lines="All" Text="Исп.tx" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text229" Top="404.46" Width="113.4" Height="11.34" Border.Lines="All" Text="Исп.tнв" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text230" Left="113.4" Top="325.08" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1FRT_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text231" Left="340.2" Top="325.08" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2FRT_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text232" Left="113.4" Top="336.42" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1tControl_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text233" Left="340.2" Top="336.42" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2tControl_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text234" Left="113.4" Top="347.76" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1dMControl_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text235" Left="340.2" Top="347.76" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2dMControl_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text236" Left="113.4" Top="359.1" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1QControl_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text237" Left="340.2" Top="359.1" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2QControl_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text238" Left="113.4" Top="370.44" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1dtControl_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text239" Left="340.2" Top="370.44" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2dtControl_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text240" Left="113.4" Top="381.78" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1dtmin_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text241" Left="340.2" Top="381.78" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2dtmin_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text242" Left="113.4" Top="393.12" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1Usetx_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text243" Left="340.2" Top="393.12" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2Usetx_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text244" Left="113.4" Top="404.46" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1Usetnv_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text245" Left="340.2" Top="404.46" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2Usetnv_Db1]" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text292" Left="113.4" Top="68.04" Width="207.9" Height="11.34" Border.Lines="All" Text="Версия ПО:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text293" Left="321.3" Top="68.04" Width="162.54" Height="11.34" Border.Lines="All" Text="[Firmware]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text391" Top="147.42" Width="113.4" Height="68.04" Border.Lines="All" Text="Дополнительный импульсный вход" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text392" Left="113.4" Top="147.42" Width="207.9" Height="11.34" Border.Lines="All" Text="Назначение:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text393" Left="113.4" Top="158.76" Width="207.9" Height="11.34" Border.Lines="All" Text="Уровень сигнала:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text394" Left="113.4" Top="170.1" Width="207.9" Height="11.34" Border.Lines="All" Text="Единица измерения:" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text395" Left="113.4" Top="181.44" Width="207.9" Height="11.34" Border.Lines="All" Text="Вес имп./Tподтв" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text396" Left="113.4" Top="192.78" Width="207.9" Height="11.34" Border.Lines="All" Text="Знач. ЧН" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text397" Left="113.4" Top="204.12" Width="207.9" Height="11.34" Border.Lines="All" Text="Знач. ЧВ" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text398" Left="321.3" Top="147.42" Width="162.54" Height="11.34" Border.Lines="All" Text="[ImpulseInputTarget]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text399" Left="321.3" Top="158.76" Width="162.54" Height="11.34" Border.Lines="All" Text="[ImpulseInputSignalLevel]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text400" Left="321.3" Top="170.1" Width="162.54" Height="11.34" Border.Lines="All" Text="[ImpulseInputMeasurementUnit]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text401" Left="321.3" Top="181.44" Width="162.54" Height="11.34" Border.Lines="All" Text="[ImpulseInputImpulseWeightOrConfirmTime]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text402" Left="321.3" Top="192.78" Width="162.54" Height="11.34" Border.Lines="All" Text="[ImpulseInputLow]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text403" Left="321.3" Top="204.12" Width="162.54" Height="11.34" Border.Lines="All" Text="[ImpulseInputHigh]" NullValue="---" Font="Times New Roman, 8pt"/>
+        <ChildBand Name="NewFirmwareParamsBand" Top="671.03" Width="718.2" Height="45.36">
+          <TextObject Name="Text385" Width="113.4" Height="11.34" Border.Lines="All" Text="Учет пустой трубы" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text386" Top="11.34" Width="113.4" Height="11.34" Border.Lines="All" Text="Вход пустой трубы" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text387" Top="22.68" Width="113.4" Height="11.34" Border.Lines="All" Text="Вход реверса" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text404" Left="113.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1EmptyPipeAccounting_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text405" Left="189" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2EmptyPipeAccounting_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text406" Left="264.6" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3EmptyPipeAccounting_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text407" Left="340.2" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1EmptyPipeAccounting_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text408" Left="415.8" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2EmptyPipeAccounting_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text409" Left="491.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3EmptyPipeAccounting_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text416" Left="113.4" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1EmptyPipeInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text417" Left="189" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2EmptyPipeInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text418" Left="264.6" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3EmptyPipeInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text419" Left="340.2" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1EmptyPipeInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text420" Left="415.8" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2EmptyPipeInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text421" Left="491.4" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3EmptyPipeInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text428" Left="113.4" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ReverseInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text429" Left="189" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ReverseInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text430" Left="264.6" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ReverseInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text431" Left="340.2" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ReverseInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text432" Left="415.8" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ReverseInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text433" Left="491.4" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ReverseInput_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text440" Top="34.02" Width="113.4" Height="11.34" Border.Lines="All" Text="Нап.потока при телем." Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text442" Left="113.4" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1FlowDirection_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text443" Left="189" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2FlowDirection_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text444" Left="264.6" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3FlowDirection_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text445" Left="340.2" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1FlowDirection_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text446" Left="415.8" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2FlowDirection_Db1]" Font="Times New Roman, 8pt"/>
+          <TextObject Name="Text447" Left="491.4" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3FlowDirection_Db1]" Font="Times New Roman, 8pt"/>
+          <ChildBand Name="Db2Band" Top="718.33" Width="718.2" Height="347.76" StartNewPage="true" Guides="366.66">
+            <TextObject Name="Text272" Top="147.42" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль dt" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text284" Left="113.4" Top="147.42" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1dtControl_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text285" Left="340.2" Top="147.42" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2dtControl_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text271" Top="136.08" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль Q" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text282" Left="113.4" Top="136.08" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1QControl_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text283" Left="340.2" Top="136.08" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2QControl_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text259" Top="68.04" Width="113.4" Height="11.34" Border.Lines="All" Text="txдог, °С" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text260" Top="79.38" Width="113.4" Height="11.34" Border.Lines="All" Text="Pxдог, МПа" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text261" Top="90.72" Width="113.4" Height="11.34" Border.Lines="All" Text="КТЗ" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text262" Left="113.4" Top="68.04" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1txContract_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text263" Left="340.2" Top="68.04" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2txContract_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text264" Left="113.4" Top="79.38" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1PxContract_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text265" Left="340.2" Top="79.38" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2PxContract_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text266" Left="113.4" Top="90.72" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3Config_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text267" Left="340.2" Top="90.72" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3Config_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text268" Top="102.06" Width="113.4" Height="11.34" Border.Lines="All" Text="ФРТ" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text269" Top="113.4" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль t" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text270" Top="124.74" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль dM" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text276" Left="113.4" Top="102.06" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1FRT_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text277" Left="340.2" Top="102.06" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2FRT_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text278" Left="113.4" Top="113.4" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1tControl_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text279" Left="340.2" Top="113.4" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2tControl_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text280" Left="113.4" Top="124.74" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1dMControl_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text281" Left="340.2" Top="124.74" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2dMControl_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text256" Top="56.7" Width="113.4" Height="11.34" Border.Lines="All" Text="dMmax, %" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text257" Left="113.4" Top="56.7" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1dMmax_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text258" Left="340.2" Top="56.7" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2dMmax_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text246" Top="3.78" Width="94.5" Height="18.9" Text="Настройки БД2" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text247" Top="22.68" Width="113.4" Height="11.34" Border.Lines="All" Text="Параметр:" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+            <TextObject Name="Text248" Left="113.4" Top="22.68" Width="226.8" Height="11.34" Border.Lines="All" Text="Тепловой ввод 1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+            <TextObject Name="Text249" Left="340.2" Top="22.68" Width="226.8" Height="11.34" Border.Lines="All" Text="Тепловой ввод 2" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+            <TextObject Name="Text250" Top="34.02" Width="113.4" Height="11.34" Border.Lines="All" Text="СИ" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text251" Left="113.4" Top="34.02" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1MeasurementScheme_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text252" Left="340.2" Top="34.02" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2MeasurementScheme_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text253" Top="45.36" Width="113.4" Height="11.34" Border.Lines="All" Text="Исп.Qтв" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text254" Left="113.4" Top="45.36" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1UseQtv_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text255" Left="340.2" Top="45.36" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2UseQtv_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text273" Top="158.76" Width="113.4" Height="11.34" Border.Lines="All" Text="dtmin, °С" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text286" Left="113.4" Top="158.76" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1dtmin_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text287" Left="340.2" Top="158.76" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2dtmin_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text274" Top="170.1" Width="113.4" Height="11.34" Border.Lines="All" Text="Исп.tx" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text288" Left="113.4" Top="170.1" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1Usetx_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text289" Left="340.2" Top="170.1" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2Usetx_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text275" Top="181.44" Width="113.4" Height="11.34" Border.Lines="All" Text="Исп.tнв" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text290" Left="113.4" Top="181.44" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv1Usetnv_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text291" Left="340.2" Top="181.44" Width="226.8" Height="11.34" Border.Lines="All" Text="[Tv2Usetnv_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text378" Top="336.42" Width="113.4" Height="11.34" Border.Lines="All" Text="Vдог, м3" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text379" Left="113.4" Top="336.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ContractVolume_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text380" Left="189" Top="336.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ContractVolume_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text381" Left="264.6" Top="336.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ContractVolume_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text382" Left="340.2" Top="336.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ContractVolume_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text383" Left="415.8" Top="336.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ContractVolume_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text384" Left="491.4" Top="336.42" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ContractVolume_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text343" Top="279.72" Width="113.4" Height="11.34" Border.Lines="All" Text="Pп, м" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text344" Left="113.4" Top="279.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1HeightAdjustment_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text345" Left="189" Top="279.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2HeightAdjustment_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text346" Left="264.6" Top="279.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3HeightAdjustment_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text347" Left="340.2" Top="279.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1HeightAdjustment_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text348" Left="415.8" Top="279.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2HeightAdjustment_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text349" Left="491.4" Top="279.72" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3HeightAdjustment_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text350" Top="291.06" Width="113.4" Height="11.34" Border.Lines="All" Text="Pв, МПа" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text351" Left="113.4" Top="291.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1HighLimitSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text352" Left="189" Top="291.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2HighLimitSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text353" Left="264.6" Top="291.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3HighLimitSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text354" Left="340.2" Top="291.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1HighLimitSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text355" Left="415.8" Top="291.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2HighLimitSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text356" Left="491.4" Top="291.06" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3HighLimitSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text357" Top="302.4" Width="113.4" Height="11.34" Border.Lines="All" Text="Вес импульса, л" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text358" Left="113.4" Top="302.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ImpulseWeight_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text359" Left="189" Top="302.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ImpulseWeight_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text360" Left="264.6" Top="302.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ImpulseWeight_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text361" Left="340.2" Top="302.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ImpulseWeight_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text362" Left="415.8" Top="302.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ImpulseWeight_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text363" Left="491.4" Top="302.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ImpulseWeight_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text364" Top="313.74" Width="113.4" Height="11.34" Border.Lines="All" Text="Vmin, м3" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text365" Left="113.4" Top="313.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1VolumeMin_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text366" Left="189" Top="313.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2VolumeMin_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text367" Left="264.6" Top="313.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3VolumeMin_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text368" Left="340.2" Top="313.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1VolumeMin_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text369" Left="415.8" Top="313.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2VolumeMin_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text370" Left="491.4" Top="313.74" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3VolumeMin_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text371" Top="325.08" Width="113.4" Height="11.34" Border.Lines="All" Text="Vmax, м3" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text372" Left="113.4" Top="325.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1VolumeMax_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text373" Left="189" Top="325.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2VolumeMax_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text374" Left="264.6" Top="325.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3VolumeMax_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text375" Left="340.2" Top="325.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1VolumeMax_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text376" Left="415.8" Top="325.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2VolumeMax_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text377" Left="491.4" Top="325.08" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3VolumeMax_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text308" Top="223.02" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль V" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text309" Left="113.4" Top="223.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ControlV_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text310" Left="189" Top="223.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ControlV_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text311" Left="264.6" Top="223.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ControlV_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text312" Left="340.2" Top="223.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ControlV_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text313" Left="415.8" Top="223.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ControlV_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text314" Left="491.4" Top="223.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ControlV_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text315" Top="234.36" Width="113.4" Height="11.34" Border.Lines="All" Text="Контроль ВС" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text316" Left="113.4" Top="234.36" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ControlWC_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text317" Left="189" Top="234.36" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ControlWC_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text318" Left="264.6" Top="234.36" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ControlWC_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text319" Left="340.2" Top="234.36" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ControlWC_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text320" Left="415.8" Top="234.36" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ControlWC_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text321" Left="491.4" Top="234.36" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ControlWC_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text322" Top="245.7" Width="113.4" Height="11.34" Border.Lines="All" Text="Датчик P" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text323" Left="113.4" Top="245.7" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1PressureSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text324" Left="189" Top="245.7" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2PressureSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text325" Left="264.6" Top="245.7" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3PressureSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text326" Left="340.2" Top="245.7" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1PressureSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text327" Left="415.8" Top="245.7" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2PressureSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text328" Left="491.4" Top="245.7" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3PressureSensor_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text329" Top="257.04" Width="113.4" Height="11.34" Border.Lines="All" Text="tдог, °С" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text330" Left="113.4" Top="257.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ContractTemp_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text331" Top="268.38" Width="113.4" Height="11.34" Border.Lines="All" Text="Pдог, МПа" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text332" Left="113.4" Top="268.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ContractPressure_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text333" Left="189" Top="257.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ContractTemp_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text334" Left="264.6" Top="257.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ContractTemp_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text335" Left="340.2" Top="257.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ContractTemp_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text336" Left="415.8" Top="257.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ContractTemp_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text337" Left="491.4" Top="257.04" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ContractTemp_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text338" Left="189" Top="268.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ContractPressure_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text339" Left="264.6" Top="268.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ContractPressure_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text340" Left="340.2" Top="268.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ContractPressure_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text341" Left="415.8" Top="268.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ContractPressure_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text342" Left="491.4" Top="268.38" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ContractPressure_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text294" Left="113.4" Top="200.34" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+            <TextObject Name="Text295" Left="189" Top="200.34" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 2" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+            <TextObject Name="Text296" Left="264.6" Top="200.34" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 3" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+            <TextObject Name="Text297" Left="340.2" Top="200.34" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+            <TextObject Name="Text298" Left="415.8" Top="200.34" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 2" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+            <TextObject Name="Text299" Left="491.4" Top="200.34" Width="75.6" Height="11.34" Border.Lines="All" Text="Труба 3" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+            <TextObject Name="Text300" Top="200.34" Width="113.4" Height="11.34" Border.Lines="All" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text301" Top="211.68" Width="113.4" Height="11.34" Border.Lines="All" Text="Тип ВС" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text302" Left="113.4" Top="211.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1WaterCounterType_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text303" Left="189" Top="211.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2WaterCounterType_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text304" Left="264.6" Top="211.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3WaterCounterType_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text305" Left="340.2" Top="211.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1WaterCounterType_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text306" Left="415.8" Top="211.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2WaterCounterType_Db2]" Font="Times New Roman, 8pt"/>
+            <TextObject Name="Text307" Left="491.4" Top="211.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3WaterCounterType_Db2]" Font="Times New Roman, 8pt"/>
+            <ChildBand Name="NewFirmwareParams2Band" Top="1068.02" Width="718.2" Height="45.36">
+              <TextObject Name="Text388" Width="113.4" Height="11.34" Border.Lines="All" Text="Учет пустой трубы" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text389" Top="11.34" Width="113.4" Height="11.34" Border.Lines="All" Text="Вход пустой трубы" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text390" Top="22.68" Width="113.4" Height="11.34" Border.Lines="All" Text="Вход реверса" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text410" Left="113.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1EmptyPipeAccounting_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text411" Left="189" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2EmptyPipeAccounting_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text412" Left="264.6" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3EmptyPipeAccounting_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text413" Left="340.2" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1EmptyPipeAccounting_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text414" Left="415.8" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2EmptyPipeAccounting_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text415" Left="491.4" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3EmptyPipeAccounting_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text422" Left="113.4" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1EmptyPipeInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text423" Left="189" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2EmptyPipeInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text424" Left="264.6" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3EmptyPipeInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text425" Left="340.2" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1EmptyPipeInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text426" Left="415.8" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2EmptyPipeInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text427" Left="491.4" Top="11.34" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3EmptyPipeInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text434" Left="113.4" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1ReverseInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text435" Left="189" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2ReverseInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text436" Left="264.6" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3ReverseInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text437" Left="340.2" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1ReverseInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text438" Left="415.8" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2ReverseInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text439" Left="491.4" Top="22.68" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3ReverseInput_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text441" Top="34.02" Width="113.4" Height="11.34" Border.Lines="All" Text="Нап.потока при телем." Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text448" Left="113.4" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe1FlowDirection_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text449" Left="189" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe2FlowDirection_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text450" Left="264.6" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv1Pipe3FlowDirection_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text451" Left="340.2" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe1FlowDirection_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text452" Left="415.8" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe2FlowDirection_Db2]" Font="Times New Roman, 8pt"/>
+              <TextObject Name="Text453" Left="491.4" Top="34.02" Width="75.6" Height="11.34" Border.Lines="All" Text="[Tv2Pipe3FlowDirection_Db2]" Font="Times New Roman, 8pt"/>
+            </ChildBand>
+          </ChildBand>
+        </ChildBand>
+      </ChildBand>
+    </ReportTitleBand>
+    <PageFooterBand Name="PageFooter1" Top="1115.31" Width="718.2" Height="18.9">
+      <TextObject Name="Text66" Left="311.85" Top="3.78" Width="94.5" Height="11.34" Text="[Page]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

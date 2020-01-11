@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Devart (www.devart.com), compare document file -->
+<!-- Modifying this generated file will probably render it invalid -->
+<CompareDocument>
+  <Properties>
+    <DatabaseProvider>aa8afe9c-7d62-4564-b477-c12e62e0f440</DatabaseProvider>
+    <ProviderVersion>5.5.327.0</ProviderVersion>
+    <SchemaVersion>1.5</SchemaVersion>
+  </Properties>
+  <Source Type="Database">
+    <DataConnection>ETA-WORKER\SQLSERVER</DataConnection>
+    <ConnectionString>Data Source=ETA-WORKER\SQLSERVER;Encrypt=False;Integrated Security=False;User ID=sa</ConnectionString>
+    <Category>e48bae52-25bc-4af0-bd93-c5cfc0c5aed1</Category>
+    <Schema>EnergyTechAudit.PowerAccounting.Database</Schema>
+  </Source>
+  <Target Type="Database">
+    <DataConnection>185.148.221.171,61433</DataConnection>
+    <ConnectionString>Data Source=185.148.221.171,61433;Encrypt=False;Integrated Security=False;User ID=sa</ConnectionString>
+    <Category>e48bae52-25bc-4af0-bd93-c5cfc0c5aed2</Category>
+    <Schema>EnergyTechAudit.PowerAccounting.Database</Schema>
+  </Target>
+  <GroupType Value="Status" />
+  <Filter Value="0" />
+  <ComparisonOptions>
+    <DisableDependencyAnalysis>false</DisableDependencyAnalysis>
+    <IgnorePermissions>false</IgnorePermissions>
+    <QuoteObjectNames>true</QuoteObjectNames>
+    <IgnoreColumnOrderInIndexes>false</IgnoreColumnOrderInIndexes>
+    <IgnoreConstraintsNames>false</IgnoreConstraintsNames>
+    <IgnoreForeignKeys>false</IgnoreForeignKeys>
+    <TargetAzureEdition xml:space="preserve" />
+    <CountColumnsToDropUK>true</CountColumnsToDropUK>
+    <MappingIgnoreSpaces>false</MappingIgnoreSpaces>
+    <MappingIgnoreCase>false</MappingIgnoreCase>
+    <MappingSimilar>false</MappingSimilar>
+    <MappingSimilarPercent xml:space="preserve">80</MappingSimilarPercent>
+    <ForceColumnOrder>true</ForceColumnOrder>
+    <IgnoreParserErrors>false</IgnoreParserErrors>
+    <IgnoreCase>false</IgnoreCase>
+    <IgnoreComments>false</IgnoreComments>
+    <IgnoreWhiteSpace>true</IgnoreWhiteSpace>
+    <IgnoreObjectNamesInDefinitions>false</IgnoreObjectNamesInDefinitions>
+    <CompareSecurityObjectPrivileges>false</CompareSecurityObjectPrivileges>
+    <CompareDatabaseProperties>true</CompareDatabaseProperties>
+    <UserDataTypesToSystem>false</UserDataTypesToSystem>
+    <IgnoreAuthorization>false</IgnoreAuthorization>
+    <IgnoreChangeTracking>false</IgnoreChangeTracking>
+    <IgnoreCollations>false</IgnoreCollations>
+    <IgnoreDataCompression>true</IgnoreDataCompression>
+    <IgnoreDatabaseInSynonyms>true</IgnoreDatabaseInSynonyms>
+    <IgnoreDatabaseExtendedProperties>true</IgnoreDatabaseExtendedProperties>
+    <IgnoreDatabaseObjectExtendedProperties>false</IgnoreDatabaseObjectExtendedProperties>
+    <IgnoreEventNotificationOnQueues>false</IgnoreEventNotificationOnQueues>
+    <IgnoreFilegroupsPartitionSchemes>false</IgnoreFilegroupsPartitionSchemes>
+    <IgnoreFullTextCatalogPath>false</IgnoreFullTextCatalogPath>
+    <IgnoreFullTextSearch>false</IgnoreFullTextSearch>
+    <IgnoreNextFilegroups>false</IgnoreNextFilegroups>
+    <IgnoreSemicolons>false</IgnoreSemicolons>
+    <IgnoreSequenceMax>false</IgnoreSequenceMax>
+    <IgnoreSequenceMin>false</IgnoreSequenceMin>
+    <IgnoreSequenceStart>false</IgnoreSequenceStart>
+    <IgnoreTSQLtFramework>false</IgnoreTSQLtFramework>
+    <IgnoreUserDefaultSchema>true</IgnoreUserDefaultSchema>
+    <PopulateFullTextIndexes>true</PopulateFullTextIndexes>
+    <IgnoreUserPermissions>false</IgnoreUserPermissions>
+    <IgnoreUserDefaultLanguage>false</IgnoreUserDefaultLanguage>
+    <IgnoreLogins>true</IgnoreLogins>
+    <IgnoreDataTypesInColumn>false</IgnoreDataTypesInColumn>
+    <IgnoreClrDataTypesInColumn>false</IgnoreClrDataTypesInColumn>
+    <IgnoreRules>false</IgnoreRules>
+    <IgnoreIdentitySeedIncrementValues>false</IgnoreIdentitySeedIncrementValues>
+    <IgnoreIdentity>false</IgnoreIdentity>
+    <IgnoreDefaultCollations>true</IgnoreDefaultCollations>
+    <IgnoreBoundRulesDefaults>false</IgnoreBoundRulesDefaults>
+    <IgnoreLockEscalation>true</IgnoreLockEscalation>
+    <IgnoreTemporalHistoryTableName>true</IgnoreTemporalHistoryTableName>
+    <IgnoreTableDMLTriggers>false</IgnoreTableDMLTriggers>
+    <IgnoreInsteadOfTriggers>false</IgnoreInsteadOfTriggers>
+    <IgnoreDMLTriggerState>false</IgnoreDMLTriggerState>
+    <IgnoreDDLTriggerState>false</IgnoreDDLTriggerState>
+    <IgnoreTriggerFireOrder>false</IgnoreTriggerFireOrder>
+    <IgnoreIndexes>false</IgnoreIndexes>
+    <IgnoreStatistics>false</IgnoreStatistics>
+    <IgnoreIndexesNames>false</IgnoreIndexesNames>
+    <IgnoreStatisticsNorecompute>true</IgnoreStatisticsNorecompute>
+    <IgnorePadIndexAndFillfactor>true</IgnorePadIndexAndFillfactor>
+    <IgnoreIndexColumnsSortOrder>false</IgnoreIndexColumnsSortOrder>
+    <IgnoreIndexPageAndRowLock>true</IgnoreIndexPageAndRowLock>
+    <IgnoreCheckConstraints>false</IgnoreCheckConstraints>
+    <IgnoreDefaultConstraints>false</IgnoreDefaultConstraints>
+    <IgnoreNocheck>false</IgnoreNocheck>
+    <IgnoreWithNocheck>true</IgnoreWithNocheck>
+    <IgnoreConstraintSystemNames>true</IgnoreConstraintSystemNames>
+    <IgnoreNotNullConstraints>false</IgnoreNotNullConstraints>
+    <IgnoreForeignKeyActions>false</IgnoreForeignKeyActions>
+    <IgnorePrimaryKeys>false</IgnorePrimaryKeys>
+    <IgnoreUniqueKeys>false</IgnoreUniqueKeys>
+    <IgnoreNotForReplication>false</IgnoreNotForReplication>
+    <IgnoreReplicatedTables>true</IgnoreReplicatedTables>
+    <IgnoreReplicationTriggers>false</IgnoreReplicationTriggers>
+    <IgnoreReplicatedProcedures>false</IgnoreReplicatedProcedures>
+    <IgnoreReplicatedSchemas>false</IgnoreReplicatedSchemas>
+    <IgnoreReplicatedRoles>false</IgnoreReplicatedRoles>
+    <DecryptEncryptedObjects>true</DecryptEncryptedObjects>
+    <IgnoreWithEncryption>false</IgnoreWithEncryption>
+    <IgnoreSignatures>false</IgnoreSignatures>
+    <IgnoreWithOptionOrder>true</IgnoreWithOptionOrder>
+    <IgnoreKeywordReduction>true</IgnoreKeywordReduction>
+    <IgnoreQuotedIdentifierAndANSINulls>false</IgnoreQuotedIdentifierAndANSINulls>
+    <IgnoreDropIndexes>false</IgnoreDropIndexes>
+    <IgnoreDropDMLTriggers>false</IgnoreDropDMLTriggers>
+    <CheckInconsistency>false</CheckInconsistency>
+    <SetDelimiter>true</SetDelimiter>
+    <UseDelimiter>true</UseDelimiter>
+    <TargetDatabaseName xml:space="preserve">EnergyTechAudit.PowerAccounting.Database</TargetDatabaseName>
+    <TargetChangeTracking>false</TargetChangeTracking>
+    <IsTarget>false</IsTarget>
+    <OmitIgnoreOptions>false</OmitIgnoreOptions>
+    <IncludeFilesAndFilegroups>false</IncludeFilesAndFilegroups>
+    <IgnoreMemoryOptimizedProperty>false</IgnoreMemoryOptimizedProperty>
+    <IncludeSetNoExec>true</IncludeSetNoExec>
+    <CompareServerObjects>false</CompareServerObjects>
+    <IgnoreObjectTypeFilter>false</IgnoreObjectTypeFilter>
+  </ComparisonOptions>
+  <ObjectFilter>
+    <Include>Table</Include>
+    <Include>View</Include>
+    <Include>Procedure</Include>
+    <Include>Function</Include>
+    <Include>User</Include>
+    <Include>DatabaseRole</Include>
+    <Include>ApplicationRole</Include>
+    <Include>Rule</Include>
+    <Include>Default</Include>
+    <Include>UserDefinedType</Include>
+    <Include>FullTextCatalog</Include>
+    <Include>PartitionFunction</Include>
+    <Include>PartitionScheme</Include>
+    <Include>Assembly</Include>
+    <Include>AsymmetricKey</Include>
+    <Include>Certificate</Include>
+    <Include>Contract</Include>
+    <Include>DdlTrigger</Include>
+    <Include>EventNotification</Include>
+    <Include>MessageType</Include>
+    <Include>Queue</Include>
+    <Include>RemoteServiceBinding</Include>
+    <Include>Route</Include>
+    <Include>Schema</Include>
+    <Include>Service</Include>
+    <Include>SymmetricKey</Include>
+    <Include>Synonym</Include>
+    <Include>XmlSchemaCollection</Include>
+    <Include>FullTextStoplist</Include>
+    <Include>BrokerPriority</Include>
+    <Include>Sequence</Include>
+    <Include>SearchPropertyList</Include>
+    <Include>PlanGuide</Include>
+    <Include>SecurityPolicy</Include>
+    <Include>ExternalDataSource</Include>
+    <Include>ExternalFileFormat</Include>
+    <Include>ExternalTable</Include>
+    <Include>ColumnMasterKey</Include>
+    <Include>ColumnEncryptionKey</Include>
+  </ObjectFilter>
+  <ModifiedObjects>
+    <Object Name="EnergyTechAudit.PowerAccounting.Database:EnergyTechAudit.PowerAccounting.Database" Type="Assembly" Include="False" Operation="None" />
+    <Object Name="EnergyTechAudit.PowerAccounting.Database.Certificate:EnergyTechAudit.PowerAccounting.Database.Certificate" Type="Certificate" Include="False" Operation="None" />
+  </ModifiedObjects>
+  <ScriptsFolderOptions>
+    <ScriptsFolderSynchronization>
+      <FolderStructure>
+        <Database Include="True" IncludeSubfolder="False" SubfolderName="Database\" FileName="$object$" FileExtension=".sql" />
+        <Table Include="True" IncludeSubfolder="True" SubfolderName="Tables\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <TableData Include="True" IncludeSubfolder="True" SubfolderName="Tables\StaticData\" FileName="$schema$.$object$.Data" FileExtension=".sql" />
+        <View Include="True" IncludeSubfolder="True" SubfolderName="Views\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Synonym Include="True" IncludeSubfolder="True" SubfolderName="Synonyms\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Procedure Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Procedures\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Function Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Functions\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <DdlTrigger Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Database Triggers\" FileName="$object$" FileExtension=".sql" />
+        <Sequence Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Sequences\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Assembly Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Assemblies\" FileName="$object$" FileExtension=".sql" />
+        <Rule Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Rules\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Default Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Defaults\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <PlanGuide Include="True" IncludeSubfolder="True" SubfolderName="Programmability\Plan Guides\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <UserDataType Include="True" IncludeSubfolder="True" SubfolderName="Programmability\User Types\Data Types\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <UserTableType Include="True" IncludeSubfolder="True" SubfolderName="Programmability\User Types\Table Types\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <ClrType Include="True" IncludeSubfolder="True" SubfolderName="Programmability\User Types\CLR Types\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <XmlSchemaCollection Include="True" IncludeSubfolder="True" SubfolderName="Programmability\User Types\XML Schema Collections\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <MessageType Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Message Types\" FileName="$object$" FileExtension=".sql" />
+        <Contract Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Contracts\" FileName="$object$" FileExtension=".sql" />
+        <Queue Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Queues\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <Service Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Services\" FileName="$object$" FileExtension=".sql" />
+        <Route Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Routes\" FileName="$object$" FileExtension=".sql" />
+        <RemoteServiceBinding Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Remote Service Bindings\" FileName="$object$" FileExtension=".sql" />
+        <BrokerPriority Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Broker Priorities\" FileName="$object$" FileExtension=".sql" />
+        <EventNotification Include="True" IncludeSubfolder="True" SubfolderName="Service Broker\Event Notifications\" FileName="$object$" FileExtension=".sql" />
+        <FullTextCatalog Include="True" IncludeSubfolder="True" SubfolderName="Storage\Full-Text Catalogs\" FileName="$object$" FileExtension=".sql" />
+        <PartitionScheme Include="True" IncludeSubfolder="True" SubfolderName="Storage\Partition Schemes\" FileName="$object$" FileExtension=".sql" />
+        <PartitionFunction Include="True" IncludeSubfolder="True" SubfolderName="Storage\Partition Functions\" FileName="$object$" FileExtension=".sql" />
+        <FullTextStoplist Include="True" IncludeSubfolder="True" SubfolderName="Storage\Full-Text Stoplists\" FileName="$object$" FileExtension=".sql" />
+        <SearchPropertyList Include="True" IncludeSubfolder="True" SubfolderName="Storage\Search Property Lists\" FileName="$object$" FileExtension=".sql" />
+        <ExternalTable Include="True" IncludeSubfolder="True" SubfolderName="External Resources\External Tables\" FileName="$schema$.$object$" FileExtension=".sql" />
+        <ExternalDataSource Include="True" IncludeSubfolder="True" SubfolderName="External Resources\External Data Sources\" FileName="$object$" FileExtension=".sql" />
+        <ExternalFileFormat Include="True" IncludeSubfolder="True" SubfolderName="External Resources\External File Formats\" FileName="$object$" FileExtension=".sql" />
+        <User Include="True" IncludeSubfolder="True" SubfolderName="Security\Users\" FileName="$object$" FileExtension=".sql" />
+        <DatabaseRole Include="True" IncludeSubfolder="True" SubfolderName="Security\Roles\" FileName="$object$" FileExtension=".sql" />
+        <ApplicationRole Include="True" IncludeSubfolder="True" SubfolderName="Security\Application Roles\" FileName="$object$" FileExtension=".sql" />
+        <Schema Include="True" IncludeSubfolder="True" SubfolderName="Security\Schemas\" FileName="$object$" FileExtension=".sql" />
+        <AsymmetricKey Include="True" IncludeSubfolder="True" SubfolderName="Security\Asymmetric Keys\" FileName="$object$" FileExtension=".sql" />
+        <Certificate Include="True" IncludeSubfolder="True" SubfolderName="Security\Certificates\" FileName="$object$" FileExtension=".sql" />
+        <SymmetricKey Include="True" IncludeSubfolder="True" SubfolderName="Security\Symmetric Keys\" FileName="$object$" FileExtension=".sql" />
+        <SecurityPolicy Include="True" IncludeSubfolder="True" SubfolderName="Security\SecurityPolicy\" FileName="$object$" FileExtension=".sql" />
+        <ColumnMasterKey Include="True" IncludeSubfolder="True" SubfolderName="Security\Always Encrypted Keys\Column Master Keys\" FileName="$object$" FileExtension=".sql" />
+        <ColumnEncryptionKey Include="True" IncludeSubfolder="True" SubfolderName="Security\Always Encrypted Keys\Column Encryption Keys\" FileName="$object$" FileExtension=".sql" />
+      </FolderStructure>
+    </ScriptsFolderSynchronization>
+  </ScriptsFolderOptions>
+  <SynchronizationOptions>
+    <PropertyValue Name="BackupDatabase">false</PropertyValue>
+    <PropertyValue Name="BackupExtension">false</PropertyValue>
+    <PropertyValue Name="CreateBackupFolder">false</PropertyValue>
+    <PropertyValue Name="NeedCompressBackup">false</PropertyValue>
+    <PropertyValue Name="AddBackupType">false</PropertyValue>
+    <PropertyValue Name="BackupType">0</PropertyValue>
+    <PropertyValue Name="ExecuteAsSingleTransaction">true</PropertyValue>
+    <PropertyValue Name="AddingErrorHandling">false</PropertyValue>
+    <PropertyValue Name="AddTransactionIsolationLevel">false</PropertyValue>
+    <PropertyValue Name="TransactionIsolationLevel">0</PropertyValue>
+    <PropertyValue Name="DeployDatabaseInSingleUserMode">false</PropertyValue>
+    <PropertyValue Name="AddWithEncryption">false</PropertyValue>
+    <PropertyValue Name="IncludeUseDatabase">true</PropertyValue>
+    <PropertyValue Name="AffectedFileReadOnly">true</PropertyValue>
+    <PropertyValue Name="UseSchemaNamePrefix">false</PropertyValue>
+    <PropertyValue Name="IncludePrintComments">false</PropertyValue>
+    <PropertyValue Name="ExcludeComments">false</PropertyValue>
+    <PropertyValue Name="BackupPathName" xml:space="preserve">d:\Program Files\Microsoft SQL Server\MSSQL14.SQLSERVER2\MSSQL\Backup</PropertyValue>
+    <PropertyValue Name="BackupExtensionName" xml:space="preserve">.bak</PropertyValue>
+    <PropertyValue Name="GenerateScriptHeader">true</PropertyValue>
+    <PropertyValue Name="UseSqlExtensionCommands">true</PropertyValue>
+    <PropertyValue Name="AllowDefaultValues">false</PropertyValue>
+    <PropertyValue Name="AssembliesStoragePath" xml:space="preserve" />
+    <PropertyValue Name="UseCreateOrAlter">true</PropertyValue>
+    <PropertyValue Name="AddWithNocheck">false</PropertyValue>
+    <PropertyValue Name="DisableDdlTriggers">false</PropertyValue>
+    <PropertyValue Name="VerifyTableData">false</PropertyValue>
+    <PropertyValue Name="CheckObjectExistence">false</PropertyValue>
+    <PropertyValue Name="UseSchemaTransfer">false</PropertyValue>
+    <PropertyValue Name="DropCreateOnly">false</PropertyValue>
+    <PropertyValue Name="DropCreateOnlyTables">false</PropertyValue>
+    <PropertyValue Name="DropCreateOnlyAssemblies">false</PropertyValue>
+    <PropertyValue Name="SynchronizeAsmViaFiles">false</PropertyValue>
+    <PropertyValue Name="RefreshViews">true</PropertyValue>
+    <PropertyValue Name="UseSubSchemaNamePrefix">true</PropertyValue>
+    <PropertyValue Name="CommentDdlForKeysCertificates">true</PropertyValue>
+    <PropertyValue Name="ExcludeDependencies">false</PropertyValue>
+    <PropertyValue Name="CanSqlExecutorAddError">true</PropertyValue>
+    <PropertyValue Name="SynchronizeType">0</PropertyValue>
+    <PropertyValue Name="SynchronizationFileName" xml:space="preserve">C:\EnergyTechAudit.DocumentFlow\EnergyTechAudit.DocumentFlow.Database\_Deployment\EnergyTechAudit_PowerAccounting_Database (SQLSERVER vs 85_140_112_10,61433)_20191206-0853.sql</PropertyValue>
+    <PropertyValue Name="SynchronizationEditorFileName" xml:space="preserve">C:\Users\Leo\AppData\Local\Temp\Devart_hi4ztql4.wrq\sync.sql</PropertyValue>
+    <PropertyValue Name="OpenScriptInEditor">true</PropertyValue>
+    <PropertyValue Name="RefreshAfterSynchronization">true</PropertyValue>
+    <PropertyValue Name="OpenScriptsFolder">false</PropertyValue>
+    <PropertyValue Name="PureScript">false</PropertyValue>
+    <PropertyValue Name="IsPartOfScript">false</PropertyValue>
+    <PropertyValue Name="IgnoreEncryptionProperty">false</PropertyValue>
+    <PropertyValue Name="UseCommitMode">false</PropertyValue>
+    <PropertyValue Name="CommitPageLength" xml:space="preserve">0</PropertyValue>
+  </SynchronizationOptions>
+  <Mapping ExcludeUnmappedSchemas="False">
+    <Schemas>
+      <Object SourceName="Admin" TargetName="Admin" State="DefaultMapped" Included="True" />
+      <Object SourceName="Business" TargetName="Business" State="DefaultMapped" Included="True" />
+      <Object SourceName="Core" TargetName="Core" State="DefaultMapped" Included="True" />
+      <Object SourceName="dbo" TargetName="dbo" State="DefaultMapped" Included="True" />
+      <Object SourceName="DeviceReader" TargetName="DeviceReader" State="DefaultMapped" Included="True" />
+      <Object SourceName="Dictionaries" TargetName="Dictionaries" State="DefaultMapped" Included="True" />
+      <Object SourceName="guest" TargetName="guest" State="DefaultMapped" Included="True" />
+      <Object SourceName="Help" TargetName="Help" State="DefaultMapped" Included="True" />
+      <Object SourceName="Programmability" TargetName="Programmability" State="DefaultMapped" Included="True" />
+      <Object SourceName="Rules" TargetName="Rules" State="DefaultMapped" Included="True" />
+      <Object SourceName="Temp" TargetName="Temp" State="DefaultMapped" Included="True" />
+      <Object SourceName="WebApi" TargetName="WebApi" State="DefaultMapped" Included="True" />
+    </Schemas>
+    <ComparedObjects />
+  </Mapping>
+</CompareDocument>

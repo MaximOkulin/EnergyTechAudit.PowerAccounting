@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="CommandMenuItem">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="CommandMenuItem"/>
+        <xs:element name="Name" type="xs:string"/>
+        <xs:element name="AdditionalInfo" type="xs:string"/>
+        <xs:element name="BeginGroup" type="xs:boolean"/>
+        <xs:element name="CommandName" type="xs:string"/>
+        <xs:element name="Enabled" type="xs:boolean" minOccurs="0"/>
+        <xs:element minOccurs="0" name="Visible" type="xs:boolean"/>
+        <xs:element name="IconClass" type="xs:string" minOccurs="0"/>
+        <xs:element name="DropDownMode" type="xs:boolean" minOccurs="0"/>
+        <xs:element name="TryMergeByName" type="xs:boolean" minOccurs="0"/>
+        <xs:element name="Text" type="xs:string"/>
+        <xs:element name="ToolTip" type="xs:string"/>
+        <xs:element name="Checked" type="xs:boolean" minOccurs="0"/>
+        <xs:element name="GroupName" type="xs:string" minOccurs="0"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CommandMenu">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Name" type="xs:string"/>
+        <xs:element name="ClientVisible" type="xs:boolean"/>
+        <xs:element maxOccurs="1" minOccurs="1" name="Width" type="xs:int"/>
+        <xs:element name="EnableAdaptivity" type="xs:boolean"/>
+
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="CommandMenuItem"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

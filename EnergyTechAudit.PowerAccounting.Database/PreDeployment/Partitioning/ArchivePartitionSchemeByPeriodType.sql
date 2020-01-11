@@ -1,0 +1,10 @@
+﻿CREATE PARTITION SCHEME [ArchivePartitionSchemeByPeriodType]
+	AS PARTITION [ArchivePartitionByPeriodType]
+	TO (
+		[ARCHIVE_INSTANT], 
+		[ARCHIVE_HOUR], 
+		[ARCHIVE_DAY], 
+		[ARCHIVE_MONTH],
+		[ARCHIVE_FINALINSTANT],
+		[ARCHIVE_FINAL]
+	)

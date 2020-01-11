@@ -1,0 +1,167 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  <!--Параметрик для сводной таблицы Распределение измерительных приборов-->
+  <Id>pivotGridParametric</Id>
+  <Height>0</Height>
+  <Width>400</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <Title>Параметры</Title>
+  <IsSavedState>true</IsSavedState>
+  
+  <Descriptors>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Город</Caption>
+      <Name>CityId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>      
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryWithAll</DataSourceType>
+        <DataSource>City</DataSource>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>100</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>200</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+       <Value>0</Value>    
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{2}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>      
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption></Caption>
+      <Name>PivotFields</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromSetting</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <FormLayoutItemCustomData>
+        [{
+        "area": "RowArea",
+        "areaIndex": 0,
+        "fieldName":"City",
+        "caption":"Город",
+        "visible": 1
+        },
+        {
+        "area": "RowArea",
+        "areaIndex": 1,
+        "fieldName":"District",
+        "caption":"Район",
+        "visible": 1
+        },
+        {
+        "area": "ColumnArea",
+        "areaIndex": 0,
+        "fieldName":"ResourceSystemType",
+        "caption":"Ресурс",
+        "visible": 1
+        },
+        {
+        "area": "ColumnArea",
+        "areaIndex": 1,
+        "fieldName":"Device",
+        "caption":"Тип прибора",
+        "visible": 1
+        },
+        {
+        "area": "DataArea",
+        "areaIndex": 0,
+        "fieldName":"Count",
+        "caption":"Количество",
+        "visible": 1
+        },
+        {
+        "area": "FilterArea",
+        "areaIndex": 0,
+        "fieldName":"Building",
+        "caption":"Строение",
+        "visible": 1
+        },
+        {
+        "area": "FilterArea",
+        "areaIndex": 1,
+        "fieldName":"AccessPoint",
+        "caption":"Точка доступа",
+        "visible": 1
+        },
+        {
+        "area": "FilterArea",
+        "areaIndex": 2,
+        "fieldName":"MeasurementDevice",
+        "caption":"Прибор",
+        "visible": 1
+        },
+        {
+        "area": "FilterArea",
+        "areaIndex": 3,
+        "fieldName":"ConnectionsNumber",
+        "caption":"Число соединений",
+        "visible": 1
+        },
+        {
+        "area": "FilterArea",
+        "areaIndex": 4,
+        "fieldName":"GoodResponsePercent",
+        "caption":"Процент успешных соединений",
+        "visible": 1
+        },
+        {
+        "area": "FilterArea",
+        "areaIndex": 5,
+        "fieldName":"Id",
+        "caption":"Ид",
+        "visible": 0
+        },        
+        {
+        "area": "FilterArea",
+        "areaIndex": 7,
+        "fieldName":"DeviceReaderDescription",
+        "caption": "Считыватель",
+        "visible": 1
+        }]
+      </FormLayoutItemCustomData>
+    </FormLayoutItemDescriptor>
+       
+  </Descriptors>
+</ParametricDialog>

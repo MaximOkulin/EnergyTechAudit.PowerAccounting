@@ -1,0 +1,40 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>simpleGridViewCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>325</Width>
+  <EnableAdaptivity>false</EnableAdaptivity>
+  
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-darkslateblue font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>exportEmergencyLog</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>exportEmergencyLog</CommandName>
+    <IconClass>font-icon-file_export font-icon-darkslateblue font-icon-x1_2 indent-right-5px</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+       
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>gridSettings</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridSettings</CommandName>
+    <IconClass>font-icon-options font-icon-x1_2 font-icon-color-marine</IconClass>
+    <ToolTip>Настройки</ToolTip>
+    
+  </CommandMenuItem>
+</CommandMenu>

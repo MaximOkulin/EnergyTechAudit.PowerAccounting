@@ -1,0 +1,79 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">  
+  <Id>pivotDiagrammByDistrictParametricDialog</Id>
+  <Height>0</Height>
+  <Width>350</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <Title>Параметры</Title>
+  <IsSavedState>false</IsSavedState>
+  <IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+  <Descriptors>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Тип прибора</Caption>
+      <Name>DeviceId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT DISTINCT([D].[Id]) [Id],
+          [D].[Code] [Code],
+          [D].[Description] [Description]
+          FROM [Dictionaries].[Device] [D] WITH(NOLOCK)
+          INNER JOIN [Business].[MeasurementDevice] [Md] WITH(NOLOCK) ON [D].[Id] = [Md].[DeviceId]
+          INNER JOIN [Business].[Channel] [Channel] WITH(NOLOCK) ON [Channel].[MeasurementDeviceId] = [Md].[Id]
+          WHERE [Md].[Id] IN
+          (
+          SELECT [Ul].[ChannelId]
+          FROM [Business].[UserLinkChannel] [Ul] WITH(NOLOCK)
+          WHERE [Ul].[UserId] = (SELECT TOP(1) [User].[Id] FROM [Admin].[User] [User] WITH(NOLOCK) WHERE [User].[UserName] = @userName)
+          ) OR &apos;ADMIN&apos; = @roleName
+          UNION ALL
+          SELECT 0 [Id], &apos;Все приборы&apos; [Code], &apos;Все приборы&apos; [Description]
+          ORDER BY [Id]
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption>Ид</Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Наименование</Caption>
+            <Width>300</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    
+  </Descriptors>
+</ParametricDialog>

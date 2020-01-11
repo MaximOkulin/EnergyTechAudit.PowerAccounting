@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Core.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Common.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Domain.dll&#13;&#10;EnergyTechAudit.PowerAccounting.DataAccess.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll" ConvertNulls="false" DoublePass="true" StartReportEvent="Start_Report" ReportInfo.Name="AccountingParamSheetPramer710Hours" ReportInfo.Author="Max" ReportInfo.Version="Id = 122;ReportTypeId = 1;HasPluginProcessing = 1" ReportInfo.Description="Ведомость учета часовых мониторинговых показаний" ReportInfo.Created="01/22/2015 15:18:15" ReportInfo.Modified="03/27/2019 17:29:55" ReportInfo.CreatorVersion="2017.4.3.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using EnergyTechAudit.PowerAccounting.Common.Entity;
+using EnergyTechAudit.PowerAccounting.Domain.Interfaces;
+using EnergyTechAudit.PowerAccounting.DataAccess.Helper;
+using EnergyTechAudit.PowerAccounting.Common.FormatProviders;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Aggregate;
+
+namespace FastReport
+{
+     public class ReportScript
+     {     
+          public static string DeviceCode = null;
+          
+          public static int PeriodTypeId = 0;
+          
+          
+          private void Start_Report(object sender, EventArgs e)
+          {
+              
+          }
+     }
+        
+}
+</ScriptText>
+  <Dictionary/>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="305" PaperHeight="210" Guides="0" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle" Width="1077.3" Height="117.18">
+      <TextObject Name="Text2" Left="332.64" Top="3.78" Width="514.08" Height="49.14" Text="Почасовые мониторинговые показания" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text29" Top="75.6" Width="79.38" Height="18.9" Text="Потребитель:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Top="94.5" Width="79.38" Height="18.9" Text="Адрес:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text31" Left="888.3" Top="79.38" Width="90.72" Height="18.9" Text="Тип прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text33" Left="979.02" Top="79.38" Width="90.72" Height="18.9" Text="[DeviceShortName]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text35" Left="215.46" Top="52.92" Width="718.2" Height="18.9" Text="c [string.Format(&quot;{0:d}&quot;, [PeriodBegin])] до [string.Format(&quot;{0:d}&quot;, [PeriodEnd])]" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text80" Left="79.38" Top="94.5" Width="94.5" Height="18.9" Text="[IIf([BuildingPurposeCode] != &quot;BoilerHouse&quot; ,[FullAddress],[BuildingDescription])]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text81" Left="79.38" Top="75.6" Width="94.5" Height="18.9" Text="[IIf([UseBuildingDescriptionInReports] == &quot;true&quot;,[BuildingDescription],[District])]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <PictureObject Name="CustomerReportLogo" Left="30.24" Top="7.56" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never"/>
+      <TextObject Name="Text32" Left="888.3" Top="94.5" Width="90.72" Height="18.9" Text="Номер прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text34" Left="979.02" Top="94.5" Width="90.72" Height="18.9" Text="[FactoryNumber]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+    </ReportTitleBand>
+    <DataBand Name="MainDataBand" Top="191.28" Width="1077.3" Height="18.9" PrintIfDatasourceEmpty="true">
+      <TextObject Name="Text16" Width="79.38" Height="18.9" Border.Lines="All" Text="[MainData.Time]" NullValue=" " Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text24" Left="79.38" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.AverageT1]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text96" Left="147.42" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.AverageT2]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text97" Left="215.46" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.AverageT3]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text98" Left="283.5" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.AverageT4]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text99" Left="351.54" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.MaxT1]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text100" Left="419.58" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.MaxT2]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text101" Left="487.62" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.MaxT3]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text102" Left="555.66" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.MaxT4]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text103" Left="623.7" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.MinT1]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text104" Left="691.74" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.MinT2]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text105" Left="759.78" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.MinT3]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text106" Left="827.82" Width="68.04" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Temper.MinT4]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text107" Left="895.86" Width="60.48" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Percent.Kv]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text108" Left="956.34" Width="60.48" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Percent.KvMax]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <TextObject Name="Text109" Left="1016.82" Width="60.48" Height="18.9" Border.Lines="All" Text="[MainData.Monitoring.Percent.KvMin]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt"/>
+      <DataHeaderBand Name="MainDataBandHeader" Top="120.21" Width="1077.3" Height="68.04">
+        <TextObject Name="Text1" Width="79.38" Height="68.04" Border.Lines="All" Text="Дата" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text4" Left="79.38" Width="68.04" Height="68.04" Border.Lines="All" Text="Средняя температура по каналу 1, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8.25pt"/>
+        <TextObject Name="Text82" Left="147.42" Width="68.04" Height="68.04" Border.Lines="All" Text="Средняя температура по каналу 2, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text83" Left="215.46" Width="68.04" Height="68.04" Border.Lines="All" Text="Средняя температура по каналу 3, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text84" Left="283.5" Width="68.04" Height="68.04" Border.Lines="All" Text="Средняя температура по каналу 4, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text85" Left="351.54" Width="68.04" Height="68.04" Border.Lines="All" Text="Макс. температура по каналу 1, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text86" Left="419.58" Width="68.04" Height="68.04" Border.Lines="All" Text="Макс. температура по каналу 2, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text87" Left="487.62" Width="68.04" Height="68.04" Border.Lines="All" Text="Макс. температура по каналу 3, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text88" Left="555.66" Width="68.04" Height="68.04" Border.Lines="All" Text="Макс. температура по каналу 4, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text89" Left="623.7" Width="68.04" Height="68.04" Border.Lines="All" Text="Мин. температура по каналу 1, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text90" Left="691.74" Width="68.04" Height="68.04" Border.Lines="All" Text="Мин. температура по каналу 2, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text91" Left="759.78" Width="68.04" Height="68.04" Border.Lines="All" Text="Мин. температура по каналу 3, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text92" Left="827.82" Width="68.04" Height="68.04" Border.Lines="All" Text="Мин. температура по каналу 4, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text93" Left="895.86" Width="60.48" Height="68.04" Border.Lines="All" Text="Среднее положение заслонки, %" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text94" Left="956.34" Width="60.48" Height="68.04" Border.Lines="All" Text="Макс. положение заслонки, %" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text95" Left="1016.82" Width="60.48" Height="68.04" Border.Lines="All" Text="Мин. положение заслонки, %" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      </DataHeaderBand>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="213.21" Width="1077.3" Height="56.7">
+      <TextObject Name="Text68" Top="11.34" Width="124.74" Height="18.9" Text="Ответственный за учет:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text69" Top="34.02" Width="124.74" Height="18.9" Text="Отчет принят:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text70" Left="124.74" Top="11.34" Width="408.24" Height="18.9" Text="___________/________________________/" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text71" Left="124.74" Top="34.02" Width="408.24" Height="18.9" Text="_________________[Year([Date])] г.___________/________________________/" Font="Times New Roman, 8pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="272.94" Width="1077.3" Height="18.9">
+      <TextObject Name="Text66" Left="531.09" Top="7.56" Width="94.5" Height="11.34" Text="[Page]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -1,0 +1,285 @@
+<FormLayout Name="scheduleItemForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function(sender, args)
+    {             
+        var formController = Core.Admin.FormController.prototype.currentInstance;
+
+        formController.setModelValidator(function(model)
+        {
+           var result = true;    
+            
+            var validationState = 
+            {
+              isValid: result,
+              visualizationMethod: Core.Admin.FormController.ValidationVisualizationMethod.Alert,
+              validationSourceInfo: []
+            };
+
+            result = model.editablePeriodBegin &lt; model.editablePeriodEnd;
+            
+            if (result != true)
+            {
+                validationState.validationSourceInfo.push(
+                {
+                    fieldName: "editablePeriodBegin",
+                    sourceFieldName: "PeriodBegin",
+                    sourceCaption: "Начало периода",                    
+                    message: "Значение поля &lt;b&gt;Начало периода&lt;/b&gt; должно быть меньше поля &lt;b&gt;Конец периода&lt;/b&gt;."
+                });
+            }
+            
+            validationState.isValid = result;    
+            
+            return validationState;
+        });
+    }
+    </InitScript>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Разрешение" Order="1" Enabled="true" ClientVisible="true">
+					<BoundProperty>Enabled</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Тип элемента расписания" Enabled="true" Order="2">
+					<BoundProperty>ScheduleTypeId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                  function(s, a)
+                  {                                         
+                    var valueChangedHandler = function(sender, args)
+                    {                                        
+                        var selectedItem = sender.GetSelectedItem();
+                        
+                        var dxEditableOrdinalNumberOfDay = Core.Helpers.DevExpress.getDxControlByName("editableOrdinalNumberOfDay_ScheduleItem");
+                        if(dxEditableOrdinalNumberOfDay &amp;&amp; selectedItem)
+                        {
+                          var byOrder = !(selectedItem.value == 2 || selectedItem.value == 3);
+                          var val = byOrder ? 1 : null;
+                          
+                          dxEditableOrdinalNumberOfDay.SetEnabled(byOrder);
+                          dxEditableOrdinalNumberOfDay.SetValue(val);
+                          
+                          if(byOrder)
+                          {                            
+                            dxEditableOrdinalNumberOfDay.SetMinValue(1);
+                            
+                            if(selectedItem.value == 1)
+                            {
+                              dxEditableOrdinalNumberOfDay.SetMaxValue(7);
+                            }
+                            else
+                            {
+                              dxEditableOrdinalNumberOfDay.SetMaxValue(31);
+                            }
+                          }
+                        }
+                    };
+                    
+                    s.ValueChanged.AddHandler(valueChangedHandler);
+                    
+                    var tickCount = 5;
+                    
+                    var tickInterval = setInterval(function()
+                    {                                            
+                      if(--tickCount &lt;= Number.zero)
+                      {
+                        clearInterval(tickInterval);
+                      }
+                      
+                      var selectedItem = s.GetSelectedItem();
+                                            
+                      if(selectedItem !== null)
+                      {
+                        clearInterval(tickInterval);
+                        
+                        var selectedItem = s.GetSelectedItem();                        
+                        var dxEditableOrdinalNumberOfDay = Core.Helpers.DevExpress.getDxControlByName("editableOrdinalNumberOfDay_ScheduleItem");
+                        
+                        if(dxEditableOrdinalNumberOfDay &amp;&amp; selectedItem)
+                        {
+                          var byOrder = !(selectedItem.value == 2 || selectedItem.value == 3);
+                                                   
+                          dxEditableOrdinalNumberOfDay.SetEnabled(byOrder);
+                          
+                          if(selectedItem.value == 1)
+                          {
+                            dxEditableOrdinalNumberOfDay.SetMaxValue(7);
+                          }
+                          else if(selectedItem.value == 4)
+                          {
+                            dxEditableOrdinalNumberOfDay.SetMaxValue(31);
+                          }
+                        }
+                      }
+                      
+                    }, 100);                                        
+                  }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Порядковый номер дня" Enabled="true" Order="2">
+					<BoundProperty>EditableOrdinalNumberOfDay</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+							<Value>Integer</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+							<Value>1</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+							<Value>7</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+							<Value>1</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Начало периода" Enabled="true" Order="3">
+					<BoundProperty>EditablePeriodBegin</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+							<Value>Time</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+					    <Value>false</Value>
+					  </FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.ShowTodayButton</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.ShowClearButton</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.EnableYearNavigation</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.EnableMonthNavigation</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.ShowHeader</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {                  
+                  var calendarContext$ = jQuery(sender.GetCalendar().GetMainElement());                  
+                  jQuery("tbody tr td:first", calendarContext$).css("display", "none");                 
+                }        
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Конец периода" Enabled="true" Order="4">
+					<BoundProperty>EditablePeriodEnd</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+							<Value>Time</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+					    <Value>false</Value>
+					  </FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.ShowTodayButton</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.ShowClearButton</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.EnableYearNavigation</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.EnableMonthNavigation</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.CalendarProperties.ShowHeader</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {                  
+                  var calendarContext$ = jQuery(sender.GetCalendar().GetMainElement());                  
+                  jQuery("tbody tr td:first", calendarContext$).css("display", "none");
+                }        
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

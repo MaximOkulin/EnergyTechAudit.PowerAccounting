@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll&#13;&#10;System.Core.dll" DoublePass="true" TextQuality="ClearType" ReportInfo.Name="EmergencySituationLinkNotificationTypeDistribution" ReportInfo.Author="Max" ReportInfo.Version="Id = 30;ReportTypeId = 1;HasPluginProcessing = 0" ReportInfo.Description="Подключенные оповещения нештатных ситуаций" ReportInfo.Created="05/23/2014 10:40:50" ReportInfo.Modified="03/25/2017 13:33:29" ReportInfo.CreatorVersion="2016.1.2.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using  System.Linq;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Aggregate;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+</ScriptText>
+  <Styles>
+    <Style Name="Стиль1" Fill.Color="WhiteSmoke" ApplyBorder="false"/>
+  </Styles>
+  <Dictionary/>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="321" PaperHeight="210" LeftMargin="15" BottomMargin="15" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle1" Width="1118.88" Height="109.62">
+      <TextObject Name="Text1" Left="115.29" Top="11.34" Width="888.3" Height="34.02" Text="Подключенные оповещения нештатных ситуаций по объектам диспетчеризации" HorzAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text83" Left="136.08" Top="90.72" Width="328.86" Height="18.9" Text="[ResourceSystemTypeDescription]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text95" Top="90.72" Width="132.3" Height="18.9" Text="Тип ресурсной системы:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text29" Top="71.82" Width="132.3" Height="18.9" Text="Оператор:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text81" Left="136.08" Top="71.82" Width="328.86" Height="18.9" Text="[IIf(string.IsNullOrEmpty([UserInfoDescription]),&quot;(не указано)&quot;, [UserInfoDescription])] ([UserName])" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <PictureObject Name="CustomerReportLogo" Top="3.78" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="113.07" Width="1118.88" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke">
+      <TextObject Name="Text4" Left="49.14" Width="249.48" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Адрес потребителя" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text13" Left="298.62" Width="207.9" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Канал" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text14" Left="506.52" Width="427.14" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Параметр нештатной ситуации" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text15" Left="1069.74" Width="49.14" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Вкл/выкл" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 6pt, style=Bold"/>
+      <TextObject Name="Text32" Width="49.14" Height="49.14" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Ид." HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text2" Left="933.66" Width="136.08" Height="22.68" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Период оповещения" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold"/>
+      <TextObject Name="Text3" Left="933.66" Top="22.68" Width="68.04" Height="26.46" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Email" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt, style=Bold"/>
+      <TextObject Name="Text37" Left="1001.7" Top="22.68" Width="68.04" Height="26.46" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Браузер" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="165.66" Width="1118.88" Height="22.68" Condition="[MainData.DistrictId]" SortOrder="None">
+      <TextObject Name="Text23" Width="1118.88" Height="22.68" Border.Lines="All" Fill.Color="WhiteSmoke" CanGrow="true" GrowToBottom="true" Text="[MainData.DistrictDescription]" Padding="5, 0, 5, 0" VertAlign="Center" Font="Times New Roman, 9pt, style=Bold" Wysiwyg="true"/>
+      <DataBand Name="MainDataBand" Top="191.78" Width="1118.88" Height="37.8" CanGrow="true" FirstRowStartsNewPage="true">
+        <TextObject Name="Text11" Left="49.14" Width="249.48" Height="37.8" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[string.Join(&quot;,&quot;, [MainData.Address].Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries).Take(2))]" Padding="4, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold" Wysiwyg="true"/>
+        <TextObject Name="Text18" Left="298.62" Width="207.9" Height="37.8" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.ChannelDescription]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text19" Left="506.52" Width="427.14" Height="37.8" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.EmergencyDescription]" Padding="4, 0, 2, 0" HideZeros="true" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Justify" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text20" Left="1069.74" Width="49.14" Height="37.8" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.EmergencyTurnOn]" Padding="5, 0, 5, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text33" Width="49.14" Height="37.8" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[MainData.EntityId]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt" Wysiwyg="true"/>
+        <TextObject Name="Text5" Left="933.66" Width="68.04" Height="37.8" Border.Lines="All" Text="[MainData.IsEmail]" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt" Wysiwyg="true"/>
+        <TextObject Name="Text39" Left="1001.7" Width="68.04" Height="37.8" Border.Lines="All" Text="[MainData.IsBrowser]" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt" Wysiwyg="true"/>
+      </DataBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="233.03" Width="1118.88" Height="30.24" FirstRowStartsNewPage="true">
+      <TextObject Name="Text10" Left="457.38" Top="7.56" Width="113.4" Height="15.12" Text="[Page]" HorzAlign="Center" Font="Times New Roman, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

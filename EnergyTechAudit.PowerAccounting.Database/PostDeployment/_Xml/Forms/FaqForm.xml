@@ -1,0 +1,224 @@
+<FormLayout Name="faqForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<InitScript HasEscapedContent="true">
+    function (sender, args) 
+    {
+      jQuery(document).off(Core.Common.EventTypes.FormController.FormLoadComplete_Form);
+      
+      jQuery(document).on(Core.Common.EventTypes.FormController.FormLoadComplete_Form, function () 
+      {
+        var commandMenuBarController = new Core.Common.CommandMenuBarController("formCommandMenu");
+        var formController = Core.Admin.FormController.prototype.currentInstance;
+        var modelManager = formController.getModelManager();
+
+        commandMenuBarController.bind(
+        {
+
+          previewFaq: function()
+          {
+            var model = modelManager.getModel();
+            var faqId = model.id;
+
+            $.ajax({
+              url: Core.Routes.Common.Home.faqPreview,
+              type: Core.Common.HttpRequestTypes.Post,
+              data: {faqId: faqId}
+            }).done(function(html)
+            {
+
+              var dlg = new Core.Dialogs.MessageBox(
+              {
+                id: "faqPreviewDialog",
+                title: "Вопрос",
+                scrollBars: "Auto",
+                width: 400,
+                message: html,
+                allowResize: true,
+                buttons: Core.Resources.Dialogs.Buttons.Close
+              });
+
+              dlg.show();
+            });
+
+          }   // previewFaq
+
+        }); // bind
+
+      });
+    }
+    </InitScript>
+	<InitStyle HasEscapedContent="true">
+    .CodeMirror
+    {
+      line-height: 1.5;
+      height: auto;
+    }
+    </InitStyle>
+	<CommandMenu>
+		<Name>faqFormCommandMenu</Name>
+		<ClientVisible>true</ClientVisible>
+		<Width>30</Width>
+		<CommandMenuItem>
+			<Name>previewFaq</Name>
+			<CommandName>previewFaq</CommandName>
+			<ToolTip>Показать элемент</ToolTip>
+			<Enabled>true</Enabled>
+			<IconClass>font-icon-eye_open font-icon-color-darkred indent-right-5px</IconClass>
+		</CommandMenuItem>
+	</CommandMenu>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Номер вопроса" Enabled="true" Order="1">
+					<BoundProperty>Number</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+							<Value>1</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+							<Value>10000</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+							<Value>Integer</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Заголовок" Order="2" Enabled="true">
+					<BoundProperty>Caption</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Категории" Order="3" Enabled="true">
+					<BoundProperty>Categories</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Дата" Enabled="true" Order="4">
+					<BoundProperty>Date</BoundProperty>
+					<NestedExtension>DateEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+							<Value>DateTime</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+					    <Value>false</Value>
+					  </FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Содержание" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Вопрос" Order="1" Enabled="true">
+					<BoundProperty>Question</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  sender.SetHeight(50);
+							    var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender);
+							    inlineMemoEditorController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Ответ" Order="2" Enabled="true">
+					<BoundProperty>Answer</BoundProperty>
+					<NestedExtension>Memo</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                  sender.SetHeight(50);
+							    var inlineMemoEditorController = new Core.Admin.FormController.InlineMemoEditorController(sender);
+							    inlineMemoEditorController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Связи" ColSpan="2" Order="3">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Роли" Enabled="true" Order="1">
+					<BoundProperty>FaqLinksRole</BoundProperty>
+					<NestedExtension>ListBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+							<Value>Top</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                var inlineListBoxController = new Core.Admin.FormController.InlineListBoxController(sender);
+							  inlineListBoxController.execute();
+                }
+              </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+					<FormLayoutItemListBoxSetting>
+						<DataSourceType>Entity</DataSourceType>
+						<DataSource>FaqLinksRole</DataSource>
+						<FormLayoutItemListBoxColumns>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Id</FieldName>
+								<Caption>Ид</Caption>
+								<Width>25</Width>
+							</FormLayoutItemListBoxColumn>
+							<FormLayoutItemListBoxColumn>
+								<FieldName>Description</FieldName>
+								<Caption>Наименование</Caption>
+							</FormLayoutItemListBoxColumn>
+						</FormLayoutItemListBoxColumns>
+					</FormLayoutItemListBoxSetting>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

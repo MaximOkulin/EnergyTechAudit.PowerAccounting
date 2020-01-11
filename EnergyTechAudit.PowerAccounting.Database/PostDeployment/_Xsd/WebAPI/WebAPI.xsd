@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:complexType name="DictionaryEntityType">
+        <xs:sequence maxOccurs="1">
+            <xs:element name="Id" type="xs:int"/>
+            <xs:element name="Code" type="xs:string"/>
+            <xs:element name="Description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Package">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DateTime" type="xs:dateTime"/>
+                <xs:element name="Uid" type="xs:string"/>
+                <xs:element name="MethodName" maxOccurs="1" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="MeasurementDeviceArchive"/>
+                            <xs:enumeration value="MeasurementDeviceInfo"/>
+                            <xs:enumeration value="Dictionary"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:sequence>
+                    <xs:element name="Business" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="MeasurementDevices">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="MeasurementDevice"
+                                                maxOccurs="unbounded">
+                                                <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:int"/>
+                                                  <xs:element name="DeviceId" type="xs:int"/>
+                                                  <xs:element name="FactoryNumber" type="xs:long"/>
+                                                  <xs:element minOccurs="0" name="Building">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:int"/>
+                                                  <xs:element name="FullAddress" type="xs:string"/>
+                                                  <xs:element default="" name="Location"
+                                                  type="xs:string"/>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element minOccurs="0" name="Channels">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" minOccurs="0"
+                                                  name="Channel">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:int"/>
+                                                  <xs:element maxOccurs="1" minOccurs="0"
+                                                  name="ChannelTemplateId" type="xs:int"/>
+                                                  <xs:element name="ResourceSystemTypeId"
+                                                  type="xs:int"/>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Archives" maxOccurs="1" minOccurs="0">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="unbounded" name="Archive">
+                                                <xs:complexType>
+                                                  <xs:sequence maxOccurs="1" minOccurs="1">
+                                                  <xs:element name="Id" type="xs:long"/>
+                                                  <xs:element name="Time" type="xs:dateTime"/>
+                                                  <xs:element name="DeviceParameterId" type="xs:int"/>
+                                                  <xs:element name="Value" type="xs:decimal"/>
+                                                  <xs:element name="IsValid" type="xs:boolean"/>
+                                                  </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="ParameterMapDeviceParameters">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="unbounded"
+                                                name="ParameterMapDeviceParameter">
+                                                <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:int"/>
+                                                  <xs:element name="DeviceParameterId" type="xs:int"/>
+                                                  <xs:element name="ParameterId" type="xs:int"/>
+                                                  <xs:element name="PeriodTypeId" type="xs:int"/>
+                                                  <xs:element name="DimensionId" type="xs:int"/>
+                                                  <xs:element name="MeasurementUnitId" type="xs:int"/>
+                                                  <xs:element name="ChannelTemplateId" type="xs:int"
+                                                  />
+                                                  </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Dictionaries">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="1" minOccurs="0" name="Dictionary">
+                                    <xs:complexType>
+                                        <xs:choice>
+                                            <xs:element name="Device" type="DictionaryEntityType"
+                                                maxOccurs="unbounded"/>
+                                            <xs:element name="PeriodType"
+                                                type="DictionaryEntityType" maxOccurs="unbounded"/>
+                                            <xs:element name="PhysicalParameter"
+                                                type="DictionaryEntityType" maxOccurs="unbounded"/>
+                                            <xs:element name="MeasurementUnit"
+                                                type="DictionaryEntityType" maxOccurs="unbounded"/>
+                                            <xs:element name="Dimension" type="DictionaryEntityType"
+                                                maxOccurs="unbounded"/>
+                                            <xs:element name="Parameter" type="DictionaryEntityType"
+                                                maxOccurs="unbounded"/>
+                                            <xs:element name="ResourceSystemType"
+                                                type="DictionaryEntityType" maxOccurs="unbounded"/>
+                                            <xs:element name="DeviceParameter"
+                                                type="DictionaryEntityType" maxOccurs="unbounded"/>
+                                            <xs:element name="DeviceEventParameter"
+                                                type="DictionaryEntityType" maxOccurs="unbounded"/>
+                                        </xs:choice>
+                                        <xs:attribute name="name" type="xs:string" use="optional"/>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element maxOccurs="unbounded" minOccurs="0"
+                                    name="DictionaryEntityName" type="DictionaryEntityType"/>
+                            </xs:sequence>
+                            <xs:anyAttribute processContents="skip"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Core">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="ScheduleItems">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="unbounded" name="ScheduleItem">
+                                                <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="Id" type="xs:integer"/>
+                                                  <xs:element name="Description" type="xs:string"/>
+                                                  <xs:element name="Enabled" type="xs:boolean"/>
+                                                  <xs:element name="ScheduleTypeId"
+                                                  type="xs:integer"/>
+                                                  <xs:element name="ScheduleType"
+                                                  type="DictionaryEntityType"/>
+                                                  <xs:element name="PeriodBegin" type="xs:duration"/>
+                                                  <xs:element name="PeriodEnd" type="xs:duration"/>
+                                                  </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Error">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DateTime" type="xs:dateTime"/>
+                <xs:element name="Uid" type="xs:string"/>
+                <xs:element name="MethodName" maxOccurs="1" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="MeasurementDeviceArchive"/>
+                            <xs:enumeration value="MeasurementDeviceInfo"/>
+                            <xs:enumeration value="Dictionary"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Message" type="xs:string"/>
+                <xs:element minOccurs="0" name="AdditionalInfo">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:any maxOccurs="unbounded" processContents="skip"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

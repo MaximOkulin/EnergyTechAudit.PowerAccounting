@@ -1,0 +1,109 @@
+﻿<FormLayout Name="measurementUnitConverterForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+  <ColCount>2</ColCount>
+  <ItemHeight>32</ItemHeight>
+  <Width>500</Width>
+  <FormLayoutGroups>
+
+    <FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+      <FormLayoutItems>
+
+        <FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+          <BoundProperty>Id</BoundProperty>
+          <NestedExtension>SpinEdit</NestedExtension>
+          <FormLayoutItemExtenders>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+              <Value>true</Value>
+            </FormLayoutItemExtender>
+          </FormLayoutItemExtenders>
+        </FormLayoutItem>
+
+        <FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+          <BoundProperty>Description</BoundProperty>
+          <NestedExtension>TextBox</NestedExtension>
+          <FormLayoutItemExtenders>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+              <Value>true</Value>
+            </FormLayoutItemExtender>
+          </FormLayoutItemExtenders>
+        </FormLayoutItem>
+
+      </FormLayoutItems>
+    </FormLayoutGroup>
+
+    <FormLayoutGroup Caption="Основные" ColSpan="1" Order="1">
+      <FormLayoutItems>
+
+        <FormLayoutItem Caption="Физическая величина" Order="1" Enabled="true">
+          <BoundProperty>PhysicalParameterId</BoundProperty>
+          <NestedExtension>ComboBox</NestedExtension>
+          <FormLayoutItemExtenders>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+              <Value>Id</Value>
+            </FormLayoutItemExtender>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+              <Value>Description</Value>
+            </FormLayoutItemExtender>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+              <Value>{2}</Value>
+            </FormLayoutItemExtender>            
+          </FormLayoutItemExtenders>
+        </FormLayoutItem>
+
+        <FormLayoutItem Caption="Выражение" Order="2" Enabled="true">
+          <BoundProperty>Expression</BoundProperty>
+          <NestedExtension>TextBox</NestedExtension>
+        </FormLayoutItem>
+
+      </FormLayoutItems>
+    </FormLayoutGroup>
+
+    <FormLayoutGroup Caption="Направление преобразования" ColSpan="1" Order="2">
+      <FormLayoutItems>
+        
+        <FormLayoutItem Caption="Исходная единица измерения" Order="1" Enabled="true">
+          <BoundProperty>MeasurementUnit1Id</BoundProperty>
+          <NestedExtension>ComboBox</NestedExtension>
+          <FormLayoutItemExtenders>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+              <Value>Id</Value>
+            </FormLayoutItemExtender>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+              <Value>Description</Value>
+            </FormLayoutItemExtender>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+              <Value>{2}</Value>
+            </FormLayoutItemExtender>            
+          </FormLayoutItemExtenders>
+        </FormLayoutItem>
+
+        <FormLayoutItem Caption="Целевая единица измерения" Order="2" Enabled="true">
+          <BoundProperty>MeasurementUnit2Id</BoundProperty>
+          <NestedExtension>ComboBox</NestedExtension>
+          <FormLayoutItemExtenders>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+              <Value>Id</Value>
+            </FormLayoutItemExtender>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+              <Value>Description</Value>
+            </FormLayoutItemExtender>
+            <FormLayoutItemExtender>
+              <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+              <Value>{2}</Value>
+            </FormLayoutItemExtender>            
+          </FormLayoutItemExtenders>
+        </FormLayoutItem>
+
+      </FormLayoutItems>
+    </FormLayoutGroup>
+  </FormLayoutGroups>
+</FormLayout>

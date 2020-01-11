@@ -1,0 +1,47 @@
+﻿
+<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>formJournalDialogCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>250</Width>
+  
+  <CommandMenuItem>
+    <Name>refresh</Name>
+    <CommandName>refresh</CommandName>
+    <ToolTip>Обновить содержимое</ToolTip>
+    <IconClass>font-icon-refresh font-icon-x1_3 font-icon-darkslateblue</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>formJournalExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>font-icon-xlsx indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>setForcefullyHoldOnDialog</Name>
+    <CommandName>setForcefullyHoldOnDialog</CommandName>    
+    <ToolTip>Удерживать на форме</ToolTip>
+    <IconClass>font-icon-toggle-pin font-icon-unpin font-icon-darkblue font-icon-x1_3</IconClass>
+    <Visible>false</Visible>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>toggleCollapse</CommandName>
+    <Name>toggleCollapse</Name>
+    <ToolTip>Свернуть/развернуть окно</ToolTip>
+    <IconClass>font-icon-toggle-collapsed font-icon-collapsed font-icon-darkgreen font-icon-x1_3</IconClass>
+  </CommandMenuItem>
+
+</CommandMenu>

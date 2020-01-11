@@ -1,0 +1,339 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  <!--Парамерик для отчета Временной срез по показаниям контроллеров погодозависимого регулирования  -->
+  <Id>getRegulatorsTimeSlicesParametricDialog</Id>
+  <Height>100</Height>
+  <Width>400</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <AllowResize>true</AllowResize>
+  <ScrollBars>None</ScrollBars>
+  <Title>Параметры</Title>
+  <CloseAction>CloseButton</CloseAction>
+  <IsSavedState>true</IsSavedState>
+  <IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+  
+  <InitScript HasEscapedContent="true">
+  <![CDATA[
+    function(sender, args)
+    {
+      var parametricDialogInstanse = Core.Dialogs.ParametricDialog.prototype.currentInstance;      
+      sender.Shown.AddHandler(function(s, a)
+      {
+        const 
+          errControlDefaultValue = 1,
+          periodBeginOffsetControlDefaultValue = 24,
+          periodBeginControlDefaultValue = new Date(),        
+          initErrControlsArr = ["supplyPipeErr", "returnPipeErr", "hwsSupplyPipeErr", "hwsReturnPipeErr"];          
+        for(let indx in initErrControlsArr)
+        {
+          let errControl = parametricDialogInstanse.getControlByParameterName(initErrControlsArr[indx]);
+          if(errControl !== null && errControl.GetValue() === null)
+          {
+            errControl.SetValue(errControlDefaultValue);
+          };
+        };        
+        let periodBeginControl = parametricDialogInstanse.getControlByParameterName("periodBegin");                
+        if(periodBeginControl !== null && (periodBeginControl.GetValue() === null || periodBeginControl.GetValue().valueOf() === (new Date(0)).valueOf()))
+        {
+          periodBeginControl.SetValue(periodBeginControlDefaultValue);
+        }        
+        let periodBeginOffsetControl = parametricDialogInstanse.getControlByParameterName("periodBeginOffset");                
+        if(periodBeginOffsetControl !== null  && (periodBeginOffsetControl.GetValue() === null || periodBeginOffsetControl.GetValue() === Number.zero) )
+        {
+          periodBeginOffsetControl.SetValue(periodBeginOffsetControlDefaultValue);
+        }        
+        parametricDialogInstanse.getParametricDialog().SetHeight(Number.zero);        
+        
+        periodBeginOffsetControl.SetEnabled(!parametricDialogInstanse.getControlByParameterName("includeAnyMeasurement").GetValue());
+        
+      });
+    }
+  ]]>
+  </InitScript>
+  
+  <Descriptors>   
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Дата и время временного среза</Caption>
+      <Name>periodBegin</Name>
+      <TypeCode>DateTime</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>DateEdit</NestedExtension>
+      
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+        
+          <FormLayoutItemExtender>
+            <PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+            <Value>DateTime</Value>
+          </FormLayoutItemExtender>
+
+          <FormLayoutItemExtender>
+            <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+            <Value>true</Value>
+          </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Глубина поиска ближайшего актуального, (часы)</Caption>
+      <Name>periodBeginOffset</Name>      
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>SpinEdit</NestedExtension>
+      <Value>0</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+          <Value>1</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+          <Value>720</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+          <Value>Integer</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+          <Value>6</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Включать любое последнее измерение</Caption>
+      <Name>includeAnyMeasurement</Name>
+      <TypeCode>Boolean</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>CheckBox</NestedExtension>
+
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ValueChanged</PropertiesChain>
+          <Value HasEscapedContent="true">
+            <![CDATA[
+            function(sender, args)
+            {               
+              let 
+                parametric = Core.Dialogs.ParametricDialog.prototype.currentInstance,                                    
+                periodBeginOffsetControl = parametric.getControlByParameterName("periodBeginOffset");                
+              periodBeginOffsetControl.SetEnabled(!sender.GetValue());
+            }
+            ]]>
+          </Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor ClientVisible="false">
+      <Caption>Допустимое отклонение для ЦО (подача),°С</Caption>
+      <Name>supplyPipeErr</Name>      
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>SpinEdit</NestedExtension>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+          <Value>1</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+          <Value>30</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+          <Value>Integer</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+          <Value>1</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor  ClientVisible="false">
+      <Caption>Допустимое отклонение для ЦО (обратка),°С</Caption>
+      <Name>returnPipeErr</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>SpinEdit</NestedExtension>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+          <Value>1</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+          <Value>30</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+          <Value>Integer</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+          <Value>1</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor  ClientVisible="false">
+      <Caption>Допустимое отклонение для ГВС (подача),°С</Caption>
+      <Name>hwsSupplyPipeErr</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>SpinEdit</NestedExtension>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+          <Value>1</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+          <Value>30</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+          <Value>Integer</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+          <Value>1</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor  ClientVisible="false">
+      <Caption>Допустимое отклонение для ГВС (обратка),°С</Caption>
+      <Name>hwsReturnPipeErr</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>SpinEdit</NestedExtension>
+      <Value>1</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+          <Value>1</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+          <Value>30</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+          <Value>Integer</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+          <Value>1</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor ClientVisible="true">
+			<Caption> </Caption>
+			<Name>moreButton</Name>
+			<TypeCode>Empty</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>Button</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Text</PropertiesChain>
+					<Value>Более...</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.RenderMode</PropertiesChain>
+					<Value>Link</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+            <![CDATA[
+           function(sender, args)
+           {                      
+            jQuery(sender.GetMainElement()).css(
+            {
+              "width": "60px",
+              "float": "right",
+              "margin-right": "3px"
+            });            
+           }
+           ]]>
+           </Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ClientSideEvents.Click</PropertiesChain>
+					<Value HasEscapedContent="true">
+          <![CDATA[
+           function(sender, args)
+           {              
+					    var parametric = Core.Dialogs.ParametricDialog.prototype.currentInstance;                      
+              var layout = parametric.getLayoutControl();              
+              layout.moreButtonState = layout.moreButtonState == undefined ? true : !layout.moreButtonState;                            
+              
+					    let errControlsArr = ["supplyPipeErr", "returnPipeErr", "hwsSupplyPipeErr", "hwsReturnPipeErr"];          
+					    for(let indx in errControlsArr)
+					    {
+					      let errControl = parametric.getLayoutItemByParameterName(errControlsArr[indx]);
+                 
+					      if(errControl !== null)
+					      {
+					        errControl.SetVisible(layout.moreButtonState);
+					      };
+					    };   
+              parametric.getParametricDialog().SetHeight(Number.zero);
+              sender.SetText(layout.moreButtonState ? "Менее...": "Более...")              
+           }
+           ]]>
+           </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+  </Descriptors>
+
+  
+</ParametricDialog>

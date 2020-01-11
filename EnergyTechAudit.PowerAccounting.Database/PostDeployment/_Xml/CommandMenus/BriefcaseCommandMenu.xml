@@ -1,0 +1,80 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>briefcaseCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>300</Width>
+  
+  <EnableAdaptivity>false</EnableAdaptivity>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>addBriefcase</CommandName>
+    <Name>addBriefcase</Name>
+    <ToolTip>Добавить новый портфель...</ToolTip>
+    <IconClass>font-icon-addBriefcase font-icon-darkblue font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>removeBriefcase</CommandName>
+    <Name>removeBriefcase</Name>
+    <ToolTip>Удалить выбранный портфель</ToolTip>
+    <IconClass>font-icon-removeBriefcase font-icon-color-darkred font-icon-x1_2 indent-right-5px</IconClass>
+    <AdditionalInfo>Briefcase</AdditionalInfo>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>addBriefcaseItem</CommandName>
+    <Name>addBriefcaseItem</Name>
+    <ToolTip>Добавить элемент в портфель</ToolTip>
+    <IconClass>font-icon-addBriefcaseItem font-icon-color-darkblue font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>removeBriefcaseItem</CommandName>
+    <Name>removeBriefcaseItem</Name>
+    <ToolTip>Удалить элемент из портфеля</ToolTip>
+    <IconClass>font-icon-removeBriefcaseItem font-icon-color-darkred font-icon-x1_2 indent-right-5px</IconClass>
+    <AdditionalInfo>BriefcaseItem</AdditionalInfo>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>groupBriefcaseItemByEntityName</CommandName>
+    <Name>groupBriefcaseItemByEntityName</Name>
+    <ToolTip>Группировать / разгруппировать по типу сущности</ToolTip>
+    <IconClass>font-icon-groupBriefcaseItemByEntityName font-icon-x1_2 font-icon-darkslateblue indent-right-5px</IconClass>
+    <AdditionalInfo>BriefcaseItem</AdditionalInfo>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>gridExport</Name>
+    <DropDownMode>true</DropDownMode>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>gridExport</CommandName>
+    <IconClass>font-icon-file_export font-icon-x1_2 font-icon-darkslateblue</IconClass>
+    <ToolTip>Экспорт</ToolTip>
+
+    <CommandMenuItem>
+      <Text>Формат Xlsx</Text>
+      <CommandName>exportTo</CommandName>
+      <AdditionalInfo>Xlsx</AdditionalInfo>
+      <IconClass>dev-icon-ExportToXLSX_16x16 indent-right-5px</IconClass>
+    </CommandMenuItem>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>toggleCollapse</CommandName>
+    <Name>toggleCollapse</Name>
+    <ToolTip>Свернуть/развернуть окно</ToolTip>
+    <IconClass>font-icon-toggle-collapsed font-icon-collapsed font-icon-darkgreen font-icon-x1_3</IconClass>
+  </CommandMenuItem>
+  
+</CommandMenu>

@@ -1,0 +1,78 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  
+  <!--Описывает диалоговое окно для ручного ввода компонентов адреса на форме "Строения"-->
+  <Id>usersParametricDialog</Id>
+  <Height>0</Height>
+  <Width>350</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <Title>Параметры</Title>
+  <IsSavedState>false</IsSavedState>
+  <Descriptors>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Пользователь</Caption>
+      <Name>UserId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [User].[Id] [Id],
+          [User].[UserName] [Code],
+          [Role].[Code] [Description]
+          FROM [Admin].[User] [User] WITH(NOLOCK)
+          INNER JOIN [Admin].[Role] WITH(NOLOCK)
+          ON [User].[RoleId] = [Role].[Id]
+          UNION
+          SELECT 0 [Id], &apos;Все пользователи&apos; [Code], &apos;Все роли&apos; [Description]
+          ORDER BY [Id]
+        </DataSourceQuery>
+        
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption>Роль</Caption>
+            <Width>150</Width>
+          </FormLayoutItemListBoxColumn>
+          
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption>Пользователь</Caption>
+            <Width>200</Width>
+          </FormLayoutItemListBoxColumn>
+          
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>      
+      <FormLayoutItemExtenders>        
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Code</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+
+  </Descriptors>
+</ParametricDialog>

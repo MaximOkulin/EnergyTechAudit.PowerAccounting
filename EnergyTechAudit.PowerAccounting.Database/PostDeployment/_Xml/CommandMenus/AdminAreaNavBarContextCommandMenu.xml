@@ -1,0 +1,11 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>adminAreaNavBarContextCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>220</Width>  
+  <CommandMenuItem>
+    <Name>openLinkInNewTab</Name>
+    <Text> Открыть в новой вкладке</Text>
+    <CommandName>openLinkInNewTab</CommandName>
+    <IconClass>font-icon-new-window font-icon-darkred font-icon-x1_2</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

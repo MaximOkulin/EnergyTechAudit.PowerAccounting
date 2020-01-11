@@ -1,0 +1,30 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>briefcaseCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>280</Width>
+  
+  <EnableAdaptivity>false</EnableAdaptivity>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>addBriefcaseItem</CommandName>
+    <Name>addBriefcaseItem</Name>
+    <ToolTip>Добавить элемент в портфель</ToolTip>
+    <IconClass>font-icon-addBriefcaseItem font-icon-color-darkblue font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>addBriefcaseChildItems</CommandName>
+    <Name>removeBriefcaseItem</Name>
+    <ToolTip>Удалить элемент из портфеля</ToolTip>
+    <IconClass>font-icon-removeBriefcaseItem font-icon-color-darkred font-icon-x1_2 indent-right-5px</IconClass>
+    <AdditionalInfo>BriefcaseItem</AdditionalInfo>
+  </CommandMenuItem>
+
+
+  
+</CommandMenu>

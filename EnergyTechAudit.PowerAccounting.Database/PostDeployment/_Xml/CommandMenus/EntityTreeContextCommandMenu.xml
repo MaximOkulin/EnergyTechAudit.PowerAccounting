@@ -1,0 +1,35 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>entityTreeContextCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>220</Width>
+  
+  <CommandMenuItem>
+    <Name>entityTreeContextGotoDashboard</Name>
+    <Text>К приборной панели</Text>
+    <CommandName>gotoDashboard</CommandName> 
+    <IconClass>font-icon-dashboard font-icon-darkslateblue indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>gotoDashboardInNewTab</Name>
+    <Text>Открыть приборную панель в новой вкладке...</Text>
+    <CommandName>gotoDashboardInNewTab</CommandName>    
+    <IconClass>font-icon-new-window font-icon-darkred font-icon-x1_2</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>entityTreeContextGotoMeasurementDeviceGrid</Name>
+    <Text>К списку измерительных устройств</Text>
+    <CommandName>gotoMeasurementDeviceGrid</CommandName>    
+    <IconClass>font-icon-query font-icon-color-darkred indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Name>addBriefcaseItem</Name>
+    <Text>Добавить в портфель</Text>
+    <CommandName>addBriefcaseItem</CommandName> 
+    <IconClass>font-icon-addBriefcaseItem font-icon-color-darkblue font-icon-x1_2 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  
+ </CommandMenu>

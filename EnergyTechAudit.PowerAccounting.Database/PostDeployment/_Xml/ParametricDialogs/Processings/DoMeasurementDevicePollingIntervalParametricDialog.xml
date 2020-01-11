@@ -1,0 +1,218 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\ParametricDialog.xsd">
+	<!--Описывает диалоговое окно для обработки "Интервал опроса по типу устройства..."-->
+	<Id>doMeasurementDevicePollingIntervalParametricDialog</Id>
+	<Height>0</Height>
+	<Width>350</Width>
+	<Buttons>
+		<DialogButton>
+			<Title>OK</Title>
+			<Order>0</Order>
+			<DialogModalResult>Ok</DialogModalResult>
+		</DialogButton>
+		<DialogButton>
+			<Title>Отмена</Title>
+			<Order>1</Order>
+			<DialogModalResult>Cancel</DialogModalResult>
+		</DialogButton>
+	</Buttons>
+	<AllowResize>true</AllowResize>
+	<ScrollBars>Vertical</ScrollBars>
+	<Title>Параметры</Title>
+	<IsSavedState>false</IsSavedState>
+	<IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+	<InitScript HasEscapedContent="true">    
+    function(sender, args)
+    {     
+        var checkListBoxHelper = new Core.Dialogs.ParametricDialog.CheckListBoxHelper();
+        checkListBoxHelper.execute(sender);        
+    }
+    </InitScript>
+	<Descriptors>
+		<!-- Формирует УИД обработки на стороне клиента для идентификации результатов последней операции -->
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>УИД</Caption>
+			<Name>uniqueIdentifier</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>TextBox</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+              function(sender, args)
+              {
+                var guid = (new DevExpress.data.Guid()).toString();                 
+                sender.SetValue(guid);
+              }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Показывать затронутые обработкой записи</Caption>
+			<Name>showOutputLinksInfo</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+              function(sender, args)
+              {    
+                jQuery(sender.GetMainElement())
+                  .parents("table:first")
+                  .css({"margin-bottom": 20, "border-bottom": "2px solid darkgray"});
+              }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+			<Value>true</Value>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Интервал опроса (мин.)</Caption>
+			<Name>pollingInterval</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>SpinEdit</NestedExtension>
+			<Value>60</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+					<Value>1</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+					<Value>1440</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+					<Value>Integer</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+					<Value>1</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Тип прибора</Caption>
+			<Name>deviceIdArray</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ListBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT  [Md].[Id], [Device].[Code], [Device].[Description]
+          FROM
+          (
+          SELECT DISTINCT([Md].[DeviceId]) [Id] FROM  [Business].[MeasurementDevice] [Md]  WITH(NOLOCK)
+          ) [Md]
+          INNER JOIN [Dictionaries].[Device] [Device]  WITH(NOLOCK)
+          ON [Md].[Id] = [Device].[Id]
+          ORDER BY [Device].[Id]
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Caption></Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.SelectionMode</PropertiesChain>
+					<Value>CheckColumn</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.EnableSelectAll</PropertiesChain>
+			    <Value>true</Value>
+			  </FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+			    <Value HasEscapedContent="true">
+			      function(sender, args)
+			      {
+			        sender.SetHeight(150);
+			      }
+			    </Value>
+			  </FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Район</Caption>
+			<Name>districtIdArray</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ListBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT DISTINCT([D].[Id]) [Id],
+          [D].[Description] [Code],
+          [D].[Description] [Description]
+          FROM [Dictionaries].[District] [D] WITH(NOLOCK)
+          INNER JOIN [Business].[Building] [B] WITH(NOLOCK) ON [D].[Id] = [B].[DistrictId]
+          INNER JOIN [Business].[AccessPointLinkBuilding] [Aplb]  WITH(NOLOCK) ON [Aplb].[BuildingId] = [B].[Id]
+          INNER JOIN [Business].[AccessPoint] [Ap] WITH(NOLOCK) ON [Aplb].[AccessPointId] = [Ap].[Id]
+          INNER JOIN [Business].[MeasurementDevice] [Md] WITH(NOLOCK) ON [Ap].[Id] = [Md].[AccessPointId]
+          ORDER BY [Id]
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption>Наименование</Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.SelectionMode</PropertiesChain>
+					<Value>CheckColumn</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.EnableSelectAll</PropertiesChain>
+			    <Value>true</Value>
+			  </FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+			    <Value HasEscapedContent="true">
+			      function(sender, args)
+			      {
+			        sender.SetHeight(150);
+			      }
+			    </Value>
+			  </FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+	</Descriptors>
+</ParametricDialog>

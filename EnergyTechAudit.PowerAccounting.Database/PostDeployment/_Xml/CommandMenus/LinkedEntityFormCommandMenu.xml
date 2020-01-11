@@ -1,0 +1,37 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>linkedEntityFormCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>180</Width>
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>create</CommandName>
+    <Name>createLinkedEntity</Name>
+    <ToolTip>Создать и присоединить запись новой связанной сущности</ToolTip>
+    <IconClass>font-icon-attatch font-icon-color-darkgreen  indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>edit</CommandName>
+    <Name>editLinkedEntity</Name>
+    <ToolTip>Редактировать связанную сущность</ToolTip>
+    <IconClass>font-icon-edit font-icon-black font-icon-x1_1 indent-right-5px</IconClass>
+  </CommandMenuItem>
+  
+  <CommandMenuItem>
+    <Text></Text>
+    <CommandName>add</CommandName>
+    <Name>addLinkedEntity</Name>
+    <ToolTip>Присоединить запись связанной сущности</ToolTip>
+    <IconClass>font-icon-plus font-icon-darkblue indent-right-5px</IconClass>
+  </CommandMenuItem>
+  <CommandMenuItem>
+    <Text></Text>
+    <BeginGroup>true</BeginGroup>
+    <CommandName>remove</CommandName>
+    <Name>deleteLinkedEntity</Name>
+    <ToolTip>Отсоединить запись связанной сущности</ToolTip>
+    <IconClass>font-icon-minus font-icon-color-darkred indent-right-5px</IconClass>
+  </CommandMenuItem>
+</CommandMenu>

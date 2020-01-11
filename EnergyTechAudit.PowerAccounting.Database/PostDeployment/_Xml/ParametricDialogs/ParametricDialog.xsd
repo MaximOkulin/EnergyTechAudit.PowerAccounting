@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:json="http://james.newtonking.com/projects/json" attributeFormDefault="unqualified"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:attribute default="false" name="HasEscapedContent" type="xs:boolean"/>
+  <xs:element name="ParametricDialog" type="ParametricDialog"/>
+  <xs:complexType name="FormLayoutItemDescriptor">
+    <xs:sequence>
+      <xs:element name="Caption" type="xs:string"/>
+      <xs:element name="Name" type="xs:string"/>
+      <xs:element name="TypeCode">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Empty"/>
+            <xs:enumeration value="Object"/>
+            <xs:enumeration value="DBNull"/>
+            <xs:enumeration value="Boolean"/>
+            <xs:enumeration value="Char"/>
+            <xs:enumeration value="SByte"/>
+            <xs:enumeration value="Byte"/>
+            <xs:enumeration value="Int16"/>
+            <xs:enumeration value="UInt16"/>
+            <xs:enumeration value="Int32"/>
+            <xs:enumeration value="UInt32"/>
+            <xs:enumeration value="Int64"/>
+            <xs:enumeration value="UInt64"/>
+            <xs:enumeration value="Single"/>
+            <xs:enumeration value="Double"/>
+            <xs:enumeration value="Decimal"/>
+            <xs:enumeration value="DateTime"/>
+            <xs:enumeration value="String"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ParameterValueSourceType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="FromUser"/>
+            <xs:enumeration value="FromSetting"/>
+            <xs:enumeration value="FromInternalCode"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="NestedExtension">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Default"/>
+            <xs:enumeration value="BinaryImage"/>
+            <xs:enumeration value="Button"/>
+            <xs:enumeration value="ButtonEdit"/>
+            <xs:enumeration value="Calendar"/>
+            <xs:enumeration value="Captcha"/>
+            <xs:enumeration value="CheckBox"/>
+            <xs:enumeration value="CheckBoxList"/>
+            <xs:enumeration value="ColorEdit"/>
+            <xs:enumeration value="ComboBox"/>
+            <xs:enumeration value="DateEdit"/>
+            <xs:enumeration value="DropDownEdit"/>
+            <xs:enumeration value="HyperLink"/>
+            <xs:enumeration value="Image"/>
+            <xs:enumeration value="Label"/>
+            <xs:enumeration value="ListBox"/>
+            <xs:enumeration value="Memo"/>
+            <xs:enumeration value="ProgressBar"/>
+            <xs:enumeration value="RadioButton"/>
+            <xs:enumeration value="RadioButtonList"/>
+            <xs:enumeration value="SpinEdit"/>
+            <xs:enumeration value="TextBox"/>
+            <xs:enumeration value="TimeEdit"/>
+            <xs:enumeration value="TokenBox"/>
+            <xs:enumeration value="TrackBar"/>
+            <xs:enumeration value="UploadControl"/>
+            <xs:enumeration value="ValidationSummary"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" name="FormLayoutItemListBoxSetting">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="DataSourceType">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Dictionary"/>
+                  <xs:enumeration value="DictionaryWithAll"/>
+                  <xs:enumeration value="DictionaryList"/>
+                  <xs:enumeration value="DictionaryByQuery"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="DataSource" type="xs:string"/>
+            <xs:element minOccurs="0" name="DataSourceQuery" type="xs:string"/>
+            <xs:element minOccurs="0" name="FormLayoutItemListBoxColumns">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="FormLayoutItemListBoxColumn" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="FieldName" type="xs:string"/>
+                        <xs:element name="Caption" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Width" type="xs:int"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Value" type="xs:string" minOccurs="0"/>
+      <xs:element maxOccurs="unbounded" name="FormLayoutItemExtenders" type="FormLayoutItemExtender"
+        minOccurs="0"/>
+      <xs:element minOccurs="0" name="FormLayoutItemCustomData">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string"> </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute default="1" name="ClientVisible" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="FormLayoutItemExtender">
+    <xs:sequence>
+      <xs:element name="FormLayoutItemExtender" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="PropertiesChain" type="xs:string"/>
+            <xs:element name="Value">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute ref="HasEscapedContent" use="optional"/>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="TypeName" minOccurs="0">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="System.String"/>
+                  <xs:enumeration value="System.Delegate"/>
+                  <xs:enumeration value="System.Int32"/>
+                  <xs:enumeration value="System.Boolean"/>
+                  <xs:enumeration value="System.DateTime"/>
+                  <xs:enumeration value="DevExpress.Web.ASPxEditors.EditFormat"/>
+                  <xs:enumeration value="DevExpress.Web.ASPxEditors.Display"/>
+                  <xs:enumeration value="DevExpress.Web.ASPxEditors.MaskIncludeLiteralsMode"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ParametricDialog">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string"/>
+      <xs:element name="Height" type="xs:int"/>
+      <xs:element name="Width" type="xs:int"/>
+      <xs:element minOccurs="0" name="Modal" type="xs:boolean"/>
+      <xs:element name="Buttons" type="Buttons"/>
+      <xs:element name="AllowResize" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="ScrollBars" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="None"/>
+            <xs:pattern value=""/>
+            <xs:enumeration value="Horizontal"/>
+            <xs:enumeration value="Vertical"/>
+            <xs:enumeration value="Both"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Title" type="xs:string"/>
+      <xs:element minOccurs="0" name="CloseAction" type="xs:string"/>
+      <xs:element name="IsSavedState" type="xs:boolean" minOccurs="0"/>
+      <xs:element minOccurs="0" name="IsCollectInfoSnapshot" type="xs:boolean"/>
+      <xs:element maxOccurs="1" minOccurs="0" name="InitScript">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute ref="HasEscapedContent" use="optional"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" name="TargetPostbackScript">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute ref="HasEscapedContent" use="optional"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Descriptors" type="Descriptors"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Buttons">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="DialogButton" type="DialogButton"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Descriptors">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="FormLayoutItemDescriptor">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="FormLayoutItemDescriptor"> </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DialogButton">
+    <xs:sequence>
+      <xs:element name="Title" type="xs:string"/>
+      <xs:element name="Order" type="xs:int"/>
+      <xs:element name="DialogModalResult">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Ok"/>
+            <xs:enumeration value="Cancel"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

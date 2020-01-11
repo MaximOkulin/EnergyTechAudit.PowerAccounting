@@ -1,0 +1,242 @@
+<FormLayout Name="emergencySituationParameterForm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FormLayout.xsd">
+	<ColCount>2</ColCount>
+	<ItemHeight>32</ItemHeight>
+	<Width>500</Width>
+	<FormLayoutGroups>
+		<FormLayoutGroup Caption="Идентифицирующие" ColSpan="2" Order="1">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Ид" Enabled="false" Order="1">
+					<BoundProperty>Id</BoundProperty>
+					<NestedExtension>SpinEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Наименование" Order="2" Enabled="true">
+					<BoundProperty>Description</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Включен" Enabled="true" Order="3">
+					<BoundProperty>TurnOn</BoundProperty>
+					<NestedExtension>CheckBox</NestedExtension>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Сущность" Order="4" Enabled="true" ClientVisible="false">
+					<BoundProperty>EntityTypeName</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Канал" Order="4" Enabled="true" ClientVisible="false">
+					<BoundProperty>ChannelId</BoundProperty>
+					<NestedExtension>TextBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+		<FormLayoutGroup Caption="Основные" ColSpan="2" Order="2">
+			<FormLayoutItems>
+				<FormLayoutItem Caption="Шаблон параметра" Enabled="true" Order="1">
+					<BoundProperty>EmergencySituationParameterTemplateId</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+					  <FormLayoutItemExtender>
+					    <PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+					    <Value HasEscapedContent="true">
+					      function(sender, args)
+					      {
+					      (new Core.Admin.FormController.LinkedEntityLookupDialog()).execute({sender: sender});
+					      }
+					    </Value>
+					  </FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Режим" Enabled="true" Order="2">
+					<BoundProperty>SeasonTypeId</BoundProperty>
+					<NestedExtension>ComboBox</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+							<Value>Id</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+							<Value>Description</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+							<Value>{2}</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>false</Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+				<FormLayoutItem Caption="Условие" Order="3" Enabled="true">
+					<BoundProperty>PredicateExpression</BoundProperty>
+					<NestedExtension>ButtonEdit</NestedExtension>
+					<FormLayoutItemExtenders>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+							<Value>true</Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.Buttons.Add()</PropertiesChain>
+							<Value></Value>
+							<TypeName>System.Delegate</TypeName>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.Init</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {                       
+                  var jMainElement = jQuery(sender.GetMainElement());
+                  var jEditor = jMainElement.find("input.dxeEditAreaSys");
+                  jEditor.hide();
+                  var jLabel = jQuery("&lt;a href=javascript:;&gt;Редактировать параметры условия нештатной ситуации&lt;/a&gt;");
+                  jLabel.css({"font-style": "italic"});
+                  jMainElement.find("td:first").prepend(jLabel);
+                  jLabel.click(function()
+                  {
+                    sender.ButtonClick.FireEvent(sender, null);
+                  });
+                }
+                </Value>
+						</FormLayoutItemExtender>
+						<FormLayoutItemExtender>
+							<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ButtonClick</PropertiesChain>
+							<Value HasEscapedContent="true">
+                function(sender, args)
+                {
+                	  var formController = Core.Admin.FormController.prototype.currentInstance;
+                  	var modelManager = formController.getModelManager();
+                    
+                    var jPredicateExpression = modelManager.getModelField("predicateExpression");
+                    
+                    var predicateExpressionObject = null;
+                    try
+                    {
+                      predicateExpressionObject = JSON.parse(jPredicateExpression);
+                    }
+                    catch(e)
+                    {
+                      predicateExpressionObject = null;
+                    }
+                    
+                    if(predicateExpressionObject===null)
+                    {
+                      var alert = new Core.Dialogs.Alert(
+                      {
+                        type: Core.AlertTypes.warning,
+                        message: "Не задан шаблон предиката нештатной ситуации"
+                      });
+        
+                      alert.show();
+                      return;
+                    }
+                    
+                    var descriptors = [];
+                    
+                    if(predicateExpressionObject.userInputValues != undefined)
+                    {
+                    for(var indx in predicateExpressionObject.userInputValues)
+                    {                         
+                      var descriptor = jQuery.extend({}, predicateExpressionObject.userInputValues[indx]);                                            
+                      
+                      descriptor.nestedExtension = Core.Resources.Dialogs.TypeCodeToNestedExtensionType[descriptor.typeCode];
+                      descriptor.formLayoutItemExtenders = [];
+                      
+                      if(descriptor.typeCode == "Decimal" || descriptor.typeCode == "Double")
+                      {
+                        descriptor.formLayoutItemExtenders.push(
+                        {
+                          propertiesChain: "NestedExtensionSettings.Properties.NumberType",
+                          value: "Float"
+                        },
+                        {
+                          propertiesChain: "NestedExtensionSettings.Properties.NumberFormat",
+                          value: "Number"
+                        },
+                        {
+                          propertiesChain: "NestedExtensionSettings.Properties.DecimalPlaces",
+                          value: 2
+                        },
+                        {
+                          propertiesChain: "NestedExtensionSettings.Properties.Increment",
+                          value: 0.1
+                        });
+                      }
+                      
+                      descriptor.formLayoutItemExtenders.push
+                      (                      
+                        { 
+                          propertiesChain: "CaptionSettings.Location", 
+                          value: "Top"
+                        }
+                      );
+                      
+                      descriptors.push(descriptor);                        
+                    }
+                    
+                    var parametricDialogSettings =
+                    {
+                        id: "emergencySituationParameterParametricDialog_" + predicateExpressionObject.name,
+                        isSavedState: false,
+                        title: "Параметры",
+                        buttons: Core.Resources.Dialogs.Buttons.Ok,
+                        width: 300,
+                        descriptors: descriptors                        
+                    };
+                    var parametricDialog = new Core.Dialogs.ParametricDialog(parametricDialogSettings);
+
+                    parametricDialog.show(function (modalResult)
+                    {
+                      if (modalResult == Core.Resources.Dialogs.DialogModalResults.Ok)
+                      {
+                        for(var indx in predicateExpressionObject.userInputValues)
+                        {
+                          var userInputValue = predicateExpressionObject.userInputValues[indx];
+                          
+                          predicateExpressionObject.userInputValues[indx].value = parametricDialog.getParameterValueByName(userInputValue.name);
+                        }
+                        modelManager.setModelField("predicateExpression", JSON.stringify(predicateExpressionObject));
+                        modelManager.onModelChanged();
+                      }
+                    });     
+                   }
+                }
+                </Value>
+						</FormLayoutItemExtender>
+					</FormLayoutItemExtenders>
+				</FormLayoutItem>
+			</FormLayoutItems>
+		</FormLayoutGroup>
+	</FormLayoutGroups>
+</FormLayout>

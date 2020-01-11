@@ -1,0 +1,379 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+	<!-- Параметрик протоколов системы -->
+	<Id>getSystemProtocolsParametricDialog</Id>
+	<Height>0</Height>
+	<Width>350</Width>
+	<Buttons>
+		<DialogButton>
+			<Title>OK</Title>
+			<Order>0</Order>
+			<DialogModalResult>Ok</DialogModalResult>
+		</DialogButton>
+		<DialogButton>
+			<Title>Отмена</Title>
+			<Order>1</Order>
+			<DialogModalResult>Cancel</DialogModalResult>
+		</DialogButton>
+	</Buttons>
+	<AllowResize>true</AllowResize>
+	<Title>Параметры</Title>
+	<IsSavedState>false</IsSavedState>
+	<IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+	<InitScript HasEscapedContent="true">
+    function(sender, args)
+    {      
+      var dialogId = sender.name;
+      var jQDialogWrapper = Core.Helpers.Dialog.getWrapper(dialogId);
+      
+      var setControlDefault = function()
+      {
+        Core.Helpers
+                .DevExpress
+                .getDxControlByName("getSystemProtocolsParametricDialog_periodBegin")
+                .SetValue(new Date());
+              
+              Core.Helpers
+                .DevExpress
+                .getDxControlByName("getSystemProtocolsParametricDialog_periodEnd")
+                .SetValue(new Date());         
+              
+              Core.Helpers
+              .DevExpress
+              .getDxControlByName("getSystemProtocolsParametricDialog_entityCodeArray")
+              .SelectAll();
+              
+             Core.Helpers
+              .DevExpress
+              .getDxControlByName("getSystemProtocolsParametricDialog_entityCodeArray")
+              .SetHeight(150);                        
+      };
+            
+      sender.Shown.AddHandler(function(s, a)
+      {
+          s.SetHeight(0);
+          
+          var checkAll$ =  jQuery(".dxflListBoxItemSys .dxeHD .dxeHCC")
+          .css("padding", 1)
+          .append(Core.Resources.HtmlTemplate.dxCheckBoxTemplate);
+                
+          jQuery(".dxlbcc", jQDialogWrapper).each(function()
+          {
+            var listBoxName = jQuery(this).attr("id");
+            var dxListBox = Core.Helpers.DevExpress.getDxControlByName(listBoxName);
+            if(dxListBox)
+            {
+              dxListBox.SelectedIndexChanged.AddHandler(function(sender, args)
+              {
+                var itemCount = sender.GetItemCount();
+                var jQCheck =  jQuery(".dxeHCC .dxichSys", jQuery("#"+listBoxName));
+              
+                if(args.isSelected === false)
+                {                                               
+                  jQCheck
+                    .addClass("dxWeb_edtCheckBoxUnchecked_MetropolisBlue")
+                    .removeClass("dxWeb_edtCheckBoxChecked_MetropolisBlue")
+                    .attr("data-core-value", "U");
+                }
+                else
+                {
+                    var selectedItemCount = sender.GetSelectedIndices().length;
+                    if(itemCount == selectedItemCount)
+                    {                    
+                      jQCheck
+                      .removeClass("dxWeb_edtCheckBoxUnchecked_MetropolisBlue")
+                        .addClass("dxWeb_edtCheckBoxChecked_MetropolisBlue")
+                        .attr("data-core-value", "C");
+                    }                  
+                }              
+              });          
+            }
+          });              
+        
+          checkAll$.on(Core.Common.EventTypes.Click, ".dxichSys", function(event)
+          {                    
+            var listBoxName = jQuery(this).parents(".dxlbcc:first").attr("id");
+            var dxListBox = Core.Helpers.DevExpress.getDxControlByName(listBoxName);
+            var checkValue = jQuery(this).attr("data-core-value");
+            if(dxListBox)
+            {
+              if(checkValue == "U")          
+              {
+                dxListBox.SelectAll();
+                jQuery(this).attr("data-core-value", "C");
+              }
+              else
+              {
+                dxListBox.UnselectAll();
+                jQuery(this).attr("data-core-value", "U");
+              }
+            }
+            jQuery(this).toggleClass("dxWeb_edtCheckBoxUnchecked_MetropolisBlue dxWeb_edtCheckBoxChecked_MetropolisBlue");          
+          });
+        
+          setControlDefault();
+      });
+    }
+    </InitScript>
+	<TargetPostbackScript></TargetPostbackScript>
+	<Descriptors>
+		<FormLayoutItemDescriptor>
+			<Caption>Тип протокола</Caption>
+			<Name>protocolType</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryList</DataSourceType>
+				<DataSource>
+          [
+          {id: 1, code: "CreatedBy", description: "Созданные сущности"},
+          {id: 2, code: "EntityHistory", description: "Изменения сущностей"},
+          {id: 3, code: "DeletedEntity", description: "Удаленные сущности"},
+          {id: 4, code: "ErrorLog", description: "Дамп ошибок"},
+          {id: 5, code: "Audit", description: "Журнал аудита"},
+          ]
+        </DataSource>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption>Наименование</Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>ErrorLog</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Code</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{0}</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ValueChanged</PropertiesChain>
+					<Value HasEscapedContent="true">
+            function(sender, args)
+            {  
+              
+              var value = sender.GetValue();                            
+              
+              var layout = Core.Helpers.DevExpress.getDxControlByName("getSystemProtocolsParametricDialogLayout");              
+              var selectAllEntityItem = layout.GetItemByName("getSystemProtocolsParametricDialog_selectAllEntity");
+              var entityCodeArrayItem = layout.GetItemByName("getSystemProtocolsParametricDialog_entityCodeArray");
+                
+              if(value == "ErrorLog" || value == "Audit")
+              {
+                Core.Helpers
+                  .DevExpress
+                  .getDxControlByName("getSystemProtocolsParametricDialog_intervalByDay")
+                  .SetValue(-1);
+                  
+                selectAllEntityItem.SetVisible(false);
+                entityCodeArrayItem.SetVisible(false);                
+              }
+              else
+              {
+                Core.Helpers
+                  .DevExpress
+                  .getDxControlByName("getSystemProtocolsParametricDialog_selectAllEntity")
+                  .SetValue(true);
+                  
+                selectAllEntityItem.SetVisible(true);                
+                
+                entityCodeArrayItem.SetVisible(false);
+              }
+            }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Период</Caption>
+			<Name>intervalByDay</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryList</DataSourceType>
+				<DataSource>
+          [
+            {id: -1, code: "PerDay", description: "В течение дня"},            
+            {id: 0, code: "ByInterval", description: "За интервал времени"},
+            {id: 1, code: "ByDay", description: "Сутки"},
+            {id: 7, code: "ByWeek", description: "Неделя"},
+            {id: 31, code: "ByMonth", description: "Месяц"},            
+          ]
+        </DataSource>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption>Наименование</Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>-1</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{0}</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ValueChanged</PropertiesChain>
+					<Value HasEscapedContent="true">
+            function(sender, args)
+            {               
+              var value = sender.GetValue();              
+              var layout = Core.Helpers.DevExpress.getDxControlByName("getSystemProtocolsParametricDialogLayout");
+              var periodBeginItem = layout.GetItemByName("getSystemProtocolsParametricDialog_periodBegin");
+              var periodEndItem = layout.GetItemByName("getSystemProtocolsParametricDialog_periodEnd");
+              periodBeginItem.SetVisible(value == Number.zero);   
+              periodEndItem.SetVisible(value == Number.zero);                    
+            }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Начальная дата</Caption>
+			<Name>periodBegin</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+			    <Value>false</Value>
+			  </FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Конечная дата</Caption>
+			<Name>periodEnd</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+			    <Value>false</Value>
+			  </FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Все сущности</Caption>
+			<Name>selectAllEntity</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+			<Value>true</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ClientSideEvents.ValueChanged</PropertiesChain>
+					<Value HasEscapedContent="true">
+            function(sender, args)
+            {               
+              var value = sender.GetValue();              
+              var layout = Core.Helpers.DevExpress.getDxControlByName("getSystemProtocolsParametricDialogLayout"); 
+              
+              var entityCodeArrayItem = layout.GetItemByName("getSystemProtocolsParametricDialog_entityCodeArray");              
+              entityCodeArrayItem.SetVisible(!value);  
+              
+              Core.Helpers.DevExpress
+                .getDxControlByName("getSystemProtocolsParametricDialog")
+                .SetHeight(0)
+            }
+            </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor ClientVisible="false">
+			<Caption>Сущности выборочно</Caption>
+			<Name>entityCodeArray</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ListBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>         
+          SELECT
+          [Entity].[Id] [Id]
+          ,[Entity].[Code] [Code]
+          ,[Entity].[Description] [Description]
+          FROM [Core].[Entity] [Entity] WITH(NOLOCK)
+          WHERE [Entity].[Code] IN
+          (
+          &apos;Organization&apos;,
+          &apos;Building&apos;,
+          &apos;Placement&apos;,
+          &apos;AccessPoint&apos;,
+          &apos;MeasurementDevice&apos;,          
+          &apos;Channel&apos;,				  
+				  &apos;ParameterMapDeviceParameter&apos;,
+          &apos;User&apos;,
+          &apos;EmergencySituationParameter&apos;,
+          &apos;UserAdditionalInfo&apos;,
+          &apos;ArchiveDownloader&apos;          
+          )
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Code</FieldName>
+						<Caption>Код</Caption>
+						<Width>70</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption>Наименование</Caption>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.SelectionMode</PropertiesChain>
+					<Value>CheckColumn</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Code</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+	</Descriptors>
+</ParametricDialog>

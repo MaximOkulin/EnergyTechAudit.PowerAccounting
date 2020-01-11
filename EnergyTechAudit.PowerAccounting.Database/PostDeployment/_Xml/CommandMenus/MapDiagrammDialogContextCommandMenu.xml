@@ -1,0 +1,14 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>mapDiagrammDialogContextCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>220</Width>
+  
+  <CommandMenuItem>
+    <Name>percentageToggle</Name>
+    <Text>Показать персентаж</Text>
+    <CommandName>percentageToggle</CommandName>
+    <Checked>false</Checked>
+    <GroupName>percentageToggleGroup</GroupName>
+  </CommandMenuItem>
+  
+</CommandMenu>

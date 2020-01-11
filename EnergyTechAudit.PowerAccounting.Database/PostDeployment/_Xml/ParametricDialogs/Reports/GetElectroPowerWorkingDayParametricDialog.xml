@@ -1,0 +1,134 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  <!--Парамерик для выбора даты и указания диапазонов часов, в которых необходимо анализировать максимальное потребление мощности -->
+  <Id>getElectroPowerWorkingDayParametricDialog</Id>
+  <Height>100</Height>
+  <Width>400</Width>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <AllowResize>true</AllowResize>
+  <ScrollBars>None</ScrollBars>
+  <Title>Параметры</Title>
+  <CloseAction>CloseButton</CloseAction>
+  <IsSavedState>true</IsSavedState>
+  <IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+  <InitScript HasEscapedContent="true">
+    <![CDATA[
+    function(sender, args)
+    {      
+      sender.Shown.AddHandler(function(s, a)
+      {                
+	      let parametric = Core.Dialogs.ParametricDialog.prototype.currentInstance,                       
+          periodBeginControl = parametric.getControlByParameterName("period");
+          
+        const periodBeginControlDefaultValue = (new Date()).addDays(-1);
+        if(periodBeginControl !== null && (periodBeginControl.GetValue() === null || periodBeginControl.GetValue().valueOf() === (new Date(0)).valueOf()))
+        {
+          periodBeginControl.SetValue(periodBeginControlDefaultValue);
+        }                
+      });      
+    }
+    ]]>
+  </InitScript>
+  <Descriptors>
+    <FormLayoutItemDescriptor>
+      <Caption></Caption>
+      <Name>channelId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <Value>0</Value>
+    </FormLayoutItemDescriptor>
+    <FormLayoutItemDescriptor>
+      <Caption>Канал</Caption>
+      <Name>channelId1</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [Ch].[Id] [Id],
+          [Ch].[Description] [Code],
+          [R].[Description] [Description]
+
+          FROM [Business].[Channel] [Ch] WITH(NOLOCK)
+          INNER JOIN [Dictionaries].[ResourceSystemType] [R] WITH(NOLOCK)
+          ON [Ch].[ResourceSystemTypeId] = [R].[Id]
+          WHERE [Ch].[Id] = @channelId
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Code</FieldName>
+            <Caption></Caption>
+            <Width>100</Width>
+          </FormLayoutItemListBoxColumn>
+
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>200</Width>
+          </FormLayoutItemListBoxColumn>
+
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <Value>0</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    <FormLayoutItemDescriptor>
+      <Caption>Дата</Caption>
+      <Name>period</Name>
+      <TypeCode>DateTime</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>DateEdit</NestedExtension>
+    </FormLayoutItemDescriptor>
+    <FormLayoutItemDescriptor>
+      <Caption>Часы максимального потребления</Caption>
+      <Name>MaxHoursRange</Name>
+      <TypeCode>String</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>TextBox</NestedExtension>
+    </FormLayoutItemDescriptor>
+    <FormLayoutItemDescriptor>
+      <Caption>Учитывать расчетный коэффициент</Caption>
+      <Name>withDesignFactor</Name>
+      <TypeCode>Boolean</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>CheckBox</NestedExtension>
+    </FormLayoutItemDescriptor>
+  </Descriptors>
+  
+</ParametricDialog>

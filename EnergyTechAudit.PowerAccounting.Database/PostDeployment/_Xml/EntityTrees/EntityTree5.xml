@@ -1,0 +1,54 @@
+﻿<EntityTreeRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EntityTree.xsd">
+  <Title>Точки доступа</Title>
+  <EntityTypeName>AccessPoint</EntityTypeName>
+  
+  <IconClass>et-ap</IconClass>
+  <Visible>false</Visible>
+  <Script>
+    <Id>5</Id>
+  </Script>  
+  <EntityTreeInverseProperties>    
+    <EntityTreeInverseProperty>UserLinksChannel.User</EntityTreeInverseProperty>
+    <EntityTreeInverseProperty>Placement.PlacementPurpose</EntityTreeInverseProperty>
+    <EntityTreeInverseProperty>Placement.Building.AccessPointLinksBuilding.AccessPoint</EntityTreeInverseProperty>
+  </EntityTreeInverseProperties>
+  <EntityTreeNodes>
+    <EntityTreeNode>
+      <EntityTypeName>AccessPointLinkBuilding</EntityTypeName>
+      <Property>AccessPointLinksBuilding</Property>      
+      <Visible>false</Visible>
+      <EntityTreeNodes>
+        <EntityTreeNode>
+          <EntityTypeName>Building</EntityTypeName>
+          <Property>Building</Property>          
+          <IconClass>et-b</IconClass>
+          <Visible>true</Visible>
+          <EntityTreeNodes>
+            <EntityTreeNode >
+              <EntityTypeName>Placement</EntityTypeName>
+              <Property>Placements</Property>
+              <CustomPropertyChain>Placements.PlacementPurpose</CustomPropertyChain>              
+              <IconClass>et-pl</IconClass>
+              <Visible>true</Visible>
+              <EntityTreeNodes>
+                <EntityTreeNode>
+                  <EntityTypeName>Channel</EntityTypeName>
+                  <Property>Channels</Property>                                    
+                  <Visible>false</Visible>
+                  <EntityTreeNodes>
+                    <EntityTreeNode>
+                      <EntityTypeName>MeasurementDevice</EntityTypeName>
+                      <Property>MeasurementDevice</Property>                                      
+                      <IconClass>et-md</IconClass>
+                      <Visible>true</Visible>
+                    </EntityTreeNode>                    
+                  </EntityTreeNodes>
+                </EntityTreeNode>
+              </EntityTreeNodes>
+            </EntityTreeNode>
+          </EntityTreeNodes>
+        </EntityTreeNode>
+      </EntityTreeNodes>
+    </EntityTreeNode>
+  </EntityTreeNodes>
+</EntityTreeRoot>

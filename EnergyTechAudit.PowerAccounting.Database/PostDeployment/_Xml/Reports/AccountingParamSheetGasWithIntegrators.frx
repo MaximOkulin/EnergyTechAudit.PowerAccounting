@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Core.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Common.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Domain.dll&#13;&#10;EnergyTechAudit.PowerAccounting.DataAccess.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll" StartReportEvent="Start_Report" ReportInfo.Name="AccountingParamSheetGasWithIntegrators" ReportInfo.Author="Max" ReportInfo.Version="Id = 8;ReportTypeId = 1;HasPluginProcessing = 1" ReportInfo.Description="Ведомость учета параметров ГАЗОСНАБЖЕНИЕ статистические данные (общий, с промежуточным итогом)" ReportInfo.Created="01/22/2015 15:18:15" ReportInfo.Modified="02/19/2018 15:30:34" ReportInfo.CreatorVersion="2017.4.3.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using FastReport;
+using FastReport.Format;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using EnergyTechAudit.PowerAccounting.Common.Entity;
+using EnergyTechAudit.PowerAccounting.Domain.Interfaces;
+using EnergyTechAudit.PowerAccounting.DataAccess.Helper;
+using EnergyTechAudit.PowerAccounting.Common.FormatProviders;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Aggregate;
+
+namespace FastReport
+{
+  public class ReportScript
+  {     
+    public static string DeviceCode = null;
+          
+    public static int PeriodTypeId = 0;
+    public static string ResourceSubsystemTypeDescription = null;
+    
+          
+    private void Start_Report(object sender, EventArgs e)
+    {
+      DeviceCode = (string)Report.GetParameterValue(&quot;DeviceCode&quot;);   
+      PeriodTypeId = (int)Report.GetParameterValue(&quot;PeriodTypeId&quot;);
+      ResourceSubsystemTypeDescription = (string)Report.GetParameterValue(&quot;ResourceSubsystemTypeDescription&quot;);
+      
+      string infoBandVisible = (string)Report.GetParameterValue(&quot;InfoBandVisible&quot;);
+      bool withErrors = (bool)Report.GetParameterValue(&quot;WithErrors&quot;);
+      
+      if(!withErrors || infoBandVisible.Equals(&quot;0&quot;, StringComparison.Ordinal))
+      { 
+        InfoBand.Visible = false;
+      }
+      else{
+        InfoBand.Visible = true;
+      }
+      Report.DifferenceLastFirstWithAddNewRow(&quot;SummaryData&quot;);   
+      
+      if (PeriodTypeId == 3)
+      {
+        (Text16.Format as CustomFormat).Format = &quot;dd.MM.yyyy&quot;;
+        Text105.Text = &quot;Объем Vраб.у.,м3 (счетчик, на конец \&quot;газового дня\&quot;)&quot;;
+        Text106.Text = &quot;Объем Vн.у.,м3 (счетчик, на конец \&quot;газового дня\&quot;)&quot;;
+      }
+      else if (PeriodTypeId == 2)
+      {
+        (Text16.Format as CustomFormat).Format = &quot;dd.MM.yyyy HH:mm&quot;;
+        Text105.Text = &quot;Объем Vраб.у.,м3 (счетчик, на конец часа)&quot;;
+        Text106.Text = &quot;Объем Vн.у.,м3 (счетчик, на конец часа)&quot;;
+      }
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <Parameter Name="SummaryData_Gas_Volume_Standard_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Parameter Name="HasEstimatedReset" DataType="System.Boolean"/>
+    <Parameter Name="SummaryData_Gas_Volume_Work_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Total Name="MainData.CountTotal" TotalType="Count" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Gas.Volume.Standard.Total" Expression="[MainData.Gas.Volume.Standard.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Gas.Volume.Standard.TotalAvg" TotalType="Avg" Expression="[MainData.Gas.Volume.Standard.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Gas.Volume.Work.Total" Expression="[MainData.Gas.Volume.Work.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Gas.Volume.Work.TotalAvg" TotalType="Avg" Expression="[MainData.Gas.Volume.Work.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Gas.Pressure.TotalAvg" TotalType="Avg" Expression="[MainData.Gas.Pressure]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Gas.Temperature.TotalAvg" TotalType="Avg" Expression="[MainData.Gas.Temperature]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.Gas.Correction.TotalAvg" TotalType="Avg" Expression="[MainData.Gas.Correction]" Evaluator="MainDataBand"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperHeight="295" RawPaperSize="9" Guides="0" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle" Width="718.2" Height="124.74">
+      <TextObject Name="Text2" Left="109.62" Width="498.96" Height="49.14" Text="Ведомость учета параметров ГАЗОСНАБЖЕНИЕ&#13;&#10;статистические данные" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text29" Top="68.04" Width="79.38" Height="18.9" Text="Потребитель:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Top="86.94" Width="79.38" Height="18.9" Text="Адрес:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text31" Left="498.96" Top="68.04" Width="90.72" Height="18.9" Text="Тип прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text32" Left="498.96" Top="86.94" Width="90.72" Height="18.9" Text="Номер прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text33" Left="627.48" Top="68.04" Width="90.72" Height="18.9" Text="[DeviceShortName]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text34" Left="627.48" Top="86.94" Width="90.72" Height="18.9" Text="[FactoryNumber]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text35" Top="49.14" Width="718.2" Height="18.9" Text="c [string.Format(&quot;{0:d}&quot;, [PeriodBegin])] до [string.Format(&quot;{0:d}&quot;, [PeriodEnd])]" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text80" Left="79.38" Top="86.94" Width="94.5" Height="18.9" Text="[IIf([BuildingPurposeCode] != &quot;BoilerHouse&quot; ,[FullAddress],[BuildingDescription])]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text81" Left="79.38" Top="68.04" Width="94.5" Height="18.9" Text="[IIf([UseBuildingDescriptionInReports] == &quot;true&quot;,[BuildingDescription],[District])]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <PictureObject Name="CustomerReportLogo" Top="3.78" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never"/>
+      <TextObject Name="Text112" Left="498.96" Top="105.84" Width="128.52" Height="18.9" Text="Начало &quot;газового дня&quot;:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text113" Left="627.48" Top="105.84" Width="90.72" Height="18.9" Text="[GasHour] ч." HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+    </ReportTitleBand>
+    <DataBand Name="MainDataBand" Top="197.4" Width="718.2" Height="17.01" PrintIfDatasourceEmpty="true">
+      <TextObject Name="Text16" Width="113.4" Height="17.01" Border.Lines="All" Text="[MainData.Time]" Format="Custom" Format.Format="dd.MM.yyyy" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text10" Left="113.4" Width="79.38" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Gas.Volume.Work.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="true" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text11" Left="355.32" Width="83.16" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Gas.Temperature],&quot;-&quot;)]" Format="Number" Format.UseLocale="true" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text23" Left="192.78" Width="79.38" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Gas.Volume.Standard.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text27" Left="272.16" Width="83.16" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Gas.Pressure],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text104" Left="438.48" Width="79.38" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Gas.Correction],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="5" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text107" Left="517.86" Width="102.06" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Gas.Volume.Work],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text108" Left="619.92" Width="98.28" Height="17.01" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.Gas.Volume.Standard],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <DataHeaderBand Name="MainDataBandHeader" Top="127.05" Width="718.2" Height="68.04">
+        <TextObject Name="Text1" Width="113.4" Height="68.04" Border.Lines="All" Text="Дата" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text76" Left="272.16" Width="83.16" Height="68.04" Border.Lines="All" Text="Давление P, бар" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text77" Left="438.48" Width="79.38" Height="68.04" Border.Lines="All" Text="К кор." HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text8" Left="113.4" Width="79.38" Height="68.04" Border.Lines="All" Text="Объем Vраб.у.,м3 (потребление)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text9" Left="355.32" Width="83.16" Height="68.04" Border.Lines="All" Text="Температура Т, °С" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text74" Left="192.78" Width="79.38" Height="68.04" Border.Lines="All" Text="Объем Vн.у., м3 (потребление)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text105" Left="517.86" Width="102.06" Height="68.04" Border.Lines="All" Text="Объем Vраб.у.,м3 (счетчик, на конец &quot;газового дня&quot;)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text106" Left="619.92" Width="98.28" Height="68.04" Border.Lines="All" Text="Объем Vн.у.,м3 (счетчик, на конец &quot;газового дня&quot;)" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="MainDataBandFooter" Top="216.73" Width="718.2" Height="37.8">
+        <TextObject Name="Text37" Width="113.4" Height="18.9" Border.Lines="All" Text="Среднее:" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text48" Left="438.48" Width="79.38" Height="18.9" Border.Lines="All" Text="[MainData.Gas.Correction.TotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text50" Left="517.86" Width="102.06" Height="18.9" Border.Lines="All" Text="-" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text51" Top="18.9" Width="113.4" Height="18.9" Border.Lines="All" Text="Итого:" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text58" Left="192.78" Top="18.9" Width="79.38" Height="18.9" Border.Lines="All" Text="[MainData.Gas.Volume.Standard.Total]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text62" Left="355.32" Top="18.9" Width="83.16" Height="18.9" Border.Lines="All" Text="-" Padding="0, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text64" Left="517.86" Top="18.9" Width="102.06" Height="18.9" Border.Lines="All" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text6" Left="619.92" Top="18.9" Width="98.28" Height="18.9" Border.Lines="All"/>
+        <TextObject Name="Text12" Left="113.4" Width="79.38" Height="18.9" Border.Lines="All" Text="[MainData.Gas.Volume.Work.TotalAvg]" Format="Number" Format.UseLocale="true" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text13" Left="272.16" Width="83.16" Height="18.9" Border.Lines="All" Text="[MainData.Gas.Pressure.TotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="4" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text14" Left="113.4" Top="18.9" Width="79.38" Height="18.9" Border.Lines="All" Text="[MainData.Gas.Volume.Work.Total]" Format="Number" Format.UseLocale="true" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text15" Left="272.16" Top="18.9" Width="83.16" Height="18.9" Border.Lines="All" Text="-" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text44" Left="192.78" Width="79.38" Height="18.9" Border.Lines="All" Text="[MainData.Gas.Volume.Standard.TotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text109" Left="355.32" Width="83.16" Height="18.9" Border.Lines="All" Text="[MainData.Gas.Temperature.TotalAvg]" Format="Number" Format.UseLocale="true" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text110" Left="619.92" Width="98.28" Height="18.9" Border.Lines="All" Text="-" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text111" Left="438.48" Top="18.9" Width="79.38" Height="18.9" Border.Lines="All" Text="-" Padding="0, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      </DataFooterBand>
+    </DataBand>
+    <DataBand Name="SummaryDataBand" Top="319.63" Width="718.2" Height="18.9">
+      <TextObject Name="Text83" Width="113.4" Height="18.9" Border.Lines="All" Text="[SummaryData.Time]" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text94" Left="415.8" Width="302.4" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.Gas.Volume.Standard])]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text20" Left="113.4" Width="302.4" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.Gas.Volume.Work])]" Format="Number" Format.UseLocale="true" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <DataHeaderBand Name="SummaryDataBandHeader" Top="256.84" Width="718.2" Height="60.48" Guides="75.6,75.6">
+        <TextObject Name="Text82" Top="3.78" Width="718.2" Height="18.9" Text="Показания счетчиков[IIf([HasEstimatedReset],&quot; (в приборе отсутствуют накопительные итоги на начало выбранного диапазона дат)&quot;,&quot;&quot;)]:" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text84" Top="22.68" Width="113.4" Height="37.8" Border.Lines="All" Text="Дата" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text17" Left="113.4" Top="22.68" Width="302.4" Height="37.8" Border.Lines="All" Text="Объем Vраб.у.,м3" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text89" Left="415.8" Top="22.68" Width="302.4" Height="37.8" Border.Lines="All" Text="Объем Vн.у., м3" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="SummaryDataBandFooter" Top="340.84" Width="718.2" Height="18.9">
+        <TextObject Name="Text97" Width="113.4" Height="18.9" Border.Lines="All" Text="Результат за период:" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text24" Left="113.4" Width="302.4" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],[MainData.Gas.Volume.Work.Total],[SummaryData_Gas_Volume_Work_TotalDiffLastFirst])]" Format="Number" Format.UseLocale="true" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text101" Left="415.8" Width="302.4" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],[MainData.Gas.Volume.Standard.Total],[SummaryData_Gas_Volume_Standard_TotalDiffLastFirst])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <ChildBand Name="InfoBand" Top="362.05" Width="718.2" Height="68.04" CanShrink="true">
+          <TextObject Name="Text7" Top="3.78" Width="718.2" Height="64.26" CanShrink="true" Text="[Info]" Font="Times New Roman, 8pt"/>
+        </ChildBand>
+      </DataFooterBand>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="432.41" Width="718.2" Height="45.36">
+      <TextObject Name="Text68" Top="3.78" Width="124.74" Height="18.9" Text="Ответственный за учет:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text69" Top="26.46" Width="124.74" Height="18.9" Text="Отчет принят:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text70" Left="124.74" Top="3.78" Width="408.24" Height="18.9" Text="___________/________________________/" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text71" Left="124.74" Top="26.46" Width="408.24" Height="18.9" Text="_________________[Year([Date])] г.___________/________________________/" Font="Times New Roman, 8pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="480.08" Width="718.2" Height="11.34">
+      <TextObject Name="Text66" Left="311.85" Width="94.5" Height="11.34" Text="[Page]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

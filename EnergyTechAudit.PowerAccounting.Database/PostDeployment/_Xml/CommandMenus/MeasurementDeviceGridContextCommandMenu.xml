@@ -1,0 +1,19 @@
+﻿<CommandMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CommandMenu.xsd">
+  <Name>checkConnectionContextCommandMenu</Name>
+  <ClientVisible>true</ClientVisible>
+  <Width>220</Width>
+  
+  <CommandMenuItem>
+    <Name>checkConnectionWithMeasurementDevice</Name>
+    <Text>Проверка связи с устройством</Text>
+    <CommandName>checkConnectionWithMeasurementDevice</CommandName> 
+    <IconClass>font-icon-measurement-device font-icon-darkslateblue indent-right-5px</IconClass>
+  </CommandMenuItem>
+
+  <CommandMenuItem>
+    <Name>checkConnectionWithAccessPoint</Name>
+    <Text>Проверка связи с точкой доступа</Text>
+    <CommandName>checkConnectionWithAccessPoint</CommandName>    
+    <IconClass>font-icon-access-point font-icon-color-darkred indent-right-5px</IconClass>
+  </CommandMenuItem>
+ </CommandMenu>

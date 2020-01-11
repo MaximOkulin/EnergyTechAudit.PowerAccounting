@@ -1,0 +1,219 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd" InterMundos="true">
+	<Id>dashboardDiagrammSettingsParametricDialog</Id>
+	<Height>300</Height>
+	<Width>250</Width>
+	<Modal>true</Modal>
+	<Buttons>
+		<DialogButton>
+			<Title>OK</Title>
+			<Order>0</Order>
+			<DialogModalResult>Ok</DialogModalResult>
+		</DialogButton>
+		<DialogButton>
+			<Title>Отмена</Title>
+			<Order>1</Order>
+			<DialogModalResult>Cancel</DialogModalResult>
+		</DialogButton>
+	</Buttons>
+	<AllowResize>true</AllowResize>
+	<Title>Настройки</Title>
+	<CloseAction>OuterMouseClick</CloseAction>
+	<IsSavedState>true</IsSavedState>
+	<InitScript HasEscapedContent="true">
+            <![CDATA[    
+    function(sender, args)
+    {     
+      var dialogId = sender.name;
+                      
+      var getControlByParameterName = function(parameterName) 
+      {
+        return Core.Helpers.DevExpress.getDxControlByName("{0}_{1}".format(dialogId, parameterName));      
+      };
+      
+      sender.Shown.AddHandler(function(s, a)
+      {
+        var drillDownCumulativeTotalControl = getControlByParameterName("drillDownCumulativeTotal");
+        
+        getControlByParameterName("drillDownCumulativeTotalDiagrammType")
+          .SetEnabled(drillDownCumulativeTotalControl.GetChecked());
+        getControlByParameterName("drillDownCumulativeTotalInterval")
+            .SetEnabled(drillDownCumulativeTotalControl.GetChecked());            
+            
+        drillDownCumulativeTotalControl.CheckedChanged.AddHandler(function(ss, aa)
+        {
+          getControlByParameterName("drillDownCumulativeTotalDiagrammType")
+            .SetEnabled(drillDownCumulativeTotalControl.GetChecked());                   
+          getControlByParameterName("drillDownCumulativeTotalInterval")
+            .SetEnabled(drillDownCumulativeTotalControl.GetChecked());            
+        });
+        
+        var groupCss = {"border-top": "darkgray solid 2px", "margin-top": "10px"};
+                        
+        jQuery( drillDownCumulativeTotalControl.GetMainElement())
+          .parents("table:first")
+          .css(groupCss);
+          
+        jQuery(getControlByParameterName("argumentAxisLabelToggle").GetMainElement())
+          .parents("table:first")
+          .css(groupCss);                         
+      });
+    }
+    ]]></InitScript>
+	<Descriptors>
+		<FormLayoutItemDescriptor>
+			<Caption>Начальная дата архива</Caption>
+			<Name>periodBegin</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+			    <Value>false</Value>
+			  </FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+					<Value>DateTime</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Конечная дата архива</Caption>
+			<Name>periodEnd</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+			    <Value>false</Value>
+			  </FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+					<Value>DateTime</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Применить за последний месяц</Caption>
+			<Name>applyLastMonth</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Показать подпись оси X</Caption>
+			<Name>argumentAxisLabelToggle</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Показывать подсказку</Caption>
+			<Name>tooltipEnabledToggle</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Разворачивать итоги</Caption>
+			<Name>drillDownCumulativeTotal</Name>
+			<TypeCode>Boolean</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>CheckBox</NestedExtension>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Тип диаграммы для развертки итогов</Caption>
+			<Name>drillDownCumulativeTotalDiagrammType</Name>
+			<TypeCode>String</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryList</DataSourceType>
+				<DataSource>
+          [{Id:1, Code: "bar", Description: "Столбцевая"},
+          {Id:2, Code: "spline", Description: "Сплайн"},
+          {Id:3, Code: "line", Description: "Линейная"},
+          {Id:4, Code: "stepline", Description: "Ступенчатая"},
+          {Id:5, Code: "steparea", Description: "Ступенчатая область"},
+          ]
+        </DataSource>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Caption>Ид</Caption>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption>Наименование</Caption>
+						<Width>300</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Code</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{1}</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+		<FormLayoutItemDescriptor>
+			<Caption>Интервал развертки (час.)</Caption>
+			<Name>drillDownCumulativeTotalInterval</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>SpinEdit</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+					<Value>1</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+					<Value>48</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+					<Value>Integer</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+					<Value>1</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>CaptionSettings.Location</PropertiesChain>
+					<Value>Top</Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+	</Descriptors>
+</ParametricDialog>

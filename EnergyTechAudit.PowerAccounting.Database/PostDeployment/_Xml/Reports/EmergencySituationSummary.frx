@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Name="EmergencySituationSummary" ReportInfo.Author="Leo" ReportInfo.Version="Id=31;ReportTypeId=1;HasPluginProcessing=0" ReportInfo.Description="Сводный отчет по нештатным ситуациям за период" ReportInfo.Created="11/14/2016 09:43:51" ReportInfo.Modified="03/25/2017 13:25:35" ReportInfo.CreatorVersion="2016.1.2.0">
+  <Dictionary/>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" RawPaperSize="9" FirstPageSource="15" OtherPagesSource="15">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="105.84">
+      <TextObject Name="Text1" Left="113.4" Width="820.26" Height="22.68" Text="Сводный отчет по нештатным ситуациям за период" HorzAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text35" Left="113.4" Top="26.46" Width="820.26" Height="18.9" Text="c [PeriodBegin] до [PeriodEnd]" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text29" Top="60.48" Width="132.3" Height="18.9" Text="Оператор:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text81" Left="136.08" Top="60.48" Width="328.86" Height="18.9" Text="[IIf(string.IsNullOrEmpty([UserInfoDescription]),&quot;(не указано)&quot;, [UserInfoDescription])] ([UserName])" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text83" Left="136.08" Top="83.16" Width="328.86" Height="18.9" Text="[ResourceSystemTypeDescription]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text95" Top="83.16" Width="132.3" Height="18.9" Text="Тип ресурсной системы:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <PictureObject Name="CustomerReportLogo" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="109.29" Width="1047.06" Height="45.36" PrintOn="FirstPage" KeepChild="true">
+      <TextObject Name="Text3" Width="34.02" Height="45.36" Border.Lines="All" Text="№" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text36" Left="34.02" Width="79.38" Height="45.36" Border.Lines="All" Text="Устройство" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text38" Left="113.4" Width="302.4" Height="45.36" Border.Lines="All" Text="Наименование нештатной ситуации" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text41" Left="510.3" Width="79.38" Height="45.36" Border.Lines="All" Text="Время генерации первой НС" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text42" Left="589.68" Width="79.38" Height="45.36" Border.Lines="All" Text="Время генерации последней НС" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text43" Left="669.06" Width="79.38" Height="45.36" Border.Lines="All" Text="Общее время работы с НС" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text44" Left="748.44" Width="68.04" Height="45.36" Border.Lines="All" Text="Число регистраций события" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text45" Left="816.48" Width="68.04" Height="45.36" Border.Lines="All" Text="Кол-во квит. событий" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text46" Left="884.52" Width="79.38" Height="45.36" Border.Lines="All" Text="Время последнего квитирования" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text47" Left="963.9" Width="79.38" Height="45.36" Border.Lines="All" Text="Пользователь, квит-ший НС" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text94" Left="415.8" Width="94.5" Height="45.36" Border.Lines="All" Text="Текущее состояние" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="158.1" Width="1047.06" Height="22.68" Condition="[MainData.BuildingId]">
+      <TextObject Name="Text84" Width="510.3" Height="22.68" Border.Lines="Left, Top, Bottom" Text="[MainData.BuildingDescription]" Padding="8, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text97" Left="510.3" Width="532.98" Height="22.68" Border.Lines="Right, Top, Bottom" Text=" Ответственное лицо: [IIf(string.IsNullOrEmpty([MainData.UserAdditionalInfoDescription]),&quot;(не указано)&quot;, [MainData.UserAdditionalInfoDescription])]" Padding="8, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <DataBand Name="MainDataBand" Top="184.22" Width="1047.06" Height="45.36">
+        <TextObject Name="Text2" Width="34.02" Height="45.36" Border.Lines="All" Text="[Row#]." Padding="4, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text37" Left="34.02" Width="79.38" Height="45.36" Border.Lines="All" Text="[MainData.MeasurementDeviceDescription]" Padding="4, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text39" Left="113.4" Width="302.4" Height="45.36" Border.Lines="All" Text="[MainData.EmergencySituationParameterDescription]" Padding="4, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text48" Left="415.8" Width="94.5" Height="22.68" Border.Lines="All" Text="[IIf([MainData.EmergencyLogLastRecoveryTime] != default(DateTime) &amp;&amp; [MainData.EmergencyLogLastRecoveryTime] &gt; [MainData.EmergencyTimeSignatureLastTime], &quot;Устранено&quot;, &quot;Действие&quot;)]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text49" Left="510.3" Width="79.38" Height="45.36" Border.Lines="All" Text="[[MainData.EmergencyTimeSignatureFirstTime].ToString(&quot;dd.MM.yyyy\r\nHH:mm:ss&quot;)]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text50" Left="589.68" Width="79.38" Height="45.36" Border.Lines="All" Text="[[MainData.EmergencyTimeSignatureLastTime].ToString(&quot;dd.MM.yyyy\r\nHH:mm:ss&quot;)]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text51" Left="669.06" Width="79.38" Height="45.36" Border.Lines="All" Text="[string.Format( &quot;{0:%d} сут. {0:%h} час. {0:%m} мин.&quot;, [MainData.EmergencyTimeSignatureLastTime] - [MainData.EmergencyTimeSignatureFirstTime])]" Padding="4, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text52" Left="748.44" Width="68.04" Height="45.36" Border.Lines="All" Text="[MainData.EmergencyLogCount]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text53" Left="816.48" Width="68.04" Height="45.36" Border.Lines="All" Text="[IIf([MainData.EmergencyLogIsAcknowledgementCount] == 0, &quot;-&quot;, [MainData.EmergencyLogIsAcknowledgementCount])]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text54" Left="884.52" Width="79.38" Height="45.36" Border.Lines="All" Text="[IIf([MainData.EmergencyLogAcknowledgementLastTime] == default(DateTime), &quot;-&quot;, [MainData.EmergencyLogAcknowledgementLastTime])]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text55" Left="963.9" Width="79.38" Height="45.36" Border.Lines="All" Text="[IIf([MainData.EmergencyLogAcknowledgementUserName] == &quot;&quot;, &quot;-&quot;, [MainData.EmergencyLogAcknowledgementUserName])]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text96" Left="415.8" Top="22.68" Width="94.5" Height="22.68" Border.Lines="All" Text="[IIf([MainData.EmergencyLogLastRecoveryTime] == default(DateTime), &quot;-&quot;, [MainData.EmergencyLogLastRecoveryTime])]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      </DataBand>
+    </GroupHeaderBand>
+    <GroupHeaderBand Name="SummaryGroupHeader" Top="319.64" Width="1047.06" Height="22.68" FirstRowStartsNewPage="true" Condition="[SummaryData.BuildingUserAdditionalInfoId]">
+      <TextObject Name="Text98" Left="34.02" Width="1009.26" Height="22.68" Border.Lines="All" Text=" Ответственное лицо: [IIf(string.IsNullOrEmpty([SummaryData.UserAdditionalInfoDescription]),&quot;(не указано)&quot;, [SummaryData.UserAdditionalInfoDescription])]" Padding="8, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <DataHeaderBand Name="SummaryDataHeader" Top="233.03" Width="1047.06" Height="83.16" FirstRowStartsNewPage="true">
+        <TextObject Name="Text82" Left="34.02" Top="18.9" Width="635.04" Height="18.9" Text="Итоговые данные за период с [PeriodBegin] по [PeriodEnd]:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text85" Left="68.04" Top="37.8" Width="601.02" Height="45.36" Border.Lines="All" Text="Наименование нештатной ситуации" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text40" Left="669.06" Top="37.8" Width="124.74" Height="45.36" Border.Lines="All" Text="Количество объектов, на которых сгенерирована НС" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text86" Left="793.8" Top="37.8" Width="124.74" Height="45.36" Border.Lines="All" Text="Кол-во объектов с действием НС на текущий момент" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text87" Left="918.54" Top="37.8" Width="124.74" Height="45.36" Border.Lines="All" Text="Общее количество генерации НС" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text88" Left="34.02" Top="37.8" Width="34.02" Height="45.36" Border.Lines="All" Text="№" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataBand Name="SummaryDataBand" Top="345.77" Width="1047.06" Height="37.8" FirstRowStartsNewPage="true">
+        <TextObject Name="Text89" Left="34.02" Width="34.02" Height="37.8" Border.Lines="All" Text="[Row#]." Padding="4, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text90" Left="68.04" Width="601.02" Height="37.8" Border.Lines="All" Text="[SummaryData.EmergencySituationParameterTemplateDescription]" Padding="4, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text91" Left="669.06" Width="124.74" Height="37.8" Border.Lines="All" Text="[SummaryData.BuildingCount]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text92" Left="793.8" Width="124.74" Height="37.8" Border.Lines="All" Padding="4, 0, 2, 0" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text93" Left="918.54" Width="124.74" Height="37.8" Border.Lines="All" Text="[SummaryData.EmergencyLogCount]" Padding="4, 0, 2, 0" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      </DataBand>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="387.02" Width="1047.06" Height="22.68">
+      <TextObject Name="Text4" Left="476.28" Top="3.78" Width="94.5" Height="18.9" Text="[Page]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

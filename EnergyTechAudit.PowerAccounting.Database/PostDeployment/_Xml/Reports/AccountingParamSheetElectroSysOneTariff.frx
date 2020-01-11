@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Core.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Common.dll&#13;&#10;EnergyTechAudit.PowerAccounting.Domain.dll&#13;&#10;EnergyTechAudit.PowerAccounting.DataAccess.dll&#13;&#10;EnergyTechAudit.PowerAccounting.ReportSupport.dll" DoublePass="true" StartReportEvent="Start_Report" ReportInfo.Name="AccountingParamSheetElectroSysOneTariff" ReportInfo.Author="Leo" ReportInfo.Version="Id = 113;ReportTypeId = 1;HasPluginProcessing = 1" ReportInfo.Description="Ведомость учета параметров потребленной электрической энергии, 1 тариф (A+,A-,R+,R-)" ReportInfo.Created="01/22/2015 15:18:15" ReportInfo.Modified="02/19/2018 15:29:16" ReportInfo.CreatorVersion="2017.4.3.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using EnergyTechAudit.PowerAccounting.Common.Entity;
+using EnergyTechAudit.PowerAccounting.Domain.Interfaces;
+using EnergyTechAudit.PowerAccounting.DataAccess.Helper;
+using EnergyTechAudit.PowerAccounting.Common.FormatProviders;
+using EnergyTechAudit.PowerAccounting.ReportSupport.Aggregate;
+
+namespace FastReport
+{
+     public class ReportScript
+     {     
+          public static string DeviceCode = null;
+          
+          public static int PeriodTypeId = 0;
+          
+          
+          private void Start_Report(object sender, EventArgs e)
+          {
+              DeviceCode = (string)Report.GetParameterValue(&quot;DeviceCode&quot;);   
+              PeriodTypeId = (int)Report.GetParameterValue(&quot;PeriodTypeId&quot;);     
+               
+              Report.DifferenceLastFirstWithAddNewRow(&quot;SummaryData&quot;);
+          }
+     }
+        
+}
+</ScriptText>
+  <Dictionary>
+    <Parameter Name="SummaryData_ElectroSys_ActivePower_Plus_T1_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Parameter Name="HasEstimatedReset" DataType="System.Boolean"/>
+    <Parameter Name="SummaryData_ElectroSys_ActivePower_Minus_T1_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Parameter Name="SummaryData_ElectroSys_ReactivePower_Plus_T1_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Parameter Name="SummaryData_ElectroSys_ReactivePower_Minus_T1_TotalDiffLastFirst" DataType="System.Decimal"/>
+    <Total Name="MainData.ElectroSys.ActivePower.Plus.T1.Total" Expression="[MainData.ElectroSys.ActivePower.Plus.T1.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.CountTotal" TotalType="Count" Evaluator="MainDataBand"/>
+    <Total Name="MainData.ElectroSys.ReactivePower.Plus.T1.TotalAvg" TotalType="Avg" Expression="[MainData.ElectroSys.ReactivePower.Plus.T1.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.ElectroSys.ActivePower.Minus.T1.Total" Expression="[MainData.ElectroSys.ActivePower.Minus.T1.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.ElectroSys.ReactivePower.Plus.T1.Total" Expression="[MainData.ElectroSys.ReactivePower.Plus.T1.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.ElectroSys.ReactivePower.Minus.T1.Total" Expression="[MainData.ElectroSys.ReactivePower.Minus.T1.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.ElectroSys.ActivePower.Plus.T1.TotalAvg" TotalType="Avg" Expression="[MainData.ElectroSys.ActivePower.Plus.T1.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.ElectroSys.ActivePower.Minus.T1.TotalAvg" TotalType="Avg" Expression="[MainData.ElectroSys.ActivePower.Minus.T1.Diff]" Evaluator="MainDataBand"/>
+    <Total Name="MainData.ElectroSys.ReactivePower.Minus.T1.TotalAvg" TotalType="Avg" Expression="[MainData.ElectroSys.ReactivePower.Minus.T1.Diff]" Evaluator="MainDataBand"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperHeight="295" RawPaperSize="9" Guides="0" ExtraDesignWidth="true">
+    <ReportTitleBand Name="ReportTitle" Width="718.2" Height="109.62">
+      <TextObject Name="Text2" Left="113.4" Width="514.08" Height="49.14" Text="Ведомость учета параметров потребленной электрической энергии&#13;&#10;статистические данные " HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 12pt, style=Bold"/>
+      <TextObject Name="Text29" Top="68.04" Width="79.38" Height="18.9" Text="Потребитель:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Top="86.94" Width="79.38" Height="18.9" Text="Адрес:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text31" Left="536.76" Top="68.04" Width="90.72" Height="18.9" Text="Тип прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text32" Left="536.76" Top="86.94" Width="90.72" Height="18.9" Text="Номер прибора:" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      <TextObject Name="Text33" Left="627.48" Top="68.04" Width="90.72" Height="18.9" Text="[DeviceShortName]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text34" Left="627.48" Top="86.94" Width="90.72" Height="18.9" Text="[FactoryNumber]" HorzAlign="Right" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text35" Top="49.14" Width="718.2" Height="18.9" Text="c [string.Format(&quot;{0:d}&quot;, [PeriodBegin])] до [string.Format(&quot;{0:d}&quot;, [PeriodEnd])]" HorzAlign="Center" Font="Times New Roman, 10pt"/>
+      <TextObject Name="Text80" Left="79.38" Top="86.94" Width="94.5" Height="18.9" Text="[IIf([BuildingPurposeCode] != &quot;BoilerHouse&quot; ,[FullAddress],[BuildingDescription])]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text81" Left="79.38" Top="68.04" Width="94.5" Height="18.9" Text="[IIf([UseBuildingDescriptionInReports] == &quot;true&quot;,[BuildingDescription],[District])]" AutoWidth="true" VertAlign="Center" Font="Times New Roman, 8pt"/>
+      <PictureObject Name="CustomerReportLogo" Top="-3.78" Width="113.4" Height="30.24" Anchor="None" ShiftMode="Never"/>
+    </ReportTitleBand>
+    <DataBand Name="MainDataBand" Top="182.28" Width="718.2" Height="18.9" PrintIfDatasourceEmpty="true">
+      <TextObject Name="Text16" Width="83.16" Height="18.9" Border.Lines="All" Text="[MainData.Time]" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text17" Left="83.16" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.ElectroSys.ActivePower.Plus.T1.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text20" Left="241.92" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.ElectroSys.ActivePower.Minus.T1.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text24" Left="559.44" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.ElectroSys.ReactivePower.Minus.T1.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text36" Left="400.68" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([MainData.IsValidRowState],[MainData.ElectroSys.ReactivePower.Plus.T1.Diff],&quot;-&quot;)]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <DataHeaderBand Name="MainDataBandHeader" Top="111.93" Width="718.2" Height="68.04">
+        <TextObject Name="Text1" Width="83.16" Height="68.04" Border.Lines="All" Text="Дата" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text3" Left="83.16" Width="158.76" Height="68.04" Border.Lines="All" Text="Активная прямая (A+),   кВт·ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text73" Left="559.44" Width="158.76" Height="68.04" Border.Lines="All" Text="Реактивная обратная (R-), кВАр·ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text74" Left="400.68" Width="158.76" Height="68.04" Border.Lines="All" Text="Реактивная прямая (R+), кВАр·ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text4" Left="241.92" Width="158.76" Height="68.04" Border.Lines="All" Text="Активная обратная (A-), кВт·ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="MainDataBandFooter" Top="203.5" Width="718.2" Height="37.8">
+        <TextObject Name="Text37" Width="83.16" Height="18.9" Border.Lines="All" Text="Среднее:" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text38" Left="83.16" Width="158.76" Height="18.9" Border.Lines="All" Text="[MainData.ElectroSys.ActivePower.Plus.T1.TotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text45" Left="559.44" Width="158.76" Height="18.9" Border.Lines="All" Text="[MainData.ElectroSys.ReactivePower.Minus.T1.TotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text50" Left="400.68" Width="158.76" Height="18.9" Border.Lines="All" Text="[MainData.ElectroSys.ReactivePower.Plus.T1.TotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text51" Top="18.9" Width="83.16" Height="18.9" Border.Lines="All" Text="Итого:" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text52" Left="83.16" Top="18.9" Width="158.76" Height="18.9" Border.Lines="All" Text="[MainData.ElectroSys.ActivePower.Plus.T1.Total]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text55" Left="241.92" Top="18.9" Width="158.76" Height="18.9" Border.Lines="All" Text="[MainData.ElectroSys.ActivePower.Minus.T1.Total]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text59" Left="559.44" Top="18.9" Width="158.76" Height="18.9" Border.Lines="All" Text="[MainData.ElectroSys.ReactivePower.Minus.T1.Total]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text64" Left="400.68" Top="18.9" Width="158.76" Height="18.9" Border.Lines="All" Text="[MainData.ElectroSys.ReactivePower.Plus.T1.Total]" Padding="0, 0, 0, 0" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text41" Left="241.92" Width="158.76" Height="18.9" Border.Lines="All" Text="[MainData.ElectroSys.ActivePower.Minus.T1.TotalAvg]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      </DataFooterBand>
+    </DataBand>
+    <DataBand Name="SummaryDataBand" Top="306.4" Width="718.2" Height="18.9">
+      <TextObject Name="Text83" Width="83.16" Height="18.9" Border.Lines="All" Text="[SummaryData.Time]" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text86" Left="83.16" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.ElectroSys.ActivePower.Plus.T1])]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text92" Left="241.92" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.ElectroSys.ActivePower.Minus.T1])]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text106" Left="559.44" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.ElectroSys.ReactivePower.Minus.T1])]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <TextObject Name="Text96" Left="400.68" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset] &amp;&amp; [Row#] == 1,&quot;-&quot;,[SummaryData.ElectroSys.ReactivePower.Plus.T1])]" NullValue="-" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      <DataHeaderBand Name="SummaryDataBandHeader" Top="243.61" Width="718.2" Height="60.48">
+        <TextObject Name="Text82" Top="3.78" Width="718.2" Height="18.9" Text="Показания счетчиков[IIf([HasEstimatedReset],&quot; (в приборе отсутствуют накопительные итоги на начало выбранного диапазона дат)&quot;,&quot;&quot;)]:" VertAlign="Center" Font="Times New Roman, 8pt"/>
+        <TextObject Name="Text84" Top="22.68" Width="83.16" Height="37.8" Border.Lines="All" Text="Дата" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text85" Left="83.16" Top="22.68" Width="158.76" Height="37.8" Border.Lines="All" Text="Активная прямая (A+),   кВт·ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text87" Left="241.92" Top="22.68" Width="158.76" Height="37.8" Border.Lines="All" Text="Активная обратная (A-), кВт·ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text89" Left="400.68" Top="22.68" Width="158.76" Height="37.8" Border.Lines="All" Text="Реактивная прямая (R+), кВАр·ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+        <TextObject Name="Text104" Left="559.44" Top="22.68" Width="158.76" Height="37.8" Border.Lines="All" Text="Реактивная обратная (R-), кВАр·ч" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 8pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="SummaryDataBandFooter" Top="327.61" Width="718.2" Height="18.92">
+        <TextObject Name="Text97" Width="83.16" Height="18.9" Border.Lines="All" Text="Результат за период:" Format="Custom" Format.Format="dd.MM.yyyy HH:mm" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text98" Left="83.16" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],[MainData.ElectroSys.ActivePower.Plus.T1.Total],[SummaryData_ElectroSys_ActivePower_Plus_T1_TotalDiffLastFirst])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text99" Left="241.92" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],[MainData.ElectroSys.ActivePower.Minus.T1.Total],[SummaryData_ElectroSys_ActivePower_Minus_T1_TotalDiffLastFirst])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text103" Left="400.68" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],[MainData.ElectroSys.ReactivePower.Plus.T1.Total],[SummaryData_ElectroSys_ReactivePower_Plus_T1_TotalDiffLastFirst])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+        <TextObject Name="Text108" Left="559.44" Width="158.76" Height="18.9" Border.Lines="All" Text="[IIf([HasEstimatedReset],[MainData.ElectroSys.ReactivePower.Minus.T1.Total],[SummaryData_ElectroSys_ReactivePower_Minus_T1_TotalDiffLastFirst])]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="3" Format.DecimalSeparator="." Format.GroupSeparator=" " Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+      </DataFooterBand>
+    </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="348.84" Width="718.2" Height="56.7">
+      <TextObject Name="Text68" Top="11.34" Width="124.74" Height="18.9" Text="Ответственный за учет:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text69" Top="34.02" Width="124.74" Height="18.9" Text="Отчет принят:" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text70" Left="124.74" Top="11.34" Width="408.24" Height="18.9" Text="___________/________________________/" Font="Times New Roman, 8pt"/>
+      <TextObject Name="Text71" Left="124.74" Top="34.02" Width="408.24" Height="18.9" Text="_________________[Year([Date])] г.___________/________________________/" Font="Times New Roman, 8pt"/>
+    </ReportSummaryBand>
+    <PageFooterBand Name="PageFooter1" Top="407.86" Width="718.2" Height="11.34">
+      <TextObject Name="Text66" Left="311.85" Width="94.5" Height="11.34" Text="[Page]" HorzAlign="Center" VertAlign="Center" Font="Times New Roman, 7pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

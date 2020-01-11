@@ -1,0 +1,72 @@
+﻿<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 1200 1050" width="1400" height="1250" xml:space="preserve">
+	<style type="text/css">
+	.st0{fill:transparent;stroke:#000000;stroke-width:2.25;stroke-miterlimit:10;}
+	.st1{fill:#829A5C;stroke:#000000;stroke-miterlimit:10;}
+	.st2{font-family: "Arial";}
+	.st3{font-size:21px;}
+	.st5{font-size:12px;}
+	.st6{font-size:8px;}
+	.st7{fill-rule:evenodd;clip-rule:evenodd;}
+	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}	
+</style>
+	<style>
+      .blink 
+      {
+          animation: blink-animation 2s steps(5, start) infinite;
+          -webkit-animation: blink-animation 2s steps(5, start) infinite;
+      }
+      @keyframes blink-animation 
+      {
+          to {
+            visibility: hidden;
+          }
+      }
+      @-webkit-keyframes blink-animation 
+      {
+          to {
+            visibility: hidden;
+          }
+      }
+  	</style>
+	<script>       	
+    jQuery(Core.Common.Mnemoscheme.Selector).on(Core.Common.EventTypes.MnemoschemeWidgetManager.MnemoschemeLoadComplete, 
+		function()
+      	{      		          		
+      		Core.Common.Mnemoscheme.TextParameterRenderer = function(tagName, jQElement, parameter)
+            {                            	
+              	var v = parseFloat(parameter.value).toFixed(2).toString().replace(".", "&lt;tspan class=&apos;blink&apos;&gt;.&lt;/tspan&gt;");
+            	jQElement.html(v);                   
+            };
+		}); 
+            	
+		Core.Common.Mnemoscheme.GetMeasurementDeviceSummaryCallback = function(measurementDeviceSummaryInfo)
+        {            	
+			jQuery(Core.Common.Mnemoscheme.Selector + " [data-core-factorynumber]").text(measurementDeviceSummaryInfo[Number.zero].factoryNumber);
+		};
+        
+	</script>
+	<image href="\eta_bin.axd?code=wJ8Y3qH5LdO1E4I7" transform="translate(185 135)" x="0" y="0" width="114" height="27" />
+	<image href="\eta_bin.axd?code=2h7U0pA4bLe1Ty8i" transform="translate(115 10)" x="0" y="0" width="183" height="38" />
+	<path class="st0" d="M332.5,172H16.6c-6.6,0-12-5.4-12-12V16.7c0-6.6,5.4-12,12-12h315.8c6.6,0,12,5.4,12,12V160  C344.5,166.6,339.1,172,332.5,172z" />
+	<path class="st1" d="M296.9,100.7H52.2c-2.1,0-3.8-1.7-3.8-3.8V51.6c0-2.1,1.7-3.8,3.8-3.8h244.8  c2.1,0,3.8,1.7,3.8,3.8v45.3C300.7,99,299,100.7,296.9,100.7z" />
+	<text transform="matrix(0.9 0 0 1 130 35)" class="st2 st3" style="font-weight: bold; display: none">ТЕПЛОВОДОХРАН</text>
+	<text transform="matrix(1 0 0 1 75.5038 129)" class="st2 st5">Счетчик-импульсов регистратор</text>
+	<text transform="matrix(1 0 0 1 33.6017 167)" class="st2 st6">Сделано в России</text>
+	<text transform="matrix(1 0 0 1 270 167)" class="st2 st6" data-core-factorynumber="" />
+	<g>
+		<polygon class="st7" points="334.5,67.9 341.6,67.9 341.6,70.4 340,70.4 340,73.4 336.3,73.4 336.3,70.4    334.5,70.4 334.5,67.9  " />
+		<g>
+			<g>
+				<path class="st7" d="M338.3,66v-4.8c-12.2-6.9-29.5-2.1-29.5,9.3c0,12.7,17.2,15.9,29.5,9.7v-5     c-4.5,1.6-12.2,1.1-12.2-4.6C326,64.9,332.7,64.1,338.3,66z M318.5,72.4c-0.5,0-0.7,0-1.1-0.2v-2.6c0.1,0.1,0.2,0.1,1.1,0.1     c0.9,0,2-0.7,2-2c0-1.4-1.1-2-2-2c-0.9,0-2,0.9-2,2l-0.1,10.4c-1.2,0-2.4-0.7-2.6-2l0-8.8c0-2.3,2.1-4.4,4.6-4.4     c2.6,0,4.9,2,4.9,4.8C323.3,70.5,320.8,72.4,318.5,72.4z" />
+			</g>
+		</g>
+	</g>
+	<rect x="36" y="133.4" class="st7" width="24.7" height="24.7" />
+	<path class="st8" d="M54,135.6h2.2h2.2v2.2h-2.2v2.2v2.2v2.2v2.2v2.2v2.2v2.2h2.2v2.2h-2.2H54v-2.2v-2.2v-2.2v-2.2  v-2.2v-2.2v-2.2v-2.2V135.6L54,135.6z M38.3,135.6h2.2h2.2v2.2h-2.2v2.2v2.2v2.2h2.2v2.2h-2.2v2.2v2.2v2.2h2.2v2.2h-2.2h-2.2v-2.2  v-2.2v-2.2v-2.2v-2.2v-2.2v-2.2v-2.2V135.6L38.3,135.6z M45,135.6h2.2h2.2h2.2v2.2v2.2v2.2v2.2v2.2v2.2v2.2v2.2v2.2h-2.2v-2.2v-2.2  v-2.2v-2.2h-2.2v2.2v2.2v2.2v2.2H45v-2.2v-2.2v-2.2v-2.2v-2.2v-2.2v-2.2v-2.2V135.6L45,135.6z M47.3,137.9v2.2v2.2v2.2h2.2v-2.2  v-2.2v-2.2H47.3z" />
+	<text transform="matrix(1 0 0 1 65 85)" class="st2">
+		<tspan style="font-family: Digital-7; font-size: 2.75em; letter-spacing: 0.2em;" data-core-parameter="Gas.Volume.Work">00000.00</tspan>
+		<tspan dx="5" dy="-1">м3</tspan>
+	</text>
+</svg>

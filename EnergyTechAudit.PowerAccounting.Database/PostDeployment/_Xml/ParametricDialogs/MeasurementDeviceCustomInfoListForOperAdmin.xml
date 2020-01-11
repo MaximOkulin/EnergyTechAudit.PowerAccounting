@@ -1,0 +1,21 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  <!--Объект параметрика для отображения списка приборов в закладке-->
+  <Id>measurementDeviceGridParametricDialog</Id>
+  <Height>0</Height>
+  <Width>0</Width>
+  <Buttons></Buttons>
+  <Title></Title>
+  <IsSavedState>true</IsSavedState>
+  <Descriptors>
+    <FormLayoutItemDescriptor>
+      <Caption></Caption>
+      <Name>GroupFields</Name>
+      <TypeCode>Object</TypeCode>
+      <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+      <NestedExtension>Default</NestedExtension>
+      <FormLayoutItemCustomData>
+        [{"fieldName": "Id", "groupIndex": 0}]
+      </FormLayoutItemCustomData>
+    </FormLayoutItemDescriptor>
+  </Descriptors>
+</ParametricDialog>

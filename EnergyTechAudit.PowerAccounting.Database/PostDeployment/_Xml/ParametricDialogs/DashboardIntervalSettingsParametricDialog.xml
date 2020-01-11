@@ -1,0 +1,82 @@
+﻿<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+  <!--Парамерик для выбора типа измерительного прибора для запроса по списку соотвествия пареметров -->
+  <Id>dashboardIntervalSettingsParametricDialog</Id>
+  <Height>100</Height>
+  <Width>400</Width>
+  <Modal>true</Modal>
+  <Buttons>
+    <DialogButton>
+      <Title>OK</Title>
+      <Order>0</Order>
+      <DialogModalResult>Ok</DialogModalResult>
+    </DialogButton>
+    <DialogButton>
+      <Title>Отмена</Title>
+      <Order>1</Order>
+      <DialogModalResult>Cancel</DialogModalResult>
+    </DialogButton>
+  </Buttons>
+  <AllowResize>true</AllowResize>
+  <Title>Параметры</Title>  
+  <CloseAction>CloseButton</CloseAction>  
+  <IsSavedState>true</IsSavedState>
+  
+  <Descriptors>    
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Начальная дата архива</Caption>
+      <Name>periodBegin</Name>
+      <TypeCode>DateTime</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>DateEdit</NestedExtension>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+          <Value>true</Value>
+        </FormLayoutItemExtender>
+        
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+          <Value>DateTime</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Конечная дата архива</Caption>
+      <Name>periodEnd</Name>
+      <TypeCode>DateTime</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>DateEdit</NestedExtension>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Visible</PropertiesChain>
+          <Value>true</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TimeSectionProperties.Adaptive</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.EditFormat</PropertiesChain>
+          <Value>DateTime</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    
+    <FormLayoutItemDescriptor>
+      <Caption>Применить за последний месяц</Caption>
+      <Name>applyLastMonth</Name>
+      <TypeCode>Boolean</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>CheckBox</NestedExtension>      
+    </FormLayoutItemDescriptor>
+    
+  </Descriptors>
+</ParametricDialog>

@@ -1,0 +1,678 @@
+<ParametricDialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ParametricDialog.xsd">
+	<!--Парамерик отчета Анализ потребления тепловой энергии на нужды отопления  -->
+	<Id>getHeatEnergyConsumptionAnalysisParametricDialog</Id>
+	<Height>100</Height>
+	<Width>400</Width>
+	<Buttons>
+		<DialogButton>
+			<Title>OK</Title>
+			<Order>0</Order>
+			<DialogModalResult>Ok</DialogModalResult>
+		</DialogButton>
+		<DialogButton>
+			<Title>Отмена</Title>
+			<Order>1</Order>
+			<DialogModalResult>Cancel</DialogModalResult>
+		</DialogButton>
+	</Buttons>
+	<AllowResize>true</AllowResize>
+  <ScrollBars>None</ScrollBars>
+	<Title>Параметры</Title>
+	<CloseAction>CloseButton</CloseAction>
+	<IsSavedState>true</IsSavedState>
+	<IsCollectInfoSnapshot>true</IsCollectInfoSnapshot>
+
+	<InitScript HasEscapedContent="true">    
+    function(sender, args)
+    {
+        var parametricDialogInstanse = Core.Dialogs.ParametricDialog.prototype.currentInstance,
+          dxEntityTree = Core.Helpers.DevExpress.getDxControlByName("entityTree"),
+          resultNode = null, resultEntityInfo = null;
+
+        if (dxEntityTree)
+        {
+            var selectedNode = dxEntityTree.GetSelectedNode();
+
+            var searchPredicate = function(leafNode)
+            {
+                if (resultNode === null)
+                {
+                    var entityInfoFromEntityInfo =
+                        Core.Helpers.DevExpress.dxTreeViewGetEntityInfoFromNode(leafNode);
+
+                    if (entityInfoFromEntityInfo)
+                    {
+                        if (entityInfoFromEntityInfo.entityTypeName ==
+                            Core.Common.Entities.Business.Building)
+                        {
+                            resultNode = leafNode;
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            };
+
+            if (selectedNode)
+            {
+                var entityInfoFromEntityInfo = Core.Helpers.DevExpress.dxTreeViewGetEntityInfoFromNode(selectedNode);
+                if (entityInfoFromEntityInfo)
+                {
+                    if (entityInfoFromEntityInfo.entityTypeName == Core.Common.Entities.Business.Building)
+                    {
+                        resultNode = selectedNode;
+                    }
+                }
+
+                if (!resultNode)
+                {
+                    Core.Helpers.DevExpress.dxTreeViewNodeUpTraverse(selectedNode, searchPredicate);
+
+                    if (!resultNode)
+                    {
+                        Core.Helpers.DevExpress.dxTreeViewNodeDownTraverse(selectedNode, searchPredicate);
+                    }
+                }
+            } else
+            {
+                Core.Helpers.DevExpress.dxTreeViewNodeDownTraverse(dxEntityTree.GetRootNode(), searchPredicate);
+            }
+            Core.Helpers.DevExpress.dxTreeViewMakeNodeVisible(resultNode);
+
+            resultEntityInfo = Core.Helpers.DevExpress.dxTreeViewGetEntityInfoFromNode(resultNode);
+        }
+
+        sender.Shown.AddHandler(function(s, a)
+        {
+	          var dxButtonOk = parametricDialogInstanse.getModalResultButton(Core.Resources.Dialogs.DialogModalResults.Ok);
+	          dxButtonOk.SetEnabled(false);
+
+            const           
+              periodBeginControlDefaultValue = (new Date()).addDays(-1),
+              periodEndControlDefaultValue = new Date(),
+	            defaultMinimalTemperatureDefaultValue = -31,
+	            defaultCwsForHwsHeatingFactorDefaultValue = 0.1,
+	            defaultUseDeductionHwsHeatDefaultValue = true;
+          
+            let 
+              periodBeginControl = parametricDialogInstanse.getControlByParameterName("periodBegin"),
+              periodEndControl = parametricDialogInstanse.getControlByParameterName("periodEnd"),
+              defaultMinimalTemperatureControl = parametricDialogInstanse.getControlByParameterName("defaultMinimalTemperature"),
+              defaultCwsForHwsHeatingFactorControl = parametricDialogInstanse.getControlByParameterName("defaultCwsForHwsHeatingFactor"),
+              defaultUseDeductionHwsHeatControl = parametricDialogInstanse.getControlByParameterName("defaultUseDeductionHwsHeat");
+        
+            if(periodBeginControl !== null &amp;&amp; (periodBeginControl.GetValue() === null || periodBeginControl.GetValue().valueOf() === (new Date(0)).valueOf()))
+            {
+              periodBeginControl.SetValue(periodBeginControlDefaultValue);
+            }
+            if(periodEndControl !== null &amp;&amp; (periodEndControl.GetValue() === null || periodEndControl.GetValue().valueOf() === (new Date(0)).valueOf()))
+            {
+              periodEndControl.SetValue(periodEndControlDefaultValue);
+            }
+
+            if(defaultMinimalTemperatureControl.GetValue() === null)
+            {
+	            defaultMinimalTemperatureControl.SetValue(defaultMinimalTemperatureDefaultValue);
+            }
+
+            if(defaultCwsForHwsHeatingFactorControl.GetValue() === null)
+            {
+	            defaultCwsForHwsHeatingFactorControl.SetValue(defaultCwsForHwsHeatingFactorDefaultValue);
+            }
+
+            if(defaultUseDeductionHwsHeatControl.GetValue() === null)
+            {
+	            defaultUseDeductionHwsHeatControl.SetValue(defaultUseDeductionHwsHeatDefaultValue);
+            }
+
+            if (resultNode)
+            {            
+	                  var isPreloadControl = parametricDialogInstanse.getControlByParameterName("isPreload");
+	                  isPreloadControl.SetChecked(true);
+	                  var heatSysChannelIdControl = parametricDialogInstanse.getControlByParameterName("heatSysChannelId");
+	                  heatSysChannelIdControl.SetEnabled(false);
+
+                    Core.Helpers.InternalApi.getEntityAsync(resultEntityInfo)
+                    .fail(function(response)
+                    {
+                        $.event.trigger(Core.Common.EventTypes.CoreAsyncError);
+                    })
+                    .done(function(entity)
+                    {
+                        var buildingIdControl1 = parametricDialogInstanse.getControlByParameterName("buildingId1");
+                        buildingIdControl1.AddItem([entity.id.toString(), entity.description], entity.id);
+                        buildingIdControl1.SetSelectedItem(buildingIdControl1.FindItemByValue(entity.id));
+
+                        parametricDialogInstanse.setParameterValueByName("buildingId", entity.id);
+	                      var descriptors = jQuery.map(parametricDialogInstanse.getParametricObject(true).descriptors,
+	                      function(desc, indx)
+	                      {                         
+	                        return { name: desc.name, value: desc.value instanceof Date ? desc.value.toISOString() : desc.value, typeCode: desc.typeCode };
+	                      });
+
+	                        Core.Helpers.InternalApi
+	                        .getDataSourceBySourceId(parametricDialogInstanse.metaObjectEx.sourceId, descriptors)
+	                        .fail(function(response)
+	                        {
+	                          $.event.trigger(Core.Common.EventTypes.CoreAsyncError);
+	                        })
+	                        .done(function(dataSource)
+	                        {                
+	                          let heatSysChannels = dataSource.heatSysChannels;
+	                          if (heatSysChannelIdControl)
+	                          {
+	                            for (var indx in heatSysChannels)
+	                            {
+	                              try
+	                              {
+	                                  var channelInfo = heatSysChannels[indx];	                                   
+	                                    heatSysChannelIdControl.AddItem
+	                                  (
+	                                    [channelInfo.id.toString(), channelInfo.code, channelInfo.description],
+	                                    channelInfo.id
+	                                  );                                    	                                
+	                              } catch (e)
+	                              {
+	                                console.warn(e);
+	                              }
+                              }
+	                            let parametricCaptionLabelControl = parametricDialogInstanse.getCaptionLabelControl(),                              
+                                isValidOrganizationHeatCurves = dataSource.diagnosticOrganizationHeatCurves[0].isValid,
+                                validationMessage = Core.Resources.Alerts.reportCannotBePrepare.format(parametricCaptionLabelControl.GetText()),
+                                isValid = true;
+
+                              if(!isValidOrganizationHeatCurves)
+                              {
+	                              validationMessage = validationMessage + "&lt;br/&gt; &lt;br/&gt;" +  "Отсутствуют или имеют неверное содержимое связанные с ресурсоснабжающей организацией (Organization) динамические параметры, описывающие &lt;b&gt;температурные графики.&lt;b/&gt;"	                                                          
+	                              isValid = false;
+                              }                            
+                              if(heatSysChannels.length &lt;= Number.zero)  
+                              {
+	                              validationMessage = validationMessage + "&lt;br/&gt; &lt;br/&gt;" + "В строении отсутствуют изменительные каналы центрального отопления."
+	                              isValid = false;
+                              }
+                              else
+                              {
+	                              heatSysChannelIdControl.RemoveItem(Number.zero);
+	                              heatSysChannelIdControl.SetSelectedIndex(Number.zero);
+	                              heatSysChannelIdControl.SetEnabled(true);
+                              }
+                              if(isValid)
+                              {
+	                              dxButtonOk.SetEnabled(true);                              	                              
+                              }
+                              else
+                              {                                
+	                                ( new Core.Dialogs.Alert(
+	                                  {
+	                                    message: validationMessage,
+	                                    type: Core.AlertTypes.warning,
+	                                    timeOut: 25000    
+	                                  })).show();
+                               }                              
+                            };
+	                          isPreloadControl.SetChecked(false);	                          
+	                        });
+                    });                
+                var buildingIdControl = parametricDialogInstanse.getControlByParameterName("buildingId");
+                buildingIdControl.SetValue(resultEntityInfo.entityId);
+                parametricDialogInstanse.setParameterValueByName("buildingId", resultEntityInfo.entityId);                
+            }
+        });
+    }    
+    </InitScript>
+	<Descriptors>
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption></Caption>
+	    <Name>isPreload</Name>
+	    <TypeCode>Boolean</TypeCode>
+	    <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+	    <NestedExtension>CheckBox</NestedExtension>
+	    <Value>true</Value>
+	  </FormLayoutItemDescriptor>
+
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption></Caption>
+	    <Name>MetaObjectId</Name>
+	    <TypeCode>Int32</TypeCode>
+	    <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+	    <NestedExtension>Default</NestedExtension>
+	    <Value>42</Value>
+	  </FormLayoutItemDescriptor>
+
+	  <!-- Контейнерные дескрипторы -->
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption></Caption>
+	    <Name>channelId</Name>
+	    <TypeCode>Int32</TypeCode>
+	    <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+	    <NestedExtension>Default</NestedExtension>
+	    <Value>0</Value>
+	  </FormLayoutItemDescriptor>
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption></Caption>
+	    <Name>periodTypeId</Name>
+	    <TypeCode>Int32</TypeCode>
+	    <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+	    <Value>3</Value>
+	  </FormLayoutItemDescriptor>
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption></Caption>
+	    <Name>includePeriodEnd</Name>
+	    <TypeCode>Boolean</TypeCode>
+	    <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+	    <NestedExtension>Default</NestedExtension>
+	    <Value>true</Value>
+	  </FormLayoutItemDescriptor>
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption></Caption>
+	    <Name>resourceSystemTypeId</Name>
+	    <TypeCode>Int32</TypeCode>
+	    <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+	    <Value>0</Value>
+	  </FormLayoutItemDescriptor>
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption></Caption>
+	    <Name>withVolume</Name>
+	    <TypeCode>Boolean</TypeCode>
+	    <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+	    <NestedExtension>Default</NestedExtension>
+	    <Value>false</Value>
+	  </FormLayoutItemDescriptor>
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption></Caption>
+	    <Name>withErrors</Name>
+	    <TypeCode>Boolean</TypeCode>
+	    <ParameterValueSourceType>FromInternalCode</ParameterValueSourceType>
+	    <NestedExtension>Default</NestedExtension>
+	    <Value>false</Value>
+	  </FormLayoutItemDescriptor>
+	  <!-- // Контейнерные дескрипторы-->
+
+    <FormLayoutItemDescriptor ClientVisible="false">
+      <Caption></Caption>
+      <Name>buildingId</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>SpinEdit</NestedExtension>
+      <Value>0</Value>
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor>
+      <Caption>Cтроение</Caption>
+      <Name>buildingId1</Name>
+      <TypeCode>Int32</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>ComboBox</NestedExtension>
+      <FormLayoutItemListBoxSetting>
+        <DataSourceType>DictionaryByQuery</DataSourceType>
+        <DataSource>DictionaryEntity</DataSource>
+        <DataSourceQuery>
+          SELECT
+          [Building].[Id] [Id],
+          [Building].[Description] [Description]
+          FROM [Business].[Building]  [Building] WITH(NOLOCK)
+          WHERE NULL IS NOT NULL
+        </DataSourceQuery>
+        <FormLayoutItemListBoxColumns>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Id</FieldName>
+            <Caption></Caption>
+            <Width>20</Width>
+          </FormLayoutItemListBoxColumn>
+          <FormLayoutItemListBoxColumn>
+            <FieldName>Description</FieldName>
+            <Caption></Caption>
+            <Width>200</Width>
+          </FormLayoutItemListBoxColumn>
+        </FormLayoutItemListBoxColumns>
+      </FormLayoutItemListBoxSetting>
+      <Value>0</Value>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+          <Value>false</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+          <Value>true</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+          <Value>Id</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+          <Value>Description</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+          <Value>{1}</Value>
+        </FormLayoutItemExtender>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+    </FormLayoutItemDescriptor>
+    
+	  <FormLayoutItemDescriptor>
+			<Caption>Канал ЦО</Caption>
+			<Name>heatSysChannelId</Name>
+			<TypeCode>Int32</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>ComboBox</NestedExtension>
+			<FormLayoutItemListBoxSetting>
+				<DataSourceType>DictionaryByQuery</DataSourceType>
+				<DataSource>DictionaryEntity</DataSource>
+				<DataSourceQuery>
+          SELECT
+          [Channel].[Id] [Id],
+          [Channel].[Description] [Code],
+          [Channel].[Description] [Description]
+          FROM [Business].[Channel] [Channel] WITH(NOLOCK) WHERE NULL IS NOT NULL     
+				  UNION ALL
+				  SELECT 0 [Id], &apos;Отсутствует&apos; [Code], &apos;Отсутствует&apos; [Description];
+        </DataSourceQuery>
+				<FormLayoutItemListBoxColumns>
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Id</FieldName>
+						<Caption></Caption>
+						<Width>20</Width>
+					</FormLayoutItemListBoxColumn>					
+					<FormLayoutItemListBoxColumn>
+						<FieldName>Description</FieldName>
+						<Caption></Caption>
+						<Width>200</Width>
+					</FormLayoutItemListBoxColumn>
+				</FormLayoutItemListBoxColumns>
+			</FormLayoutItemListBoxSetting>
+			<Value>0</Value>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ReadOnly</PropertiesChain>
+					<Value>false</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.EnableClientSideAPI</PropertiesChain>
+					<Value>true</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.ValueField</PropertiesChain>
+					<Value>Id</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextField</PropertiesChain>
+					<Value>Description</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.TextFormatString</PropertiesChain>
+					<Value>{1}</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Properties.DropDownStyle</PropertiesChain>
+					<Value>DropDown</Value>
+				</FormLayoutItemExtender>
+			  <FormLayoutItemExtender>
+			    <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+			    <Value>Top</Value>
+			  </FormLayoutItemExtender>
+
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Начало периода</Caption>
+			<Name>periodBegin</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+		  <FormLayoutItemExtenders>
+		    <FormLayoutItemExtender>
+		      <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+		      <Value>Top</Value>
+		    </FormLayoutItemExtender>
+		  </FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+		<FormLayoutItemDescriptor>
+			<Caption>Конец периода</Caption>
+			<Name>periodEnd</Name>
+			<TypeCode>DateTime</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>DateEdit</NestedExtension>
+      <FormLayoutItemExtenders>
+        <FormLayoutItemExtender>
+          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+          <Value>Top</Value>
+        </FormLayoutItemExtender>
+      </FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+	  <FormLayoutItemDescriptor ClientVisible="true">
+	    <Caption>Расчетная температура внутреннего воздуха, °С </Caption>
+	    <Name>calcIndoorAirTemperature</Name>
+	    <TypeCode>Int32</TypeCode>
+	    <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+	    <NestedExtension>SpinEdit</NestedExtension>
+	    <Value>20</Value>
+	    <FormLayoutItemExtenders>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+	        <Value>10</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+	        <Value>30</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+	        <Value>Integer</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+	        <Value>1</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+	        <Value>Top</Value>
+	      </FormLayoutItemExtender>
+	    </FormLayoutItemExtenders>
+	  </FormLayoutItemDescriptor>
+
+	  <FormLayoutItemDescriptor ClientVisible="true">
+	    <Caption>Тариф на тепловую энергию, руб/Гкал </Caption>
+	    <Name>thermalEnergyRate</Name>
+	    <TypeCode>Decimal</TypeCode>
+	    <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+	    <NestedExtension>SpinEdit</NestedExtension>
+	    <Value>1700</Value>
+	    <FormLayoutItemExtenders>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+	        <Value>100</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+	        <Value>3000</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+	        <Value>Float</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+	        <Value>0.1</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+	        <Value>Top</Value>
+	      </FormLayoutItemExtender>
+	    </FormLayoutItemExtenders>
+	  </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor ClientVisible="false">
+	      <Caption>Нормативное потребление (по умолчанию), Гкал/ч </Caption>
+	      <Name>defaultHourlyConsumptionHeat</Name>
+	      <TypeCode>Decimal</TypeCode>
+	      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+	      <NestedExtension>SpinEdit</NestedExtension>
+	      <Value>0.45</Value>
+	      <FormLayoutItemExtenders>
+	        <FormLayoutItemExtender>
+	          <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+	          <Value>0.001</Value>
+	        </FormLayoutItemExtender>
+	        <FormLayoutItemExtender>
+	          <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+	          <Value>3000</Value>
+	        </FormLayoutItemExtender>
+	        <FormLayoutItemExtender>
+	          <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+	          <Value>Float</Value>
+	        </FormLayoutItemExtender>
+	        <FormLayoutItemExtender>
+	          <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+	          <Value>0.01</Value>
+	        </FormLayoutItemExtender>
+	        <FormLayoutItemExtender>
+	          <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+	          <Value>Top</Value>
+	        </FormLayoutItemExtender>
+	      </FormLayoutItemExtenders>
+	    </FormLayoutItemDescriptor>
+
+	  <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption>Миним. темпер. по климатологии (по умолчанию), °С </Caption>
+	    <Name>defaultMinimalTemperature</Name>
+	    <TypeCode>Int32</TypeCode>
+	    <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+	    <NestedExtension>SpinEdit</NestedExtension>
+	    <Value>-30</Value>
+	    <FormLayoutItemExtenders>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+	        <Value>-60</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+	        <Value>30</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+	        <Value>Integer</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+	        <Value>1</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+	        <Value>Top</Value>
+	      </FormLayoutItemExtender>
+	    </FormLayoutItemExtenders>
+	  </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor ClientVisible="false">
+      <Caption>Учет потребления на нужды ГВС (по умолчанию)</Caption>
+      <Name>defaultUseDeductionHwsHeat</Name>
+      <TypeCode>Boolean</TypeCode>
+      <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+      <NestedExtension>CheckBox</NestedExtension>
+      <Value>true</Value>
+      
+    </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor ClientVisible="false">
+	    <Caption>Коэффициент подогрева ХВС для ГВС (по умолчанию), Гкал/м3 </Caption>
+	    <Name>defaultCwsForHwsHeatingFactor</Name>
+	    <TypeCode>Decimal</TypeCode>
+	    <ParameterValueSourceType>FromUser</ParameterValueSourceType>
+	    <NestedExtension>SpinEdit</NestedExtension>
+	    <Value>0.1</Value>
+	    <FormLayoutItemExtenders>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.MinValue</PropertiesChain>
+	        <Value>0</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.MaxValue</PropertiesChain>
+	        <Value>10</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.NumberType</PropertiesChain>
+	        <Value>Float</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>NestedExtensionSettings.Properties.Increment</PropertiesChain>
+	        <Value>0.01</Value>
+	      </FormLayoutItemExtender>
+	      <FormLayoutItemExtender>
+	        <PropertiesChain>CaptionSettings.Location</PropertiesChain>
+	        <Value>Top</Value>
+	      </FormLayoutItemExtender>
+	    </FormLayoutItemExtenders>
+	  </FormLayoutItemDescriptor>
+
+    <FormLayoutItemDescriptor ClientVisible="true">
+			<Caption> </Caption>
+			<Name>moreButton</Name>
+			<TypeCode>Empty</TypeCode>
+			<ParameterValueSourceType>FromUser</ParameterValueSourceType>
+			<NestedExtension>Button</NestedExtension>
+			<FormLayoutItemExtenders>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.Text</PropertiesChain>
+					<Value>Более...</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.RenderMode</PropertiesChain>
+					<Value>Link</Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ClientSideEvents.Init</PropertiesChain>
+					<Value HasEscapedContent="true">
+            <![CDATA[
+           function(sender, args)
+           {                      
+            jQuery(sender.GetMainElement()).css(
+            {
+              "width": "60px",
+              "float": "right",
+              "margin-right": "3px"
+            });            
+           }
+           ]]>
+           </Value>
+				</FormLayoutItemExtender>
+				<FormLayoutItemExtender>
+					<PropertiesChain>NestedExtensionSettings.ClientSideEvents.Click</PropertiesChain>
+					<Value HasEscapedContent="true">
+          <![CDATA[
+           function(sender, args)
+           {              
+					    var parametric = Core.Dialogs.ParametricDialog.prototype.currentInstance;                      
+              var layout = parametric.getLayoutControl();              
+              layout.moreButtonState = layout.moreButtonState == undefined ? true : !layout.moreButtonState;                            
+              
+					    let ctrlArr = ["defaultHourlyConsumptionHeat", "defaultMinimalTemperature", "defaultCwsForHwsHeatingFactor", "defaultUseDeductionHwsHeat"];
+					    for(let indx in ctrlArr)
+					    {
+					      let ctrl = parametric.getLayoutItemByParameterName(ctrlArr[indx]);
+                 
+					      if(ctrl !== null)
+					      {
+					        ctrl.SetVisible(layout.moreButtonState);
+					      };
+					    };   
+              parametric.getParametricDialog().SetHeight(Number.zero);
+              sender.SetText(layout.moreButtonState ? "Менее...": "Более...")              
+           }
+           ]]>
+           </Value>
+				</FormLayoutItemExtender>
+			</FormLayoutItemExtenders>
+		</FormLayoutItemDescriptor>
+
+	</Descriptors>
+</ParametricDialog>
